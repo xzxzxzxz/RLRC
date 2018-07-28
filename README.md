@@ -1,1 +1,1 @@
-RL-RC project
+Reinforcement Learning Robust Control Project
