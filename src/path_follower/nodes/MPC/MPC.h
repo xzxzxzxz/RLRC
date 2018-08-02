@@ -24,7 +24,6 @@
 #include <path_follower/SteeringCmd.h>
 #include <path_follower/state_Dynamic.h>
 #include <path_follower/traj_plan.h>
-#include <path_follower/SteeringReport.h>
 #include <dbw_mkz_msgs/SteeringReport.h>
 #include <path_follower/Uout.h>
 #include <path_follower/Time.h>
