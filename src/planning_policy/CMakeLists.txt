@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(path_follower)
+project(planning_policy)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -8,16 +8,9 @@ project(path_follower)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  roscpp 
+  roscpp
   rospy
-  dynamic_reconfigure
-  geometry_msgs 
   std_msgs
-  sensor_msgs 
-  nmea_msgs
-  message_generation
-  tf
-  dbw_mkz_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -54,23 +47,11 @@ find_package(catkin REQUIRED COMPONENTS
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
 ## Generate messages in the 'msg' folder
- add_message_files(
-   FILES
-  Actuator.msg
-  ApplanixPose.msg
-  ControllerTarget.msg
-  dtlane.msg
-  SteeringCurrent.msg
-  state_Dynamic.msg
-  SteeringCmd.msg
-  traj_plan.msg
-  Trajectory2D.msg
-  TrajectoryPoint2D.msg
-  TwistStamped.msg
-  Time.msg
-  Uout.msg
-  waypoint.msg
- )
+# add_message_files(
+#   FILES
+#   Message1.msg
+#   Message2.msg
+# )
 
 ## Generate services in the 'srv' folder
 # add_service_files(
@@ -87,12 +68,10 @@ find_package(catkin REQUIRED COMPONENTS
 # )
 
 ## Generate added messages and services with any dependencies listed here
- generate_messages(
-   DEPENDENCIES
-  sensor_msgs
-  geometry_msgs
-  std_msgs
- )
+# generate_messages(
+#   DEPENDENCIES
+#   std_msgs
+# )
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -106,27 +85,28 @@ find_package(catkin REQUIRED COMPONENTS
 ##   * add "dynamic_reconfigure" to
 ##     find_package(catkin REQUIRED COMPONENTS ...)
 ##   * uncomment the "generate_dynamic_reconfigure_options" section below
-##     and list every .cfg file to be processed 
+##     and list every .cfg file to be processed
 
 ## Generate dynamic reconfigure parameters in the 'cfg' folder
- generate_dynamic_reconfigure_options(
-   cfg/DynamicParam.cfg
- )
+# generate_dynamic_reconfigure_options(
+#   cfg/DynReconf1.cfg
+#   cfg/DynReconf2.cfg
+# )
 
 ###################################
 ## catkin specific configuration ##
 ###################################
 ## The catkin_package macro generates cmake config files for your package
 ## Declare things to be passed to dependent projects
-## INCLUDE_DIRS: uncomment this if you package contains header files
+## INCLUDE_DIRS: uncomment this if your package contains header files
 ## LIBRARIES: libraries you create in this project that dependent projects also need
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-  INCLUDE_DIRS include
-  LIBRARIES path_follower
-  CATKIN_DEPENDS roscpp rospy std_msgs dynamic_reconfigure geometry_msgs sensor_msgs nmea_msgs  message_generation tf dbw_mkz_msgs
-  #DEPENDS system_lib
+#  INCLUDE_DIRS include
+#  LIBRARIES planning_policy
+#  CATKIN_DEPENDS roscpp rospy std_msgs
+#  DEPENDS system_lib
 )
 
 ###########
@@ -136,18 +116,14 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
-  include
+# include
   ${catkin_INCLUDE_DIRS}
-  ${Eigen_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library
-add_library(${PROJECT_NAME}
- src/MPC/Vehicle.cpp
- src/nmea_to_UTM/latlongtoUTM.cpp
- src/nmea_to_UTM/nmea2pose_core.cpp
-)
-
+# add_library(${PROJECT_NAME}
+#   src/${PROJECT_NAME}/planning_policy.cpp
+# )
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
@@ -157,30 +133,7 @@ add_library(${PROJECT_NAME}
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-# add_executable(${PROJECT_NAME}_node src/path_follower_node.cpp)
-add_executable(cmd_converter_node src/cmd_converter/cmd_converter_node.cpp)
-add_executable(pose_estimation src/pose_estimation/pose_estimation.cpp)
-add_executable(nmea_to_UTM src/nmea_to_UTM/nmea2pose_core.cpp src/nmea_to_UTM/nmea2pose_node.cpp src/nmea_to_UTM/latlongtoUTM.cpp)
-add_executable(MPC src/MPC/MPC.cpp src/MPC/Vehicle.cpp src/MPC/scaledTime.cpp  
-  src/MPC/QPsolver/src/QProblem.cpp
-  src/MPC/QPsolver/src/QProblemB.cpp
-  src/MPC/QPsolver/src/BLASReplacement.cpp
-  src/MPC/QPsolver/src/Bounds.cpp
-  src/MPC/QPsolver/src/Constraints.cpp
-  src/MPC/QPsolver/src/Flipper.cpp
-  src/MPC/QPsolver/src/Indexlist.cpp
-  src/MPC/QPsolver/src/LAPACKReplacement.cpp
-  src/MPC/QPsolver/src/Matrices.cpp
-  src/MPC/QPsolver/src/MessageHandling.cpp
-  src/MPC/QPsolver/src/Options.cpp
-  src/MPC/QPsolver/src/OQPinterface.cpp
-  src/MPC/QPsolver/src/SolutionAnalysis.cpp
-  src/MPC/QPsolver/src/SparseSolver.cpp
-  src/MPC/QPsolver/src/SQProblem.cpp
-  src/MPC/QPsolver/src/SQProblemSchur.cpp
-  src/MPC/QPsolver/src/SubjectTo.cpp
-  src/MPC/QPsolver/src/Utils.cpp
- )
+# add_executable(${PROJECT_NAME}_node src/planning_policy_node.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -190,32 +143,12 @@ add_executable(MPC src/MPC/MPC.cpp src/MPC/Vehicle.cpp src/MPC/scaledTime.cpp
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
-# add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS}${catkin_EXPORTED_TARGETS})
-add_dependencies(cmd_converter_node path_follower_generate_messages_cpp) 
-add_dependencies(pose_estimation path_follower_generate_messages_cpp) 
-add_dependencies(nmea_to_UTM path_follower_generate_messages_cpp) 
-add_dependencies(MPC path_follower_generate_messages_cpp path_follower_gencfg)
-
+# add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
 # target_link_libraries(${PROJECT_NAME}_node
 #   ${catkin_LIBRARIES}
 # )
-
-target_link_libraries(cmd_converter_node
- ${catkin_LIBRARIES}
-)
-target_link_libraries(pose_estimation
- ${catkin_LIBRARIES}
-)
-target_link_libraries(nmea_to_UTM
- ${catkin_LIBRARIES}
-)
-target_link_libraries(MPC
- ${catkin_LIBRARIES} 
-# qpOASES
-)
-
 
 #############
 ## Install ##
@@ -239,11 +172,11 @@ target_link_libraries(MPC
 # )
 
 ## Mark cpp header files for installation
-#install(DIRECTORY include/${PROJECT_NAME}/
-#  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
-#  FILES_MATCHING PATTERN "*.h"
-#  PATTERN ".svn" EXCLUDE
-#)
+# install(DIRECTORY include/${PROJECT_NAME}/
+#   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+#   FILES_MATCHING PATTERN "*.h"
+#   PATTERN ".svn" EXCLUDE
+# )
 
 ## Mark other files for installation (e.g. launch and bag files, etc.)
 # install(FILES
@@ -257,7 +190,7 @@ target_link_libraries(MPC
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_path_follower.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_planning_policy.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()
