@@ -20,8 +20,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/MPC.dir/src/MPC/QPsolver/src/SQProblemSchur.cpp.o"
   "CMakeFiles/MPC.dir/src/MPC/QPsolver/src/SubjectTo.cpp.o"
   "CMakeFiles/MPC.dir/src/MPC/QPsolver/src/Utils.cpp.o"
-  "/home/chen/ProjectCodes/RLRC/RLRC/devel/lib/path_follower/MPC.pdb"
-  "/home/chen/ProjectCodes/RLRC/RLRC/devel/lib/path_follower/MPC"
+  "/home/zhuoxu/RLRC/devel/lib/path_follower/MPC.pdb"
+  "/home/zhuoxu/RLRC/devel/lib/path_follower/MPC"
 )
 
 # Per-language clean rules from dependency scanning.

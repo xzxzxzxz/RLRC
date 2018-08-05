@@ -68,11 +68,14 @@ struct Actuator_
   _timestamp_type timestamp;
 
 
-    enum { DIRECTION_FORWARD = 0u };
-     enum { DIRECTION_REVERSE = 1u };
-     enum { ANGLE_CONTROL = 0u };
-     enum { TORQUE_CONTROL = 1u };
- 
+
+  enum {
+    DIRECTION_FORWARD = 0u,
+    DIRECTION_REVERSE = 1u,
+    ANGLE_CONTROL = 0u,
+    TORQUE_CONTROL = 1u,
+  };
+
 
   typedef boost::shared_ptr< ::path_follower::Actuator_<ContainerAllocator> > Ptr;
   typedef boost::shared_ptr< ::path_follower::Actuator_<ContainerAllocator> const> ConstPtr;
@@ -113,7 +116,7 @@ namespace message_traits
 
 
 // BOOLTRAITS {'IsFixedSize': False, 'IsMessage': True, 'HasHeader': True}
-// {'std_msgs': ['/opt/ros/kinetic/share/std_msgs/cmake/../msg'], 'geometry_msgs': ['/opt/ros/kinetic/share/geometry_msgs/cmake/../msg'], 'sensor_msgs': ['/opt/ros/kinetic/share/sensor_msgs/cmake/../msg'], 'path_follower': ['/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg']}
+// {'std_msgs': ['/opt/ros/kinetic/share/std_msgs/cmake/../msg'], 'geometry_msgs': ['/opt/ros/kinetic/share/geometry_msgs/cmake/../msg'], 'sensor_msgs': ['/opt/ros/kinetic/share/sensor_msgs/cmake/../msg'], 'path_follower': ['/home/zhuoxu/RLRC/src/path_follower/msg']}
 
 // !!!!!!!!!!! ['__class__', '__delattr__', '__dict__', '__doc__', '__eq__', '__format__', '__getattribute__', '__hash__', '__init__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', '_parsed_fields', 'constants', 'fields', 'full_name', 'has_header', 'header_present', 'names', 'package', 'parsed_fields', 'short_name', 'text', 'types']
 

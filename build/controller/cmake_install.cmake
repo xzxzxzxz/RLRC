@@ -1,8 +1,8 @@
-# Install script for directory: /home/chen/ProjectCodes/RLRC/RLRC/src/controller
+# Install script for directory: /home/zhuoxu/RLRC/src/controller
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/chen/ProjectCodes/RLRC/RLRC/install")
+  set(CMAKE_INSTALL_PREFIX "/home/zhuoxu/RLRC/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -33,17 +33,17 @@ if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/chen/ProjectCodes/RLRC/RLRC/build/controller/catkin_generated/installspace/controller.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/zhuoxu/RLRC/build/controller/catkin_generated/installspace/controller.pc")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/controller/cmake" TYPE FILE FILES
-    "/home/chen/ProjectCodes/RLRC/RLRC/build/controller/catkin_generated/installspace/controllerConfig.cmake"
-    "/home/chen/ProjectCodes/RLRC/RLRC/build/controller/catkin_generated/installspace/controllerConfig-version.cmake"
+    "/home/zhuoxu/RLRC/build/controller/catkin_generated/installspace/controllerConfig.cmake"
+    "/home/zhuoxu/RLRC/build/controller/catkin_generated/installspace/controllerConfig-version.cmake"
     )
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/controller" TYPE FILE FILES "/home/chen/ProjectCodes/RLRC/RLRC/src/controller/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/controller" TYPE FILE FILES "/home/zhuoxu/RLRC/src/controller/package.xml")
 endif()
 

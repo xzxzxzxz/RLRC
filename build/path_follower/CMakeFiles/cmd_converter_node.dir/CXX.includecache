@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/chen/ProjectCodes/RLRC/RLRC/devel/include/dbw_mkz_msgs/SteeringCmd.h
+/home/zhuoxu/RLRC/devel/include/dbw_mkz_msgs/SteeringCmd.h
 string
 -
 vector
@@ -22,7 +22,7 @@ ros/builtin_message_traits.h
 ros/message_operations.h
 -
 
-/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/src/cmd_converter/cmd_converter_node.cpp
+/home/zhuoxu/RLRC/src/path_follower/src/cmd_converter/cmd_converter_node.cpp
 ros/ros.h
 -
 geometry_msgs/Twist.h

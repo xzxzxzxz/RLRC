@@ -37,23 +37,26 @@ struct WatchdogCounter_
   _source_type source;
 
 
-    enum { NONE = 0u };
-     enum { OTHER_BRAKE = 1u };
-     enum { OTHER_THROTTLE = 2u };
-     enum { OTHER_STEERING = 3u };
-     enum { BRAKE_COUNTER = 4u };
-     enum { BRAKE_DISABLED = 5u };
-     enum { BRAKE_COMMAND = 6u };
-     enum { BRAKE_REPORT = 7u };
-     enum { THROTTLE_COUNTER = 8u };
-     enum { THROTTLE_DISABLED = 9u };
-     enum { THROTTLE_COMMAND = 10u };
-     enum { THROTTLE_REPORT = 11u };
-     enum { STEERING_COUNTER = 12u };
-     enum { STEERING_DISABLED = 13u };
-     enum { STEERING_COMMAND = 14u };
-     enum { STEERING_REPORT = 15u };
- 
+
+  enum {
+    NONE = 0u,
+    OTHER_BRAKE = 1u,
+    OTHER_THROTTLE = 2u,
+    OTHER_STEERING = 3u,
+    BRAKE_COUNTER = 4u,
+    BRAKE_DISABLED = 5u,
+    BRAKE_COMMAND = 6u,
+    BRAKE_REPORT = 7u,
+    THROTTLE_COUNTER = 8u,
+    THROTTLE_DISABLED = 9u,
+    THROTTLE_COMMAND = 10u,
+    THROTTLE_REPORT = 11u,
+    STEERING_COUNTER = 12u,
+    STEERING_DISABLED = 13u,
+    STEERING_COMMAND = 14u,
+    STEERING_REPORT = 15u,
+  };
+
 
   typedef boost::shared_ptr< ::dbw_mkz_msgs::WatchdogCounter_<ContainerAllocator> > Ptr;
   typedef boost::shared_ptr< ::dbw_mkz_msgs::WatchdogCounter_<ContainerAllocator> const> ConstPtr;
@@ -118,7 +121,7 @@ namespace message_traits
 
 
 // BOOLTRAITS {'IsFixedSize': True, 'IsMessage': True, 'HasHeader': False}
-// {'geometry_msgs': ['/opt/ros/kinetic/share/geometry_msgs/cmake/../msg'], 'std_msgs': ['/opt/ros/kinetic/share/std_msgs/cmake/../msg'], 'dbw_mkz_msgs': ['/home/chen/ProjectCodes/RLRC/RLRC/src/dbw_mkz_msgs/msg']}
+// {'geometry_msgs': ['/opt/ros/kinetic/share/geometry_msgs/cmake/../msg'], 'std_msgs': ['/opt/ros/kinetic/share/std_msgs/cmake/../msg'], 'dbw_mkz_msgs': ['/home/zhuoxu/RLRC/src/dbw_mkz_msgs/msg']}
 
 // !!!!!!!!!!! ['__class__', '__delattr__', '__dict__', '__doc__', '__eq__', '__format__', '__getattribute__', '__hash__', '__init__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', '_parsed_fields', 'constants', 'fields', 'full_name', 'has_header', 'header_present', 'names', 'package', 'parsed_fields', 'short_name', 'text', 'types']
 

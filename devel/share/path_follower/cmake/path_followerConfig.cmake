@@ -67,14 +67,14 @@ set(path_follower_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("TRUE" STREQUAL "TRUE")
-  set(path_follower_SOURCE_PREFIX /home/chen/ProjectCodes/RLRC/RLRC/src/path_follower)
-  set(path_follower_DEVEL_PREFIX /home/chen/ProjectCodes/RLRC/RLRC/devel)
+  set(path_follower_SOURCE_PREFIX /home/zhuoxu/RLRC/src/path_follower)
+  set(path_follower_DEVEL_PREFIX /home/zhuoxu/RLRC/devel)
   set(path_follower_INSTALL_PREFIX "")
   set(path_follower_PREFIX ${path_follower_DEVEL_PREFIX})
 else()
   set(path_follower_SOURCE_PREFIX "")
   set(path_follower_DEVEL_PREFIX "")
-  set(path_follower_INSTALL_PREFIX /home/chen/ProjectCodes/RLRC/RLRC/install)
+  set(path_follower_INSTALL_PREFIX /home/zhuoxu/RLRC/install)
   set(path_follower_PREFIX ${path_follower_INSTALL_PREFIX})
 endif()
 
@@ -91,9 +91,9 @@ endif()
 # flag project as catkin-based to distinguish if a find_package()-ed project is a catkin project
 set(path_follower_FOUND_CATKIN_PROJECT TRUE)
 
-if(NOT "/home/chen/ProjectCodes/RLRC/RLRC/devel/include;/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/include " STREQUAL " ")
+if(NOT "/home/zhuoxu/RLRC/devel/include;/home/zhuoxu/RLRC/src/path_follower/include " STREQUAL " ")
   set(path_follower_INCLUDE_DIRS "")
-  set(_include_dirs "/home/chen/ProjectCodes/RLRC/RLRC/devel/include;/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/include")
+  set(_include_dirs "/home/zhuoxu/RLRC/devel/include;/home/zhuoxu/RLRC/src/path_follower/include")
   if(NOT " " STREQUAL " ")
     set(_report "Check the issue tracker '' and consider creating a ticket if the problem has not been reported yet.")
   elseif(NOT " " STREQUAL " ")
@@ -110,7 +110,7 @@ if(NOT "/home/chen/ProjectCodes/RLRC/RLRC/devel/include;/home/chen/ProjectCodes/
         message(FATAL_ERROR "Project 'path_follower' specifies '${idir}' as an include dir, which is not found.  It does not exist in '${include}'.  ${_report}")
       endif()
     else()
-      message(FATAL_ERROR "Project 'path_follower' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/${idir}'.  ${_report}")
+      message(FATAL_ERROR "Project 'path_follower' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '/home/zhuoxu/RLRC/src/path_follower/${idir}'.  ${_report}")
     endif()
     _list_append_unique(path_follower_INCLUDE_DIRS ${include})
   endforeach()
@@ -129,7 +129,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/chen/ProjectCodes/RLRC/RLRC/devel/lib;/opt/ros/kinetic/lib)
+    foreach(path /home/zhuoxu/RLRC/devel/lib;/opt/ros/kinetic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)

@@ -1,8 +1,8 @@
-# Install script for directory: /home/chen/ProjectCodes/RLRC/RLRC/src/path_follower
+# Install script for directory: /home/zhuoxu/RLRC/src/path_follower
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/chen/ProjectCodes/RLRC/RLRC/install")
+  set(CMAKE_INSTALL_PREFIX "/home/zhuoxu/RLRC/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -34,82 +34,82 @@ endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/path_follower/msg" TYPE FILE FILES
-    "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/Actuator.msg"
-    "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/ApplanixPose.msg"
-    "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/ControllerTarget.msg"
-    "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/dtlane.msg"
-    "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/SteeringCurrent.msg"
-    "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/state_Dynamic.msg"
-    "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/SteeringCmd.msg"
-    "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/traj_plan.msg"
-    "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/Trajectory2D.msg"
-    "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/TrajectoryPoint2D.msg"
-    "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/Time.msg"
-    "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/Uout.msg"
-    "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/waypoint.msg"
+    "/home/zhuoxu/RLRC/src/path_follower/msg/Actuator.msg"
+    "/home/zhuoxu/RLRC/src/path_follower/msg/ApplanixPose.msg"
+    "/home/zhuoxu/RLRC/src/path_follower/msg/ControllerTarget.msg"
+    "/home/zhuoxu/RLRC/src/path_follower/msg/dtlane.msg"
+    "/home/zhuoxu/RLRC/src/path_follower/msg/SteeringCurrent.msg"
+    "/home/zhuoxu/RLRC/src/path_follower/msg/state_Dynamic.msg"
+    "/home/zhuoxu/RLRC/src/path_follower/msg/SteeringCmd.msg"
+    "/home/zhuoxu/RLRC/src/path_follower/msg/traj_plan.msg"
+    "/home/zhuoxu/RLRC/src/path_follower/msg/Trajectory2D.msg"
+    "/home/zhuoxu/RLRC/src/path_follower/msg/TrajectoryPoint2D.msg"
+    "/home/zhuoxu/RLRC/src/path_follower/msg/Time.msg"
+    "/home/zhuoxu/RLRC/src/path_follower/msg/Uout.msg"
+    "/home/zhuoxu/RLRC/src/path_follower/msg/waypoint.msg"
     )
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/path_follower/cmake" TYPE FILE FILES "/home/chen/ProjectCodes/RLRC/RLRC/build/path_follower/catkin_generated/installspace/path_follower-msg-paths.cmake")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/path_follower/cmake" TYPE FILE FILES "/home/zhuoxu/RLRC/build/path_follower/catkin_generated/installspace/path_follower-msg-paths.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE DIRECTORY FILES "/home/chen/ProjectCodes/RLRC/RLRC/devel/include/path_follower")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE DIRECTORY FILES "/home/zhuoxu/RLRC/devel/include/path_follower")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/roseus/ros" TYPE DIRECTORY FILES "/home/chen/ProjectCodes/RLRC/RLRC/devel/share/roseus/ros/path_follower")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/roseus/ros" TYPE DIRECTORY FILES "/home/zhuoxu/RLRC/devel/share/roseus/ros/path_follower")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/common-lisp/ros" TYPE DIRECTORY FILES "/home/chen/ProjectCodes/RLRC/RLRC/devel/share/common-lisp/ros/path_follower")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/common-lisp/ros" TYPE DIRECTORY FILES "/home/zhuoxu/RLRC/devel/share/common-lisp/ros/path_follower")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/gennodejs/ros" TYPE DIRECTORY FILES "/home/chen/ProjectCodes/RLRC/RLRC/devel/share/gennodejs/ros/path_follower")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/gennodejs/ros" TYPE DIRECTORY FILES "/home/zhuoxu/RLRC/devel/share/gennodejs/ros/path_follower")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  execute_process(COMMAND "/home/chen/tensorflow/bin/python" -m compileall "/home/chen/ProjectCodes/RLRC/RLRC/devel/lib/python2.7/dist-packages/path_follower")
+  execute_process(COMMAND "/usr/bin/python" -m compileall "/home/zhuoxu/RLRC/devel/lib/python2.7/dist-packages/path_follower")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python2.7/dist-packages" TYPE DIRECTORY FILES "/home/chen/ProjectCodes/RLRC/RLRC/devel/lib/python2.7/dist-packages/path_follower")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python2.7/dist-packages" TYPE DIRECTORY FILES "/home/zhuoxu/RLRC/devel/lib/python2.7/dist-packages/path_follower")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/path_follower" TYPE FILE FILES "/home/chen/ProjectCodes/RLRC/RLRC/devel/include/path_follower/DynamicParamConfig.h")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/path_follower" TYPE FILE FILES "/home/zhuoxu/RLRC/devel/include/path_follower/DynamicParamConfig.h")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python2.7/dist-packages/path_follower" TYPE FILE FILES "/home/chen/ProjectCodes/RLRC/RLRC/devel/lib/python2.7/dist-packages/path_follower/__init__.py")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python2.7/dist-packages/path_follower" TYPE FILE FILES "/home/zhuoxu/RLRC/devel/lib/python2.7/dist-packages/path_follower/__init__.py")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  execute_process(COMMAND "/home/chen/tensorflow/bin/python" -m compileall "/home/chen/ProjectCodes/RLRC/RLRC/devel/lib/python2.7/dist-packages/path_follower/cfg")
+  execute_process(COMMAND "/usr/bin/python" -m compileall "/home/zhuoxu/RLRC/devel/lib/python2.7/dist-packages/path_follower/cfg")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python2.7/dist-packages/path_follower" TYPE DIRECTORY FILES "/home/chen/ProjectCodes/RLRC/RLRC/devel/lib/python2.7/dist-packages/path_follower/cfg")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python2.7/dist-packages/path_follower" TYPE DIRECTORY FILES "/home/zhuoxu/RLRC/devel/lib/python2.7/dist-packages/path_follower/cfg")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/chen/ProjectCodes/RLRC/RLRC/build/path_follower/catkin_generated/installspace/path_follower.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/zhuoxu/RLRC/build/path_follower/catkin_generated/installspace/path_follower.pc")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/path_follower/cmake" TYPE FILE FILES "/home/chen/ProjectCodes/RLRC/RLRC/build/path_follower/catkin_generated/installspace/path_follower-msg-extras.cmake")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/path_follower/cmake" TYPE FILE FILES "/home/zhuoxu/RLRC/build/path_follower/catkin_generated/installspace/path_follower-msg-extras.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/path_follower/cmake" TYPE FILE FILES
-    "/home/chen/ProjectCodes/RLRC/RLRC/build/path_follower/catkin_generated/installspace/path_followerConfig.cmake"
-    "/home/chen/ProjectCodes/RLRC/RLRC/build/path_follower/catkin_generated/installspace/path_followerConfig-version.cmake"
+    "/home/zhuoxu/RLRC/build/path_follower/catkin_generated/installspace/path_followerConfig.cmake"
+    "/home/zhuoxu/RLRC/build/path_follower/catkin_generated/installspace/path_followerConfig-version.cmake"
     )
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/path_follower" TYPE FILE FILES "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/path_follower" TYPE FILE FILES "/home/zhuoxu/RLRC/src/path_follower/package.xml")
 endif()
 

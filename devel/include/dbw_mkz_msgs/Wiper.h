@@ -37,23 +37,26 @@ struct Wiper_
   _status_type status;
 
 
-    enum { OFF = 0u };
-     enum { AUTO_OFF = 1u };
-     enum { OFF_MOVING = 2u };
-     enum { MANUAL_OFF = 3u };
-     enum { MANUAL_ON = 4u };
-     enum { MANUAL_LOW = 5u };
-     enum { MANUAL_HIGH = 6u };
-     enum { MIST_FLICK = 7u };
-     enum { WASH = 8u };
-     enum { AUTO_LOW = 9u };
-     enum { AUTO_HIGH = 10u };
-     enum { COURTESYWIPE = 11u };
-     enum { AUTO_ADJUST = 12u };
-     enum { RESERVED = 13u };
-     enum { STALLED = 14u };
-     enum { NO_DATA = 15u };
- 
+
+  enum {
+    OFF = 0u,
+    AUTO_OFF = 1u,
+    OFF_MOVING = 2u,
+    MANUAL_OFF = 3u,
+    MANUAL_ON = 4u,
+    MANUAL_LOW = 5u,
+    MANUAL_HIGH = 6u,
+    MIST_FLICK = 7u,
+    WASH = 8u,
+    AUTO_LOW = 9u,
+    AUTO_HIGH = 10u,
+    COURTESYWIPE = 11u,
+    AUTO_ADJUST = 12u,
+    RESERVED = 13u,
+    STALLED = 14u,
+    NO_DATA = 15u,
+  };
+
 
   typedef boost::shared_ptr< ::dbw_mkz_msgs::Wiper_<ContainerAllocator> > Ptr;
   typedef boost::shared_ptr< ::dbw_mkz_msgs::Wiper_<ContainerAllocator> const> ConstPtr;
@@ -118,7 +121,7 @@ namespace message_traits
 
 
 // BOOLTRAITS {'IsFixedSize': True, 'IsMessage': True, 'HasHeader': False}
-// {'geometry_msgs': ['/opt/ros/kinetic/share/geometry_msgs/cmake/../msg'], 'std_msgs': ['/opt/ros/kinetic/share/std_msgs/cmake/../msg'], 'dbw_mkz_msgs': ['/home/chen/ProjectCodes/RLRC/RLRC/src/dbw_mkz_msgs/msg']}
+// {'geometry_msgs': ['/opt/ros/kinetic/share/geometry_msgs/cmake/../msg'], 'std_msgs': ['/opt/ros/kinetic/share/std_msgs/cmake/../msg'], 'dbw_mkz_msgs': ['/home/zhuoxu/RLRC/src/dbw_mkz_msgs/msg']}
 
 // !!!!!!!!!!! ['__class__', '__delattr__', '__dict__', '__doc__', '__eq__', '__format__', '__getattribute__', '__hash__', '__init__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', '_parsed_fields', 'constants', 'fields', 'full_name', 'has_header', 'header_present', 'names', 'package', 'parsed_fields', 'short_name', 'text', 'types']
 

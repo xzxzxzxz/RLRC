@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/chen/ProjectCodes/RLRC/RLRC/src
+CMAKE_SOURCE_DIR = /home/zhuoxu/RLRC/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/chen/ProjectCodes/RLRC/RLRC/build
+CMAKE_BINARY_DIR = /home/zhuoxu/RLRC/build
 
 # Utility rule file for nmea_msgs_generate_messages_py.
 
@@ -63,10 +63,10 @@ path_follower/CMakeFiles/nmea_msgs_generate_messages_py.dir/build: nmea_msgs_gen
 .PHONY : path_follower/CMakeFiles/nmea_msgs_generate_messages_py.dir/build
 
 path_follower/CMakeFiles/nmea_msgs_generate_messages_py.dir/clean:
-	cd /home/chen/ProjectCodes/RLRC/RLRC/build/path_follower && $(CMAKE_COMMAND) -P CMakeFiles/nmea_msgs_generate_messages_py.dir/cmake_clean.cmake
+	cd /home/zhuoxu/RLRC/build/path_follower && $(CMAKE_COMMAND) -P CMakeFiles/nmea_msgs_generate_messages_py.dir/cmake_clean.cmake
 .PHONY : path_follower/CMakeFiles/nmea_msgs_generate_messages_py.dir/clean
 
 path_follower/CMakeFiles/nmea_msgs_generate_messages_py.dir/depend:
-	cd /home/chen/ProjectCodes/RLRC/RLRC/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/chen/ProjectCodes/RLRC/RLRC/src /home/chen/ProjectCodes/RLRC/RLRC/src/path_follower /home/chen/ProjectCodes/RLRC/RLRC/build /home/chen/ProjectCodes/RLRC/RLRC/build/path_follower /home/chen/ProjectCodes/RLRC/RLRC/build/path_follower/CMakeFiles/nmea_msgs_generate_messages_py.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/zhuoxu/RLRC/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/zhuoxu/RLRC/src /home/zhuoxu/RLRC/src/path_follower /home/zhuoxu/RLRC/build /home/zhuoxu/RLRC/build/path_follower /home/zhuoxu/RLRC/build/path_follower/CMakeFiles/nmea_msgs_generate_messages_py.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : path_follower/CMakeFiles/nmea_msgs_generate_messages_py.dir/depend
 

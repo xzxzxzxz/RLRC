@@ -37,13 +37,16 @@ struct GearReject_
   _value_type value;
 
 
-    enum { NONE = 0u };
-     enum { SHIFT_IN_PROGRESS = 1u };
-     enum { OVERRIDE = 2u };
-     enum { ROTARY_LOW = 3u };
-     enum { ROTARY_PARK = 4u };
-     enum { VEHICLE = 5u };
- 
+
+  enum {
+    NONE = 0u,
+    SHIFT_IN_PROGRESS = 1u,
+    OVERRIDE = 2u,
+    ROTARY_LOW = 3u,
+    ROTARY_PARK = 4u,
+    VEHICLE = 5u,
+  };
+
 
   typedef boost::shared_ptr< ::dbw_mkz_msgs::GearReject_<ContainerAllocator> > Ptr;
   typedef boost::shared_ptr< ::dbw_mkz_msgs::GearReject_<ContainerAllocator> const> ConstPtr;
@@ -88,7 +91,7 @@ namespace message_traits
 
 
 // BOOLTRAITS {'IsFixedSize': True, 'IsMessage': True, 'HasHeader': False}
-// {'geometry_msgs': ['/opt/ros/kinetic/share/geometry_msgs/cmake/../msg'], 'std_msgs': ['/opt/ros/kinetic/share/std_msgs/cmake/../msg'], 'dbw_mkz_msgs': ['/home/chen/ProjectCodes/RLRC/RLRC/src/dbw_mkz_msgs/msg']}
+// {'geometry_msgs': ['/opt/ros/kinetic/share/geometry_msgs/cmake/../msg'], 'std_msgs': ['/opt/ros/kinetic/share/std_msgs/cmake/../msg'], 'dbw_mkz_msgs': ['/home/zhuoxu/RLRC/src/dbw_mkz_msgs/msg']}
 
 // !!!!!!!!!!! ['__class__', '__delattr__', '__dict__', '__doc__', '__eq__', '__format__', '__getattribute__', '__hash__', '__init__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', '_parsed_fields', 'constants', 'fields', 'full_name', 'has_header', 'header_present', 'names', 'package', 'parsed_fields', 'short_name', 'text', 'types']
 

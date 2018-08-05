@@ -1,34 +1,34 @@
 
 "use strict";
 
-let ApplanixPose = require('./ApplanixPose.js');
-let TrajectoryPoint2D = require('./TrajectoryPoint2D.js');
-let state_Dynamic = require('./state_Dynamic.js');
-let ControllerTarget = require('./ControllerTarget.js');
-let Uout = require('./Uout.js');
-let SteeringCmd = require('./SteeringCmd.js');
-let Trajectory2D = require('./Trajectory2D.js');
-let traj_plan = require('./traj_plan.js');
-let dtlane = require('./dtlane.js');
-let TwistStamped = require('./TwistStamped.js');
 let Time = require('./Time.js');
-let Actuator = require('./Actuator.js');
 let waypoint = require('./waypoint.js');
+let traj_plan = require('./traj_plan.js');
+let ApplanixPose = require('./ApplanixPose.js');
+let Trajectory2D = require('./Trajectory2D.js');
+let ControllerTarget = require('./ControllerTarget.js');
 let SteeringCurrent = require('./SteeringCurrent.js');
+let TwistStamped = require('./TwistStamped.js');
+let state_Dynamic = require('./state_Dynamic.js');
+let dtlane = require('./dtlane.js');
+let SteeringCmd = require('./SteeringCmd.js');
+let Uout = require('./Uout.js');
+let Actuator = require('./Actuator.js');
+let TrajectoryPoint2D = require('./TrajectoryPoint2D.js');
 
 module.exports = {
-  ApplanixPose: ApplanixPose,
-  TrajectoryPoint2D: TrajectoryPoint2D,
-  state_Dynamic: state_Dynamic,
-  ControllerTarget: ControllerTarget,
-  Uout: Uout,
-  SteeringCmd: SteeringCmd,
-  Trajectory2D: Trajectory2D,
-  traj_plan: traj_plan,
-  dtlane: dtlane,
-  TwistStamped: TwistStamped,
   Time: Time,
-  Actuator: Actuator,
   waypoint: waypoint,
+  traj_plan: traj_plan,
+  ApplanixPose: ApplanixPose,
+  Trajectory2D: Trajectory2D,
+  ControllerTarget: ControllerTarget,
   SteeringCurrent: SteeringCurrent,
+  TwistStamped: TwistStamped,
+  state_Dynamic: state_Dynamic,
+  dtlane: dtlane,
+  SteeringCmd: SteeringCmd,
+  Uout: Uout,
+  Actuator: Actuator,
+  TrajectoryPoint2D: TrajectoryPoint2D,
 };

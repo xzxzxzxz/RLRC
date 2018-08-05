@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/chen/ProjectCodes/RLRC/RLRC/src/controller/src/comp_error_core.cpp" "/home/chen/ProjectCodes/RLRC/RLRC/build/controller/CMakeFiles/controller.dir/src/comp_error_core.cpp.o"
+  "/home/zhuoxu/RLRC/src/controller/src/comp_error_core.cpp" "/home/zhuoxu/RLRC/build/controller/CMakeFiles/controller.dir/src/comp_error_core.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -17,9 +17,9 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
-  "/home/chen/ProjectCodes/RLRC/RLRC/src/controller/include"
-  "/home/chen/ProjectCodes/RLRC/RLRC/devel/include"
-  "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/include"
+  "/home/zhuoxu/RLRC/src/controller/include"
+  "/home/zhuoxu/RLRC/devel/include"
+  "/home/zhuoxu/RLRC/src/path_follower/include"
   "/opt/ros/kinetic/include"
   "/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp"
   )

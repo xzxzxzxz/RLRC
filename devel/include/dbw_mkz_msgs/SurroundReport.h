@@ -95,19 +95,22 @@ struct SurroundReport_
   _sonar_type sonar;
 
 
-    enum { FRONT_LEFT_SIDE = 0u };
-     enum { FRONT_LEFT_CORNER = 1u };
-     enum { FRONT_LEFT_CENTER = 2u };
-     enum { FRONT_RIGHT_CENTER = 3u };
-     enum { FRONT_RIGHT_CORNER = 4u };
-     enum { FRONT_RIGHT_SIDE = 5u };
-     enum { REAR_LEFT_SIDE = 6u };
-     enum { REAR_LEFT_CORNER = 7u };
-     enum { REAR_LEFT_CENTER = 8u };
-     enum { REAR_RIGHT_CENTER = 9u };
-     enum { REAR_RIGHT_CORNER = 10u };
-     enum { REAR_RIGHT_SIDE = 11u };
- 
+
+  enum {
+    FRONT_LEFT_SIDE = 0u,
+    FRONT_LEFT_CORNER = 1u,
+    FRONT_LEFT_CENTER = 2u,
+    FRONT_RIGHT_CENTER = 3u,
+    FRONT_RIGHT_CORNER = 4u,
+    FRONT_RIGHT_SIDE = 5u,
+    REAR_LEFT_SIDE = 6u,
+    REAR_LEFT_CORNER = 7u,
+    REAR_LEFT_CENTER = 8u,
+    REAR_RIGHT_CENTER = 9u,
+    REAR_RIGHT_CORNER = 10u,
+    REAR_RIGHT_SIDE = 11u,
+  };
+
 
   typedef boost::shared_ptr< ::dbw_mkz_msgs::SurroundReport_<ContainerAllocator> > Ptr;
   typedef boost::shared_ptr< ::dbw_mkz_msgs::SurroundReport_<ContainerAllocator> const> ConstPtr;
@@ -164,7 +167,7 @@ namespace message_traits
 
 
 // BOOLTRAITS {'IsFixedSize': False, 'IsMessage': True, 'HasHeader': True}
-// {'geometry_msgs': ['/opt/ros/kinetic/share/geometry_msgs/cmake/../msg'], 'std_msgs': ['/opt/ros/kinetic/share/std_msgs/cmake/../msg'], 'dbw_mkz_msgs': ['/home/chen/ProjectCodes/RLRC/RLRC/src/dbw_mkz_msgs/msg']}
+// {'geometry_msgs': ['/opt/ros/kinetic/share/geometry_msgs/cmake/../msg'], 'std_msgs': ['/opt/ros/kinetic/share/std_msgs/cmake/../msg'], 'dbw_mkz_msgs': ['/home/zhuoxu/RLRC/src/dbw_mkz_msgs/msg']}
 
 // !!!!!!!!!!! ['__class__', '__delattr__', '__dict__', '__doc__', '__eq__', '__format__', '__getattribute__', '__hash__', '__init__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', '_parsed_fields', 'constants', 'fields', 'full_name', 'has_header', 'header_present', 'names', 'package', 'parsed_fields', 'short_name', 'text', 'types']
 

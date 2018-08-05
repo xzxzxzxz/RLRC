@@ -1,8 +1,8 @@
-prefix=/home/chen/ProjectCodes/RLRC/RLRC/install
+prefix=/home/zhuoxu/RLRC/install
 
 Name: dbw_mkz_msgs
 Description: Description of dbw_mkz_msgs
 Version: 1.0.9
-Cflags: -I/home/chen/ProjectCodes/RLRC/RLRC/install/include
-Libs: -L/home/chen/ProjectCodes/RLRC/RLRC/install/lib 
+Cflags: -I/home/zhuoxu/RLRC/install/include
+Libs: -L/home/zhuoxu/RLRC/install/lib 
 Requires: message_runtime std_msgs geometry_msgs
