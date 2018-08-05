@@ -190,8 +190,8 @@ int main(int argc, char **argv)
   {
     ros::spinOnce();
     memset(nextstate, 0, 7 * sizeof(float));
-    action[0] = max(min(action[0], 1.0), -1.0);
-    action[1] = max(min(action[1], 1.0), -1.0);
+    action[0] = max(min(action[0], 1.0f), -1.0f);
+    action[1] = max(min(action[1], 1.0f), -1.0f);
     dvxdt = maxDvxdt * action[0];
     steering = action[1]*maxSteeringRate*dt + state[6]*steeringRatio;
     nextstate[6] = max(min(steering,maxSteering),-maxSteering)/steeringRatio;
