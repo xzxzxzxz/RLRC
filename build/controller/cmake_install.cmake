@@ -33,6 +33,22 @@ if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/controller" TYPE FILE FILES "/home/chen/ProjectCodes/RLRC/RLRC/devel/include/controller/DynamicParamConfig.h")
+endif()
+
+if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python2.7/dist-packages/controller" TYPE FILE FILES "/home/chen/ProjectCodes/RLRC/RLRC/devel/lib/python2.7/dist-packages/controller/__init__.py")
+endif()
+
+if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
+  execute_process(COMMAND "/home/chen/tensorflow/bin/python" -m compileall "/home/chen/ProjectCodes/RLRC/RLRC/devel/lib/python2.7/dist-packages/controller/cfg")
+endif()
+
+if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python2.7/dist-packages/controller" TYPE DIRECTORY FILES "/home/chen/ProjectCodes/RLRC/RLRC/devel/lib/python2.7/dist-packages/controller/cfg")
+endif()
+
+if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/chen/ProjectCodes/RLRC/RLRC/build/controller/catkin_generated/installspace/controller.pc")
 endif()
 

@@ -1882,17 +1882,17 @@ _path_follower_generate_messages_check_deps_waypoint/fast:
 .PHONY : _path_follower_generate_messages_check_deps_waypoint/fast
 
 #=============================================================================
-# Target rules for targets named comp_error_node
+# Target rules for targets named controller_gencfg
 
 # Build rule for target.
-comp_error_node: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 comp_error_node
-.PHONY : comp_error_node
+controller_gencfg: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 controller_gencfg
+.PHONY : controller_gencfg
 
 # fast build rule for target.
-comp_error_node/fast:
-	$(MAKE) -f controller/CMakeFiles/comp_error_node.dir/build.make controller/CMakeFiles/comp_error_node.dir/build
-.PHONY : comp_error_node/fast
+controller_gencfg/fast:
+	$(MAKE) -f controller/CMakeFiles/controller_gencfg.dir/build.make controller/CMakeFiles/controller_gencfg.dir/build
+.PHONY : controller_gencfg/fast
 
 #=============================================================================
 # Target rules for targets named controller
@@ -1906,6 +1906,19 @@ controller: cmake_check_build_system
 controller/fast:
 	$(MAKE) -f controller/CMakeFiles/controller.dir/build.make controller/CMakeFiles/controller.dir/build
 .PHONY : controller/fast
+
+#=============================================================================
+# Target rules for targets named comp_error_node
+
+# Build rule for target.
+comp_error_node: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 comp_error_node
+.PHONY : comp_error_node
+
+# fast build rule for target.
+comp_error_node/fast:
+	$(MAKE) -f controller/CMakeFiles/comp_error_node.dir/build.make controller/CMakeFiles/comp_error_node.dir/build
+.PHONY : comp_error_node/fast
 
 # Help Target
 help:
@@ -2052,8 +2065,9 @@ help:
 	@echo "... _path_follower_generate_messages_check_deps_Uout"
 	@echo "... _path_follower_generate_messages_check_deps_TwistStamped"
 	@echo "... _path_follower_generate_messages_check_deps_waypoint"
-	@echo "... comp_error_node"
+	@echo "... controller_gencfg"
 	@echo "... controller"
+	@echo "... comp_error_node"
 .PHONY : help
 
 

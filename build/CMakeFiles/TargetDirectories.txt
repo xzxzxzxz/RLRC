@@ -174,10 +174,11 @@
 /home/chen/ProjectCodes/RLRC/RLRC/build/path_follower/CMakeFiles/_path_follower_generate_messages_check_deps_waypoint.dir
 /home/chen/ProjectCodes/RLRC/RLRC/build/controller/CMakeFiles/list_install_components.dir
 /home/chen/ProjectCodes/RLRC/RLRC/build/controller/CMakeFiles/install.dir
-/home/chen/ProjectCodes/RLRC/RLRC/build/controller/CMakeFiles/rebuild_cache.dir
 /home/chen/ProjectCodes/RLRC/RLRC/build/controller/CMakeFiles/edit_cache.dir
 /home/chen/ProjectCodes/RLRC/RLRC/build/controller/CMakeFiles/test.dir
-/home/chen/ProjectCodes/RLRC/RLRC/build/controller/CMakeFiles/comp_error_node.dir
-/home/chen/ProjectCodes/RLRC/RLRC/build/controller/CMakeFiles/controller.dir
+/home/chen/ProjectCodes/RLRC/RLRC/build/controller/CMakeFiles/rebuild_cache.dir
+/home/chen/ProjectCodes/RLRC/RLRC/build/controller/CMakeFiles/controller_gencfg.dir
 /home/chen/ProjectCodes/RLRC/RLRC/build/controller/CMakeFiles/install/local.dir
 /home/chen/ProjectCodes/RLRC/RLRC/build/controller/CMakeFiles/install/strip.dir
+/home/chen/ProjectCodes/RLRC/RLRC/build/controller/CMakeFiles/controller.dir
+/home/chen/ProjectCodes/RLRC/RLRC/build/controller/CMakeFiles/comp_error_node.dir

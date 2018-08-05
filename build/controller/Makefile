@@ -78,17 +78,6 @@ install/fast: preinstall/fast
 	/usr/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
@@ -110,6 +99,17 @@ test:
 test/fast: test
 
 .PHONY : test/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
 
 # Special rule for the target install/local
 install/local: preinstall
@@ -166,19 +166,19 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-controller/CMakeFiles/comp_error_node.dir/rule:
-	cd /home/chen/ProjectCodes/RLRC/RLRC/build && $(MAKE) -f CMakeFiles/Makefile2 controller/CMakeFiles/comp_error_node.dir/rule
-.PHONY : controller/CMakeFiles/comp_error_node.dir/rule
+controller/CMakeFiles/controller_gencfg.dir/rule:
+	cd /home/chen/ProjectCodes/RLRC/RLRC/build && $(MAKE) -f CMakeFiles/Makefile2 controller/CMakeFiles/controller_gencfg.dir/rule
+.PHONY : controller/CMakeFiles/controller_gencfg.dir/rule
 
 # Convenience name for target.
-comp_error_node: controller/CMakeFiles/comp_error_node.dir/rule
+controller_gencfg: controller/CMakeFiles/controller_gencfg.dir/rule
 
-.PHONY : comp_error_node
+.PHONY : controller_gencfg
 
 # fast build rule for target.
-comp_error_node/fast:
-	cd /home/chen/ProjectCodes/RLRC/RLRC/build && $(MAKE) -f controller/CMakeFiles/comp_error_node.dir/build.make controller/CMakeFiles/comp_error_node.dir/build
-.PHONY : comp_error_node/fast
+controller_gencfg/fast:
+	cd /home/chen/ProjectCodes/RLRC/RLRC/build && $(MAKE) -f controller/CMakeFiles/controller_gencfg.dir/build.make controller/CMakeFiles/controller_gencfg.dir/build
+.PHONY : controller_gencfg/fast
 
 # Convenience name for target.
 controller/CMakeFiles/controller.dir/rule:
@@ -195,14 +195,29 @@ controller/fast:
 	cd /home/chen/ProjectCodes/RLRC/RLRC/build && $(MAKE) -f controller/CMakeFiles/controller.dir/build.make controller/CMakeFiles/controller.dir/build
 .PHONY : controller/fast
 
+# Convenience name for target.
+controller/CMakeFiles/comp_error_node.dir/rule:
+	cd /home/chen/ProjectCodes/RLRC/RLRC/build && $(MAKE) -f CMakeFiles/Makefile2 controller/CMakeFiles/comp_error_node.dir/rule
+.PHONY : controller/CMakeFiles/comp_error_node.dir/rule
+
+# Convenience name for target.
+comp_error_node: controller/CMakeFiles/comp_error_node.dir/rule
+
+.PHONY : comp_error_node
+
+# fast build rule for target.
+comp_error_node/fast:
+	cd /home/chen/ProjectCodes/RLRC/RLRC/build && $(MAKE) -f controller/CMakeFiles/comp_error_node.dir/build.make controller/CMakeFiles/comp_error_node.dir/build
+.PHONY : comp_error_node/fast
+
 src/comp_error_core.o: src/comp_error_core.cpp.o
 
 .PHONY : src/comp_error_core.o
 
 # target to build an object file
 src/comp_error_core.cpp.o:
-	cd /home/chen/ProjectCodes/RLRC/RLRC/build && $(MAKE) -f controller/CMakeFiles/comp_error_node.dir/build.make controller/CMakeFiles/comp_error_node.dir/src/comp_error_core.cpp.o
 	cd /home/chen/ProjectCodes/RLRC/RLRC/build && $(MAKE) -f controller/CMakeFiles/controller.dir/build.make controller/CMakeFiles/controller.dir/src/comp_error_core.cpp.o
+	cd /home/chen/ProjectCodes/RLRC/RLRC/build && $(MAKE) -f controller/CMakeFiles/comp_error_node.dir/build.make controller/CMakeFiles/comp_error_node.dir/src/comp_error_core.cpp.o
 .PHONY : src/comp_error_core.cpp.o
 
 src/comp_error_core.i: src/comp_error_core.cpp.i
@@ -211,8 +226,8 @@ src/comp_error_core.i: src/comp_error_core.cpp.i
 
 # target to preprocess a source file
 src/comp_error_core.cpp.i:
-	cd /home/chen/ProjectCodes/RLRC/RLRC/build && $(MAKE) -f controller/CMakeFiles/comp_error_node.dir/build.make controller/CMakeFiles/comp_error_node.dir/src/comp_error_core.cpp.i
 	cd /home/chen/ProjectCodes/RLRC/RLRC/build && $(MAKE) -f controller/CMakeFiles/controller.dir/build.make controller/CMakeFiles/controller.dir/src/comp_error_core.cpp.i
+	cd /home/chen/ProjectCodes/RLRC/RLRC/build && $(MAKE) -f controller/CMakeFiles/comp_error_node.dir/build.make controller/CMakeFiles/comp_error_node.dir/src/comp_error_core.cpp.i
 .PHONY : src/comp_error_core.cpp.i
 
 src/comp_error_core.s: src/comp_error_core.cpp.s
@@ -221,8 +236,8 @@ src/comp_error_core.s: src/comp_error_core.cpp.s
 
 # target to generate assembly for a file
 src/comp_error_core.cpp.s:
-	cd /home/chen/ProjectCodes/RLRC/RLRC/build && $(MAKE) -f controller/CMakeFiles/comp_error_node.dir/build.make controller/CMakeFiles/comp_error_node.dir/src/comp_error_core.cpp.s
 	cd /home/chen/ProjectCodes/RLRC/RLRC/build && $(MAKE) -f controller/CMakeFiles/controller.dir/build.make controller/CMakeFiles/controller.dir/src/comp_error_core.cpp.s
+	cd /home/chen/ProjectCodes/RLRC/RLRC/build && $(MAKE) -f controller/CMakeFiles/comp_error_node.dir/build.make controller/CMakeFiles/comp_error_node.dir/src/comp_error_core.cpp.s
 .PHONY : src/comp_error_core.cpp.s
 
 src/comp_error_node.o: src/comp_error_node.cpp.o
@@ -260,13 +275,14 @@ help:
 	@echo "... depend"
 	@echo "... list_install_components"
 	@echo "... install"
-	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... test"
-	@echo "... comp_error_node"
-	@echo "... controller"
+	@echo "... rebuild_cache"
+	@echo "... controller_gencfg"
 	@echo "... install/local"
 	@echo "... install/strip"
+	@echo "... controller"
+	@echo "... comp_error_node"
 	@echo "... src/comp_error_core.o"
 	@echo "... src/comp_error_core.i"
 	@echo "... src/comp_error_core.s"

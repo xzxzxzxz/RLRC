@@ -3,7 +3,6 @@
 
 path_follower/CMakeFiles/MPC.dir/src/MPC/MPC.cpp.o
  /home/chen/ProjectCodes/RLRC/RLRC/devel/include/dbw_mkz_msgs/SteeringCmd.h
- /home/chen/ProjectCodes/RLRC/RLRC/devel/include/dbw_mkz_msgs/SteeringReport.h
  /home/chen/ProjectCodes/RLRC/RLRC/devel/include/path_follower/ApplanixPose.h
  /home/chen/ProjectCodes/RLRC/RLRC/devel/include/path_follower/ControllerTarget.h
  /home/chen/ProjectCodes/RLRC/RLRC/devel/include/path_follower/DynamicParamConfig.h

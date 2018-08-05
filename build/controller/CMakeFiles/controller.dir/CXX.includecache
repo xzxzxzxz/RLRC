@@ -58,26 +58,8 @@ ros/builtin_message_traits.h
 ros/message_operations.h
 -
 
-/home/chen/ProjectCodes/RLRC/RLRC/devel/include/path_follower/traj_plan.h
-string
--
-vector
--
-map
--
-ros/types.h
--
-ros/serialization.h
--
-ros/builtin_message_traits.h
--
-ros/message_operations.h
--
-
 /home/chen/ProjectCodes/RLRC/RLRC/src/controller/include/controller/comp_error_core.h
 ros/ros.h
--
-path_follower/traj_plan.h
 -
 path_follower/state_Dynamic.h
 -

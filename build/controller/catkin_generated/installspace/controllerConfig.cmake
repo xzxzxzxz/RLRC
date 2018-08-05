@@ -152,7 +152,7 @@ foreach(library ${libraries})
   endif()
 endforeach()
 
-set(controller_EXPORTED_TARGETS "")
+set(controller_EXPORTED_TARGETS "controller_gencfg")
 # create dummy targets for exported code generation targets to make life of users easier
 foreach(t ${controller_EXPORTED_TARGETS})
   if(NOT TARGET ${t})

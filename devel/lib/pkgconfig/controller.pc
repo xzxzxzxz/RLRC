@@ -3,6 +3,6 @@ prefix=/home/chen/ProjectCodes/RLRC/RLRC/devel
 Name: controller
 Description: Description of controller
 Version: 0.0.0
-Cflags: -I/home/chen/ProjectCodes/RLRC/RLRC/src/controller/include
+Cflags: -I/home/chen/ProjectCodes/RLRC/RLRC/devel/include -I/home/chen/ProjectCodes/RLRC/RLRC/src/controller/include
 Libs: -L/home/chen/ProjectCodes/RLRC/RLRC/devel/lib -lcontroller
 Requires: roscpp rospy std_msgs geometry_msgs path_follower
