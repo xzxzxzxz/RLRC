@@ -11,7 +11,6 @@ path_follower/CMakeFiles/MPC.dir/src/MPC/MPC.cpp.o: /home/chen/ProjectCodes/RLRC
 path_follower/CMakeFiles/MPC.dir/src/MPC/MPC.cpp.o: /home/chen/ProjectCodes/RLRC/RLRC/devel/include/path_follower/Time.h
 path_follower/CMakeFiles/MPC.dir/src/MPC/MPC.cpp.o: /home/chen/ProjectCodes/RLRC/RLRC/devel/include/path_follower/Trajectory2D.h
 path_follower/CMakeFiles/MPC.dir/src/MPC/MPC.cpp.o: /home/chen/ProjectCodes/RLRC/RLRC/devel/include/path_follower/TrajectoryPoint2D.h
-path_follower/CMakeFiles/MPC.dir/src/MPC/MPC.cpp.o: /home/chen/ProjectCodes/RLRC/RLRC/devel/include/path_follower/TwistStamped.h
 path_follower/CMakeFiles/MPC.dir/src/MPC/MPC.cpp.o: /home/chen/ProjectCodes/RLRC/RLRC/devel/include/path_follower/Uout.h
 path_follower/CMakeFiles/MPC.dir/src/MPC/MPC.cpp.o: /home/chen/ProjectCodes/RLRC/RLRC/devel/include/path_follower/state_Dynamic.h
 path_follower/CMakeFiles/MPC.dir/src/MPC/MPC.cpp.o: /home/chen/ProjectCodes/RLRC/RLRC/devel/include/path_follower/traj_plan.h

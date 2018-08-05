@@ -44,7 +44,6 @@ if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspeci
     "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/traj_plan.msg"
     "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/Trajectory2D.msg"
     "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/TrajectoryPoint2D.msg"
-    "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/TwistStamped.msg"
     "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/Time.msg"
     "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/Uout.msg"
     "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/waypoint.msg"

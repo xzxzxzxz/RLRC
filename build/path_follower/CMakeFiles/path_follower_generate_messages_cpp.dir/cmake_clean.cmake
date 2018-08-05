@@ -3,7 +3,6 @@ file(REMOVE_RECURSE
   "/home/chen/ProjectCodes/RLRC/RLRC/devel/include/path_follower/traj_plan.h"
   "/home/chen/ProjectCodes/RLRC/RLRC/devel/include/path_follower/TrajectoryPoint2D.h"
   "/home/chen/ProjectCodes/RLRC/RLRC/devel/include/path_follower/SteeringCurrent.h"
-  "/home/chen/ProjectCodes/RLRC/RLRC/devel/include/path_follower/TwistStamped.h"
   "/home/chen/ProjectCodes/RLRC/RLRC/devel/include/path_follower/ApplanixPose.h"
   "/home/chen/ProjectCodes/RLRC/RLRC/devel/include/path_follower/Trajectory2D.h"
   "/home/chen/ProjectCodes/RLRC/RLRC/devel/include/path_follower/SteeringCmd.h"

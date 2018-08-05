@@ -3,7 +3,6 @@ file(REMOVE_RECURSE
   "/home/chen/ProjectCodes/RLRC/RLRC/devel/lib/python2.7/dist-packages/path_follower/msg/_traj_plan.py"
   "/home/chen/ProjectCodes/RLRC/RLRC/devel/lib/python2.7/dist-packages/path_follower/msg/_TrajectoryPoint2D.py"
   "/home/chen/ProjectCodes/RLRC/RLRC/devel/lib/python2.7/dist-packages/path_follower/msg/_SteeringCurrent.py"
-  "/home/chen/ProjectCodes/RLRC/RLRC/devel/lib/python2.7/dist-packages/path_follower/msg/_TwistStamped.py"
   "/home/chen/ProjectCodes/RLRC/RLRC/devel/lib/python2.7/dist-packages/path_follower/msg/_ApplanixPose.py"
   "/home/chen/ProjectCodes/RLRC/RLRC/devel/lib/python2.7/dist-packages/path_follower/msg/_Trajectory2D.py"
   "/home/chen/ProjectCodes/RLRC/RLRC/devel/lib/python2.7/dist-packages/path_follower/msg/_SteeringCmd.py"

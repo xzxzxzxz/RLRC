@@ -57,33 +57,9 @@ include controller/CMakeFiles/comp_error_node.dir/progress.make
 # Include the compile flags for this target's objects.
 include controller/CMakeFiles/comp_error_node.dir/flags.make
 
-controller/CMakeFiles/comp_error_node.dir/src/comp_error_node.cpp.o: controller/CMakeFiles/comp_error_node.dir/flags.make
-controller/CMakeFiles/comp_error_node.dir/src/comp_error_node.cpp.o: /home/chen/ProjectCodes/RLRC/RLRC/src/controller/src/comp_error_node.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/chen/ProjectCodes/RLRC/RLRC/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object controller/CMakeFiles/comp_error_node.dir/src/comp_error_node.cpp.o"
-	cd /home/chen/ProjectCodes/RLRC/RLRC/build/controller && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/comp_error_node.dir/src/comp_error_node.cpp.o -c /home/chen/ProjectCodes/RLRC/RLRC/src/controller/src/comp_error_node.cpp
-
-controller/CMakeFiles/comp_error_node.dir/src/comp_error_node.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/comp_error_node.dir/src/comp_error_node.cpp.i"
-	cd /home/chen/ProjectCodes/RLRC/RLRC/build/controller && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/chen/ProjectCodes/RLRC/RLRC/src/controller/src/comp_error_node.cpp > CMakeFiles/comp_error_node.dir/src/comp_error_node.cpp.i
-
-controller/CMakeFiles/comp_error_node.dir/src/comp_error_node.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/comp_error_node.dir/src/comp_error_node.cpp.s"
-	cd /home/chen/ProjectCodes/RLRC/RLRC/build/controller && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/chen/ProjectCodes/RLRC/RLRC/src/controller/src/comp_error_node.cpp -o CMakeFiles/comp_error_node.dir/src/comp_error_node.cpp.s
-
-controller/CMakeFiles/comp_error_node.dir/src/comp_error_node.cpp.o.requires:
-
-.PHONY : controller/CMakeFiles/comp_error_node.dir/src/comp_error_node.cpp.o.requires
-
-controller/CMakeFiles/comp_error_node.dir/src/comp_error_node.cpp.o.provides: controller/CMakeFiles/comp_error_node.dir/src/comp_error_node.cpp.o.requires
-	$(MAKE) -f controller/CMakeFiles/comp_error_node.dir/build.make controller/CMakeFiles/comp_error_node.dir/src/comp_error_node.cpp.o.provides.build
-.PHONY : controller/CMakeFiles/comp_error_node.dir/src/comp_error_node.cpp.o.provides
-
-controller/CMakeFiles/comp_error_node.dir/src/comp_error_node.cpp.o.provides.build: controller/CMakeFiles/comp_error_node.dir/src/comp_error_node.cpp.o
-
-
 controller/CMakeFiles/comp_error_node.dir/src/comp_error_core.cpp.o: controller/CMakeFiles/comp_error_node.dir/flags.make
 controller/CMakeFiles/comp_error_node.dir/src/comp_error_core.cpp.o: /home/chen/ProjectCodes/RLRC/RLRC/src/controller/src/comp_error_core.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/chen/ProjectCodes/RLRC/RLRC/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object controller/CMakeFiles/comp_error_node.dir/src/comp_error_core.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/chen/ProjectCodes/RLRC/RLRC/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object controller/CMakeFiles/comp_error_node.dir/src/comp_error_core.cpp.o"
 	cd /home/chen/ProjectCodes/RLRC/RLRC/build/controller && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/comp_error_node.dir/src/comp_error_core.cpp.o -c /home/chen/ProjectCodes/RLRC/RLRC/src/controller/src/comp_error_core.cpp
 
 controller/CMakeFiles/comp_error_node.dir/src/comp_error_core.cpp.i: cmake_force
@@ -105,16 +81,40 @@ controller/CMakeFiles/comp_error_node.dir/src/comp_error_core.cpp.o.provides: co
 controller/CMakeFiles/comp_error_node.dir/src/comp_error_core.cpp.o.provides.build: controller/CMakeFiles/comp_error_node.dir/src/comp_error_core.cpp.o
 
 
+controller/CMakeFiles/comp_error_node.dir/src/comp_error_node.cpp.o: controller/CMakeFiles/comp_error_node.dir/flags.make
+controller/CMakeFiles/comp_error_node.dir/src/comp_error_node.cpp.o: /home/chen/ProjectCodes/RLRC/RLRC/src/controller/src/comp_error_node.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/chen/ProjectCodes/RLRC/RLRC/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object controller/CMakeFiles/comp_error_node.dir/src/comp_error_node.cpp.o"
+	cd /home/chen/ProjectCodes/RLRC/RLRC/build/controller && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/comp_error_node.dir/src/comp_error_node.cpp.o -c /home/chen/ProjectCodes/RLRC/RLRC/src/controller/src/comp_error_node.cpp
+
+controller/CMakeFiles/comp_error_node.dir/src/comp_error_node.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/comp_error_node.dir/src/comp_error_node.cpp.i"
+	cd /home/chen/ProjectCodes/RLRC/RLRC/build/controller && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/chen/ProjectCodes/RLRC/RLRC/src/controller/src/comp_error_node.cpp > CMakeFiles/comp_error_node.dir/src/comp_error_node.cpp.i
+
+controller/CMakeFiles/comp_error_node.dir/src/comp_error_node.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/comp_error_node.dir/src/comp_error_node.cpp.s"
+	cd /home/chen/ProjectCodes/RLRC/RLRC/build/controller && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/chen/ProjectCodes/RLRC/RLRC/src/controller/src/comp_error_node.cpp -o CMakeFiles/comp_error_node.dir/src/comp_error_node.cpp.s
+
+controller/CMakeFiles/comp_error_node.dir/src/comp_error_node.cpp.o.requires:
+
+.PHONY : controller/CMakeFiles/comp_error_node.dir/src/comp_error_node.cpp.o.requires
+
+controller/CMakeFiles/comp_error_node.dir/src/comp_error_node.cpp.o.provides: controller/CMakeFiles/comp_error_node.dir/src/comp_error_node.cpp.o.requires
+	$(MAKE) -f controller/CMakeFiles/comp_error_node.dir/build.make controller/CMakeFiles/comp_error_node.dir/src/comp_error_node.cpp.o.provides.build
+.PHONY : controller/CMakeFiles/comp_error_node.dir/src/comp_error_node.cpp.o.provides
+
+controller/CMakeFiles/comp_error_node.dir/src/comp_error_node.cpp.o.provides.build: controller/CMakeFiles/comp_error_node.dir/src/comp_error_node.cpp.o
+
+
 # Object files for target comp_error_node
 comp_error_node_OBJECTS = \
-"CMakeFiles/comp_error_node.dir/src/comp_error_node.cpp.o" \
-"CMakeFiles/comp_error_node.dir/src/comp_error_core.cpp.o"
+"CMakeFiles/comp_error_node.dir/src/comp_error_core.cpp.o" \
+"CMakeFiles/comp_error_node.dir/src/comp_error_node.cpp.o"
 
 # External object files for target comp_error_node
 comp_error_node_EXTERNAL_OBJECTS =
 
-/home/chen/ProjectCodes/RLRC/RLRC/devel/lib/controller/comp_error_node: controller/CMakeFiles/comp_error_node.dir/src/comp_error_node.cpp.o
 /home/chen/ProjectCodes/RLRC/RLRC/devel/lib/controller/comp_error_node: controller/CMakeFiles/comp_error_node.dir/src/comp_error_core.cpp.o
+/home/chen/ProjectCodes/RLRC/RLRC/devel/lib/controller/comp_error_node: controller/CMakeFiles/comp_error_node.dir/src/comp_error_node.cpp.o
 /home/chen/ProjectCodes/RLRC/RLRC/devel/lib/controller/comp_error_node: controller/CMakeFiles/comp_error_node.dir/build.make
 /home/chen/ProjectCodes/RLRC/RLRC/devel/lib/controller/comp_error_node: /home/chen/ProjectCodes/RLRC/RLRC/devel/lib/libpath_follower.so
 /home/chen/ProjectCodes/RLRC/RLRC/devel/lib/controller/comp_error_node: /opt/ros/kinetic/lib/libdynamic_reconfigure_config_init_mutex.so
@@ -151,8 +151,8 @@ controller/CMakeFiles/comp_error_node.dir/build: /home/chen/ProjectCodes/RLRC/RL
 
 .PHONY : controller/CMakeFiles/comp_error_node.dir/build
 
-controller/CMakeFiles/comp_error_node.dir/requires: controller/CMakeFiles/comp_error_node.dir/src/comp_error_node.cpp.o.requires
 controller/CMakeFiles/comp_error_node.dir/requires: controller/CMakeFiles/comp_error_node.dir/src/comp_error_core.cpp.o.requires
+controller/CMakeFiles/comp_error_node.dir/requires: controller/CMakeFiles/comp_error_node.dir/src/comp_error_node.cpp.o.requires
 
 .PHONY : controller/CMakeFiles/comp_error_node.dir/requires
 

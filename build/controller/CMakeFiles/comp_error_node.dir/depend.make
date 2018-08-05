@@ -4,7 +4,6 @@
 controller/CMakeFiles/comp_error_node.dir/src/comp_error_core.cpp.o: /home/chen/ProjectCodes/RLRC/RLRC/devel/include/path_follower/Trajectory2D.h
 controller/CMakeFiles/comp_error_node.dir/src/comp_error_core.cpp.o: /home/chen/ProjectCodes/RLRC/RLRC/devel/include/path_follower/TrajectoryPoint2D.h
 controller/CMakeFiles/comp_error_node.dir/src/comp_error_core.cpp.o: /home/chen/ProjectCodes/RLRC/RLRC/devel/include/path_follower/state_Dynamic.h
-controller/CMakeFiles/comp_error_node.dir/src/comp_error_core.cpp.o: /home/chen/ProjectCodes/RLRC/RLRC/devel/include/path_follower/traj_plan.h
 controller/CMakeFiles/comp_error_node.dir/src/comp_error_core.cpp.o: /home/chen/ProjectCodes/RLRC/RLRC/src/controller/include/controller/comp_error_core.h
 controller/CMakeFiles/comp_error_node.dir/src/comp_error_core.cpp.o: /home/chen/ProjectCodes/RLRC/RLRC/src/controller/src/comp_error_core.cpp
 controller/CMakeFiles/comp_error_node.dir/src/comp_error_core.cpp.o: /home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/include/path_follower/Global.h
@@ -77,7 +76,6 @@ controller/CMakeFiles/comp_error_node.dir/src/comp_error_core.cpp.o: /opt/ros/ki
 controller/CMakeFiles/comp_error_node.dir/src/comp_error_node.cpp.o: /home/chen/ProjectCodes/RLRC/RLRC/devel/include/path_follower/Trajectory2D.h
 controller/CMakeFiles/comp_error_node.dir/src/comp_error_node.cpp.o: /home/chen/ProjectCodes/RLRC/RLRC/devel/include/path_follower/TrajectoryPoint2D.h
 controller/CMakeFiles/comp_error_node.dir/src/comp_error_node.cpp.o: /home/chen/ProjectCodes/RLRC/RLRC/devel/include/path_follower/state_Dynamic.h
-controller/CMakeFiles/comp_error_node.dir/src/comp_error_node.cpp.o: /home/chen/ProjectCodes/RLRC/RLRC/devel/include/path_follower/traj_plan.h
 controller/CMakeFiles/comp_error_node.dir/src/comp_error_node.cpp.o: /home/chen/ProjectCodes/RLRC/RLRC/src/controller/include/controller/comp_error_core.h
 controller/CMakeFiles/comp_error_node.dir/src/comp_error_node.cpp.o: /home/chen/ProjectCodes/RLRC/RLRC/src/controller/src/comp_error_node.cpp
 controller/CMakeFiles/comp_error_node.dir/src/comp_error_node.cpp.o: /home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/include/path_follower/Global.h

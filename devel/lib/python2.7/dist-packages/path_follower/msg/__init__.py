@@ -6,7 +6,6 @@ from ._SteeringCurrent import *
 from ._Time import *
 from ._Trajectory2D import *
 from ._TrajectoryPoint2D import *
-from ._TwistStamped import *
 from ._Uout import *
 from ._dtlane import *
 from ._state_Dynamic import *

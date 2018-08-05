@@ -3,7 +3,6 @@ file(REMOVE_RECURSE
   "/home/chen/ProjectCodes/RLRC/RLRC/devel/share/roseus/ros/path_follower/msg/traj_plan.l"
   "/home/chen/ProjectCodes/RLRC/RLRC/devel/share/roseus/ros/path_follower/msg/TrajectoryPoint2D.l"
   "/home/chen/ProjectCodes/RLRC/RLRC/devel/share/roseus/ros/path_follower/msg/SteeringCurrent.l"
-  "/home/chen/ProjectCodes/RLRC/RLRC/devel/share/roseus/ros/path_follower/msg/TwistStamped.l"
   "/home/chen/ProjectCodes/RLRC/RLRC/devel/share/roseus/ros/path_follower/msg/ApplanixPose.l"
   "/home/chen/ProjectCodes/RLRC/RLRC/devel/share/roseus/ros/path_follower/msg/Trajectory2D.l"
   "/home/chen/ProjectCodes/RLRC/RLRC/devel/share/roseus/ros/path_follower/msg/SteeringCmd.l"
