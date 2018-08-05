@@ -60,7 +60,7 @@ def SteeringReportCallback(data):
 	global Vx_meas
 	global delta_meas
 	Vx_meas = data.speed
-	delta_meas = data.steering_wheel_angle / 14.8
+	delta_meas = data.steering_wheel_angle / 16.0
 
 
 
