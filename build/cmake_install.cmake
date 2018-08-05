@@ -118,6 +118,8 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/chen/ProjectCodes/RLRC/RLRC/build/gtest/cmake_install.cmake")
   include("/home/chen/ProjectCodes/RLRC/RLRC/build/dbw_mkz_msgs/cmake_install.cmake")
+  include("/home/chen/ProjectCodes/RLRC/RLRC/build/planning_policy/cmake_install.cmake")
+  include("/home/chen/ProjectCodes/RLRC/RLRC/build/sim_env/cmake_install.cmake")
   include("/home/chen/ProjectCodes/RLRC/RLRC/build/path_follower/cmake_install.cmake")
   include("/home/chen/ProjectCodes/RLRC/RLRC/build/controller/cmake_install.cmake")
 

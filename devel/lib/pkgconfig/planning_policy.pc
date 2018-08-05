@@ -1,0 +1,8 @@
+prefix=/home/chen/ProjectCodes/RLRC/RLRC/devel
+
+Name: planning_policy
+Description: Description of planning_policy
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/chen/ProjectCodes/RLRC/RLRC/devel/lib 
+Requires: 
