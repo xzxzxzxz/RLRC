@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(controller)
+project(simu)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -8,12 +8,12 @@ project(controller)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  roscpp
-  rospy
-  dynamic_reconfigure
-  std_msgs
+  dbw_mkz_msgs
   geometry_msgs
   path_follower
+  roscpp
+  rospy
+  std_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -35,10 +35,10 @@ find_package(catkin REQUIRED COMPONENTS
 ##   your messages/services/actions (e.g. std_msgs, actionlib_msgs, ...).
 ## * In the file package.xml:
 ##   * add a build_depend tag for "message_generation"
-##   * add a build_depend and a run_depend tag for each package in MSG_DEP_SET
+##   * add a build_depend and a exec_depend tag for each package in MSG_DEP_SET
 ##   * If MSG_DEP_SET isn't empty the following dependency has been pulled in
 ##     but can be declared for certainty nonetheless:
-##     * add a run_depend tag for "message_runtime"
+##     * add a exec_depend tag for "message_runtime"
 ## * In this file (CMakeLists.txt):
 ##   * add "message_generation" and every package in MSG_DEP_SET to
 ##     find_package(catkin REQUIRED COMPONENTS ...)
@@ -51,9 +51,11 @@ find_package(catkin REQUIRED COMPONENTS
 
 ## Generate messages in the 'msg' folder
 # add_message_files(
-#   FILES
-#   Message1.msg
-#   Message2.msg
+  # FILES
+ # state_Dynamic.msg
+ # SteeringCmd.msg
+ # SteeringReport.msg
+#  TwistStamped.msg
 # )
 
 ## Generate services in the 'srv' folder
@@ -72,9 +74,9 @@ find_package(catkin REQUIRED COMPONENTS
 
 ## Generate added messages and services with any dependencies listed here
 # generate_messages(
-#   DEPENDENCIES
-#   std_msgs
-# )
+ # DEPENDENCIES
+ #  dbw_mkz_msgs  geometry_msgs   std_msgs
+#)
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -83,7 +85,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## To declare and build dynamic reconfigure parameters within this
 ## package, follow these steps:
 ## * In the file package.xml:
-##   * add a build_depend and a run_depend tag for "dynamic_reconfigure"
+##   * add a build_depend and a exec_depend tag for "dynamic_reconfigure"
 ## * In this file (CMakeLists.txt):
 ##   * add "dynamic_reconfigure" to
 ##     find_package(catkin REQUIRED COMPONENTS ...)
@@ -91,9 +93,10 @@ find_package(catkin REQUIRED COMPONENTS
 ##     and list every .cfg file to be processed
 
 ## Generate dynamic reconfigure parameters in the 'cfg' folder
-generate_dynamic_reconfigure_options(
-  cfg/DynamicParam.cfg
-)
+# generate_dynamic_reconfigure_options(
+#   cfg/DynReconf1.cfg
+#   cfg/DynReconf2.cfg
+# )
 
 ###################################
 ## catkin specific configuration ##
@@ -105,10 +108,10 @@ generate_dynamic_reconfigure_options(
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-  INCLUDE_DIRS include
-  LIBRARIES controller 
-  CATKIN_DEPENDS roscpp rospy std_msgs geometry_msgs path_follower
-  #DEPENDS system_lib
+#  INCLUDE_DIRS include
+#  LIBRARIES simu
+#  CATKIN_DEPENDS dbw_mkz_msgsdbw_mkz_msgs geometry_msgs message_generation path_follower roscpp rospy std_msgsstd_msgs
+#  DEPENDS system_lib
 )
 
 ###########
@@ -118,26 +121,24 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
-  include
+# include
   ${catkin_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library
-add_library(${PROJECT_NAME}
-  src/comp_error_core.cpp
-)
+# add_library(${PROJECT_NAME}
+#   src/${PROJECT_NAME}/simu.cpp
+# )
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
 ## either from message generation or dynamic reconfigure
-add_dependencies(${PROJECT_NAME} ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+# add_dependencies(${PROJECT_NAME} ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-# add_executable(${PROJECT_NAME}_node src/controller_node.cpp)
-add_executable(comp_error_node src/comp_error_core.cpp src/comp_error_node.cpp)
-
+# add_executable(${PROJECT_NAME}_node src/simu_node.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -147,17 +148,12 @@ add_executable(comp_error_node src/comp_error_core.cpp src/comp_error_node.cpp)
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
-#add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-add_dependencies(comp_error_node path_follower_generate_messages_cpp ${catkin_EXPORTED_TARGETS})
+# add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
 # target_link_libraries(${PROJECT_NAME}_node
 #   ${catkin_LIBRARIES}
 # )
-target_link_libraries(comp_error_node
- ${catkin_LIBRARIES}
-)
-
 
 #############
 ## Install ##
@@ -199,10 +195,15 @@ target_link_libraries(comp_error_node
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_controller.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_simu.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
+
+add_executable(simu_env src/simu_env.cpp)
+add_dependencies(simu_env ${simu_env_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS}) 
+target_link_libraries (simu_env ${catkin_LIBRARIES})
+

@@ -19,7 +19,6 @@
 #include <path_follower/ControllerTarget.h>
 #include <path_follower/Trajectory2D.h>
 #include <path_follower/TrajectoryPoint2D.h>
-#include <path_follower/TwistStamped.h>
 #include <dbw_mkz_msgs/SteeringCmd.h>
 #include <path_follower/SteeringCmd.h>
 #include <path_follower/state_Dynamic.h>
@@ -28,9 +27,15 @@
 #include <path_follower/Uout.h>
 #include <path_follower/Time.h>
 #include <path_follower/SteeringCurrent.h>
+<<<<<<< HEAD
 #include "path_follower/vlrException.h"
 #include "path_follower/Vehicle.h"
 #include "path_follower/scaledTime.h"
+=======
+#include <path_follower/vlrException.h>
+#include <path_follower/Vehicle.h>
+#include <path_follower/scaledTime.h>
+>>>>>>> master
 #include <dynamic_reconfigure/server.h>
 #include <path_follower/DynamicParamConfig.h>
 
