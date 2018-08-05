@@ -66,7 +66,6 @@ find_package(catkin REQUIRED COMPONENTS
   traj_plan.msg
   Trajectory2D.msg
   TrajectoryPoint2D.msg
-  TwistStamped.msg
   Time.msg
   Uout.msg
   waypoint.msg
@@ -195,7 +194,6 @@ add_dependencies(cmd_converter_node path_follower_generate_messages_cpp)
 add_dependencies(pose_estimation path_follower_generate_messages_cpp) 
 add_dependencies(nmea_to_UTM path_follower_generate_messages_cpp) 
 add_dependencies(MPC path_follower_generate_messages_cpp path_follower_gencfg)
-
 
 ## Specify libraries to link a library or executable target against
 # target_link_libraries(${PROJECT_NAME}_node

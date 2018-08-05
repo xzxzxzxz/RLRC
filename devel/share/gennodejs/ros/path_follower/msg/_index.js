@@ -2,8 +2,6 @@
 "use strict";
 
 let ApplanixPose = require('./ApplanixPose.js');
-let SteeringReport = require('./SteeringReport.js');
-let pose2D = require('./pose2D.js');
 let TrajectoryPoint2D = require('./TrajectoryPoint2D.js');
 let state_Dynamic = require('./state_Dynamic.js');
 let ControllerTarget = require('./ControllerTarget.js');
@@ -20,8 +18,6 @@ let SteeringCurrent = require('./SteeringCurrent.js');
 
 module.exports = {
   ApplanixPose: ApplanixPose,
-  SteeringReport: SteeringReport,
-  pose2D: pose2D,
   TrajectoryPoint2D: TrajectoryPoint2D,
   state_Dynamic: state_Dynamic,
   ControllerTarget: ControllerTarget,

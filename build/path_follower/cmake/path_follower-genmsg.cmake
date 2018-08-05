@@ -1,6 +1,6 @@
 # generated from genmsg/cmake/pkg-genmsg.cmake.em
 
-message(STATUS "path_follower: 14 messages, 0 services")
+message(STATUS "path_follower: 13 messages, 0 services")
 
 set(MSG_I_FLAGS "-Ipath_follower:/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg;-Isensor_msgs:/opt/ros/kinetic/share/sensor_msgs/cmake/../msg;-Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg;-Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg")
 
@@ -30,11 +30,6 @@ add_custom_target(_path_follower_generate_messages_check_deps_${_filename}
 get_filename_component(_filename "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/SteeringCurrent.msg" NAME_WE)
 add_custom_target(_path_follower_generate_messages_check_deps_${_filename}
   COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "path_follower" "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/SteeringCurrent.msg" ""
-)
-
-get_filename_component(_filename "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/Actuator.msg" NAME_WE)
-add_custom_target(_path_follower_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "path_follower" "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/Actuator.msg" "std_msgs/Header"
 )
 
 get_filename_component(_filename "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/ApplanixPose.msg" NAME_WE)
@@ -72,9 +67,9 @@ add_custom_target(_path_follower_generate_messages_check_deps_${_filename}
   COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "path_follower" "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/ControllerTarget.msg" "std_msgs/Header"
 )
 
-get_filename_component(_filename "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/TwistStamped.msg" NAME_WE)
+get_filename_component(_filename "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/Actuator.msg" NAME_WE)
 add_custom_target(_path_follower_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "path_follower" "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/TwistStamped.msg" "geometry_msgs/Twist:std_msgs/Header:geometry_msgs/Vector3"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "path_follower" "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/Actuator.msg" "std_msgs/Header"
 )
 
 get_filename_component(_filename "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/dtlane.msg" NAME_WE)
@@ -109,12 +104,6 @@ _generate_msg_cpp(path_follower
   "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/SteeringCurrent.msg"
   "${MSG_I_FLAGS}"
   ""
-  ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/path_follower
-)
-_generate_msg_cpp(path_follower
-  "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/TwistStamped.msg"
-  "${MSG_I_FLAGS}"
-  "/opt/ros/kinetic/share/geometry_msgs/cmake/../msg/Twist.msg;/opt/ros/kinetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/kinetic/share/geometry_msgs/cmake/../msg/Vector3.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/path_follower
 )
 _generate_msg_cpp(path_follower
@@ -198,8 +187,6 @@ get_filename_component(_filename "/home/chen/ProjectCodes/RLRC/RLRC/src/path_fol
 add_dependencies(path_follower_generate_messages_cpp _path_follower_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/SteeringCurrent.msg" NAME_WE)
 add_dependencies(path_follower_generate_messages_cpp _path_follower_generate_messages_check_deps_${_filename})
-get_filename_component(_filename "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/Actuator.msg" NAME_WE)
-add_dependencies(path_follower_generate_messages_cpp _path_follower_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/ApplanixPose.msg" NAME_WE)
 add_dependencies(path_follower_generate_messages_cpp _path_follower_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/Trajectory2D.msg" NAME_WE)
@@ -214,7 +201,7 @@ get_filename_component(_filename "/home/chen/ProjectCodes/RLRC/RLRC/src/path_fol
 add_dependencies(path_follower_generate_messages_cpp _path_follower_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/ControllerTarget.msg" NAME_WE)
 add_dependencies(path_follower_generate_messages_cpp _path_follower_generate_messages_check_deps_${_filename})
-get_filename_component(_filename "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/TwistStamped.msg" NAME_WE)
+get_filename_component(_filename "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/Actuator.msg" NAME_WE)
 add_dependencies(path_follower_generate_messages_cpp _path_follower_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/dtlane.msg" NAME_WE)
 add_dependencies(path_follower_generate_messages_cpp _path_follower_generate_messages_check_deps_${_filename})
@@ -246,12 +233,6 @@ _generate_msg_eus(path_follower
   "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/SteeringCurrent.msg"
   "${MSG_I_FLAGS}"
   ""
-  ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/path_follower
-)
-_generate_msg_eus(path_follower
-  "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/TwistStamped.msg"
-  "${MSG_I_FLAGS}"
-  "/opt/ros/kinetic/share/geometry_msgs/cmake/../msg/Twist.msg;/opt/ros/kinetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/kinetic/share/geometry_msgs/cmake/../msg/Vector3.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/path_follower
 )
 _generate_msg_eus(path_follower
@@ -335,8 +316,6 @@ get_filename_component(_filename "/home/chen/ProjectCodes/RLRC/RLRC/src/path_fol
 add_dependencies(path_follower_generate_messages_eus _path_follower_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/SteeringCurrent.msg" NAME_WE)
 add_dependencies(path_follower_generate_messages_eus _path_follower_generate_messages_check_deps_${_filename})
-get_filename_component(_filename "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/Actuator.msg" NAME_WE)
-add_dependencies(path_follower_generate_messages_eus _path_follower_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/ApplanixPose.msg" NAME_WE)
 add_dependencies(path_follower_generate_messages_eus _path_follower_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/Trajectory2D.msg" NAME_WE)
@@ -351,7 +330,7 @@ get_filename_component(_filename "/home/chen/ProjectCodes/RLRC/RLRC/src/path_fol
 add_dependencies(path_follower_generate_messages_eus _path_follower_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/ControllerTarget.msg" NAME_WE)
 add_dependencies(path_follower_generate_messages_eus _path_follower_generate_messages_check_deps_${_filename})
-get_filename_component(_filename "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/TwistStamped.msg" NAME_WE)
+get_filename_component(_filename "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/Actuator.msg" NAME_WE)
 add_dependencies(path_follower_generate_messages_eus _path_follower_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/dtlane.msg" NAME_WE)
 add_dependencies(path_follower_generate_messages_eus _path_follower_generate_messages_check_deps_${_filename})
@@ -383,12 +362,6 @@ _generate_msg_lisp(path_follower
   "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/SteeringCurrent.msg"
   "${MSG_I_FLAGS}"
   ""
-  ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/path_follower
-)
-_generate_msg_lisp(path_follower
-  "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/TwistStamped.msg"
-  "${MSG_I_FLAGS}"
-  "/opt/ros/kinetic/share/geometry_msgs/cmake/../msg/Twist.msg;/opt/ros/kinetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/kinetic/share/geometry_msgs/cmake/../msg/Vector3.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/path_follower
 )
 _generate_msg_lisp(path_follower
@@ -472,8 +445,6 @@ get_filename_component(_filename "/home/chen/ProjectCodes/RLRC/RLRC/src/path_fol
 add_dependencies(path_follower_generate_messages_lisp _path_follower_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/SteeringCurrent.msg" NAME_WE)
 add_dependencies(path_follower_generate_messages_lisp _path_follower_generate_messages_check_deps_${_filename})
-get_filename_component(_filename "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/Actuator.msg" NAME_WE)
-add_dependencies(path_follower_generate_messages_lisp _path_follower_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/ApplanixPose.msg" NAME_WE)
 add_dependencies(path_follower_generate_messages_lisp _path_follower_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/Trajectory2D.msg" NAME_WE)
@@ -488,7 +459,7 @@ get_filename_component(_filename "/home/chen/ProjectCodes/RLRC/RLRC/src/path_fol
 add_dependencies(path_follower_generate_messages_lisp _path_follower_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/ControllerTarget.msg" NAME_WE)
 add_dependencies(path_follower_generate_messages_lisp _path_follower_generate_messages_check_deps_${_filename})
-get_filename_component(_filename "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/TwistStamped.msg" NAME_WE)
+get_filename_component(_filename "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/Actuator.msg" NAME_WE)
 add_dependencies(path_follower_generate_messages_lisp _path_follower_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/dtlane.msg" NAME_WE)
 add_dependencies(path_follower_generate_messages_lisp _path_follower_generate_messages_check_deps_${_filename})
@@ -520,12 +491,6 @@ _generate_msg_nodejs(path_follower
   "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/SteeringCurrent.msg"
   "${MSG_I_FLAGS}"
   ""
-  ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/path_follower
-)
-_generate_msg_nodejs(path_follower
-  "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/TwistStamped.msg"
-  "${MSG_I_FLAGS}"
-  "/opt/ros/kinetic/share/geometry_msgs/cmake/../msg/Twist.msg;/opt/ros/kinetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/kinetic/share/geometry_msgs/cmake/../msg/Vector3.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/path_follower
 )
 _generate_msg_nodejs(path_follower
@@ -609,8 +574,6 @@ get_filename_component(_filename "/home/chen/ProjectCodes/RLRC/RLRC/src/path_fol
 add_dependencies(path_follower_generate_messages_nodejs _path_follower_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/SteeringCurrent.msg" NAME_WE)
 add_dependencies(path_follower_generate_messages_nodejs _path_follower_generate_messages_check_deps_${_filename})
-get_filename_component(_filename "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/Actuator.msg" NAME_WE)
-add_dependencies(path_follower_generate_messages_nodejs _path_follower_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/ApplanixPose.msg" NAME_WE)
 add_dependencies(path_follower_generate_messages_nodejs _path_follower_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/Trajectory2D.msg" NAME_WE)
@@ -625,7 +588,7 @@ get_filename_component(_filename "/home/chen/ProjectCodes/RLRC/RLRC/src/path_fol
 add_dependencies(path_follower_generate_messages_nodejs _path_follower_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/ControllerTarget.msg" NAME_WE)
 add_dependencies(path_follower_generate_messages_nodejs _path_follower_generate_messages_check_deps_${_filename})
-get_filename_component(_filename "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/TwistStamped.msg" NAME_WE)
+get_filename_component(_filename "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/Actuator.msg" NAME_WE)
 add_dependencies(path_follower_generate_messages_nodejs _path_follower_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/dtlane.msg" NAME_WE)
 add_dependencies(path_follower_generate_messages_nodejs _path_follower_generate_messages_check_deps_${_filename})
@@ -657,12 +620,6 @@ _generate_msg_py(path_follower
   "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/SteeringCurrent.msg"
   "${MSG_I_FLAGS}"
   ""
-  ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/path_follower
-)
-_generate_msg_py(path_follower
-  "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/TwistStamped.msg"
-  "${MSG_I_FLAGS}"
-  "/opt/ros/kinetic/share/geometry_msgs/cmake/../msg/Twist.msg;/opt/ros/kinetic/share/std_msgs/cmake/../msg/Header.msg;/opt/ros/kinetic/share/geometry_msgs/cmake/../msg/Vector3.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/path_follower
 )
 _generate_msg_py(path_follower
@@ -746,8 +703,6 @@ get_filename_component(_filename "/home/chen/ProjectCodes/RLRC/RLRC/src/path_fol
 add_dependencies(path_follower_generate_messages_py _path_follower_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/SteeringCurrent.msg" NAME_WE)
 add_dependencies(path_follower_generate_messages_py _path_follower_generate_messages_check_deps_${_filename})
-get_filename_component(_filename "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/Actuator.msg" NAME_WE)
-add_dependencies(path_follower_generate_messages_py _path_follower_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/ApplanixPose.msg" NAME_WE)
 add_dependencies(path_follower_generate_messages_py _path_follower_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/Trajectory2D.msg" NAME_WE)
@@ -762,7 +717,7 @@ get_filename_component(_filename "/home/chen/ProjectCodes/RLRC/RLRC/src/path_fol
 add_dependencies(path_follower_generate_messages_py _path_follower_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/ControllerTarget.msg" NAME_WE)
 add_dependencies(path_follower_generate_messages_py _path_follower_generate_messages_check_deps_${_filename})
-get_filename_component(_filename "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/TwistStamped.msg" NAME_WE)
+get_filename_component(_filename "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/Actuator.msg" NAME_WE)
 add_dependencies(path_follower_generate_messages_py _path_follower_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/msg/dtlane.msg" NAME_WE)
 add_dependencies(path_follower_generate_messages_py _path_follower_generate_messages_check_deps_${_filename})

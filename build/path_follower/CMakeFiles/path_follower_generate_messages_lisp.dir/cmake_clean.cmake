@@ -3,7 +3,6 @@ file(REMOVE_RECURSE
   "/home/chen/ProjectCodes/RLRC/RLRC/devel/share/common-lisp/ros/path_follower/msg/traj_plan.lisp"
   "/home/chen/ProjectCodes/RLRC/RLRC/devel/share/common-lisp/ros/path_follower/msg/TrajectoryPoint2D.lisp"
   "/home/chen/ProjectCodes/RLRC/RLRC/devel/share/common-lisp/ros/path_follower/msg/SteeringCurrent.lisp"
-  "/home/chen/ProjectCodes/RLRC/RLRC/devel/share/common-lisp/ros/path_follower/msg/TwistStamped.lisp"
   "/home/chen/ProjectCodes/RLRC/RLRC/devel/share/common-lisp/ros/path_follower/msg/ApplanixPose.lisp"
   "/home/chen/ProjectCodes/RLRC/RLRC/devel/share/common-lisp/ros/path_follower/msg/Trajectory2D.lisp"
   "/home/chen/ProjectCodes/RLRC/RLRC/devel/share/common-lisp/ros/path_follower/msg/SteeringCmd.lisp"

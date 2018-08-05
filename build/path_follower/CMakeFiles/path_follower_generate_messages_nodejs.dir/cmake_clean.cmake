@@ -3,7 +3,6 @@ file(REMOVE_RECURSE
   "/home/chen/ProjectCodes/RLRC/RLRC/devel/share/gennodejs/ros/path_follower/msg/traj_plan.js"
   "/home/chen/ProjectCodes/RLRC/RLRC/devel/share/gennodejs/ros/path_follower/msg/TrajectoryPoint2D.js"
   "/home/chen/ProjectCodes/RLRC/RLRC/devel/share/gennodejs/ros/path_follower/msg/SteeringCurrent.js"
-  "/home/chen/ProjectCodes/RLRC/RLRC/devel/share/gennodejs/ros/path_follower/msg/TwistStamped.js"
   "/home/chen/ProjectCodes/RLRC/RLRC/devel/share/gennodejs/ros/path_follower/msg/ApplanixPose.js"
   "/home/chen/ProjectCodes/RLRC/RLRC/devel/share/gennodejs/ros/path_follower/msg/Trajectory2D.js"
   "/home/chen/ProjectCodes/RLRC/RLRC/devel/share/gennodejs/ros/path_follower/msg/SteeringCmd.js"
