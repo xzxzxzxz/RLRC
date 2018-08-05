@@ -27,9 +27,15 @@
 #include <path_follower/Uout.h>
 #include <path_follower/Time.h>
 #include <path_follower/SteeringCurrent.h>
+<<<<<<< HEAD
+#include "path_follower/vlrException.h"
+#include "path_follower/Vehicle.h"
+#include "path_follower/scaledTime.h"
+=======
 #include <path_follower/vlrException.h>
 #include <path_follower/Vehicle.h>
 #include <path_follower/scaledTime.h>
+>>>>>>> master
 #include <dynamic_reconfigure/server.h>
 #include <path_follower/DynamicParamConfig.h>
 
