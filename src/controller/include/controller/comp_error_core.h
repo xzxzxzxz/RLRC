@@ -8,10 +8,6 @@
 #define COMP_ERROR
 
 #include <ros/ros.h>
-<<<<<<< HEAD
-#include <path_follower/state_Dynamic.h>
-=======
->>>>>>> master
 #include <geometry_msgs/Pose2D.h>
 #include <geometry_msgs/TwistStamped.h>
 #include <path_follower/Trajectory2D.h>
