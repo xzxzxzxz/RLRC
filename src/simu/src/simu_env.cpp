@@ -19,6 +19,8 @@
 #include <cmath>
 #include<iostream>
 #include<algorithm>
+
+using namespace std;
 //To do: define global variable 
 dbw_mkz_msgs::SteeringReport steeringreport;
 dbw_mkz_msgs::SteeringCmd steeringcmd;
@@ -30,15 +32,7 @@ float state[7]={0},nextstate[7]={0},action[2],dt,maxSteeringRate,maxDvxdt;
     float pi=3.1415926,X,Y,phi,v_x,v_y,r,d_f,dvxdt,a,b,m,I_z,a0,Crr,trMdlFront,trMdlRear,Bf,Cf,Df,Ef,Br,Cr,Dr,Er,g,Fnr,Fnf,a_f,a_R,FyF,a_F,FxR,realFxR,F_ext[2];
     float	steering,steeringRatio,maxSteering,trMdl[4],vhMdl[4],TM_param_f[4],TM_param_r[4],FyR_paj, FyR_max, Fy[2], FyR,dvydt ,drdt,r_next,X_next,Y_next ,v_y_next , phi_next,v_x_next,F_side,u[2];
     int idx;
-float max(float first,float second){
-  if (first<second)
-     return second;
-  return first;}
 
-float min(float first,float second){
-if (first>second)
- return second;
-return first;}
 float sign(float k){
 	if (k<0) return -1;
 	if (k>0) return 1;
@@ -63,8 +57,6 @@ void steering_cmdCallback(const dbw_mkz_msgs::SteeringCmd::ConstPtr& msg)
 
 void f_6s(){
 
-
-
 //   process model
 //    input: z: state z at time k, z := [X, Y, phi, v_x, v_y, r]
 //           u: input u at time k, u := [d_f, dvxdt]
@@ -76,8 +68,7 @@ void f_6s(){
 //    output: state at next time step z[k+1]
 //            a_F: slip angle (angle btw tire speed and orientation)
 //    """
-
-                                                                          
+                                                                     
 // get states / inputs                                             
     X     = state[0];                                                         
     Y     = state[1];                                                            
@@ -161,9 +152,12 @@ void f_6s(){
 
     return ;
 }
+
+
+
 int main(int argc, char **argv)
 {
-   int i;
+  int i;
   ros::init(argc, argv, "sim");
   ros::NodeHandle n;
   ros::Subscriber sub1 = n.subscribe("/vehicle/cmd_vel_stamped",1000,cmd_vel_stampedCallback); 
@@ -174,55 +168,48 @@ int main(int argc, char **argv)
   ROS_INFO_STREAM("simulator node starts");
 
 
-   dt=0.02;
-   vhMdl[0]=1.2;
-   vhMdl[1]=1.65;
-   vhMdl[2]=1800;
-   vhMdl[3]=3670;
-   trMdl[0]=10.0;
-   trMdl[1]=1.9;
-   trMdl[2]=1.0;
-   trMdl[3]=0.97;
-   a0 = 0.0;
-    Crr= 0.0;
-    F_ext[0]=a0;
-    F_ext[1]=Crr;
-    maxSteeringRate = 850/180*pi;
-    maxSteering = 525.0/180*pi;
-    steeringRatio = 16 ;
-    F_side=0;
-
-
+  dt=0.02;
+  vhMdl[0]=1.2;
+  vhMdl[1]=1.65;
+  vhMdl[2]=1800;
+  vhMdl[3]=3670;
+  trMdl[0]=10.0;
+  trMdl[1]=1.9;
+  trMdl[2]=1.0;
+  trMdl[3]=0.97;
+  a0 = 0.0;
+  Crr= 0.0;
+  F_ext[0]=a0;
+  F_ext[1]=Crr;
+  maxSteeringRate = 850/180*pi;
+  maxSteering = 525.0/180*pi;
+  steeringRatio = 16 ;
+  F_side=0;
 
   while(ros::ok())
   {
-  	ros::spinOnce();
-  	
-	memset(nextstate, 0, 7 * sizeof(float));
-    action[0] = max(min(action[0], 1), -1);
-    action[1] = max(min(action[1], 1), -1);
+    ros::spinOnce();
+    memset(nextstate, 0, 7 * sizeof(float));
+    action[0] = max(min(action[0], 1.0), -1.0);
+    action[1] = max(min(action[1], 1.0), -1.0);
     dvxdt = maxDvxdt * action[0];
     steering = action[1]*maxSteeringRate*dt + state[6]*steeringRatio;
     nextstate[6] = max(min(steering,maxSteering),-maxSteering)/steeringRatio;
     u[0] =nextstate[6];
-	u[1]=dvxdt;
-//    if (linear):
-      f_6s();
-//    else:
-//        nextState[6] = f_6s(state, u, self.vhMdl, self.trMdl, self.F_ext, self.dt, self.F_side)
-      steeringreport.steering_wheel_angle=nextstate[6];   
-      statedynamic.vx=nextstate[3];
-      statedynamic.vy=nextstate[4];
-      statedynamic.X=nextstate[0];
-      statedynamic.Y=nextstate[1];
-      statedynamic.psi=nextstate[2];
-      statedynamic.wz=nextstate[5];
-	  pub1.publish(steeringreport);   
-	  pub2.publish(statedynamic);            
-	  ROS_INFO_STREAM("publish new state");
-           for (i=0;i++;i<=6)
-  	    state[i]=nextstate[i];
-    //compute orientation and publish pose after initialization
+    u[1]=dvxdt;
+    f_6s();
+    steeringreport.steering_wheel_angle=nextstate[6];   
+    statedynamic.vx=nextstate[3];
+    statedynamic.vy=nextstate[4];
+    statedynamic.X=nextstate[0];
+    statedynamic.Y=nextstate[1];
+    statedynamic.psi=nextstate[2];
+    statedynamic.wz=nextstate[5];
+    pub1.publish(steeringreport);   
+    pub2.publish(statedynamic);            
+    ROS_INFO_STREAM("publish new state");
+    for (i=0;i++;i<=6)
+  	 state[i]=nextstate[i];
 	}
   return 0;
 }
