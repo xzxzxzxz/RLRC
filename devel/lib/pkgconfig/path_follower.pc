@@ -1,8 +1,0 @@
-prefix=/home/chen/ProjectCodes/RLRC/RLRC/devel
-
-Name: path_follower
-Description: Description of path_follower
-Version: 0.0.0
-Cflags: -I/home/chen/ProjectCodes/RLRC/RLRC/devel/include -I/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower/include
-Libs: -L/home/chen/ProjectCodes/RLRC/RLRC/devel/lib -lpath_follower
-Requires: roscpp rospy std_msgs dynamic_reconfigure geometry_msgs sensor_msgs nmea_msgs message_generation tf dbw_mkz_msgs
