@@ -352,6 +352,12 @@ path_follower_LIB_DEPENDS:STATIC=
 //Value Computed by CMake
 path_follower_SOURCE_DIR:STATIC=/home/chen/ProjectCodes/RLRC/RLRC/src/path_follower
 
+//Value Computed by CMake
+planning_policy_BINARY_DIR:STATIC=/home/chen/ProjectCodes/RLRC/RLRC/build/planning_policy
+
+//Value Computed by CMake
+planning_policy_SOURCE_DIR:STATIC=/home/chen/ProjectCodes/RLRC/RLRC/src/planning_policy
+
 //The directory containing a CMake configuration file for rosconsole.
 rosconsole_DIR:PATH=/opt/ros/kinetic/share/rosconsole/cmake
 
@@ -378,6 +384,12 @@ rostime_DIR:PATH=/opt/ros/kinetic/share/rostime/cmake
 
 //The directory containing a CMake configuration file for sensor_msgs.
 sensor_msgs_DIR:PATH=/opt/ros/kinetic/share/sensor_msgs/cmake
+
+//Value Computed by CMake
+sim_env_BINARY_DIR:STATIC=/home/chen/ProjectCodes/RLRC/RLRC/build/sim_env
+
+//Value Computed by CMake
+sim_env_SOURCE_DIR:STATIC=/home/chen/ProjectCodes/RLRC/RLRC/src/sim_env
 
 //The directory containing a CMake configuration file for std_msgs.
 std_msgs_DIR:PATH=/opt/ros/kinetic/share/std_msgs/cmake
@@ -502,7 +514,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=5
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=7
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

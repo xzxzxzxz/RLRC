@@ -1,0 +1,8 @@
+prefix=/home/chen/ProjectCodes/RLRC/RLRC/install
+
+Name: sim_env
+Description: Description of sim_env
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/chen/ProjectCodes/RLRC/RLRC/install/lib 
+Requires: 
