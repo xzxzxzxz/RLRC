@@ -1,0 +1,4 @@
+<launch>
+   <node name="simu" pkg="simu" type="simu_env" output="screen">
+    </node>
+</launch>
