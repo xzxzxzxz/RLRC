@@ -1,2 +1,0 @@
-controller:dbw_mkz_msgs:path_follower:planning_policy:sim_env
--DCATKIN_DEVEL_PREFIX=/home/zhuoxu/RLRC/devel -DCMAKE_INSTALL_PREFIX=/home/zhuoxu/RLRC/install -G Unix Makefiles
