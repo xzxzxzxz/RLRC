@@ -14,6 +14,7 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
+  dynamic_reconfigure
 )
 
 ## System dependencies are found with CMake's conventions
@@ -93,10 +94,9 @@ find_package(catkin REQUIRED COMPONENTS
 ##     and list every .cfg file to be processed
 
 ## Generate dynamic reconfigure parameters in the 'cfg' folder
-# generate_dynamic_reconfigure_options(
-#   cfg/DynReconf1.cfg
-#   cfg/DynReconf2.cfg
-# )
+ generate_dynamic_reconfigure_options(
+   cfg/DynamicParam.cfg
+ )
 
 ###################################
 ## catkin specific configuration ##
@@ -126,19 +126,18 @@ include_directories(
 )
 
 ## Declare a C++ library
-# add_library(${PROJECT_NAME}
-#   src/${PROJECT_NAME}/simu.cpp
-# )
-
+add_library(${PROJECT_NAME}
+  src/f_6s.cpp
+)
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-add_executable(simu_env src/simu_env.cpp)
+add_executable(simu_env src/simu_env.cpp src/f_6s.cpp)
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
 ## either from message generation or dynamic reconfigure
-add_dependencies(simu_env ${simu_env_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS}) 
+add_dependencies(simu_env ${simu_env_EXPORTED_TARGETS} $Psimu_env_gencfg ${catkin_EXPORTED_TARGETS}) 
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
