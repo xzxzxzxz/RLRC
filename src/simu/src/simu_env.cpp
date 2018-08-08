@@ -1,12 +1,7 @@
 /********************************************************
-
   Autonomous Driving Software
-
   Copyright (c) 2018 MSC Lab, UC Berkeley 
-
   All rights reserved.
-
-
  ********************************************************/
 
 
@@ -245,6 +240,4 @@ int main(int argc, char **argv)
   return 0;
 
 }
-
-
 
