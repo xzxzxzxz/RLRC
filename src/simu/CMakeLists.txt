@@ -137,7 +137,7 @@ add_executable(simu_env src/simu_env.cpp src/f_6s.cpp)
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
 ## either from message generation or dynamic reconfigure
-add_dependencies(simu_env ${simu_env_EXPORTED_TARGETS} $simu_env_gencfg ${catkin_EXPORTED_TARGETS}) 
+add_dependencies(simu_env ${simu_env_EXPORTED_TARGETS} simu_gencfg ${catkin_EXPORTED_TARGETS}) 
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
