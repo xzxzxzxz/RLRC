@@ -29,11 +29,11 @@
 <tr name="9" id="9">
 <td><a id="l9" class='ln'>9</a></td><td><span class="ct"> *</span></td></tr>
 <tr name="10" id="10">
-<td><a id="l10" class='ln'>10</a></td><td><span class="ct"> * Model version              : 1.179</span></td></tr>
+<td><a id="l10" class='ln'>10</a></td><td><span class="ct"> * Model version              : 1.183</span></td></tr>
 <tr name="11" id="11">
 <td><a id="l11" class='ln'>11</a></td><td><span class="ct"> * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017</span></td></tr>
 <tr name="12" id="12">
-<td><a id="l12" class='ln'>12</a></td><td><span class="ct"> * C++ source code generated on : Mon Aug  6 11:04:04 2018</span></td></tr>
+<td><a id="l12" class='ln'>12</a></td><td><span class="ct"> * C++ source code generated on : Fri Aug 10 15:24:39 2018</span></td></tr>
 <tr name="13" id="13">
 <td><a id="l13" class='ln'>13</a></td><td><span class="ct"> *</span></td></tr>
 <tr name="14" id="14">
@@ -111,9 +111,9 @@
 <tr name="50" id="50">
 <td><a id="l50" class='ln'>50</a></td><td>  <a id="50c3" class="tk">SL_Bus_DOB_ros_dbw_mkz_msgs_SteeringReport</a> <a id="50c46" class="tk">b_varargout_2</a>;</td></tr>
 <tr name="51" id="51">
-<td><a id="l51" class='ln'>51</a></td><td>  <a id="51c3" class="tk">SL_Bus_DOB_ros_geometry_msgs_Pose2D</a> <a id="51c39" class="tk">In1_i</a>;<span class="ct">/* '&lt;S8&gt;/In1' */</span></td></tr>
+<td><a id="l51" class='ln'>51</a></td><td>  <a id="51c3" class="tk">char_T</a> <a id="51c10" class="tk">cv0</a>[25];</td></tr>
 <tr name="52" id="52">
-<td><a id="l52" class='ln'>52</a></td><td>  <a id="52c3" class="tk">SL_Bus_DOB_ros_geometry_msgs_Pose2D</a> <a id="52c39" class="tk">b_varargout_2_m</a>;</td></tr>
+<td><a id="l52" class='ln'>52</a></td><td>  <a id="52c3" class="tk">SL_Bus_DOB_ros_controller_TrackingInfo</a> <a id="52c42" class="tk">In1_i</a>;<span class="ct">/* '&lt;S8&gt;/In1' */</span></td></tr>
 <tr name="53" id="53">
 <td><a id="l53" class='ln'>53</a></td><td><span class="br">}</span> <a id="53c3" class="tk">B_DOB_ros_T</a>;</td></tr>
 <tr name="54" id="54">
@@ -153,71 +153,71 @@
 <tr name="71" id="71">
 <td><a id="l71" class='ln'>71</a></td><td><span class="kw">struct</span> <a id="71c8" class="tk">P_DOB_ros_T_</a> <span class="br">{</span></td></tr>
 <tr name="72" id="72">
-<td><a id="l72" class='ln'>72</a></td><td>  <a id="72c3" class="tk">real_T</a> <a id="72c10" class="tk">kc1</a>;                          <span class="ct">/* Variable: kc1</span></td></tr>
+<td><a id="l72" class='ln'>72</a></td><td>  <a id="72c3" class="tk">real32_T</a> <a id="72c12" class="tk">Dd</a>[6];                      <span class="ct">/* Variable: Dd</span></td></tr>
 <tr name="73" id="73">
-<td><a id="l73" class='ln'>73</a></td><td><span class="ct">                                        * Referenced by: '&lt;Root&gt;/Gain3'</span></td></tr>
+<td><a id="l73" class='ln'>73</a></td><td><span class="ct">                                        * Referenced by: '&lt;Root&gt;/D1'</span></td></tr>
 <tr name="74" id="74">
 <td><a id="l74" class='ln'>74</a></td><td><span class="ct">                                        */</span></td></tr>
 <tr name="75" id="75">
-<td><a id="l75" class='ln'>75</a></td><td>  <a id="75c3" class="tk">real32_T</a> <a id="75c12" class="tk">Dd</a>[6];                      <span class="ct">/* Variable: Dd</span></td></tr>
+<td><a id="l75" class='ln'>75</a></td><td>  <a id="75c3" class="tk">real32_T</a> <a id="75c12" class="tk">Dn</a>[6];                      <span class="ct">/* Variable: Dn</span></td></tr>
 <tr name="76" id="76">
 <td><a id="l76" class='ln'>76</a></td><td><span class="ct">                                        * Referenced by: '&lt;Root&gt;/D1'</span></td></tr>
 <tr name="77" id="77">
 <td><a id="l77" class='ln'>77</a></td><td><span class="ct">                                        */</span></td></tr>
 <tr name="78" id="78">
-<td><a id="l78" class='ln'>78</a></td><td>  <a id="78c3" class="tk">real32_T</a> <a id="78c12" class="tk">Dn</a>[6];                      <span class="ct">/* Variable: Dn</span></td></tr>
+<td><a id="l78" class='ln'>78</a></td><td>  <a id="78c3" class="tk">real32_T</a> <a id="78c12" class="tk">dt_ros_single</a>;              <span class="ct">/* Variable: dt_ros_single</span></td></tr>
 <tr name="79" id="79">
-<td><a id="l79" class='ln'>79</a></td><td><span class="ct">                                        * Referenced by: '&lt;Root&gt;/D1'</span></td></tr>
+<td><a id="l79" class='ln'>79</a></td><td><span class="ct">                                        * Referenced by: '&lt;S1&gt;/Gain'</span></td></tr>
 <tr name="80" id="80">
 <td><a id="l80" class='ln'>80</a></td><td><span class="ct">                                        */</span></td></tr>
 <tr name="81" id="81">
-<td><a id="l81" class='ln'>81</a></td><td>  <a id="81c3" class="tk">real32_T</a> <a id="81c12" class="tk">kc2</a>;                        <span class="ct">/* Variable: kc2</span></td></tr>
+<td><a id="l81" class='ln'>81</a></td><td>  <a id="81c3" class="tk">real32_T</a> <a id="81c12" class="tk">kc1</a>;                        <span class="ct">/* Variable: kc1</span></td></tr>
 <tr name="82" id="82">
-<td><a id="l82" class='ln'>82</a></td><td><span class="ct">                                        * Referenced by: '&lt;Root&gt;/Gain5'</span></td></tr>
+<td><a id="l82" class='ln'>82</a></td><td><span class="ct">                                        * Referenced by: '&lt;Root&gt;/Gain3'</span></td></tr>
 <tr name="83" id="83">
 <td><a id="l83" class='ln'>83</a></td><td><span class="ct">                                        */</span></td></tr>
 <tr name="84" id="84">
-<td><a id="l84" class='ln'>84</a></td><td>  <a id="84c3" class="tk">SL_Bus_DOB_ros_dbw_mkz_msgs_SteeringReport</a> <a id="84c46" class="tk">Out1_Y0</a>;<span class="ct">/* Computed Parameter: Out1_Y0</span></td></tr>
+<td><a id="l84" class='ln'>84</a></td><td>  <a id="84c3" class="tk">real32_T</a> <a id="84c12" class="tk">kc2</a>;                        <span class="ct">/* Variable: kc2</span></td></tr>
 <tr name="85" id="85">
-<td><a id="l85" class='ln'>85</a></td><td><span class="ct">                                                      * Referenced by: '&lt;S7&gt;/Out1'</span></td></tr>
+<td><a id="l85" class='ln'>85</a></td><td><span class="ct">                                        * Referenced by: '&lt;Root&gt;/Gain5'</span></td></tr>
 <tr name="86" id="86">
-<td><a id="l86" class='ln'>86</a></td><td><span class="ct">                                                      */</span></td></tr>
+<td><a id="l86" class='ln'>86</a></td><td><span class="ct">                                        */</span></td></tr>
 <tr name="87" id="87">
-<td><a id="l87" class='ln'>87</a></td><td>  <a id="87c3" class="tk">SL_Bus_DOB_ros_dbw_mkz_msgs_SteeringReport</a> <a id="87c46" class="tk">Constant_Value</a>;<span class="ct">/* Computed Parameter: Constant_Value</span></td></tr>
+<td><a id="l87" class='ln'>87</a></td><td>  <a id="87c3" class="tk">SL_Bus_DOB_ros_dbw_mkz_msgs_SteeringReport</a> <a id="87c46" class="tk">Out1_Y0</a>;<span class="ct">/* Computed Parameter: Out1_Y0</span></td></tr>
 <tr name="88" id="88">
-<td><a id="l88" class='ln'>88</a></td><td><span class="ct">                                                             * Referenced by: '&lt;S2&gt;/Constant'</span></td></tr>
+<td><a id="l88" class='ln'>88</a></td><td><span class="ct">                                                      * Referenced by: '&lt;S7&gt;/Out1'</span></td></tr>
 <tr name="89" id="89">
-<td><a id="l89" class='ln'>89</a></td><td><span class="ct">                                                             */</span></td></tr>
+<td><a id="l89" class='ln'>89</a></td><td><span class="ct">                                                      */</span></td></tr>
 <tr name="90" id="90">
-<td><a id="l90" class='ln'>90</a></td><td>  <a id="90c3" class="tk">SL_Bus_DOB_ros_geometry_msgs_Pose2D</a> <a id="90c39" class="tk">Out1_Y0_n</a>;<span class="ct">/* Computed Parameter: Out1_Y0_n</span></td></tr>
+<td><a id="l90" class='ln'>90</a></td><td>  <a id="90c3" class="tk">SL_Bus_DOB_ros_dbw_mkz_msgs_SteeringReport</a> <a id="90c46" class="tk">Constant_Value</a>;<span class="ct">/* Computed Parameter: Constant_Value</span></td></tr>
 <tr name="91" id="91">
-<td><a id="l91" class='ln'>91</a></td><td><span class="ct">                                                 * Referenced by: '&lt;S8&gt;/Out1'</span></td></tr>
+<td><a id="l91" class='ln'>91</a></td><td><span class="ct">                                                             * Referenced by: '&lt;S2&gt;/Constant'</span></td></tr>
 <tr name="92" id="92">
-<td><a id="l92" class='ln'>92</a></td><td><span class="ct">                                                 */</span></td></tr>
+<td><a id="l92" class='ln'>92</a></td><td><span class="ct">                                                             */</span></td></tr>
 <tr name="93" id="93">
-<td><a id="l93" class='ln'>93</a></td><td>  <a id="93c3" class="tk">SL_Bus_DOB_ros_geometry_msgs_Pose2D</a> <a id="93c39" class="tk">Constant_Value_j</a>;<span class="ct">/* Computed Parameter: Constant_Value_j</span></td></tr>
+<td><a id="l93" class='ln'>93</a></td><td>  <a id="93c3" class="tk">SL_Bus_DOB_ros_dbw_mkz_msgs_SteeringCmd</a> <a id="93c43" class="tk">Constant_Value_j</a>;<span class="ct">/* Computed Parameter: Constant_Value_j</span></td></tr>
 <tr name="94" id="94">
-<td><a id="l94" class='ln'>94</a></td><td><span class="ct">                                                        * Referenced by: '&lt;S3&gt;/Constant'</span></td></tr>
+<td><a id="l94" class='ln'>94</a></td><td><span class="ct">                                                            * Referenced by: '&lt;S5&gt;/Constant'</span></td></tr>
 <tr name="95" id="95">
-<td><a id="l95" class='ln'>95</a></td><td><span class="ct">                                                        */</span></td></tr>
+<td><a id="l95" class='ln'>95</a></td><td><span class="ct">                                                            */</span></td></tr>
 <tr name="96" id="96">
-<td><a id="l96" class='ln'>96</a></td><td>  <a id="96c3" class="tk">SL_Bus_DOB_ros_geometry_msgs_Pose2D</a> <a id="96c39" class="tk">Constant_Value_i</a>;<span class="ct">/* Computed Parameter: Constant_Value_i</span></td></tr>
+<td><a id="l96" class='ln'>96</a></td><td>  <a id="96c3" class="tk">SL_Bus_DOB_ros_controller_TrackingInfo</a> <a id="96c42" class="tk">Out1_Y0_n</a>;<span class="ct">/* Computed Parameter: Out1_Y0_n</span></td></tr>
 <tr name="97" id="97">
-<td><a id="l97" class='ln'>97</a></td><td><span class="ct">                                                        * Referenced by: '&lt;S9&gt;/Constant'</span></td></tr>
+<td><a id="l97" class='ln'>97</a></td><td><span class="ct">                                                    * Referenced by: '&lt;S8&gt;/Out1'</span></td></tr>
 <tr name="98" id="98">
-<td><a id="l98" class='ln'>98</a></td><td><span class="ct">                                                        */</span></td></tr>
+<td><a id="l98" class='ln'>98</a></td><td><span class="ct">                                                    */</span></td></tr>
 <tr name="99" id="99">
-<td><a id="l99" class='ln'>99</a></td><td>  <a id="99c3" class="tk">SL_Bus_DOB_ros_dbw_mkz_msgs_SteeringCmd</a> <a id="99c43" class="tk">Constant_Value_jb</a>;<span class="ct">/* Computed Parameter: Constant_Value_jb</span></td></tr>
+<td><a id="l99" class='ln'>99</a></td><td>  <a id="99c3" class="tk">SL_Bus_DOB_ros_controller_TrackingInfo</a> <a id="99c42" class="tk">Constant_Value_j1</a>;<span class="ct">/* Computed Parameter: Constant_Value_j1</span></td></tr>
 <tr name="100" id="100">
-<td><a id="l100" class='ln'>100</a></td><td><span class="ct">                                                             * Referenced by: '&lt;S5&gt;/Constant'</span></td></tr>
+<td><a id="l100" class='ln'>100</a></td><td><span class="ct">                                                            * Referenced by: '&lt;S3&gt;/Constant'</span></td></tr>
 <tr name="101" id="101">
-<td><a id="l101" class='ln'>101</a></td><td><span class="ct">                                                             */</span></td></tr>
+<td><a id="l101" class='ln'>101</a></td><td><span class="ct">                                                            */</span></td></tr>
 <tr name="102" id="102">
-<td><a id="l102" class='ln'>102</a></td><td>  <a id="102c3" class="tk">real32_T</a> <a id="102c12" class="tk">Gain_Gain</a>;                  <span class="ct">/* Computed Parameter: Gain_Gain</span></td></tr>
+<td><a id="l102" class='ln'>102</a></td><td>  <a id="102c3" class="tk">SL_Bus_DOB_ros_controller_TrackingInfo</a> <a id="102c42" class="tk">Constant_Value_i</a>;<span class="ct">/* Computed Parameter: Constant_Value_i</span></td></tr>
 <tr name="103" id="103">
-<td><a id="l103" class='ln'>103</a></td><td><span class="ct">                                        * Referenced by: '&lt;S1&gt;/Gain'</span></td></tr>
+<td><a id="l103" class='ln'>103</a></td><td><span class="ct">                                                           * Referenced by: '&lt;S9&gt;/Constant'</span></td></tr>
 <tr name="104" id="104">
-<td><a id="l104" class='ln'>104</a></td><td><span class="ct">                                        */</span></td></tr>
+<td><a id="l104" class='ln'>104</a></td><td><span class="ct">                                                           */</span></td></tr>
 <tr name="105" id="105">
 <td><a id="l105" class='ln'>105</a></td><td>  <a id="105c3" class="tk">real32_T</a> <a id="105c12" class="tk">D1_InitialStates</a>;           <span class="ct">/* Computed Parameter: D1_InitialStates</span></td></tr>
 <tr name="106" id="106">
@@ -231,13 +231,13 @@
 <tr name="110" id="110">
 <td><a id="l110" class='ln'>110</a></td><td><span class="ct">                                        */</span></td></tr>
 <tr name="111" id="111">
-<td><a id="l111" class='ln'>111</a></td><td>  <a id="111c3" class="tk">real32_T</a> <a id="111c12" class="tk">Q1_NumCoef</a>[3];              <span class="ct">/* Computed Parameter: Q1_NumCoef</span></td></tr>
+<td><a id="l111" class='ln'>111</a></td><td>  <a id="111c3" class="tk">real32_T</a> <a id="111c12" class="tk">Q1_NumCoef</a>[3];              <span class="ct">/* Expression: NQ{1}</span></td></tr>
 <tr name="112" id="112">
 <td><a id="l112" class='ln'>112</a></td><td><span class="ct">                                        * Referenced by: '&lt;Root&gt;/Q1'</span></td></tr>
 <tr name="113" id="113">
 <td><a id="l113" class='ln'>113</a></td><td><span class="ct">                                        */</span></td></tr>
 <tr name="114" id="114">
-<td><a id="l114" class='ln'>114</a></td><td>  <a id="114c3" class="tk">real32_T</a> <a id="114c12" class="tk">Q1_DenCoef</a>[3];              <span class="ct">/* Computed Parameter: Q1_DenCoef</span></td></tr>
+<td><a id="l114" class='ln'>114</a></td><td>  <a id="114c3" class="tk">real32_T</a> <a id="114c12" class="tk">Q1_DenCoef</a>[3];              <span class="ct">/* Expression: DQ{1}</span></td></tr>
 <tr name="115" id="115">
 <td><a id="l115" class='ln'>115</a></td><td><span class="ct">                                        * Referenced by: '&lt;Root&gt;/Q1'</span></td></tr>
 <tr name="116" id="116">

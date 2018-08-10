@@ -6,8 +6,8 @@ set(CMAKE_VERBOSE_MAKEFILE ON)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
+controller
 dbw_mkz_msgs
-geometry_msgs
 roscpp
 std_msgs
 )
@@ -22,7 +22,7 @@ add_definitions(
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-   CATKIN_DEPENDS dbw_mkz_msgs geometry_msgs roscpp std_msgs 
+   CATKIN_DEPENDS controller dbw_mkz_msgs roscpp std_msgs 
 )
 
 ###########

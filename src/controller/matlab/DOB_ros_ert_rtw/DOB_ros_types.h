@@ -7,9 +7,9 @@
  *
  * Code generation for model "DOB_ros".
  *
- * Model version              : 1.179
+ * Model version              : 1.183
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Mon Aug  6 11:04:04 2018
+ * C++ source code generated on : Fri Aug 10 15:24:39 2018
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -89,14 +89,14 @@ typedef struct {
 
 #endif
 
-#ifndef DEFINED_TYPEDEF_FOR_SL_Bus_DOB_ros_geometry_msgs_Pose2D_
-#define DEFINED_TYPEDEF_FOR_SL_Bus_DOB_ros_geometry_msgs_Pose2D_
+#ifndef DEFINED_TYPEDEF_FOR_SL_Bus_DOB_ros_controller_TrackingInfo_
+#define DEFINED_TYPEDEF_FOR_SL_Bus_DOB_ros_controller_TrackingInfo_
 
 typedef struct {
-  real_T X;
-  real_T Y;
-  real_T Theta;
-} SL_Bus_DOB_ros_geometry_msgs_Pose2D;
+  real32_T Vx;
+  real32_T Dy;
+  real32_T Dtheta;
+} SL_Bus_DOB_ros_controller_TrackingInfo;
 
 #endif
 
