@@ -11,7 +11,8 @@ using namespace std;
 
 path_follower::state_Dynamic current_state;
 path_follower::Trajectory2D ref_traj;
-double ds;
+bool received_traj_flag = false;
+float ds;
 
 void StateCallback(const path_follower::state_Dynamic msg) 
 {
@@ -21,6 +22,7 @@ void StateCallback(const path_follower::state_Dynamic msg)
 void TrajCallback(const path_follower::Trajectory2D msg)
 {
   ref_traj = msg;
+  received_traj_flag = true;
 }
 
 void DynamicCallback(controller::DynamicParamConfig &config, uint32_t level)
@@ -39,12 +41,12 @@ int main(int argc, char **argv)
   f = boost::bind(&DynamicCallback, _1, _2);
   server.setCallback(f);
 
-  ros::Publisher error_pub = n.advertise<geometry_msgs::Pose2D>("tracking_error", 1); 
+  ros::Publisher error_pub = n.advertise<controller::TrackingInfo>("tracking_info", 1); 
   ros::Publisher vel_cmd_pub = n.advertise<geometry_msgs::TwistStamped>("/vehicle/cmd_vel_stamped", 1);
   ros::Rate loop_rate(50);
 
   geometry_msgs::TwistStamped cmd_vel_stamped;
-  geometry_msgs::Pose2D tracking_error;
+  controller::TrackingInfo tracking_info;
 
   vlr::vehicle_state p_vs;
   p_vs.set_mkz_params();
@@ -54,17 +56,20 @@ int main(int argc, char **argv)
   while(ros::ok())
   {
   	ros::spinOnce();
-    vector<double> error_msg = ComputeTrackingError(ref_traj, current_state, p_vs.param.b, ds);
+    if (received_traj_flag == true)
+    {
+      vector<float> error_msg = ComputeTrackingError(ref_traj, current_state, p_vs.param.b, ds);
+      tracking_info.vx = error_msg[0];
+      tracking_info.dy = error_msg[1];
+      tracking_info.dtheta = error_msg[2];
 
-    tracking_error.x = error_msg[0];
-    tracking_error.y = error_msg[1];
-    tracking_error.theta = error_msg[2];
+      cmd_vel_stamped.header.stamp = ros::Time::now();
+      cmd_vel_stamped.twist.linear.x = error_msg[0];
 
-    cmd_vel_stamped.header.stamp = ros::Time::now();
-    cmd_vel_stamped.twist.linear.x = error_msg[0];
+      error_pub.publish(tracking_info);
+      vel_cmd_pub.publish(cmd_vel_stamped);
+    }
 
-    error_pub.publish(tracking_error);
-    vel_cmd_pub.publish(cmd_vel_stamped);
   	loop_rate.sleep();
   }
 
