@@ -1,0 +1,7 @@
+<launch>
+   <node name="simu" pkg="simu" type="simu_env" output="screen"/>
+   <node name="comp_error"  pkg="controller"  type="comp_error_node" output="screen"/>
+   <node name="toy_planner"  pkg="planning_policy"  type="toy_planner.py" output="screen"/>
+   <node name="DOB_ros"  pkg="dob_ros"  type="dob_ros_node" output="screen"/>
+  
+</launch>

@@ -2,9 +2,15 @@
 
 import rospy
 from dbw_mkz_msgs.msg import SteeringReport
-from path_follower import state_Dynamic, Trajectory2D, TrajectoryPoint2D
+from path_follower.msg import state_Dynamic, Trajectory2D, TrajectoryPoint2D
 from tracks import Tra
-
+import os, rospkg
+vx=0
+vy=0
+X=0
+Y=0
+psi=0
+wz=0
 def stateEstimateCallback(data):
     global vx, vy, X, Y, psi, wz
     vx = data.vx
@@ -33,7 +39,7 @@ def main(dt, horizon):
 
     # first set the horizon to be very large to get where the vehicle is
     track.horizon = 5000
-    track.currentIndex, _ = track.searchClosestPt(X, Y, 5000)
+    track.currentIndex, _= track.searchClosestPt(X, Y, 5000)
 
     # set the horizon back to horizon
     track.horizon = horizon
