@@ -108,10 +108,10 @@ find_package(catkin REQUIRED COMPONENTS
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-#  INCLUDE_DIRS include
-#  LIBRARIES simu
-#  CATKIN_DEPENDS dbw_mkz_msgsdbw_mkz_msgs geometry_msgs message_generation path_follower roscpp rospy std_msgsstd_msgs
-#  DEPENDS system_lib
+  INCLUDE_DIRS include
+  LIBRARIES simu
+  CATKIN_DEPENDS dbw_mkz_msgs geometry_msgs path_follower roscpp rospy std_msgs
+ # DEPENDS system_lib
 )
 
 ###########
@@ -121,8 +121,8 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
-# include
-  ${catkin_INCLUDE_DIRS}
+  include
+  ${catkin_INCLUDE_DIRS} 
 )
 
 ## Declare a C++ library
@@ -137,7 +137,7 @@ add_executable(simu_env src/simu_env.cpp src/f_6s.cpp)
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
 ## either from message generation or dynamic reconfigure
-add_dependencies(simu_env ${simu_env_EXPORTED_TARGETS} $Psimu_env_gencfg ${catkin_EXPORTED_TARGETS}) 
+add_dependencies(simu_env ${simu_env_EXPORTED_TARGETS} $simu_env_gencfg ${catkin_EXPORTED_TARGETS}) 
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the

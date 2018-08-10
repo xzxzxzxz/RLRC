@@ -229,7 +229,7 @@ int main(int argc, char **argv)
 
     pub2.publish(statedynamic);            
 
-    ROS_INFO_STREAM("publish new state");
+  
 
     for (i=0;i++;i<=6)
 
