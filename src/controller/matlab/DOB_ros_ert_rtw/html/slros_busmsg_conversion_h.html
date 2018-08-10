@@ -19,11 +19,11 @@
 <tr name="4" id="4">
 <td><a id="l4" class='ln'>4</a></td><td><span class="pp">#include &lt;ros/ros.h&gt;</span></td></tr>
 <tr name="5" id="5">
-<td><a id="l5" class='ln'>5</a></td><td><span class="pp">#include &lt;dbw_mkz_msgs/SteeringCmd.h&gt;</span></td></tr>
+<td><a id="l5" class='ln'>5</a></td><td><span class="pp">#include &lt;controller/TrackingInfo.h&gt;</span></td></tr>
 <tr name="6" id="6">
-<td><a id="l6" class='ln'>6</a></td><td><span class="pp">#include &lt;dbw_mkz_msgs/SteeringReport.h&gt;</span></td></tr>
+<td><a id="l6" class='ln'>6</a></td><td><span class="pp">#include &lt;dbw_mkz_msgs/SteeringCmd.h&gt;</span></td></tr>
 <tr name="7" id="7">
-<td><a id="l7" class='ln'>7</a></td><td><span class="pp">#include &lt;geometry_msgs/Pose2D.h&gt;</span></td></tr>
+<td><a id="l7" class='ln'>7</a></td><td><span class="pp">#include &lt;dbw_mkz_msgs/SteeringReport.h&gt;</span></td></tr>
 <tr name="8" id="8">
 <td><a id="l8" class='ln'>8</a></td><td><span class="pp">#include &lt;ros/time.h&gt;</span></td></tr>
 <tr name="9" id="9">
@@ -37,21 +37,21 @@
 <tr name="13" id="13">
 <td><a id="l13" class='ln'>13</a></td><td></td></tr>
 <tr name="14" id="14">
-<td><a id="l14" class='ln'>14</a></td><td><span class="kw">void</span> <a id="14c6" class="tk">convertFromBus</a>(<a id="14c21" class="tk">dbw_mkz_msgs</a>::<a id="14c35" class="tk">SteeringCmd</a><a id="14c46" class="tk">*</a> <a id="14c48" class="tk">msgPtr</a>, <a id="14c56" class="tk">SL_Bus_DOB_ros_dbw_mkz_msgs_SteeringCmd</a> <span class="kw">const</span><a id="14c101" class="tk">*</a> <a id="14c103" class="tk">busPtr</a>);</td></tr>
+<td><a id="l14" class='ln'>14</a></td><td><span class="kw">void</span> <a id="14c6" class="tk">convertFromBus</a>(<a id="14c21" class="tk">controller</a>::<a id="14c33" class="tk">TrackingInfo</a><a id="14c45" class="tk">*</a> <a id="14c47" class="tk">msgPtr</a>, <a id="14c55" class="tk">SL_Bus_DOB_ros_controller_TrackingInfo</a> <span class="kw">const</span><a id="14c99" class="tk">*</a> <a id="14c101" class="tk">busPtr</a>);</td></tr>
 <tr name="15" id="15">
-<td><a id="l15" class='ln'>15</a></td><td><span class="kw">void</span> <a id="15c6" class="tk">convertToBus</a>(<a id="15c19" class="tk">SL_Bus_DOB_ros_dbw_mkz_msgs_SteeringCmd</a><a id="15c58" class="tk">*</a> <a id="15c60" class="tk">busPtr</a>, <a id="15c68" class="tk">dbw_mkz_msgs</a>::<a id="15c82" class="tk">SteeringCmd</a> <span class="kw">const</span><a id="15c99" class="tk">*</a> <a id="15c101" class="tk">msgPtr</a>);</td></tr>
+<td><a id="l15" class='ln'>15</a></td><td><span class="kw">void</span> <a id="15c6" class="tk">convertToBus</a>(<a id="15c19" class="tk">SL_Bus_DOB_ros_controller_TrackingInfo</a><a id="15c57" class="tk">*</a> <a id="15c59" class="tk">busPtr</a>, <a id="15c67" class="tk">controller</a>::<a id="15c79" class="tk">TrackingInfo</a> <span class="kw">const</span><a id="15c97" class="tk">*</a> <a id="15c99" class="tk">msgPtr</a>);</td></tr>
 <tr name="16" id="16">
 <td><a id="l16" class='ln'>16</a></td><td></td></tr>
 <tr name="17" id="17">
-<td><a id="l17" class='ln'>17</a></td><td><span class="kw">void</span> <a id="17c6" class="tk">convertFromBus</a>(<a id="17c21" class="tk">dbw_mkz_msgs</a>::<a id="17c35" class="tk">SteeringReport</a><a id="17c49" class="tk">*</a> <a id="17c51" class="tk">msgPtr</a>, <a id="17c59" class="tk">SL_Bus_DOB_ros_dbw_mkz_msgs_SteeringReport</a> <span class="kw">const</span><a id="17c107" class="tk">*</a> <a id="17c109" class="tk">busPtr</a>);</td></tr>
+<td><a id="l17" class='ln'>17</a></td><td><span class="kw">void</span> <a id="17c6" class="tk">convertFromBus</a>(<a id="17c21" class="tk">dbw_mkz_msgs</a>::<a id="17c35" class="tk">SteeringCmd</a><a id="17c46" class="tk">*</a> <a id="17c48" class="tk">msgPtr</a>, <a id="17c56" class="tk">SL_Bus_DOB_ros_dbw_mkz_msgs_SteeringCmd</a> <span class="kw">const</span><a id="17c101" class="tk">*</a> <a id="17c103" class="tk">busPtr</a>);</td></tr>
 <tr name="18" id="18">
-<td><a id="l18" class='ln'>18</a></td><td><span class="kw">void</span> <a id="18c6" class="tk">convertToBus</a>(<a id="18c19" class="tk">SL_Bus_DOB_ros_dbw_mkz_msgs_SteeringReport</a><a id="18c61" class="tk">*</a> <a id="18c63" class="tk">busPtr</a>, <a id="18c71" class="tk">dbw_mkz_msgs</a>::<a id="18c85" class="tk">SteeringReport</a> <span class="kw">const</span><a id="18c105" class="tk">*</a> <a id="18c107" class="tk">msgPtr</a>);</td></tr>
+<td><a id="l18" class='ln'>18</a></td><td><span class="kw">void</span> <a id="18c6" class="tk">convertToBus</a>(<a id="18c19" class="tk">SL_Bus_DOB_ros_dbw_mkz_msgs_SteeringCmd</a><a id="18c58" class="tk">*</a> <a id="18c60" class="tk">busPtr</a>, <a id="18c68" class="tk">dbw_mkz_msgs</a>::<a id="18c82" class="tk">SteeringCmd</a> <span class="kw">const</span><a id="18c99" class="tk">*</a> <a id="18c101" class="tk">msgPtr</a>);</td></tr>
 <tr name="19" id="19">
 <td><a id="l19" class='ln'>19</a></td><td></td></tr>
 <tr name="20" id="20">
-<td><a id="l20" class='ln'>20</a></td><td><span class="kw">void</span> <a id="20c6" class="tk">convertFromBus</a>(<a id="20c21" class="tk">geometry_msgs</a>::<a id="20c36" class="tk">Pose2D</a><a id="20c42" class="tk">*</a> <a id="20c44" class="tk">msgPtr</a>, <a id="20c52" class="tk">SL_Bus_DOB_ros_geometry_msgs_Pose2D</a> <span class="kw">const</span><a id="20c93" class="tk">*</a> <a id="20c95" class="tk">busPtr</a>);</td></tr>
+<td><a id="l20" class='ln'>20</a></td><td><span class="kw">void</span> <a id="20c6" class="tk">convertFromBus</a>(<a id="20c21" class="tk">dbw_mkz_msgs</a>::<a id="20c35" class="tk">SteeringReport</a><a id="20c49" class="tk">*</a> <a id="20c51" class="tk">msgPtr</a>, <a id="20c59" class="tk">SL_Bus_DOB_ros_dbw_mkz_msgs_SteeringReport</a> <span class="kw">const</span><a id="20c107" class="tk">*</a> <a id="20c109" class="tk">busPtr</a>);</td></tr>
 <tr name="21" id="21">
-<td><a id="l21" class='ln'>21</a></td><td><span class="kw">void</span> <a id="21c6" class="tk">convertToBus</a>(<a id="21c19" class="tk">SL_Bus_DOB_ros_geometry_msgs_Pose2D</a><a id="21c54" class="tk">*</a> <a id="21c56" class="tk">busPtr</a>, <a id="21c64" class="tk">geometry_msgs</a>::<a id="21c79" class="tk">Pose2D</a> <span class="kw">const</span><a id="21c91" class="tk">*</a> <a id="21c93" class="tk">msgPtr</a>);</td></tr>
+<td><a id="l21" class='ln'>21</a></td><td><span class="kw">void</span> <a id="21c6" class="tk">convertToBus</a>(<a id="21c19" class="tk">SL_Bus_DOB_ros_dbw_mkz_msgs_SteeringReport</a><a id="21c61" class="tk">*</a> <a id="21c63" class="tk">busPtr</a>, <a id="21c71" class="tk">dbw_mkz_msgs</a>::<a id="21c85" class="tk">SteeringReport</a> <span class="kw">const</span><a id="21c105" class="tk">*</a> <a id="21c107" class="tk">msgPtr</a>);</td></tr>
 <tr name="22" id="22">
 <td><a id="l22" class='ln'>22</a></td><td></td></tr>
 <tr name="23" id="23">

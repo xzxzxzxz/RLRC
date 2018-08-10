@@ -16,6 +16,7 @@ Fnr = m * g * b/(a+b);
 Caf = BCD * Fnf;
 Car = BCD * Fnr;
 dt = 0.02;
+dt_ros_single = single(0.02);
 dt_ros = 0.02;
 vx = 20;
 ds = 15;
@@ -45,8 +46,8 @@ Gde = tf(1, [1,0], 'Ts', dt, 'Variable', 'z');
 Gop = tf(bpeq, apeq, 'Ts', dt, 'Variable', 'z');
 Gop = Gop * Gde;
 
-kc1 = 0.4;
-kc2 = 0.06;
+kc1 = single(0.4);
+kc2 = single(0.06);
 Gc1 = kc1 + vx*Gi;
 Gc2 = kc2;
 Gop = Gop * Gc1;
@@ -60,8 +61,8 @@ k2 = kc2;
 %% Design DOB
 % inverse Gop in realizable form 
 [Numc, Denc] = tfdata(Gop);
-Dn = Denc{1}/Numc{1}(3);
-Dd = [Numc{1}(3:end) 0 0]/Numc{1}(3);
+Dn = single(Denc{1}/Numc{1}(3));
+Dd = single([Numc{1}(3:end) 0 0]/Numc{1}(3));
 D = tf(Dn, Dd, 'Ts', dt, 'Variable', 'z');
 N = tf([0 0 1], 1, 'Ts', dt, 'Variable', 'z^-1');
 
@@ -72,3 +73,5 @@ eps = 0.8;
 %Q = c2d(Q, dt, 'zoh');
 Q = tf(0.01,[1 -1 0.01],dt,'Variable','z^-1');
 [NQ, DQ] = tfdata(Q);
+NQ{1} = single(NQ{1});
+DQ{1} = single(DQ{1});

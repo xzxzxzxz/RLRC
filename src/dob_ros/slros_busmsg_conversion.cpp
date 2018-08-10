@@ -1,6 +1,27 @@
 #include "slros_busmsg_conversion.h"
 
 
+// Conversions between SL_Bus_DOB_ros_controller_TrackingInfo and controller::TrackingInfo
+
+void convertFromBus(controller::TrackingInfo* msgPtr, SL_Bus_DOB_ros_controller_TrackingInfo const* busPtr)
+{
+  const std::string rosMessageType("controller/TrackingInfo");
+
+  msgPtr->dtheta =  busPtr->Dtheta;
+  msgPtr->dy =  busPtr->Dy;
+  msgPtr->vx =  busPtr->Vx;
+}
+
+void convertToBus(SL_Bus_DOB_ros_controller_TrackingInfo* busPtr, controller::TrackingInfo const* msgPtr)
+{
+  const std::string rosMessageType("controller/TrackingInfo");
+
+  busPtr->Dtheta =  msgPtr->dtheta;
+  busPtr->Dy =  msgPtr->dy;
+  busPtr->Vx =  msgPtr->vx;
+}
+
+
 // Conversions between SL_Bus_DOB_ros_dbw_mkz_msgs_SteeringCmd and dbw_mkz_msgs::SteeringCmd
 
 void convertFromBus(dbw_mkz_msgs::SteeringCmd* msgPtr, SL_Bus_DOB_ros_dbw_mkz_msgs_SteeringCmd const* busPtr)
@@ -66,27 +87,6 @@ void convertToBus(SL_Bus_DOB_ros_dbw_mkz_msgs_SteeringReport* busPtr, dbw_mkz_ms
   busPtr->SteeringWheelAngleCmd =  msgPtr->steering_wheel_angle_cmd;
   busPtr->SteeringWheelTorque =  msgPtr->steering_wheel_torque;
   busPtr->Timeout =  msgPtr->timeout;
-}
-
-
-// Conversions between SL_Bus_DOB_ros_geometry_msgs_Pose2D and geometry_msgs::Pose2D
-
-void convertFromBus(geometry_msgs::Pose2D* msgPtr, SL_Bus_DOB_ros_geometry_msgs_Pose2D const* busPtr)
-{
-  const std::string rosMessageType("geometry_msgs/Pose2D");
-
-  msgPtr->theta =  busPtr->Theta;
-  msgPtr->x =  busPtr->X;
-  msgPtr->y =  busPtr->Y;
-}
-
-void convertToBus(SL_Bus_DOB_ros_geometry_msgs_Pose2D* busPtr, geometry_msgs::Pose2D const* msgPtr)
-{
-  const std::string rosMessageType("geometry_msgs/Pose2D");
-
-  busPtr->Theta =  msgPtr->theta;
-  busPtr->X =  msgPtr->x;
-  busPtr->Y =  msgPtr->y;
 }
 
 

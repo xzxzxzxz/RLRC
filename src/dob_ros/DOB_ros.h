@@ -7,9 +7,9 @@
  *
  * Code generation for model "DOB_ros".
  *
- * Model version              : 1.179
+ * Model version              : 1.183
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Mon Aug  6 11:04:04 2018
+ * C++ source code generated on : Fri Aug 10 15:24:39 2018
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -48,8 +48,8 @@
 typedef struct {
   SL_Bus_DOB_ros_dbw_mkz_msgs_SteeringReport In1;/* '<S7>/In1' */
   SL_Bus_DOB_ros_dbw_mkz_msgs_SteeringReport b_varargout_2;
-  SL_Bus_DOB_ros_geometry_msgs_Pose2D In1_i;/* '<S8>/In1' */
-  SL_Bus_DOB_ros_geometry_msgs_Pose2D b_varargout_2_m;
+  char_T cv0[25];
+  SL_Bus_DOB_ros_controller_TrackingInfo In1_i;/* '<S8>/In1' */
 } B_DOB_ros_T;
 
 /* Block states (auto storage) for system '<Root>' */
@@ -69,14 +69,17 @@ typedef struct {
 
 /* Parameters (auto storage) */
 struct P_DOB_ros_T_ {
-  real_T kc1;                          /* Variable: kc1
-                                        * Referenced by: '<Root>/Gain3'
-                                        */
   real32_T Dd[6];                      /* Variable: Dd
                                         * Referenced by: '<Root>/D1'
                                         */
   real32_T Dn[6];                      /* Variable: Dn
                                         * Referenced by: '<Root>/D1'
+                                        */
+  real32_T dt_ros_single;              /* Variable: dt_ros_single
+                                        * Referenced by: '<S1>/Gain'
+                                        */
+  real32_T kc1;                        /* Variable: kc1
+                                        * Referenced by: '<Root>/Gain3'
                                         */
   real32_T kc2;                        /* Variable: kc2
                                         * Referenced by: '<Root>/Gain5'
@@ -87,31 +90,28 @@ struct P_DOB_ros_T_ {
   SL_Bus_DOB_ros_dbw_mkz_msgs_SteeringReport Constant_Value;/* Computed Parameter: Constant_Value
                                                              * Referenced by: '<S2>/Constant'
                                                              */
-  SL_Bus_DOB_ros_geometry_msgs_Pose2D Out1_Y0_n;/* Computed Parameter: Out1_Y0_n
-                                                 * Referenced by: '<S8>/Out1'
-                                                 */
-  SL_Bus_DOB_ros_geometry_msgs_Pose2D Constant_Value_j;/* Computed Parameter: Constant_Value_j
-                                                        * Referenced by: '<S3>/Constant'
-                                                        */
-  SL_Bus_DOB_ros_geometry_msgs_Pose2D Constant_Value_i;/* Computed Parameter: Constant_Value_i
-                                                        * Referenced by: '<S9>/Constant'
-                                                        */
-  SL_Bus_DOB_ros_dbw_mkz_msgs_SteeringCmd Constant_Value_jb;/* Computed Parameter: Constant_Value_jb
-                                                             * Referenced by: '<S5>/Constant'
-                                                             */
-  real32_T Gain_Gain;                  /* Computed Parameter: Gain_Gain
-                                        * Referenced by: '<S1>/Gain'
-                                        */
+  SL_Bus_DOB_ros_dbw_mkz_msgs_SteeringCmd Constant_Value_j;/* Computed Parameter: Constant_Value_j
+                                                            * Referenced by: '<S5>/Constant'
+                                                            */
+  SL_Bus_DOB_ros_controller_TrackingInfo Out1_Y0_n;/* Computed Parameter: Out1_Y0_n
+                                                    * Referenced by: '<S8>/Out1'
+                                                    */
+  SL_Bus_DOB_ros_controller_TrackingInfo Constant_Value_j1;/* Computed Parameter: Constant_Value_j1
+                                                            * Referenced by: '<S3>/Constant'
+                                                            */
+  SL_Bus_DOB_ros_controller_TrackingInfo Constant_Value_i;/* Computed Parameter: Constant_Value_i
+                                                           * Referenced by: '<S9>/Constant'
+                                                           */
   real32_T D1_InitialStates;           /* Computed Parameter: D1_InitialStates
                                         * Referenced by: '<Root>/D1'
                                         */
   real32_T Delay1_InitialCondition;    /* Computed Parameter: Delay1_InitialCondition
                                         * Referenced by: '<Root>/Delay1'
                                         */
-  real32_T Q1_NumCoef[3];              /* Computed Parameter: Q1_NumCoef
+  real32_T Q1_NumCoef[3];              /* Expression: NQ{1}
                                         * Referenced by: '<Root>/Q1'
                                         */
-  real32_T Q1_DenCoef[3];              /* Computed Parameter: Q1_DenCoef
+  real32_T Q1_DenCoef[3];              /* Expression: DQ{1}
                                         * Referenced by: '<Root>/Q1'
                                         */
   real32_T Q1_InitialStates;           /* Computed Parameter: Q1_InitialStates
