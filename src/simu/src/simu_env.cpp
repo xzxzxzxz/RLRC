@@ -52,7 +52,7 @@ path_follower::state_Dynamic statedynamic;
 geometry_msgs::TwistStamped twistcmd;
 
 
-float  errorbound,state[7]={0},nextstate[7]={0},action[2],dt,maxSteeringRate,maxDvxdt,steering,steeringRatio,maxSteering,pi=3.1415926,dvxdt;
+float  errorbound,state[7]={0},nextstate[7]={0},action[2]={0},dt,maxSteeringRate,maxDvxdt,steering,steeringRatio,maxSteering,pi=3.1415926,dvxdt;
 
 
 float sign(float k){
@@ -203,14 +203,16 @@ int main(int argc, char **argv)
 
     u[1]=dvxdt;
     
+    
     for(i=0;i<=5;i++)
-      z[0]=state[0];
+      z[i]=state[i];
     float F_side=0;
     float *ptr;
+
     ptr=f_6s(z,u,vhMdl,trMdl,F_ext,F_side,dt);
     for(i=0;i<=5;i++)
        nextstate[i]=*(ptr+i);
-       
+       for(i=0;i<=6;i++)
     steeringreport.steering_wheel_angle=nextstate[6];   
 
     statedynamic.vx=nextstate[3];
