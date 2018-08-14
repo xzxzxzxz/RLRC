@@ -3,5 +3,5 @@
 
 #include<iostream>
 using namespace std;
-float *f_6s(float* ,float* ,float* ,float* ,float* ,float ,float );
+double *f_6s(double* ,double* ,double* ,double* ,double* ,double ,double );
 #endif
