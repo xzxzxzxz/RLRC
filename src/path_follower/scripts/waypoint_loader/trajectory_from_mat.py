@@ -49,7 +49,7 @@ def talker():
     rospy.init_node('talker', anonymous=True)
     rate = rospy.Rate(10) # 10hz
 
-    waypoints_mat = scipy.io.loadmat('New_tra_2.mat')['New_tra_2']
+    waypoints_mat = scipy.io.loadmat(os.path.join(rospack.get_path("path_follower"), "scripts", "waypoint_loader", "New_tra_2.mat"))['New_tra_2']
     x = waypoints_mat[0][:]
     y = waypoints_mat[1][:]
     theta = waypoints_mat[2][:]
