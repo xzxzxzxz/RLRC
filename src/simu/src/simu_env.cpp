@@ -52,10 +52,9 @@ path_follower::state_Dynamic statedynamic;
 geometry_msgs::TwistStamped twistcmd;
 
 
-float  errorbound,state[7]={0},nextstate[7]={0},action[2]={0},dt,maxSteeringRate,maxDvxdt,steering,steeringRatio,maxSteering,pi=3.1415926,dvxdt;
+double  errorbound=0,state[7]={0},nextstate[7]={0},action[2]={0},dt,maxSteeringRate,maxDvxdt,steering,steeringRatio,maxSteering,pi=3.1415926,dvxdt,init_flag=0,start_flag=0;
 
-
-float sign(float k){
+double sign(double k){
 
 	if (k<0) return -1;
 
@@ -66,9 +65,21 @@ float sign(float k){
 }
 
 void errorcallback(simu::DynamicParamConfig &config, uint32_t level) {
-  ROS_INFO_STREAM("Reconfigure" );
-  errorbound=config.errorbound;
-               
+    ROS_INFO_STREAM("Reconfigure");
+    start_flag=config.Run;   
+    if (init_flag==0 && start_flag==1)
+	  {
+	  errorbound=config.errorbound;
+	  state[0]=config.X_init;
+	  state[1]=config.Y_init;
+	  state[2]=config.phi_init;
+	  state[3]=config.vx_init;
+	  state[6]=config.steering_init/16;
+	  init_flag=1;  
+          ROS_INFO_STREAM("Run" );
+         }   
+     
+
 }
 
 void cmd_vel_stampedCallback(const geometry_msgs::TwistStamped::ConstPtr& msg)
@@ -76,6 +87,7 @@ void cmd_vel_stampedCallback(const geometry_msgs::TwistStamped::ConstPtr& msg)
 {
 
    action[0]=(msg->twist.linear.x-state[3])/dt/maxDvxdt;
+   
 
 }
 
@@ -84,17 +96,17 @@ void steering_cmdCallback(const dbw_mkz_msgs::SteeringCmd::ConstPtr& msg)
 
 {
 
-   int temp,temp2;
+   int steering_rate,steering_cmd;
 
-   temp2 = msg->steering_wheel_angle_cmd;
+   steering_cmd = msg->steering_wheel_angle_cmd;
 
-   temp = msg->steering_wheel_angle_velocity;
+   steering_rate = msg->steering_wheel_angle_velocity;
 
-   action[1] = min(temp/maxSteeringRate,abs(state[6]*steeringRatio-temp2)/dt);
+   action[1] = min(steering_rate/maxSteeringRate,abs(state[6]*steeringRatio-steering_cmd)/dt);
 
-   if (temp==0) action[1]=1;
+   if (steering_rate==0) action[1]=1;
 
-   action[1]=action[1]*sign(temp2-state[6]*steeringRatio);
+   action[1]=action[1]*sign(steering_cmd-state[6]*steeringRatio); 
 
 }
 
@@ -108,35 +120,35 @@ int main(int argc, char **argv)
 
   ros::NodeHandle n;
 
-  ros::Subscriber sub1 = n.subscribe("/vehicle/cmd_vel_stamped",10,cmd_vel_stampedCallback); 
+  ros::Subscriber sub1 = n.subscribe("/vehicle/cmd_vel_stamped",1,cmd_vel_stampedCallback); 
 
-  ros::Subscriber sub2 = n.subscribe("/vehicle/steering_cmd",10,steering_cmdCallback);
+  ros::Subscriber sub2 = n.subscribe("/vehicle/steering_cmd",1,steering_cmdCallback);
 
-  ros::Publisher pub1 = n.advertise<dbw_mkz_msgs::SteeringReport>("/vehicle/steering_report",10); 
+  ros::Publisher pub1 = n.advertise<dbw_mkz_msgs::SteeringReport>("/vehicle/steering_report",1); 
 
-  ros::Publisher pub2 = n.advertise<path_follower::state_Dynamic>("state_estimate",10);
+  ros::Publisher pub2 = n.advertise<path_follower::state_Dynamic>("state_estimate",1);
+
   
   dynamic_reconfigure::Server<simu::DynamicParamConfig> server;
   dynamic_reconfigure::Server<simu::DynamicParamConfig>::CallbackType f;
   
-   f = boost::bind(&errorcallback, _1, _2);
+  f = boost::bind(&errorcallback, _1, _2);
   server.setCallback(f);
   
   ros::spinOnce();
-  
-  ros::Rate loop_rate(50);
+  dt=0.1;
+  ros::Rate loop_rate(1/dt);
 
   ROS_INFO_STREAM("simulator node starts");
   
   
-  dt=0.02;
-  float rannum[17];
+  double rannum[17];
   srand( (unsigned)time( NULL ) );
   
   for(i=0;i<14;i++)
     
-     rannum[i]=rand()/(float)(RAND_MAX/2)-1;
-  float vhMdl[4],trMdl[8],a0,Crr,F_ext[2];
+     rannum[i]=rand()/(double)(RAND_MAX/2)-1;
+  double vhMdl[4],trMdl[8],a0,Crr,F_ext[2];
 
   vhMdl[0]=1.2*(rannum[0] + 1);
 
@@ -177,19 +189,25 @@ int main(int argc, char **argv)
   steeringRatio = 16 ;
   
   maxDvxdt = 5 ;
-  
 
   while(ros::ok())
 
   {
 
     ros::spinOnce();
+    if (init_flag*start_flag==0)
+	{
+	loop_rate.sleep();	
+	continue;
+	}
 
-    memset(nextstate, 0, 7 * sizeof(float));
+    memset(nextstate, 0, 7 * sizeof(double));
 
-    action[0] = max(min(action[0], 1.0f), -1.0f);
+    action[0] = max(min(action[0], 1.0), -1.0);
 
-    action[1] = max(min(action[1], 1.0f), -1.0f);
+
+    action[1] = max(min(action[1], 1.0), -1.0);
+
 
     dvxdt = maxDvxdt * action[0];
 
@@ -197,22 +215,30 @@ int main(int argc, char **argv)
 
     nextstate[6] = max(min(steering,maxSteering),-maxSteering)/steeringRatio;
     
-    float u[2],z[6];
+    double u[2],z[6];
     
     u[0]=nextstate[6];
 
     u[1]=dvxdt;
-    
-    
+   
     for(i=0;i<=5;i++)
       z[i]=state[i];
-    float F_side=0;
-    float *ptr;
-
+ 
+    double F_side=0;
+    double *ptr;
+    
     ptr=f_6s(z,u,vhMdl,trMdl,F_ext,F_side,dt);
     for(i=0;i<=5;i++)
        nextstate[i]=*(ptr+i);
-       for(i=0;i<=6;i++)
+   /* ROS_INFO_STREAM("X"<<state[0]);
+    ROS_INFO_STREAM("Y"<<state[1]);
+    ROS_INFO_STREAM("phi"<<state[2]);
+    ROS_INFO_STREAM("v_x"<<state[3]);
+    ROS_INFO_STREAM("v_y"<<state[4]);
+    ROS_INFO_STREAM("r"<<state[5]);
+    ROS_INFO_STREAM("d_f"<<state[6]);	
+    ROS_INFO_STREAM("sterring"<<steering);*/
+   
     steeringreport.steering_wheel_angle=nextstate[6];   
 
     statedynamic.vx=nextstate[3];
@@ -226,19 +252,20 @@ int main(int argc, char **argv)
     statedynamic.psi=nextstate[2];
 
     statedynamic.wz=nextstate[5];
+   
+
+   // ROS_INFO_STREAM("Y_send"<<nextstate[1]);
 
     pub1.publish(steeringreport);   
 
     pub2.publish(statedynamic);            
 
-  
-
-    for (i=0;i++;i<=6)
-
+    for (i=0;i<=6;i++)
   	 state[i]=nextstate[i];
 
+    loop_rate.sleep();
 	}
-
+	
   return 0;
 
 }
