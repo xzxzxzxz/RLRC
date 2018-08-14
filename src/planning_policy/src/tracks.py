@@ -6,7 +6,7 @@ import scipy.optimize
 import numpy as np
 from math import sqrt, cos, sin, tan, pi
 import os, rospkg
-
+import rospy
 class Tra:
 
     def __init__(self, name, dt, horizon, deviation=0, numPrePts=2, threshold=5):
@@ -75,6 +75,7 @@ class Tra:
                 self.horizon: search in +/- 10* horizon
         output: void
         """
+        
         pX = self.x[self.obstacleIndex] + v_x * cos(self.psi[self.obstacleIndex]) * self.dt
         pY = self.y[self.obstacleIndex] + v_x * sin(self.psi[self.obstacleIndex]) * self.dt
         self.obstacleIndex, _ = self.searchClosestPt(pX, pY, standard_index=self.obstacleIndex)
@@ -170,13 +171,16 @@ class Tra:
         (one trick: only compare dist**2, save the time used to compute sqrt)
         (another trick: only consider waypoints with index in currentIndex +/- 10*horizon range)
         """
+      #  rospy.loginfo("X_getf%d  Y_getf%d",pX,pY)
         indexMin = standard_index
         distSqrMin = (pX - self.x[standard_index])**2 + (pY - self.y[standard_index])**2
-        for index in range(max(standard_index - self.horizon*10, 0), min(standard_index + self.horizon*10, self.size)):
+        for index in range(max(standard_index - self.horizon, 0), min(standard_index + self.horizon, self.size)):
             distSqr = (pX - self.x[index])**2 + (pY - self.y[index])**2
             if distSqr < distSqrMin:
                 indexMin = index
                 distSqrMin = distSqr
+		#rospy.loginfo("index%d di%d",index,distSqr)
+	#rospy.loginfo("px%d x%d py%d y%d index %d",pX,self.x[indexMin],pY,self.y[indexMin],indexMin)	
         return indexMin, sqrt(distSqrMin)
 
 
