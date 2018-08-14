@@ -102,7 +102,7 @@ void steering_cmdCallback(const dbw_mkz_msgs::SteeringCmd::ConstPtr& msg)
 
    steering_rate = msg->steering_wheel_angle_velocity;
 
-   action[1] = min(steering_rate/maxSteeringRate,abs(state[6]*steeringRatio-steering_cmd)/dt);
+   action[1] = min(steering_rate/maxSteeringRate,abs(state[6]*steeringRatio-steering_cmd)/dt/maxSteeringRate);
 
    if (steering_rate==0) action[1]=1;
 
@@ -134,9 +134,8 @@ int main(int argc, char **argv)
   
   f = boost::bind(&errorcallback, _1, _2);
   server.setCallback(f);
-  
-  ros::spinOnce();
-  dt=0.1;
+ 
+  dt=0.2;
   ros::Rate loop_rate(1/dt);
 
   ROS_INFO_STREAM("simulator node starts");
@@ -239,7 +238,7 @@ int main(int argc, char **argv)
     ROS_INFO_STREAM("d_f"<<state[6]);	
     ROS_INFO_STREAM("sterring"<<steering);*/
    
-    steeringreport.steering_wheel_angle=nextstate[6];   
+    steeringreport.steering_wheel_angle=nextstate[6]*steeringRatio;   
 
     statedynamic.vx=nextstate[3];
 
