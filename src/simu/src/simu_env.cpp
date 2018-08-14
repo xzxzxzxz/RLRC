@@ -54,7 +54,7 @@ geometry_msgs::TwistStamped twistcmd;
 
 double  errorbound=0,state[7]={0},nextstate[7]={0},action[2]={0},dt,maxSteeringRate,maxDvxdt,steering,steeringRatio,maxSteering,pi=3.1415926,dvxdt,init_flag=0,start_flag=0;
 
-double sign(double k){
+double signnn(double k){
 
 	if (k<0) return -1;
 
@@ -96,17 +96,20 @@ void steering_cmdCallback(const dbw_mkz_msgs::SteeringCmd::ConstPtr& msg)
 
 {
 
-   int steering_rate,steering_cmd;
+   double steering_rate,steering_cmd;
 
    steering_cmd = msg->steering_wheel_angle_cmd;
 
    steering_rate = msg->steering_wheel_angle_velocity;
+   ROS_INFO_STREAM("steering_cmd"<<steering_cmd);
+   ROS_INFO_STREAM("steering_rate"<<steering_rate);
+   if (steering_rate==0) steering_rate=maxSteeringRate;
+   action[1] = min(abs(steering_rate/maxSteeringRate),abs(state[6]*steeringRatio-steering_cmd)/dt/maxSteeringRate);
 
-   action[1] = min(steering_rate/maxSteeringRate,abs(state[6]*steeringRatio-steering_cmd)/dt/maxSteeringRate);
+   
 
-   if (steering_rate==0) action[1]=1;
-
-   action[1]=action[1]*sign(steering_cmd-state[6]*steeringRatio); 
+   action[1]=action[1]*signnn(steering_cmd-state[6]*steeringRatio); 
+      ROS_INFO_STREAM("action"<<action[1]);
 
 }
 
@@ -135,7 +138,7 @@ int main(int argc, char **argv)
   f = boost::bind(&errorcallback, _1, _2);
   server.setCallback(f);
  
-  dt=0.2;
+  dt=0.02;
   ros::Rate loop_rate(1/dt);
 
   ROS_INFO_STREAM("simulator node starts");
@@ -229,14 +232,15 @@ int main(int argc, char **argv)
     ptr=f_6s(z,u,vhMdl,trMdl,F_ext,F_side,dt);
     for(i=0;i<=5;i++)
        nextstate[i]=*(ptr+i);
-   /* ROS_INFO_STREAM("X"<<state[0]);
+    ROS_INFO_STREAM("X"<<state[0]);
     ROS_INFO_STREAM("Y"<<state[1]);
     ROS_INFO_STREAM("phi"<<state[2]);
     ROS_INFO_STREAM("v_x"<<state[3]);
     ROS_INFO_STREAM("v_y"<<state[4]);
     ROS_INFO_STREAM("r"<<state[5]);
     ROS_INFO_STREAM("d_f"<<state[6]);	
-    ROS_INFO_STREAM("sterring"<<steering);*/
+    ROS_INFO_STREAM("sterring"<<steering);
+
    
     steeringreport.steering_wheel_angle=nextstate[6]*steeringRatio;   
 
