@@ -32,10 +32,9 @@ def main(dt, horizon):
     dt=0.02
     track = Tra('Tra_1', dt, horizon)
     rospy.init_node('toy_planner', anonymous=True)
-
     rospy.Subscriber('state_estimate', state_Dynamic, stateEstimateCallback)
     rospy.Subscriber('vehicle/steering_report', SteeringReport, steeringReportCallback)
-    pub = rospy.Publisher('ref_trajectory', Trajectory2D, queue_size=1)
+    pub = rospy.Publisher('ref_trajectory_origin', Trajectory2D, queue_size=1)
 
     rate = rospy.Rate(1/dt)
 
@@ -49,9 +48,7 @@ def main(dt, horizon):
    # rospy.loginfo("%d",tmp)
     while (rospy.is_shutdown() != 1):
 	if stateEstimate_mark == True :   
-            #    rospy.loginfo("X_getttttttttt%d  Y_gett%d",X,Y)
 		track.currentIndex, _ = track.searchClosestPt(X, Y, track.currentIndex)
-    		#rospy.loginfo("curindex%d  X%d  Y%d",track.currentIndex,X,Y)
 		track.setPosObstacle(track.currentIndex)
 		traj = Trajectory2D()
 		for i in range(15):
