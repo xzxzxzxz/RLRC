@@ -51,7 +51,7 @@ def main(dt, horizon):
 		track.currentIndex, _ = track.searchClosestPt(X, Y, track.currentIndex)
 		track.setPosObstacle(track.currentIndex)
 		traj = Trajectory2D()
-		for i in range(15):
+		for i in range(50):
 		    pt = TrajectoryPoint2D()
 		    pt.t = i * dt
 		    pt.x = track.x[track.obstacleIndex]

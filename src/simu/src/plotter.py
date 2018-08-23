@@ -16,10 +16,8 @@ def vehicle_state_callback(data):
 	global axis_range,ax,i,ini_flag,obj1,obj2,obj3,obj4
 	if ini_flag2*ini_flag3:
 		if ini_flag==1 :
-		    ax.lines.remove(*obj1)
-		    ax.lines.remove(*obj2)
-		    ax.lines.remove(*obj3)
-		    ax.lines.remove(*obj4)
+		    for index in range(1,5):	   
+			 ax.lines.pop(1) 
 		i=i+1
 	 	if i>=1 :  
 		    ini_flag=1  
@@ -35,7 +33,7 @@ def ref_traje_callback(data) :
 	global ini_flag2,X2,Y2
 	X2=[];Y2=[]
  	ini_flag2=1
-        for index in range(15):
+        for index in range(50):
 	     X2.append(data.point[index].x)
 	     Y2.append(data.point[index].y)
 
@@ -47,6 +45,12 @@ def  traj_cg_callback(data):
 	Y3=data.point[0].y
 	X4=data.point[1].x
 	Y4=data.point[1].y
+
+
+def clearmomery():
+	print "clear done"
+  	plt.clf()
+	plt.close('all')
 
 def plotter():
 	global ref_x, ref_y,ax
@@ -64,7 +68,8 @@ def plotter():
 	rospy.Subscriber('ref_trajectory', Trajectory2D, ref_traje_callback,queue_size=1)
 	rospy.Subscriber('/vehicle/traj_cg', Trajectory2D, traj_cg_callback,queue_size=1)
 	plt.show()
-        rospy.spin()	
+        rospy.spin()
+	rospy.on_shutdown(clearmomery)
 
 
         

@@ -21,6 +21,7 @@ def steering_cmdCallback(data):
    global action,car
    steering_cmd = data.steering_wheel_angle_cmd
    steering_rate = data.steering_wheel_angle_velocity
+  # rospy.loginfo("steeringcmd%f",steering_cmd)
    if (steering_rate==0) :
 	steering_rate=car.maxSteeringRate
    action[1] = min(abs(steering_rate/car.maxSteeringRate),abs(car.state[6]*car.steeringRatio-steering_cmd)/dt/car.maxSteeringRate)
