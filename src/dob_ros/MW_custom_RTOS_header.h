@@ -5,6 +5,7 @@
 #define MW_NUMBER_SUBRATES             0
 #define MW_NUMBER_APERIODIC_TASKS      0
 #define MW_IS_CONCURRENT               0
+#define MW_NUMBER_TIMER_DRIVEN_TASKS   0
 
 extern void exitFcn(int sig);
 extern void *terminateTask(void *arg);

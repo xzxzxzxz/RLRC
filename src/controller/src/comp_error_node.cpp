@@ -11,6 +11,8 @@ using namespace std;
 
 path_follower::state_Dynamic current_state;
 path_follower::Trajectory2D ref_traj;
+
+
 bool received_traj_flag = false;
 float ds;
 
@@ -43,10 +45,13 @@ int main(int argc, char **argv)
 
   ros::Publisher error_pub = n.advertise<controller::TrackingInfo>("tracking_info", 1); 
   ros::Publisher vel_cmd_pub = n.advertise<geometry_msgs::TwistStamped>("/vehicle/cmd_vel_stamped", 1);
+  ros::Publisher traj_cg_pub = n.advertise<path_follower::Trajectory2D>("/vehicle/traj_cg", 1);
   ros::Rate loop_rate(50);
 
   geometry_msgs::TwistStamped cmd_vel_stamped;
   controller::TrackingInfo tracking_info;
+  path_follower::Trajectory2D traj_cg;
+  path_follower::TrajectoryPoint2D cg_point,ds_point;
 
   vlr::vehicle_state p_vs;
   p_vs.set_mkz_params();
@@ -63,11 +68,20 @@ int main(int argc, char **argv)
       tracking_info.dy = error_msg[1];
       tracking_info.dtheta = error_msg[2];
 
+      cg_point.x=error_msg[3];
+      cg_point.y=error_msg[4];
+      ds_point.x=error_msg[5];
+      ds_point.y=error_msg[6];
+      traj_cg.point.push_back(cg_point);      
+      traj_cg.point.push_back(ds_point);  
+
       cmd_vel_stamped.header.stamp = ros::Time::now();
       cmd_vel_stamped.twist.linear.x = error_msg[0];
 
       error_pub.publish(tracking_info);
       vel_cmd_pub.publish(cmd_vel_stamped);
+      traj_cg_pub.publish(traj_cg);
+      traj_cg.point.clear();
     }
 
   	loop_rate.sleep();

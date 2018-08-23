@@ -8,8 +8,8 @@
  * Code generation for model "DOB_ros".
  *
  * Model version              : 1.183
- * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Fri Aug 10 15:24:39 2018
+ * Simulink Coder version : 8.14 (R2018a) 06-Feb-2018
+ * C++ source code generated on : Tue Aug 21 15:46:22 2018
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -104,7 +104,9 @@ typedef struct {
 #define typedef_robotics_slros_internal_block_T
 
 typedef struct {
+  boolean_T matlabCodegenIsDeleted;
   int32_T isInitialized;
+  boolean_T isSetupComplete;
 } robotics_slros_internal_block_T;
 
 #endif                                 /*typedef_robotics_slros_internal_block_T*/
@@ -113,12 +115,14 @@ typedef struct {
 #define typedef_robotics_slros_internal_blo_k_T
 
 typedef struct {
+  boolean_T matlabCodegenIsDeleted;
   int32_T isInitialized;
+  boolean_T isSetupComplete;
 } robotics_slros_internal_blo_k_T;
 
 #endif                                 /*typedef_robotics_slros_internal_blo_k_T*/
 
-/* Parameters (auto storage) */
+/* Parameters (default storage) */
 typedef struct P_DOB_ros_T_ P_DOB_ros_T;
 
 /* Forward declaration for rtModel */

@@ -28,13 +28,9 @@ geometry_msgs::TwistStamped twistcmd;
 double  errorbound=0,state[7]={0},nextstate[7]={0},action[2]={0},dt,maxSteeringRate,maxDvxdt,steering,steeringRatio,maxSteering,pi=3.1415926,dvxdt,init_flag=0,start_flag=0;
 
 double signnn(double k){
-
 	if (k<0) return -1;
-
 	if (k>0) return 1;
-
 	return 0;
-
 }
 
 void errorcallback(simu::DynamicParamConfig &config, uint32_t level) {
@@ -68,8 +64,8 @@ void steering_cmdCallback(const dbw_mkz_msgs::SteeringCmd::ConstPtr& msg)
    double steering_rate,steering_cmd;
    steering_cmd = msg->steering_wheel_angle_cmd;
    steering_rate = msg->steering_wheel_angle_velocity;
-   ROS_INFO_STREAM("steering_cmd"<<steering_cmd);
-   ROS_INFO_STREAM("steering_rate"<<steering_rate);
+  // ROS_INFO_STREAM("steering_cmd"<<steering_cmd);
+ //  ROS_INFO_STREAM("steering_rate"<<steering_rate);
    if (steering_rate==0) steering_rate=maxSteeringRate;
    action[1] = min(abs(steering_rate/maxSteeringRate),abs(state[6]*steeringRatio-steering_cmd)/dt/maxSteeringRate);
    action[1]=action[1]*signnn(steering_cmd-state[6]*steeringRatio); 
@@ -79,7 +75,6 @@ void steering_cmdCallback(const dbw_mkz_msgs::SteeringCmd::ConstPtr& msg)
 int main(int argc, char **argv)
 
 {
-  
   int i;
   ros::init(argc, argv, "sim");
   ros::NodeHandle n;
@@ -94,6 +89,9 @@ int main(int argc, char **argv)
   dt=0.02;
   ros::Rate loop_rate(1/dt);
   ROS_INFO_STREAM("simulator node starts");
+
+
+
   double rannum[17];
   srand( (unsigned)time( NULL ) );
   for(i=0;i<14;i++)
@@ -119,6 +117,8 @@ int main(int argc, char **argv)
   maxSteering = 525.0/180*pi;
   steeringRatio = 16 ;
   maxDvxdt = 5 ;
+
+
   while(ros::ok())
   {
     ros::spinOnce();
@@ -145,12 +145,12 @@ int main(int argc, char **argv)
        nextstate[i]=*(ptr+i);
   /*  ROS_INFO_STREAM("X"<<state[0]);
     ROS_INFO_STREAM("Y"<<state[1]);
-    ROS_INFO_STREAM("phi"<<state[2]);*/
+    ROS_INFO_STREAM("phi"<<state[2]);
     ROS_INFO_STREAM("v_x"<<state[3]);
     ROS_INFO_STREAM("v_y"<<state[4]);
     ROS_INFO_STREAM("r"<<state[5]);
     ROS_INFO_STREAM("d_f"<<state[6]);	
-    ROS_INFO_STREAM("sterring"<<steering);
+    ROS_INFO_STREAM("sterring"<<steering);*/
     steeringreport.steering_wheel_angle=nextstate[6]*steeringRatio;   
     statedynamic.vx=nextstate[3];
     statedynamic.vy=nextstate[4];

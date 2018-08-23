@@ -8,8 +8,8 @@
  * Code generation for model "DOB_ros".
  *
  * Model version              : 1.183
- * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Fri Aug 10 15:24:39 2018
+ * Simulink Coder version : 8.14 (R2018a) 06-Feb-2018
+ * C++ source code generated on : Tue Aug 21 15:46:22 2018
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -21,17 +21,17 @@
 #include "DOB_ros.h"
 #include "DOB_ros_private.h"
 
-/* Block parameters (auto storage) */
+/* Block parameters (default storage) */
 P_DOB_ros_T DOB_ros_P = {
   /* Variable: Dd
    * Referenced by: '<Root>/D1'
    */
-  { 1.0F, -1.74160135F, 0.747809172F, -1.1143225E-8F, 0.0F, 0.0F },
+  { 1.0F, -1.98320282F, 1.23101199F, -0.244705275F, 0.0F, 0.0F },
 
   /* Variable: Dn
    * Referenced by: '<Root>/D1'
    */
-  { 2.92028785F, -10.4829149F, 14.0915251F, -8.41545773F, 1.88655925F, 0.0F },
+  { 1.46014392F, -4.64233923F, 5.41427183F, -2.74210215F, 0.510025382F, 0.0F },
 
   /* Variable: dt_ros_single
    * Referenced by: '<S1>/Gain'
@@ -132,19 +132,6 @@ P_DOB_ros_T DOB_ros_P = {
     }                                  /* Header */
   },
 
-  /* Computed Parameter: Constant_Value_j
-   * Referenced by: '<S5>/Constant'
-   */
-  {
-    0.0F,                              /* SteeringWheelAngleCmd */
-    0.0F,                              /* SteeringWheelAngleVelocity */
-    false,                             /* Enable */
-    false,                             /* Clear */
-    false,                             /* Ignore */
-    false,                             /* Quiet */
-    0U                                 /* Count */
-  },
-
   /* Computed Parameter: Out1_Y0_n
    * Referenced by: '<S8>/Out1'
    */
@@ -154,7 +141,7 @@ P_DOB_ros_T DOB_ros_P = {
     0.0F                               /* Dtheta */
   },
 
-  /* Computed Parameter: Constant_Value_j1
+  /* Computed Parameter: Constant_Value_j
    * Referenced by: '<S3>/Constant'
    */
   {
@@ -170,6 +157,19 @@ P_DOB_ros_T DOB_ros_P = {
     0.0F,                              /* Vx */
     0.0F,                              /* Dy */
     0.0F                               /* Dtheta */
+  },
+
+  /* Computed Parameter: Constant_Value_jb
+   * Referenced by: '<S5>/Constant'
+   */
+  {
+    0.0F,                              /* SteeringWheelAngleCmd */
+    0.0F,                              /* SteeringWheelAngleVelocity */
+    false,                             /* Enable */
+    false,                             /* Clear */
+    false,                             /* Ignore */
+    false,                             /* Quiet */
+    0U                                 /* Count */
   },
 
   /* Computed Parameter: D1_InitialStates
