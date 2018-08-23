@@ -16,7 +16,7 @@ def vehicle_state_callback(data):
 	global axis_range,ax,i,ini_flag,obj1,obj2,obj3,obj4
 	if ini_flag2*ini_flag3:
 		if ini_flag==1 :
-		    for index in range(1,5):	   
+		    while len(ax.lines)>1:	   
 			 ax.lines.pop(1) 
 		i=i+1
 	 	if i>=1 :  
@@ -31,11 +31,12 @@ def vehicle_state_callback(data):
  
 def ref_traje_callback(data) :
 	global ini_flag2,X2,Y2
-	X2=[];Y2=[]
+	X2tem=[];Y2tem=[]
  	ini_flag2=1
         for index in range(50):
-	     X2.append(data.point[index].x)
-	     Y2.append(data.point[index].y)
+	     X2tem.append(data.point[index].x)
+	     Y2tem.append(data.point[index].y)
+	X2=X2tem;Y2=Y2tem
 
  
 def  traj_cg_callback(data):
