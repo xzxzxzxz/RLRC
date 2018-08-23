@@ -7,18 +7,20 @@
 #include "controller/comp_error_core.h"
 #include <controller/DynamicParamConfig.h>
 #include <dynamic_reconfigure/server.h>
+#include <iostream>   
 using namespace std;
 
 path_follower::state_Dynamic current_state;
 path_follower::Trajectory2D ref_traj;
 
 
-bool received_traj_flag = false;
+bool received_traj_flag = false,received_state_flag = false;
 float ds;
 
 void StateCallback(const path_follower::state_Dynamic msg) 
 {
   current_state = msg;
+  received_state_flag = true;
 }
 
 void TrajCallback(const path_follower::Trajectory2D msg)
@@ -57,17 +59,17 @@ int main(int argc, char **argv)
   p_vs.set_mkz_params();
 
   ROS_INFO_STREAM("error computation node starts");
-
+ 
   while(ros::ok())
   {
   	ros::spinOnce();
-    if (received_traj_flag == true)
+    if (received_traj_flag == true && received_state_flag == true)
     {
       vector<float> error_msg = ComputeTrackingError(ref_traj, current_state, p_vs.param.b, ds);
       tracking_info.vx = error_msg[0];
       tracking_info.dy = error_msg[1];
       tracking_info.dtheta = error_msg[2];
-
+      ROS_INFO_STREAM_THROTTLE(0.5,"DY"<<error_msg[1]<<endl<<"DTHETA"<<error_msg[2]);
       cg_point.x=error_msg[3];
       cg_point.y=error_msg[4];
       ds_point.x=error_msg[5];

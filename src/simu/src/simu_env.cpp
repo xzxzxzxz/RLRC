@@ -64,8 +64,8 @@ void steering_cmdCallback(const dbw_mkz_msgs::SteeringCmd::ConstPtr& msg)
    double steering_rate,steering_cmd;
    steering_cmd = msg->steering_wheel_angle_cmd;
    steering_rate = msg->steering_wheel_angle_velocity;
-  // ROS_INFO_STREAM("steering_cmd"<<steering_cmd);
- //  ROS_INFO_STREAM("steering_rate"<<steering_rate);
+   ROS_INFO_STREAM("steering_cmd"<<steering_cmd);
+   ROS_INFO_STREAM("steering_rate"<<steering_rate);
    if (steering_rate==0) steering_rate=maxSteeringRate;
    action[1] = min(abs(steering_rate/maxSteeringRate),abs(state[6]*steeringRatio-steering_cmd)/dt/maxSteeringRate);
    action[1]=action[1]*signnn(steering_cmd-state[6]*steeringRatio); 

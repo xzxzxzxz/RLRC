@@ -1,4 +1,5 @@
 <launch>
+   <node name="reconfigure_gui" pkg="rqt_reconfigure" type="rqt_reconfigure" output="screen" />
    <node name="plotter"  pkg="simu"  type="plotter.py" output="screen"/>
    <node name="simu" pkg="simu" type="simu.py" output="screen"/>
    <node name="comp_error"  pkg="controller"  type="comp_error_node" output="screen"/>
