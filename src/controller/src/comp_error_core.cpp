@@ -44,8 +44,13 @@ vector<float> ComputeTrackingError(const path_follower::Trajectory2D traj, const
   float lateral_error = delta_x * sin(state.psi) - delta_y * cos(state.psi);
   vector<float> error_msg_vector;
   error_msg_vector.push_back(traj.point[index].v);
-//  ROS_INFO_STREAM("WW" <<traj.point[index].v);
   error_msg_vector.push_back(lateral_error);
   error_msg_vector.push_back(delta_yaw);
+
+  error_msg_vector.push_back(x_traj_cg);
+  error_msg_vector.push_back(y_traj_cg); 
+  error_msg_vector.push_back(x_cg_ds);
+  error_msg_vector.push_back(y_cg_ds);
+
   return error_msg_vector;
 }

@@ -32,10 +32,16 @@ struct sched_param sp;
 #endif
 
 #ifdef MW_HAS_COMM_SERVICE
-extern int makeCSTaskIdle();
+    extern int makeCSTaskIdle();
 #endif
 
-int mw_CreateTimer(double periodInSeconds)
+#if (MW_NUMBER_TIMER_DRIVEN_TASKS > 0)
+    sem_t timerTaskSem[MW_NUMBER_TIMER_DRIVEN_TASKS];
+    int timer_fd[MW_NUMBER_TIMER_DRIVEN_TASKS];
+    double timer_period[MW_NUMBER_TIMER_DRIVEN_TASKS];
+#endif
+    
+int mw_CreateArmedTimer(double periodInSeconds)
 {
     int status;
     int fd;
@@ -60,6 +66,58 @@ int mw_CreateTimer(double periodInSeconds)
     
     return fd;
 }
+
+#if (MW_NUMBER_TIMER_DRIVEN_TASKS > 0)
+int mw_CreateUnarmedTimer(double periodInSeconds, int idx)
+{
+    int fd;
+
+    /* Create the timer */
+    fd = timerfd_create(CLOCK_MONOTONIC, 0);
+    timer_fd[idx] = fd;
+    timer_period[idx] = periodInSeconds;
+    if (fd == -1) {
+        fprintf(stderr, "Call to timerfd_create failed.\n"); 
+        perror("timerfd_create");
+        fflush(stderr); 
+        exit(EXIT_FAILURE);
+    }     
+    /* Signal that the timer has been created. */
+    status = sem_post(&timerTaskSem[idx]); 
+    CHECK_STATUS(status, 0, "sem_post:mw_CreateUnarmedTimer");     
+    #ifdef MW_RTOS_DEBUG
+        printf("Created unarmed timer # %d %d.\n", fd, idx);
+        fflush(stdout);
+    #endif    
+    return fd;
+}
+#endif
+
+#if (MW_NUMBER_TIMER_DRIVEN_TASKS > 0)
+void mw_ArmTimer(int idx)
+{
+    int status;
+    struct itimerspec its;
+    int fd = timer_fd[idx];
+    double periodInSeconds = timer_period[idx];
+
+    its.it_interval.tv_sec = (time_t)periodInSeconds;
+    its.it_interval.tv_nsec = (periodInSeconds - (time_t)periodInSeconds) * 1000000000;
+    its.it_value.tv_sec = 0;
+    its.it_value.tv_nsec = 1.0;
+    #ifdef MW_RTOS_DEBUG
+        printf("About to arm timer # %d %d.\n", fd, idx);
+        fflush(stdout);
+    #endif
+    status = timerfd_settime(fd, 0, &its, NULL);
+    #ifdef MW_RTOS_DEBUG
+        printf("Armed timer # %d %d.\n", fd, idx);
+        fflush(stdout);
+    #endif
+    
+    CHECK_STATUS(status, 0, "timer_settime");
+}
+#endif
 
 void mw_WaitForTimerEvent(int fd)
 {
@@ -118,17 +176,35 @@ void mw_WaitForTimerEventCatchup(int fd)
 
 void *schedulerTask(void* arg)
 {
+    int i;
     int fd;
     baseRateInfo_t info = *((baseRateInfo_t *)arg);
 
     MW_DEBUG_LOG("schedulerTask entered\n");
-    fd = mw_CreateTimer(info.period);
+    fd = mw_CreateArmedTimer(info.period);
+    sem_post(&baserateTaskSem);
+
+#if (MW_NUMBER_TIMER_DRIVEN_TASKS > 0)
+    /* Wait until ALL unarmed timers been created. Note that timer-driven */
+    /* tasks always use unarmed timers. */
+    /* Note: This is a counting semaphore */
+    
+#ifdef MW_RTOS_DEBUG
+    printf("scheduler task waiting for timers to be created.\n");
+    fflush(stdout);
+#endif
+    for (i=0; i < MW_NUMBER_TIMER_DRIVEN_TASKS; i++) {
+        status = sem_wait(&timerTaskSem[i]);
+        CHECK_STATUS(status, 0, "sem_wait:timerTaskSem");
+        mw_ArmTimer(i);
+    }       
+#endif    
     while(1) {
         mw_WaitForTimerEvent(fd);
 #ifdef DETECT_OVERRUNS          
         testForRateOverrun(0);
 #endif
-        sem_post(&baserateTaskSem);    
+        sem_post(&baserateTaskSem);  
     }
 }
 
@@ -193,8 +269,8 @@ void mw_CreateTask(void (*taskHandler)(void), int priority, int policy, int core
     param.sched_priority = priority;
     status = pthread_attr_setschedparam(&attr, &param);
     CHECK_STATUS(status, 0, "pthread_attr_setschedparam");
-
-     /* Set the thread core affinity */
+    
+    /* Set the thread core affinity */
     if (2 == coreSelection) 
     {
         CPU_ZERO(&cpuset);
@@ -202,7 +278,7 @@ void mw_CreateTask(void (*taskHandler)(void), int priority, int policy, int core
         status =  pthread_attr_setaffinity_np(&attr, sizeof(cpu_set_t), &cpuset);
         CHECK_STATUS(status, 0, "pthread_attr_setaffinity_np");
     }
-    
+
     /* Create the thread */
     status = pthread_create(&thread, &attr, (void *) taskHandler, NULL);
     CHECK_STATUS(status, 0, "pthread_create");
@@ -230,7 +306,7 @@ void myAddHandlerForThisEvent(int sigNo, int sigToBlock[], int numSigToBlock, vo
     sa.sa_handler = (__sighandler_t) sigHandler;
     sigemptyset(&sa.sa_mask);
     for (idx=0; idx<numSigToBlock; idx++) {
-        sigaddset(&sa.sa_mask, sigToBlock[idx]);
+            sigaddset(&sa.sa_mask, sigToBlock[idx]);
     }
     sa.sa_flags = SA_RESTART; /* Restart functions if interrupted by handler */
     status = sigaction(sigNo, &sa, NULL);
@@ -256,11 +332,11 @@ void myRTOSInit(double baseRatePeriod, int numSubrates)
     uid_t euid;
     size_t stackSize;
     unsigned long cpuMask = 0x1;
-    unsigned int len = sizeof(cpuMask);
-
+    unsigned int len = sizeof(cpuMask);  
+    
     UNUSED(baseRatePeriod);
     UNUSED(numSubrates);
-    
+        
     if (!MW_IS_CONCURRENT) {
         /* All threads created by this process will run on a single CPU */
         status = sched_setaffinity(0, len, (cpu_set_t *) &cpuMask);
@@ -279,7 +355,7 @@ void myRTOSInit(double baseRatePeriod, int numSubrates)
     fflush(stderr);
     exit(EXIT_FAILURE);
 #endif
-
+    
 #if MW_SP_SCHED_FIFO
     /* Need root privileges for real-time scheduling */
     euid = geteuid();
