@@ -23,11 +23,12 @@ def vehicle_state_callback(data):
 		i=i+1
 	 	if i>=1 :  
 		    ini_flag=1  
-		obj1=ax.plot(data.X, data.Y, color = 'red', marker = 's', markersize = 8)
+		obj1=ax.plot(data.X, data.Y,color = 'red', marker = 's', markersize = 8)
 		ax.axis([data.X - axis_range, data.X + axis_range, data.Y - axis_range, data.Y + axis_range])
 		obj3=ax.plot(X3, Y3, color = 'green', marker = 'o', markersize = 8)
 		obj4=ax.plot(X4, Y4, color = 'black', marker = '*', markersize = 8)
 		obj2=ax.plot(X2, Y2, color = 'blue', marker = '*', markersize = 4)
+		ax.legend((obj1[0], obj2[0],obj3[0],obj4[0]), ('vehicle', 'ref_traje','cg','ds'), loc = 'upper left')
 		plt.draw()
  
 def ref_traje_callback(data) :
@@ -37,7 +38,6 @@ def ref_traje_callback(data) :
         for index in range(15):
 	     X2.append(data.point[index].x)
 	     Y2.append(data.point[index].y)
-
 
  
 def  traj_cg_callback(data):
