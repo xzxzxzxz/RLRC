@@ -5,6 +5,14 @@ from dbw_mkz_msgs.msg import SteeringReport
 from path_follower.msg import state_Dynamic, Trajectory2D, TrajectoryPoint2D
 from tracks import Tra
 
+# define the initial states and timestep
+vx = 0
+vy = 0
+X = 0
+Y = 0
+psi = 0
+wz = 0
+stateEstimate_mark = False
 def stateEstimateCallback(data):
     global vx, vy, X, Y, psi, wz,stateEstimate_mark
     vx = data.vx
@@ -20,16 +28,6 @@ def steeringReportCallback(data):
     d_f = data.steering_wheel_angle / 16.0
 
 def main(dt, horizon):
-    # define the initial states and timestep
-    vx = 0
-    vy = 0
-    X = 0
-    Y = 0
-    psi = 0
-    wz = 0
-    stateEstimate_mark = False
-    dt = 0.02
-
     global vx, vy, X, Y, psi, wz, d_f,stateEstimate_mark
 
     # import track file
@@ -42,7 +40,7 @@ def main(dt, horizon):
     rate = rospy.Rate(1/dt)
 
     # first set the horizon to be very large to get where the vehicle is
-    track.horizon = 50
+    track.horizon = horizon
     track.currentIndex = 0
 
     while (rospy.is_shutdown() != 1):
@@ -60,7 +58,7 @@ def main(dt, horizon):
                 traj.point.append(pt)
                 track.obstacleMove(vx)
 
-	pub.publish(traj)
+	    pub.publish(traj)
 	rate.sleep()
 
 if __name__ == '__main__':

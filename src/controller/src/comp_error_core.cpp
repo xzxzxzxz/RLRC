@@ -26,16 +26,16 @@ vector<float> ComputeTrackingError(const path_follower::Trajectory2D traj, const
       index = i; 
   }
 
-  float beta = atan2(state.vy, state.vx);
+  float beta_s = atan2(state.vy, state.vx) + ds / state.vx * state.wz;
   float x_traj_cg = traj.point[index].x + cos(traj.point[index].theta) * ra_to_cg;
   float y_traj_cg = traj.point[index].y + sin(traj.point[index].theta) * ra_to_cg;
 
   float x_cg_ds = state.X + cos(state.psi) * (ra_to_cg + ds);
   float y_cg_ds = state.Y + sin(state.psi) * (ra_to_cg + ds);
 
-  float delta_x = x_traj_cg - x_cg_ds;
-  float delta_y = y_traj_cg - y_cg_ds;
-  float delta_yaw = fmod(traj.point[index].theta + beta - state.psi, 2 * M_PI);
+  float delta_x = - x_cg_ds + x_traj_cg;
+  float delta_y = - y_cg_ds + y_traj_cg;
+  float delta_yaw = fmod(traj.point[index].theta - beta_s - state.psi, 2 * M_PI);
 
   if (delta_yaw > M_PI) 
   {
