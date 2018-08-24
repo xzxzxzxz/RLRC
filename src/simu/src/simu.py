@@ -21,8 +21,7 @@ def steering_cmdCallback(data):
    global action,car
    steering_cmd = data.steering_wheel_angle_cmd
    action[1] = (steering_cmd-car.state[6]*car.steeringRatio)/dt/car.maxSteeringRate
-  # rospy.loginfo("recieve %f",steering_cmd/16)
-   
+
 def simu():
   global action
   rospy.init_node('simu', anonymous=True)
