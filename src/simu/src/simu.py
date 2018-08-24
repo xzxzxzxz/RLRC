@@ -35,6 +35,7 @@ def simu():
   rospy.loginfo("simulator node starts")
 
   state=[558640.9252,4196656.6405,1.20719921,10,0,0,0]
+ # state=[0,1,1.20719921,10,0,0,0]
   car.setState(state)
   car.setParameter()
   rospy.Subscriber('/vehicle/cmd_vel_stamped', TwistStamped, cmd_vel_stampedCallback,queue_size=1)
