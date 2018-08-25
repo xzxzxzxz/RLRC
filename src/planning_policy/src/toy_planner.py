@@ -13,6 +13,8 @@ Y = 0
 psi = 0
 wz = 0
 stateEstimate_mark = False
+
+
 def stateEstimateCallback(data):
     global vx, vy, X, Y, psi, wz,stateEstimate_mark
     vx = data.vx
@@ -23,21 +25,13 @@ def stateEstimateCallback(data):
     wz = data.wz
     stateEstimate_mark=True
 
+
 def steeringReportCallback(data):
     global d_f
     d_f = data.steering_wheel_angle / 16.0
 
-def main(sim_steps):
-    # define the initial states and timestep
-    vx = 0
-    vy = 0
-    X = 0
-    Y = 0
-    psi = 0
-    wz = 0
-    stateEstimate_mark = False
-    dt = 0.02
 
+def main(sim_steps):
     global vx, vy, X, Y, psi, wz, d_f,stateEstimate_mark
 
     # import track file
@@ -47,6 +41,7 @@ def main(sim_steps):
     rospy.Subscriber('vehicle/steering_report', SteeringReport, steeringReportCallback)
     pub = rospy.Publisher('ref_trajectory_origin', Trajectory2D, queue_size=1)
 
+    dt = 0.02
     rate = rospy.Rate(1/dt)
 
     track.horizon = 50
