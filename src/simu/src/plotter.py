@@ -22,18 +22,18 @@ def vehicle_state_callback(data):
 	 	if i>=1 :  
 		    ini_flag=1  
 		obj1=ax.plot(data.X, data.Y,color = 'red', marker = 's', markersize = 8)
-		ax.axis([data.X - axis_range, data.X + axis_range, data.Y - axis_range, data.Y + axis_range])
+		ax.axis([data.X - axis_range, data.X + axis_range, data.Y - axis_range+24, data.Y + axis_range-24])
 		obj3=ax.plot(X3, Y3, color = 'green', marker = 'o', markersize = 8)
 		obj4=ax.plot(X4, Y4, color = 'black', marker = '*', markersize = 8)
 		obj2=ax.plot(X2, Y2, color = 'blue', marker = '*', markersize = 4)
-		ax.legend((obj1[0], obj2[0],obj3[0],obj4[0]), ('vehicle', 'ref_traje','cg','ds'), loc = 'upper left')
+		ax.legend((obj1[0], obj2[0],obj3[0],obj4[0]), ('vehicle', 'ref_traje','closest_traj_cg','vehi_ds'), loc = 'upper left')
 		plt.draw()
  
 def ref_traje_callback(data) :
 	global ini_flag2,X2,Y2
 	X2tem=[];Y2tem=[]
  	ini_flag2=1
-        for index in range(50):
+        for index in range(110):
 	     X2tem.append(data.point[index].x)
 	     Y2tem.append(data.point[index].y)
 	X2=X2tem;Y2=Y2tem
@@ -59,7 +59,7 @@ def plotter():
 	# initialize node
 	rospy.init_node('plotter', anonymous=True)
         rospack = rospkg.RosPack()
-	reference = scipy.io.loadmat(os.path.join(rospack.get_path("planning_policy"), "src", "Tra_1.mat"))['Tra_1']
+	reference = scipy.io.loadmat(os.path.join(rospack.get_path("planning_policy"), "src", "Tra_curve2.mat"))['Tra_curve2']
     	ref_x = reference[0][:]
    	ref_y = reference[1][:]
    	fig = plt.figure()

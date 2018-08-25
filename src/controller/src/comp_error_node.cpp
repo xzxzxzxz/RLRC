@@ -69,7 +69,6 @@ int main(int argc, char **argv)
       tracking_info.vx = error_msg[0];
       tracking_info.dy = error_msg[1];
       tracking_info.dtheta = error_msg[2];
-      ROS_INFO_STREAM_THROTTLE(0.5,"DY"<<error_msg[1]<<endl<<"DTHETA"<<error_msg[2]);
       cg_point.x=error_msg[3];
       cg_point.y=error_msg[4];
       ds_point.x=error_msg[5];

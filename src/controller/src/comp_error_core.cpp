@@ -47,7 +47,6 @@ vector<float> ComputeTrackingError(const path_follower::Trajectory2D traj, const
   error_msg_vector.push_back(lateral_error);
   error_msg_vector.push_back(delta_yaw);
 
-
   error_msg_vector.push_back(x_traj_cg);
   error_msg_vector.push_back(y_traj_cg); 
   error_msg_vector.push_back(x_cg_ds);

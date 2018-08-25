@@ -2,7 +2,7 @@
 
 
 import rospy
-import scipy.io 
+import scipy.io ,time
 from path_follower.msg import state_Dynamic, Trajectory2D, TrajectoryPoint2D
 import os, rospkg
 from geometry_msgs.msg import TwistStamped
@@ -20,22 +20,18 @@ def cmd_vel_stampedCallback(data):
 def steering_cmdCallback(data):
    global action,car
    steering_cmd = data.steering_wheel_angle_cmd
-   steering_rate = data.steering_wheel_angle_velocity
-  # rospy.loginfo("steeringcmd%f",steering_cmd)
-   if (steering_rate==0) :
-	steering_rate=car.maxSteeringRate
-   action[1] = min(abs(steering_rate/car.maxSteeringRate),abs(car.state[6]*car.steeringRatio-steering_cmd)/dt/car.maxSteeringRate)
-   action[1]=action[1]*sign(steering_cmd-car.state[6]*car.steeringRatio); 
-
+   action[1] = (steering_cmd-car.state[6]*car.steeringRatio)/dt/car.maxSteeringRate
+  # rospy.loginfo("recieve %f",steering_cmd/16)
+   
 def simu():
   global action
   rospy.init_node('simu', anonymous=True)
-
+  time.sleep(1.5)
   rate = rospy.Rate(1/dt)
   rospy.loginfo("simulator node starts")
 
-  state=[558640.9252,4196656.6405,1.20719921,10,0,0,0]
- # state=[0,1,1.20719921,10,0,0,0]
+ #  state=[558640.9252,4196656.6405,1.20719921,10,0,0,0]
+  state=[0,1,0,10,0,0,0]
   car.setState(state)
   car.setParameter()
   rospy.Subscriber('/vehicle/cmd_vel_stamped', TwistStamped, cmd_vel_stampedCallback,queue_size=1)
@@ -46,16 +42,17 @@ def simu():
   state_report=state_Dynamic()
   while (rospy.is_shutdown() != 1): 
     car.simulate(action)
+    
     steering_report.steering_wheel_angle=car.state[6]*car.steeringRatio 
+
     '''
-    rospy.loginfo("X%f",car.state[0])
     rospy.loginfo("Y%f",car.state[1])
     rospy.loginfo("phi%f",car.state[2])
     rospy.loginfo("v_x%f",car.state[3])
     rospy.loginfo("v_y%f",car.state[4])
     rospy.loginfo("r%f",car.state[5])
     '''
-   # rospy.loginfo("d_f%f",car.state[6])	
+ #   rospy.loginfo("d_f%f",car.state[6])	
     state_report.vx=car.state[3];
     state_report.vy=car.state[4];
     state_report.X=car.state[0];

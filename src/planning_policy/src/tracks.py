@@ -28,7 +28,7 @@ class Tra:
         waypoints_mat = scipy.io.loadmat(fileName)[name] 
         """
 	rospack = rospkg.RosPack()
-        waypoints_mat = scipy.io.loadmat(os.path.join(rospack.get_path("planning_policy"), "src", "Tra_1.mat"))[name]
+        waypoints_mat = scipy.io.loadmat(os.path.join(rospack.get_path("planning_policy"), "src", "Tra_curve2.mat"))[name]
         self.x     = waypoints_mat[0][:]
         self.y     = waypoints_mat[1][:] + deviation
         self.psi   = (waypoints_mat[2][:]) % (2 * pi)
