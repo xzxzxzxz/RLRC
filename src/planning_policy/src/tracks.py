@@ -6,10 +6,9 @@ import scipy.optimize
 import numpy as np
 from math import sqrt, cos, sin, tan, pi
 import os, rospkg
-import rospy
 class Tra:
 
-    def __init__(self, name, dt, horizon, deviation=0, numPrePts=2, threshold=5):
+    def __init__(self, name, dt=0.02, horizon=50, deviation=0, numPrePts=2, threshold=5):
         """
         track class
         input: track.mat filename
@@ -22,13 +21,9 @@ class Tra:
                size: length of the reference trajectory
                threshold: if deviation larger than threshold then report failure
                currentIndex: index of waypoint corresponding to current vehicle position
-       
-        fileName = name + ".mat"
-        
-        waypoints_mat = scipy.io.loadmat(fileName)[name] 
         """
-	rospack = rospkg.RosPack()
-        waypoints_mat = scipy.io.loadmat(os.path.join(rospack.get_path("planning_policy"), "src", "Tra_curve2.mat"))[name]
+        rospack = rospkg.RosPack()
+        waypoints_mat = scipy.io.loadmat(os.path.join(rospack.get_path("planning_policy"), "src", "sine_curve.mat"))[name]
         self.x     = waypoints_mat[0][:]
         self.y     = waypoints_mat[1][:] + deviation
         self.psi   = (waypoints_mat[2][:]) % (2 * pi)
@@ -171,7 +166,6 @@ class Tra:
         (one trick: only compare dist**2, save the time used to compute sqrt)
         (another trick: only consider waypoints with index in currentIndex +/- 10*horizon range)
         """
-      #  rospy.loginfo("X_getf%d  Y_getf%d",pX,pY)
         indexMin = standard_index
         distSqrMin = (pX - self.x[standard_index])**2 + (pY - self.y[standard_index])**2
         for index in range(max(standard_index - self.horizon, 0), min(standard_index + self.horizon, self.size)):
@@ -179,8 +173,6 @@ class Tra:
             if distSqr < distSqrMin:
                 indexMin = index
                 distSqrMin = distSqr
-		#rospy.loginfo("index%d di%d",index,distSqr)
-	#rospy.loginfo("px%d x%d py%d y%d index %d",pX,self.x[indexMin],pY,self.y[indexMin],indexMin)	
         return indexMin, sqrt(distSqrMin)
 
 

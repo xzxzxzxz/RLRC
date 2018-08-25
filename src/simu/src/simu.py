@@ -21,17 +21,16 @@ def steering_cmdCallback(data):
    global action,car
    steering_cmd = data.steering_wheel_angle_cmd
    action[1] = (steering_cmd-car.state[6]*car.steeringRatio)/dt/car.maxSteeringRate
-  # rospy.loginfo("recieve %f",steering_cmd/16)
-   
+
+
 def simu():
   global action
   rospy.init_node('simu', anonymous=True)
   time.sleep(1.5)
   rate = rospy.Rate(1/dt)
   rospy.loginfo("simulator node starts")
-
- #  state=[558640.9252,4196656.6405,1.20719921,10,0,0,0]
-  state=[0,1,0,10,0,0,0]
+  # state=[558640.9252, 4196656.6405, 1.20719921, 10, 0, 0, 0]
+  state=[0, 1, 0, 10, 0, 0, 0]
   car.setState(state)
   car.setParameter()
   rospy.Subscriber('/vehicle/cmd_vel_stamped', TwistStamped, cmd_vel_stampedCallback,queue_size=1)
