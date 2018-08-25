@@ -8,6 +8,15 @@ from dbw_mkz_msgs.msg import SteeringReport
 from path_follower.msg import state_Dynamic, Trajectory2D, TrajectoryPoint2D
 import driving
 
+vx = 0
+vy = 0
+X = 0
+Y = 0
+psi = 0
+wz = 0
+stateEstimate_mark = False
+
+
 def stateEstimateCallback(data):
     global vx, vy, X, Y, psi, wz, stateEstimate_mark
     vx = data.vx
@@ -23,16 +32,6 @@ def steeringReportCallback(data):
     d_f = data.steering_wheel_angle / 16.0
 
 def main(sim_steps):
-    # define the initial states and timestep
-    vx = 0
-    vy = 0
-    X = 0
-    Y = 0
-    psi = 0
-    wz = 0
-    stateEstimate_mark = False
-    dt = 0.02
-
     global vx, vy, X, Y, psi, wz, d_f, stateEstimate_mark
 
     # import track file
@@ -41,6 +40,7 @@ def main(sim_steps):
     rospy.Subscriber('vehicle/steering_report', SteeringReport, steeringReportCallback)
     pub = rospy.Publisher('ref_trajectory_origin', Trajectory2D, queue_size=1)
 
+    dt = 0.02
     rate = rospy.Rate(1 / dt)
 
     # get the expert ready
@@ -59,17 +59,17 @@ def main(sim_steps):
             env.vehicle.setState(current_state)
             ob, _ = env.vehicle.getMeasurement(env.track)
             traj = Trajectory2D()
-            for k in range(sim_steps):
+            for i in range(sim_steps):
                 pt = TrajectoryPoint2D()
                 pt.t = i * dt
-                pt.x = track.x[track.obstacleIndex]
-                pt.y = track.y[track.obstacleIndex]
-                pt.theta = track.psi[track.obstacleIndex]
-                pt.v = vx
+                pt.x = env.vehicle.state[0]
+                pt.y = env.vehicle.state[1]
+                pt.theta = env.vehicle.state[2]
+                pt.v = env.vehicle.state[3]
                 traj.point.append(pt)
 
                 ac = expert.obs_to_dyn_act(ob)
-                ob, _, _ = env.step(ac, k)
+                ob, _, _ = env.step(ac, i)
                 pub.publish(traj)
             rate.sleep()
 
