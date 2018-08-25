@@ -29,6 +29,7 @@ def vehicle_state_callback(data):
         obj2 = ax.plot(X2, Y2, color='blue', marker='*', markersize=4)
         ax.legend((obj1[0], obj2[0], obj3[0], obj4[0]), ('vehicle', 'ref_traje','closest_traj_cg','vehi_ds'), loc='upper left')
         plt.draw()
+        plt.pause(0.01)
 
 
 def ref_traje_callback(data):
