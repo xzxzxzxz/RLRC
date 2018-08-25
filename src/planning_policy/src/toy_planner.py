@@ -31,7 +31,7 @@ def main(dt, horizon):
     global vx, vy, X, Y, psi, wz, d_f,stateEstimate_mark
 
     # import track file
-    track = Tra('Tra_1', dt, horizon)
+    track = Tra('Tra_curve2', dt, horizon)
     rospy.init_node('toy_planner', anonymous=True)
     rospy.Subscriber('state_estimate', state_Dynamic, stateEstimateCallback)
     rospy.Subscriber('vehicle/steering_report', SteeringReport, steeringReportCallback)
@@ -48,7 +48,7 @@ def main(dt, horizon):
             track.currentIndex, _ = track.searchClosestPt(X, Y, track.currentIndex)
             track.setPosObstacle(track.currentIndex)
             traj = Trajectory2D()
-            for i in range(50):
+            for i in range(110):
                 pt = TrajectoryPoint2D()
                 pt.t = i * dt
                 pt.x = track.x[track.obstacleIndex]
