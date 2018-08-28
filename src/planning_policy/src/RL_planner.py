@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import rospy
+import twisted
 import numpy as np
 from config_ppo import Config_PPO
 from run_ppo import Run_PPO
@@ -33,6 +34,18 @@ def steeringReportCallback(data):
 
 def main(sim_steps):
     global vx, vy, X, Y, psi, wz, d_f, stateEstimate_mark
+
+    # define the initial states and timestep
+    vx = 0
+    vy = 0
+    X = 0
+    Y = 0
+    psi = 0
+    wz = 0
+    stateEstimate_mark = False
+    dt = 0.02
+
+
 
     # import track file
     rospy.init_node('RL_planner', anonymous=True)
@@ -70,11 +83,11 @@ def main(sim_steps):
 
                 ac = expert.obs_to_dyn_act(ob)
                 ob, _, _ = env.step(ac, i)
-                pub.publish(traj)
+            pub.publish(traj)
             rate.sleep()
 
 if __name__ == '__main__':
     try: 
-        main(50)
+        main(70)
     except rospy.ROSInterruptException:
         pass 
