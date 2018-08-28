@@ -5,11 +5,11 @@ The class used to run the policy network trained using ppo
 zhuoxu@berkeley.edu
 """
 
-
+import os, rospkg,scipy.io 
 from config_ppo import Config_PPO
 from ppo import PPO
 import driving
-
+rospack = rospkg.RosPack()
 
 class Run_PPO:
     def __init__(self, config):
@@ -21,7 +21,7 @@ class Run_PPO:
 
     def restore(self, ckpt_name='model.ckpt'):
         # self.ppo.saver.restore(self.ppo.sess, self.config.model_path + ckpt_name)
-        self.ppo.saver.restore(self.ppo.sess, '/home/zhuoxu//RLRC/src/planning_policy/src/model/model.ckpt')
+        self.ppo.saver.restore(self.ppo.sess, os.path.join(rospack.get_path("planning_policy"), "src/model", "model.ckpt"))
         print("expert model from " + self.config.model_path + ckpt_name + " restored.")
 
     def obs_to_dyn_act(self, obs):

@@ -17,8 +17,6 @@ def main(dt):
     rospy.init_node('ZOH', anonymous=True)
     rospy.Subscriber('ref_trajectory_origin', Trajectory2D,ref_trajectoryCallback)
     pub = rospy.Publisher('ref_trajectory', Trajectory2D, queue_size=1)
-
-    dt=0.02
     rate = rospy.Rate(1/dt)
 
     while (rospy.is_shutdown() != 1):
