@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import rospy
+import twisted
 import numpy as np
 from config_ppo import Config_PPO
 from run_ppo import Run_PPO
@@ -23,6 +24,7 @@ def steeringReportCallback(data):
     d_f = data.steering_wheel_angle / 16.0
 
 def main(sim_steps):
+    global vx, vy, X, Y, psi, wz, d_f, stateEstimate_mark
     # define the initial states and timestep
     vx = 0
     vy = 0
@@ -33,7 +35,7 @@ def main(sim_steps):
     stateEstimate_mark = False
     dt = 0.02
 
-    global vx, vy, X, Y, psi, wz, d_f, stateEstimate_mark
+
 
     # import track file
     rospy.init_node('RL_planner', anonymous=True)

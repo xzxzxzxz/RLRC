@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import os, rospkg
 axis_range = 30
 axis_range_y = 6
-i = 0; j = 0; k = 0; l = 0
+i = 0;
 obj1=[0];obj2=[0];obj3 = 0; obj4 = 0
 ini_flag = 0; ini_flag2 = 0; ini_flag3 = 0; ini_flag4 = 0
 X3 = 0; Y3 = 0; X4 = 0; Y4 = 0; X2 = [];Y2 = []
@@ -29,7 +29,7 @@ def vehicle_state_callback(data):
         obj2 = ax.plot(X2, Y2, color='blue', marker='*', markersize=4)
         ax.legend((obj1[0], obj2[0], obj3[0], obj4[0]), ('vehicle', 'ref_traje','closest_traj_cg','vehi_ds'), loc='upper left')
         plt.draw()
-
+	plt.pause(0.001)
 
 def ref_traje_callback(data):
     global ini_flag2, X2, Y2
