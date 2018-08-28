@@ -20,7 +20,8 @@ class Run_PPO:
         self.ppo = PPO(config=config)
 
     def restore(self, ckpt_name='model.ckpt'):
-        self.ppo.saver.restore(self.ppo.sess, self.config.model_path + ckpt_name)
+        # self.ppo.saver.restore(self.ppo.sess, self.config.model_path + ckpt_name)
+        self.ppo.saver.restore(self.ppo.sess, '/home/zhuoxu//RLRC/src/planning_policy/src/model/model.ckpt')
         print("expert model from " + self.config.model_path + ckpt_name + " restored.")
 
     def obs_to_dyn_act(self, obs):

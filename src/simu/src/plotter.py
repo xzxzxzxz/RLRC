@@ -31,6 +31,7 @@ def vehicle_state_callback(data):
         plt.draw()
 	plt.pause(0.001)
 
+
 def ref_traje_callback(data):
     global ini_flag2, X2, Y2
     X2tem = []; Y2tem = []
