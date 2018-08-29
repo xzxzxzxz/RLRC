@@ -7,9 +7,9 @@
  *
  * Code generation for model "DOB_ros".
  *
- * Model version              : 1.183
+ * Model version              : 1.184
  * Simulink Coder version : 8.14 (R2018a) 06-Feb-2018
- * C++ source code generated on : Tue Aug 21 15:46:22 2018
+ * C++ source code generated on : Wed Aug 29 15:04:27 2018
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -84,16 +84,11 @@ static void matlabCodegenHandle_matlabCodeg(robotics_slros_internal_block_T *obj
 /* Model step function */
 void DOB_ros_step(void)
 {
-  int32_T denIdx;
-  int32_T j;
   SL_Bus_DOB_ros_controller_TrackingInfo b_varargout_2;
   boolean_T b_varargout_1;
   boolean_T b_varargout_1_0;
   SL_Bus_DOB_ros_dbw_mkz_msgs_SteeringCmd rtb_BusAssignment;
-  real32_T rtb_Gain;
-  real32_T rtb_Sum3;
-  real32_T Q1_tmp;
-  real32_T D1_tmp;
+  real32_T rtb_subtract3;
 
   /* Outputs for Atomic SubSystem: '<Root>/Subscribe1' */
   /* Start for MATLABSystem: '<S3>/SourceBlock' incorporates:
@@ -111,44 +106,13 @@ void DOB_ros_step(void)
   /* End of Outputs for SubSystem: '<S3>/Enabled Subsystem' */
   /* End of Outputs for SubSystem: '<Root>/Subscribe1' */
 
-  /* Sum: '<Root>/Sum3' incorporates:
-   *  Gain: '<Root>/Gain3'
-   */
-  rtb_Sum3 = DOB_ros_P.kc1 * DOB_ros_B.In1_i.Dtheta + DOB_ros_B.In1_i.Dy;
-
-  /* DiscreteTransferFcn: '<Root>/D1' */
-  D1_tmp = rtb_Sum3;
-  denIdx = 1;
-  for (j = 0; j < 5; j++) {
-    D1_tmp -= DOB_ros_P.Dd[denIdx] * DOB_ros_DW.D1_states[j];
-    denIdx++;
-  }
-
-  D1_tmp /= DOB_ros_P.Dd[0];
-  rtb_Gain = DOB_ros_P.Dn[0] * D1_tmp;
-  denIdx = 1;
-  for (j = 0; j < 5; j++) {
-    rtb_Gain += DOB_ros_P.Dn[denIdx] * DOB_ros_DW.D1_states[j];
-    denIdx++;
-  }
-
-  /* End of DiscreteTransferFcn: '<Root>/D1' */
-
-  /* DiscreteTransferFcn: '<Root>/Q1' incorporates:
-   *  Delay: '<Root>/Delay1'
-   *  Sum: '<Root>/Sum4'
-   */
-  Q1_tmp = (((DOB_ros_DW.Delay1_DSTATE[0] - rtb_Gain) - DOB_ros_P.Q1_DenCoef[1] *
-             DOB_ros_DW.Q1_states[0]) - DOB_ros_P.Q1_DenCoef[2] *
-            DOB_ros_DW.Q1_states[1]) / DOB_ros_P.Q1_DenCoef[0];
-
   /* Sum: '<Root>/subtract3' incorporates:
-   *  DiscreteTransferFcn: '<Root>/Q1'
+   *  Gain: '<Root>/Gain3'
    *  Gain: '<Root>/Gain5'
+   *  Sum: '<Root>/Sum3'
    */
-  rtb_Gain = ((DOB_ros_P.Q1_NumCoef[0] * Q1_tmp + DOB_ros_P.Q1_NumCoef[1] *
-               DOB_ros_DW.Q1_states[0]) + DOB_ros_P.Q1_NumCoef[2] *
-              DOB_ros_DW.Q1_states[1]) - DOB_ros_P.kc2 * rtb_Sum3;
+  rtb_subtract3 = 0.0F - (DOB_ros_P.kc1 * DOB_ros_B.In1_i.Dtheta +
+    DOB_ros_B.In1_i.Dy) * DOB_ros_P.kc2;
 
   /* Outputs for Atomic SubSystem: '<Root>/Subscribe' */
   /* Start for MATLABSystem: '<S2>/SourceBlock' incorporates:
@@ -182,9 +146,10 @@ void DOB_ros_step(void)
      *  Sum: '<S1>/Subtract'
      */
     rtb_BusAssignment = DOB_ros_P.Constant_Value_jb;
-    rtb_BusAssignment.SteeringWheelAngleCmd = rtb_Gain;
+    rtb_BusAssignment.SteeringWheelAngleCmd = rtb_subtract3;
     rtb_BusAssignment.SteeringWheelAngleVelocity = 1.0F /
-      DOB_ros_P.dt_ros_single * (rtb_Gain - DOB_ros_B.In1.SteeringWheelAngle);
+      DOB_ros_P.dt_ros_single * (rtb_subtract3 -
+      DOB_ros_B.In1.SteeringWheelAngle);
 
     /* Outputs for Atomic SubSystem: '<S1>/Publish' */
     /* Start for MATLABSystem: '<S6>/SinkBlock' */
@@ -204,21 +169,6 @@ void DOB_ros_step(void)
   /* End of Outputs for SubSystem: '<Root>/Subscribe1' */
   /* End of Outputs for SubSystem: '<Root>/Enabled Subsystem1' */
   /* End of Outputs for SubSystem: '<Root>/Tracking Received' */
-
-  /* Update for DiscreteTransferFcn: '<Root>/D1' */
-  DOB_ros_DW.D1_states[4] = DOB_ros_DW.D1_states[3];
-  DOB_ros_DW.D1_states[3] = DOB_ros_DW.D1_states[2];
-  DOB_ros_DW.D1_states[2] = DOB_ros_DW.D1_states[1];
-  DOB_ros_DW.D1_states[1] = DOB_ros_DW.D1_states[0];
-  DOB_ros_DW.D1_states[0] = D1_tmp;
-
-  /* Update for Delay: '<Root>/Delay1' */
-  DOB_ros_DW.Delay1_DSTATE[0] = DOB_ros_DW.Delay1_DSTATE[1];
-  DOB_ros_DW.Delay1_DSTATE[1] = rtb_Gain;
-
-  /* Update for DiscreteTransferFcn: '<Root>/Q1' */
-  DOB_ros_DW.Q1_states[1] = DOB_ros_DW.Q1_states[0];
-  DOB_ros_DW.Q1_states[0] = Q1_tmp;
 }
 
 /* Model initialize function */
@@ -337,44 +287,21 @@ void DOB_ros_initialize(void)
     /* End of Start for SubSystem: '<Root>/Tracking Received' */
   }
 
-  {
-    int32_T i;
+  /* SystemInitialize for Atomic SubSystem: '<Root>/Subscribe1' */
+  /* SystemInitialize for Enabled SubSystem: '<S3>/Enabled Subsystem' */
+  /* SystemInitialize for Outport: '<S8>/Out1' */
+  DOB_ros_B.In1_i = DOB_ros_P.Out1_Y0_n;
 
-    /* InitializeConditions for DiscreteTransferFcn: '<Root>/D1' */
-    for (i = 0; i < 5; i++) {
-      DOB_ros_DW.D1_states[i] = DOB_ros_P.D1_InitialStates;
-    }
+  /* End of SystemInitialize for SubSystem: '<S3>/Enabled Subsystem' */
+  /* End of SystemInitialize for SubSystem: '<Root>/Subscribe1' */
 
-    /* End of InitializeConditions for DiscreteTransferFcn: '<Root>/D1' */
+  /* SystemInitialize for Atomic SubSystem: '<Root>/Subscribe' */
+  /* SystemInitialize for Enabled SubSystem: '<S2>/Enabled Subsystem' */
+  /* SystemInitialize for Outport: '<S7>/Out1' */
+  DOB_ros_B.In1 = DOB_ros_P.Out1_Y0;
 
-    /* InitializeConditions for Delay: '<Root>/Delay1' */
-    DOB_ros_DW.Delay1_DSTATE[0] = DOB_ros_P.Delay1_InitialCondition;
-
-    /* InitializeConditions for DiscreteTransferFcn: '<Root>/Q1' */
-    DOB_ros_DW.Q1_states[0] = DOB_ros_P.Q1_InitialStates;
-
-    /* InitializeConditions for Delay: '<Root>/Delay1' */
-    DOB_ros_DW.Delay1_DSTATE[1] = DOB_ros_P.Delay1_InitialCondition;
-
-    /* InitializeConditions for DiscreteTransferFcn: '<Root>/Q1' */
-    DOB_ros_DW.Q1_states[1] = DOB_ros_P.Q1_InitialStates;
-
-    /* SystemInitialize for Atomic SubSystem: '<Root>/Subscribe1' */
-    /* SystemInitialize for Enabled SubSystem: '<S3>/Enabled Subsystem' */
-    /* SystemInitialize for Outport: '<S8>/Out1' */
-    DOB_ros_B.In1_i = DOB_ros_P.Out1_Y0_n;
-
-    /* End of SystemInitialize for SubSystem: '<S3>/Enabled Subsystem' */
-    /* End of SystemInitialize for SubSystem: '<Root>/Subscribe1' */
-
-    /* SystemInitialize for Atomic SubSystem: '<Root>/Subscribe' */
-    /* SystemInitialize for Enabled SubSystem: '<S2>/Enabled Subsystem' */
-    /* SystemInitialize for Outport: '<S7>/Out1' */
-    DOB_ros_B.In1 = DOB_ros_P.Out1_Y0;
-
-    /* End of SystemInitialize for SubSystem: '<S2>/Enabled Subsystem' */
-    /* End of SystemInitialize for SubSystem: '<Root>/Subscribe' */
-  }
+  /* End of SystemInitialize for SubSystem: '<S2>/Enabled Subsystem' */
+  /* End of SystemInitialize for SubSystem: '<Root>/Subscribe' */
 }
 
 /* Model terminate function */

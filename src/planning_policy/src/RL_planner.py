@@ -15,6 +15,7 @@ X = 0
 Y = 0
 psi = 0
 wz = 0
+d_f = 0
 stateEstimate_mark = False
 
 
@@ -88,6 +89,6 @@ def main(sim_steps):
 
 if __name__ == '__main__':
     try: 
-        main(70)
+        main(50)
     except rospy.ROSInterruptException:
         pass 

@@ -18,7 +18,7 @@ def vehicle_state_callback(data):
     if ini_flag2 * ini_flag3:
         if ini_flag == 1:
             while len(ax.lines) > 1:
-             ax.lines.pop(1)
+                ax.lines.pop(1)
         i = i + 1
         if i >= 1:
             ini_flag = 1
@@ -29,13 +29,13 @@ def vehicle_state_callback(data):
         obj2 = ax.plot(X2, Y2, color='blue', marker='*', markersize=4)
         ax.legend((obj1[0], obj2[0], obj3[0], obj4[0]), ('vehicle', 'ref_traje','closest_traj_cg','vehi_ds'), loc='upper left')
         plt.draw()
-        plt.pause(0.001)
+       # plt.pause(0.001)
 
 
 def ref_traje_callback(data):
     global ini_flag2, X2, Y2
     X2tem = []; Y2tem = []
-    ini_flag2=1
+    ini_flag2 = 1
     for index in range(len(data.point)):
         X2tem.append(data.point[index].x)
         Y2tem.append(data.point[index].y)
