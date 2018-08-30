@@ -89,6 +89,6 @@ def main(sim_steps):
 
 if __name__ == '__main__':
     try: 
-        main(50)
+        main(80)
     except rospy.ROSInterruptException:
         pass 

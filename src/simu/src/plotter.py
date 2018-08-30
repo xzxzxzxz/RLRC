@@ -6,7 +6,7 @@ from path_follower.msg import state_Dynamic, Trajectory2D, TrajectoryPoint2D
 import matplotlib.pyplot as plt
 import os, rospkg
 axis_range = 30
-axis_range_y = 6
+axis_range_y = 30
 i = 0
 obj1 = [0]; obj2 = [0]; obj3 = 0; obj4 = 0
 ini_flag = 0; ini_flag2 = 0; ini_flag3 = 0
@@ -23,7 +23,7 @@ def vehicle_state_callback(data):
         if i >= 1:
             ini_flag = 1
         obj1 = ax.plot(data.X, data.Y, color='red', marker='s', markersize=8)
-        ax.axis([data.X - axis_range, data.X + axis_range, -axis_range_y, axis_range_y])
+        ax.axis([data.X - axis_range, data.X + axis_range, data.Y-axis_range_y, data.Y+axis_range_y])
         obj3 = ax.plot(X3, Y3, color='green', marker='o', markersize=8)
         obj4 = ax.plot(X4, Y4, color='black', marker='*', markersize=8)
         obj2 = ax.plot(X2, Y2, color='blue', marker='*', markersize=4)
@@ -63,7 +63,7 @@ def plotter():
     # initialize node
     rospy.init_node('plotter', anonymous=True)
     rospack = rospkg.RosPack()
-    reference = scipy.io.loadmat(os.path.join(rospack.get_path("planning_policy"), "src", "sine_curve.mat"))['Tra_curve2']
+    reference = scipy.io.loadmat(os.path.join(rospack.get_path("planning_policy"), "src", "Tra_1.mat"))['Tra_1']
     ref_x = reference[0][:]
     ref_y = reference[1][:]
     fig = plt.figure()

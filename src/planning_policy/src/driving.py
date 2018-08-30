@@ -13,7 +13,7 @@ from scipy.io import savemat
 
 class LaneKeeping:
 
-    def __init__(self, track='Tra_curve2', dt=0.02, linear=False, fixed_speed=False, horizon=50, random=False,
+    def __init__(self, track='Tra_1', dt=0.02, linear=False, fixed_speed=False, horizon=50, random=False,
                  seed=0, errorBound=0.3, F_side=0):
         """
         input:
@@ -359,7 +359,7 @@ class LaneChanging:
 
 class ObstacleAvoiding:
 
-    def __init__(self, track='sine_curve', dt=0.02, linear=False, fixed_speed=False, horizon=50, random=False,
+    def __init__(self, track='Tra_1', dt=0.02, linear=False, fixed_speed=False, horizon=50, random=False,
                  seed=0, errorBound=0.3, F_side=0):
         """
         input:
