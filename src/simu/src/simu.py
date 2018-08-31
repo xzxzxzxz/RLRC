@@ -14,7 +14,7 @@ from dynamic_reconfigure.server import Server
 
 action = [0, 0]
 dt = 0.02
-car = vehicle(dt, False, 0, 500, True, 34, 0.5)
+car = vehicle(0.02, False, 0, 500, True, 3, 0.3)
 start_flag = False
 init_flag = 0
 errorbound = 0
@@ -52,7 +52,6 @@ def simu():
   # state=[558640.9252, 4196656.6405, 1.20719921, 10, 0, 0, 0]
     state = [0, 1, 0, 10, 0, 0, 0]
     car.setState(state)
-    car.setParameter()
     rospy.Subscriber('/vehicle/cmd_vel_stamped', TwistStamped, cmd_vel_stampedCallback, queue_size=1)
     rospy.Subscriber('/vehicle/steering_cmd', SteeringCmd, steering_cmdCallback, queue_size=1)
     pub1 = rospy.Publisher('/vehicle/steering_report', SteeringReport, queue_size=1)

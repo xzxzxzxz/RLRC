@@ -53,7 +53,7 @@ int main(int argc, char **argv)
   geometry_msgs::TwistStamped cmd_vel_stamped;
   controller::TrackingInfo tracking_info;
   path_follower::Trajectory2D traj_cg;
-  path_follower::TrajectoryPoint2D cg_point,ds_point;
+  path_follower::TrajectoryPoint2D cg_point,ds_point,ref_point;
 
   vlr::vehicle_state p_vs;
   p_vs.set_mkz_params();
@@ -66,18 +66,22 @@ int main(int argc, char **argv)
     if (received_traj_flag == true && received_state_flag == true)
     {
       vector<float> error_msg = ComputeTrackingError(ref_traj, current_state, p_vs.param.b, ds);
-      tracking_info.vx = error_msg[0];
+      tracking_info.vx = current_state.vx;
       tracking_info.dy = error_msg[1];
       tracking_info.dtheta = error_msg[2];
       cg_point.x=error_msg[3];
       cg_point.y=error_msg[4];
       ds_point.x=error_msg[5];
       ds_point.y=error_msg[6];
+      ref_point.x=error_msg[7];
+      ref_point.y=error_msg[8];
       traj_cg.point.push_back(cg_point);      
-      traj_cg.point.push_back(ds_point);  
+      traj_cg.point.push_back(ds_point);
+      traj_cg.point.push_back(ref_point);
 
       cmd_vel_stamped.header.stamp = ros::Time::now();
       cmd_vel_stamped.twist.linear.x = error_msg[0];
+      //cmd_vel_stamped.twist.linear.x = ref_traj.point[0].v;
 
       error_pub.publish(tracking_info);
       vel_cmd_pub.publish(cmd_vel_stamped);

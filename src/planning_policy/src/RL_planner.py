@@ -44,7 +44,7 @@ def main(sim_steps):
     psi = 0
     wz = 0
     stateEstimate_mark = False
-    dt = 0.02
+
 
 
 
