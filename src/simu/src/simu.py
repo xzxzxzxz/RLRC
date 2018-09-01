@@ -2,22 +2,20 @@
 
 
 import rospy
-import scipy.io, time
+import time
 from path_follower.msg import state_Dynamic, Trajectory2D, TrajectoryPoint2D
-import os, rospkg
 from geometry_msgs.msg import TwistStamped
-from dbw_mkz_msgs.msg import SteeringReport,SteeringCmd
+from dbw_mkz_msgs.msg import SteeringReport, SteeringCmd
 from vehicle_opt import vehicle
-from numpy import sign
 from dynamic_reconfigure.server import Server
 # from simu.cfg import DynamicParamConfig
 
 action = [0, 0]
 dt = 0.02
-car = vehicle(0.02, False, 0, 500, True, 3, 0.3)
+car = vehicle(dt, False, 0, 500, True, 6, 0.0)
 start_flag = False
 init_flag = 0
-errorbound = 0
+
 
 def cmd_vel_stampedCallback(data):
     global action, car
@@ -59,22 +57,11 @@ def simu():
   #  srv = Server(DynamicParamConfig, errorcallback)
     steering_report = SteeringReport()
     state_report = state_Dynamic()
-    while (rospy.is_shutdown() != 1):
-       # if init_flag*start_flag == 0:
 
+
+    while (rospy.is_shutdown() != 1):
         car.simulate(action)
         steering_report.steering_wheel_angle = car.state[6]*car.steeringRatio
-
-        '''
-        rospy.loginfo("X%f", car.state[0])
-        rospy.loginfo("Y%f",car.state[1])
-        rospy.loginfo("phi%f",car.state[2])
-        rospy.loginfo("v_x%f",car.state[3])
-        rospy.loginfo("v_y%f",car.state[4])
-        rospy.loginfo("r%f",car.state[5])
-        rospy.loginfo("d_f%f", car.state[6])
-        '''
-
         state_report.vx = car.state[3]
         state_report.vy = car.state[4]
         state_report.X = car.state[0]

@@ -168,7 +168,7 @@ class Tra:
         """
         indexMin = standard_index
         distSqrMin = (pX - self.x[standard_index])**2 + (pY - self.y[standard_index])**2
-        for index in range(max(standard_index - self.horizon, 0), min(standard_index + self.horizon, self.size)):
+        for index in range(max(standard_index - self.horizon*10, 0), min(standard_index + self.horizon*10, self.size)):
             distSqr = (pX - self.x[index])**2 + (pY - self.y[index])**2
             if distSqr < distSqrMin:
                 indexMin = index

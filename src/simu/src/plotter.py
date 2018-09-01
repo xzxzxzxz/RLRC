@@ -5,17 +5,25 @@ import scipy.io
 from path_follower.msg import state_Dynamic, Trajectory2D, TrajectoryPoint2D
 import matplotlib.pyplot as plt
 import os, rospkg
+from std_msgs.msg import Int8
+
+
 axis_range = 30
 axis_range_y = 6
 i = 0
 obj1 = [0]; obj2 = [0]; obj3 = 0; obj4 = 0; obj5=0
 ini_flag = 0; ini_flag2 = 0; ini_flag3 = 0
 X3 = 0; Y3 = 0; X4 = 0; Y4 = 0; X2 = []; Y2 = []; X5 = 0;Y5 = 0
+pause_signal = 1
 
+def pausecallback(signal):
+    global pause_signal
+    if signal.data:
+        pause_signal = pause_signal*-1
 
 def vehicle_state_callback(data):
     global ax, i, ini_flag, obj1, obj2, obj3, obj4, obj5
-    if ini_flag2 * ini_flag3:
+    if ini_flag2 * ini_flag3 * (pause_signal + 1):
         if ini_flag == 1:
             while len(ax.lines) > 1:
                 ax.lines.pop(1)
@@ -32,7 +40,7 @@ def vehicle_state_callback(data):
         ax.plot([X3, X5], [Y3, Y5], color='orange')
         ax.legend((obj1[0], obj2[0], obj3[0], obj4[0], obj5[0]), ('vehicle', 'ref_traj', 'closest_traj_cg', 'vehi_ds', 'closest_traj'), loc='upper left')
         plt.draw()
-       # plt.pause(0.001)
+
 
 
 def ref_traje_callback(data):
@@ -76,6 +84,7 @@ def plotter():
     rospy.Subscriber('state_estimate', state_Dynamic, vehicle_state_callback, queue_size=1)
     rospy.Subscriber('ref_trajectory', Trajectory2D, ref_traje_callback, queue_size=1)
     rospy.Subscriber('/vehicle/traj_cg', Trajectory2D, traj_cg_callback, queue_size=1)
+    rospy.Subscriber('pause_signal', Int8, pausecallback, queue_size=10)
     plt.show()
     rospy.spin()
     rospy.on_shutdown(clearmomery)
