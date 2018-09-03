@@ -7,9 +7,9 @@
  *
  * Code generation for model "DOB_ros".
  *
- * Model version              : 1.184
+ * Model version              : 1.185
  * Simulink Coder version : 8.14 (R2018a) 06-Feb-2018
- * C++ source code generated on : Wed Aug 29 15:04:27 2018
+ * C++ source code generated on : Mon Sep  3 11:40:24 2018
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -58,6 +58,9 @@ typedef struct {
   robotics_slros_internal_block_T obj_e;/* '<S6>/SinkBlock' */
   robotics_slros_internal_blo_k_T obj_a;/* '<S3>/SourceBlock' */
   robotics_slros_internal_blo_k_T obj_ax;/* '<S2>/SourceBlock' */
+  real32_T D1_states[5];               /* '<Root>/D1' */
+  real32_T Delay1_DSTATE[2];           /* '<Root>/Delay1' */
+  real32_T Q1_states[2];               /* '<Root>/Q1' */
   boolean_T objisempty;                /* '<S10>/SinkBlock' */
   boolean_T objisempty_d;              /* '<S3>/SourceBlock' */
   boolean_T objisempty_n;              /* '<S2>/SourceBlock' */
@@ -66,6 +69,12 @@ typedef struct {
 
 /* Parameters (default storage) */
 struct P_DOB_ros_T_ {
+  real32_T Dd[6];                      /* Variable: Dd
+                                        * Referenced by: '<Root>/D1'
+                                        */
+  real32_T Dn[6];                      /* Variable: Dn
+                                        * Referenced by: '<Root>/D1'
+                                        */
   real32_T dt_ros_single;              /* Variable: dt_ros_single
                                         * Referenced by: '<S1>/Gain'
                                         */
@@ -93,6 +102,24 @@ struct P_DOB_ros_T_ {
   SL_Bus_DOB_ros_dbw_mkz_msgs_SteeringCmd Constant_Value_jb;/* Computed Parameter: Constant_Value_jb
                                                              * Referenced by: '<S5>/Constant'
                                                              */
+  real32_T D1_InitialStates;           /* Computed Parameter: D1_InitialStates
+                                        * Referenced by: '<Root>/D1'
+                                        */
+  real32_T Delay1_InitialCondition;    /* Computed Parameter: Delay1_InitialCondition
+                                        * Referenced by: '<Root>/Delay1'
+                                        */
+  real32_T Q1_NumCoef[3];              /* Expression: NQ{1}
+                                        * Referenced by: '<Root>/Q1'
+                                        */
+  real32_T Q1_DenCoef[3];              /* Expression: DQ{1}
+                                        * Referenced by: '<Root>/Q1'
+                                        */
+  real32_T Q1_InitialStates;           /* Computed Parameter: Q1_InitialStates
+                                        * Referenced by: '<Root>/Q1'
+                                        */
+  uint32_T Delay1_DelayLength;         /* Computed Parameter: Delay1_DelayLength
+                                        * Referenced by: '<Root>/Delay1'
+                                        */
 };
 
 /* Real-time Model Data Structure */

@@ -7,9 +7,9 @@
  *
  * Code generation for model "DOB_ros".
  *
- * Model version              : 1.184
+ * Model version              : 1.185
  * Simulink Coder version : 8.14 (R2018a) 06-Feb-2018
- * C++ source code generated on : Wed Aug 29 15:04:27 2018
+ * C++ source code generated on : Mon Sep  3 11:40:24 2018
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -23,6 +23,16 @@
 
 /* Block parameters (default storage) */
 P_DOB_ros_T DOB_ros_P = {
+  /* Variable: Dd
+   * Referenced by: '<Root>/D1'
+   */
+  { 1.0F, -1.74068403F, 0.749587655F, -1.11697256E-8F, 0.0F, 0.0F },
+
+  /* Variable: Dn
+   * Referenced by: '<Root>/D1'
+   */
+  { 4.18844652F, -15.0352058F, 20.2108841F, -12.0699387F, 2.70581293F, 0.0F },
+
   /* Variable: dt_ros_single
    * Referenced by: '<S1>/Gain'
    */
@@ -160,5 +170,35 @@ P_DOB_ros_T DOB_ros_P = {
     false,                             /* Ignore */
     false,                             /* Quiet */
     0U                                 /* Count */
-  }
+  },
+
+  /* Computed Parameter: D1_InitialStates
+   * Referenced by: '<Root>/D1'
+   */
+  0.0F,
+
+  /* Computed Parameter: Delay1_InitialCondition
+   * Referenced by: '<Root>/Delay1'
+   */
+  0.0F,
+
+  /* Expression: NQ{1}
+   * Referenced by: '<Root>/Q1'
+   */
+  { 0.01F, 0.0F, 0.0F },
+
+  /* Expression: DQ{1}
+   * Referenced by: '<Root>/Q1'
+   */
+  { 1.0F, -1.0F, 0.01F },
+
+  /* Computed Parameter: Q1_InitialStates
+   * Referenced by: '<Root>/Q1'
+   */
+  0.0F,
+
+  /* Computed Parameter: Delay1_DelayLength
+   * Referenced by: '<Root>/Delay1'
+   */
+  2U
 };
