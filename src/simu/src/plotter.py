@@ -8,8 +8,8 @@ import os, rospkg
 from std_msgs.msg import Int8
 
 
-axis_range = 30
-axis_range_y = 6
+axis_range = 15
+axis_range_y = 15
 i = 0
 obj1 = [0]; obj2 = [0]; obj3 = 0; obj4 = 0; obj5=0
 ini_flag = 0; ini_flag2 = 0; ini_flag3 = 0
@@ -25,8 +25,8 @@ def vehicle_state_callback(data):
     global ax, i, ini_flag, obj1, obj2, obj3, obj4, obj5
     if ini_flag2 * ini_flag3 * (pause_signal + 1):
         if ini_flag == 1:
-            while len(ax.lines) > 1:
-                ax.lines.pop(1)
+            while len(ax.lines) > 3:
+                ax.lines.pop(3)
         i = i + 1
         if i >= 1:
             ini_flag = 1
@@ -75,11 +75,11 @@ def plotter():
     # initialize node
     rospy.init_node('plotter', anonymous=True)
     rospack = rospkg.RosPack()
-    reference = scipy.io.loadmat(os.path.join(rospack.get_path("planning_policy"), "src", "line_curve.mat"))['Tra_curve2']
+    reference = scipy.io.loadmat(os.path.join(rospack.get_path("planning_policy"), "src", "Tra_1.mat"))['Tra_1']
     ref_x = reference[0][:]
     ref_y = reference[1][:]
-    ref_y1 = reference[1][:] + 3
-    ref_y2 = reference[1][:] - 3
+    ref_y1 = reference[1][:] + 4
+    ref_y2 = reference[1][:] - 4
     fig = plt.figure()
     ax = fig.add_subplot(1, 1, 1)
     ax.plot(ref_x, ref_y)
