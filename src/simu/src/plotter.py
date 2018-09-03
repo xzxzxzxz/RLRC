@@ -29,7 +29,7 @@ def vehicle_state_callback(data):
         obj2 = ax.plot(X2, Y2, color='blue', marker='*', markersize=4)
         ax.legend((obj1[0], obj2[0], obj3[0], obj4[0]), ('vehicle', 'ref_traje','closest_traj_cg','vehi_ds'), loc='upper left')
         plt.draw()
-       # plt.pause(0.001)
+        plt.pause(0.001)
 
 
 def ref_traje_callback(data):
@@ -58,17 +58,21 @@ def clearmomery():
 
 
 def plotter():
-    global ref_x, ref_y, ax
+    global ref_x, ref_y, ref_y1, ref_y2, ax
 
     # initialize node
     rospy.init_node('plotter', anonymous=True)
     rospack = rospkg.RosPack()
-    reference = scipy.io.loadmat(os.path.join(rospack.get_path("planning_policy"), "src", "sine_curve.mat"))['Tra_curve2']
+    reference = scipy.io.loadmat(os.path.join(rospack.get_path("planning_policy"), "src", "line_curve.mat"))['Tra_curve2']
     ref_x = reference[0][:]
     ref_y = reference[1][:]
+    ref_y1 = reference[1][:] + 3
+    ref_y2 = reference[1][:] - 3
     fig = plt.figure()
     ax = fig.add_subplot(1, 1, 1)
     ax.plot(ref_x, ref_y)
+    ax.plot(ref_x, ref_y1)
+    ax.plot(ref_x, ref_y2)
     rospy.Subscriber('state_estimate', state_Dynamic, vehicle_state_callback, queue_size=1)
     rospy.Subscriber('ref_trajectory', Trajectory2D, ref_traje_callback, queue_size=1)
     rospy.Subscriber('/vehicle/traj_cg', Trajectory2D, traj_cg_callback, queue_size=1)

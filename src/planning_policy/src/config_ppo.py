@@ -16,7 +16,7 @@ class Config_PPO:
                  vehicle_random=False,
                  vehicle_seed=0,
                  vehicle_err=0.1,
-                 track='sine_curve',
+                 track='line_curve',
                  n_iter=100,
                  max_path_length=1000,
                  min_timesteps_per_batch=10000,

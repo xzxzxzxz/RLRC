@@ -23,7 +23,7 @@ class Tra:
                currentIndex: index of waypoint corresponding to current vehicle position
         """
         rospack = rospkg.RosPack()
-        waypoints_mat = scipy.io.loadmat(os.path.join(rospack.get_path("planning_policy"), "src", "sine_curve.mat"))[name]
+        waypoints_mat = scipy.io.loadmat(os.path.join(rospack.get_path("planning_policy"), "src", "line_curve.mat"))[name]
         self.x     = waypoints_mat[0][:]
         self.y     = waypoints_mat[1][:] + deviation
         self.psi   = (waypoints_mat[2][:]) % (2 * pi)
