@@ -165,7 +165,7 @@ class LaneKeeping:
 
 class LaneChanging:
 
-    def __init__(self, track='sine_curve', dt=0.02, linear=False, fixed_speed=False, horizon=50, random=False,
+    def __init__(self, track='Tra_curve2', dt=0.02, linear=False, fixed_speed=False, horizon=50, random=False,
                  seed=0, errorBound=0.3, F_side=0):
         """
         Currently consider a simple deterministic case:
@@ -175,7 +175,7 @@ class LaneChanging:
             change lane at 800 from -3 to 0
         """
         self.vehicle = vehicle(dt, linear, fixed_speed, horizon, random, seed, errorBound, F_side)
-        self.track0 = Tra(track, dt, horizon)
+        self.track = Tra(track, dt, horizon)
         self.track1 = Tra(track, dt, horizon, deviation=3)
         self.track2 = Tra(track, dt, horizon, deviation=-3)
         self.trajectory = []
@@ -188,36 +188,36 @@ class LaneChanging:
 
     def reset(self):
         # randomly generated initial state
-        X0, Y0, phi0 = self.track0.setStartPosYaw()
+        X0, Y0, phi0 = self.track.setStartPosYaw()
         self.vehicle.setStart(X0, Y0, phi0, initial_speed=10)
         # save the list for traj and index
         self.trajectory = [self.vehicle.state]
-        self.indexList = [self.track0.currentIndex]
+        self.indexList = [self.track.currentIndex]
         self.trackSelect = [0]
         # synchronize currentIndex
-        self.track1.currentIndex = self.track0.currentIndex
-        self.track2.currentIndex = self.track0.currentIndex
+        self.track1.currentIndex = self.track.currentIndex
+        self.track2.currentIndex = self.track.currentIndex
         # get vehicle and track measurement
-        obs, status = self.vehicle.getMeasurement(self.track0)
+        obs, status = self.vehicle.getMeasurement(self.track)
         return obs
 
     def step(self, action, steps):
         # determine the objective track (assuming 0 <= steps <=1000)
 
         if steps < 200:
-            track = self.track0
+            track = self.track
             self.trackSelect.append(0)
         elif steps < 400:
             track = self.track1
             self.trackSelect.append(1)
         elif steps < 600:
-            track = self.track0
+            track = self.track
             self.trackSelect.append(0)
         elif steps < 800:
             track = self.track2
             self.trackSelect.append(2)
         else:
-            track = self.track0
+            track = self.track
             self.trackSelect.append(0)
         """
         if self.left_change:
@@ -247,7 +247,7 @@ class LaneChanging:
         self.trajectory.append(self.vehicle.state)
         self.indexList.append(track.currentIndex)
         # synchronize currentIndex
-        self.track0.currentIndex = track.currentIndex
+        self.track.currentIndex = track.currentIndex
         self.track1.currentIndex = track.currentIndex
         self.track2.currentIndex = track.currentIndex
         # get vehicle and track measurement
@@ -286,7 +286,7 @@ class LaneChanging:
         return self.vehicle.getActionSpaceDim()
 
     def getObservSpaceDim(self):
-        return self.vehicle.getObservSpaceDim() + self.track0.getRefSize()
+        return self.vehicle.getObservSpaceDim() + self.track.getRefSize()
 
     def getActionUpperBound(self):
         return self.vehicle.getActionUpperBound()
@@ -335,7 +335,7 @@ class LaneChanging:
         track2Plot, = plt.plot([], [], color='green')
         track2Plot.set_zorder = 0
         tracksPlot = [track0Plot, track1Plot, track2Plot]
-        tracks = [self.track0, self.track1, self.track2]
+        tracks = [self.track, self.track1, self.track2]
         self.carPlot = patches.Rectangle((0,0), 3.8, 1.8, 0, color='green')
         self.carPlot.set_zorder = 1
         ax.add_patch(self.carPlot)
@@ -351,7 +351,7 @@ class LaneChanging:
             writer = Writer(fps=50, metadata=dict(artist='Me'), bitrate=1800)
             name = dir + 'video' + str(itr) +".mp4"
             animate.save(name,writer=writer)
-            data = {'trajectory': np.array(self.trajectory), 'indexList': np.array(self.indexList), 'trackX': self.track0.x, 'trackY': self.track0.y}
+            data = {'trajectory': np.array(self.trajectory), 'indexList': np.array(self.indexList), 'trackX': self.track.x, 'trackY': self.track.y}
             savemat(dir + 'data' + str(itr) + '.mat', data)
 
     def updatePlot(self, num, tracks, ax, tracksPlot):
@@ -359,7 +359,7 @@ class LaneChanging:
 
 class ObstacleAvoiding:
 
-    def __init__(self, track='sine_curve', dt=0.02, linear=False, fixed_speed=False, horizon=50, random=False,
+    def __init__(self, track='line_curve', dt=0.02, linear=False, fixed_speed=False, horizon=50, random=False,
                  seed=0, errorBound=0.3, F_side=0):
         """
         input:
@@ -518,7 +518,7 @@ class LC_based_OA:
     lane changing based obstacle avoidance
     """
 
-    def __init__(self, track='sine_curve', dt=0.02, linear=False, fixed_speed=False, horizon=50, random=False,
+    def __init__(self, track='line_curve', dt=0.02, linear=False, fixed_speed=False, horizon=50, random=False,
                  seed=0, errorBound=0.3, F_side=0):
         self.vehicle = vehicle(dt, linear, fixed_speed, horizon, random, seed, errorBound, F_side)
         self.track0 = Tra(track, dt, horizon)
@@ -699,7 +699,7 @@ class LC_based_OA_hierarchical:
     lane changing based obstacle avoidance
     """
 
-    def __init__(self, track='sine_curve', dt=0.02, linear=False, fixed_speed=False, horizon=50, random=False,
+    def __init__(self, track='line_curve', dt=0.02, linear=False, fixed_speed=False, horizon=50, random=False,
                  seed=0, errorBound=0.3, F_side=0):
         self.vehicle = vehicle(dt, linear, fixed_speed, horizon, random, seed, errorBound, F_side)
         self.track0 = Tra(track, dt, horizon)
