@@ -176,8 +176,8 @@ class LaneChanging:
         """
         self.vehicle = vehicle(dt, linear, fixed_speed, horizon, random, seed, errorBound, F_side)
         self.track0 = Tra(track, dt, horizon, deviation=0)
-        self.track1 = Tra(track, dt, horizon, deviation=4)
-        self.track2 = Tra(track, dt, horizon, deviation=-4)
+        self.track1 = Tra(track, dt, horizon, deviation=7)
+        self.track2 = Tra(track, dt, horizon, deviation=-7)
         self.trajectory = []
         self.indexList = []
         self.trackSelect = []

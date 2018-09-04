@@ -90,9 +90,8 @@ def main(sim_steps):
                 pt.v = env.vehicle.state[3]
                 traj.point.append(pt)
 
+                ob[0] = 20
                 ac = expert.obs_to_dyn_act(ob)
-                if ob[0] >= 5:
-                    ac[0] = 0
                 ob, _, _ = env.step(ac, laneChange)
             pub.publish(traj)
             steps += 1

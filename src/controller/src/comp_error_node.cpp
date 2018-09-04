@@ -80,7 +80,8 @@ int main(int argc, char **argv)
       traj_cg.point.push_back(ref_point);
 
       cmd_vel_stamped.header.stamp = ros::Time::now();
-      cmd_vel_stamped.twist.linear.x = error_msg[0];
+      //cmd_vel_stamped.twist.linear.x = error_msg[0];
+      cmd_vel_stamped.twist.linear.x = 8;
       //cmd_vel_stamped.twist.linear.x = ref_traj.point[0].v;
 
       error_pub.publish(tracking_info);
