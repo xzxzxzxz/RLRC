@@ -66,6 +66,7 @@ def main(sim_steps):
     env = driving.LaneKeeping()
     env.reset()
     env.track.currentIndex = 0
+    steps = 0
 
     while (rospy.is_shutdown() != 1):
         if stateEstimate_mark:
@@ -87,6 +88,7 @@ def main(sim_steps):
                 if ob[0] > 5:
                     ac[0]=0
             pub.publish(traj)
+            steps += 1
             rate.sleep()
 
 if __name__ == '__main__':
