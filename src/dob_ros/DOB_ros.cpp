@@ -7,9 +7,9 @@
  *
  * Code generation for model "DOB_ros".
  *
- * Model version              : 1.188
+ * Model version              : 1.185
  * Simulink Coder version : 8.14 (R2018a) 06-Feb-2018
- * C++ source code generated on : Mon Sep  3 19:45:28 2018
+ * C++ source code generated on : Mon Sep  3 11:40:24 2018
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -74,8 +74,8 @@ void DOB_ros_step(void)
   boolean_T b_varargout_1;
   boolean_T b_varargout_1_0;
   SL_Bus_DOB_ros_dbw_mkz_msgs_SteeringCmd rtb_BusAssignment;
+  real32_T rtb_Gain;
   real32_T rtb_Sum3;
-  real32_T rtb_Gain2;
   real32_T Q1_tmp;
   real32_T D1_tmp;
 
@@ -109,10 +109,10 @@ void DOB_ros_step(void)
   }
 
   D1_tmp /= DOB_ros_P.Dd[0];
-  rtb_Gain2 = DOB_ros_P.Dn[0] * D1_tmp;
+  rtb_Gain = DOB_ros_P.Dn[0] * D1_tmp;
   denIdx = 1;
   for (j = 0; j < 5; j++) {
-    rtb_Gain2 += DOB_ros_P.Dn[denIdx] * DOB_ros_DW.D1_states[j];
+    rtb_Gain += DOB_ros_P.Dn[denIdx] * DOB_ros_DW.D1_states[j];
     denIdx++;
   }
 
@@ -122,17 +122,17 @@ void DOB_ros_step(void)
    *  Delay: '<Root>/Delay1'
    *  Sum: '<Root>/Sum4'
    */
-  Q1_tmp = (((DOB_ros_DW.Delay1_DSTATE[0] - rtb_Gain2) - DOB_ros_P.Q1_DenCoef[1]
-             * DOB_ros_DW.Q1_states[0]) - DOB_ros_P.Q1_DenCoef[2] *
+  Q1_tmp = (((DOB_ros_DW.Delay1_DSTATE[0] - rtb_Gain) - DOB_ros_P.Q1_DenCoef[1] *
+             DOB_ros_DW.Q1_states[0]) - DOB_ros_P.Q1_DenCoef[2] *
             DOB_ros_DW.Q1_states[1]) / DOB_ros_P.Q1_DenCoef[0];
 
   /* Sum: '<Root>/subtract3' incorporates:
    *  DiscreteTransferFcn: '<Root>/Q1'
    *  Gain: '<Root>/Gain5'
    */
-  rtb_Gain2 = ((DOB_ros_P.Q1_NumCoef[0] * Q1_tmp + DOB_ros_P.Q1_NumCoef[1] *
-                DOB_ros_DW.Q1_states[0]) + DOB_ros_P.Q1_NumCoef[2] *
-               DOB_ros_DW.Q1_states[1]) - DOB_ros_P.kc2 * rtb_Sum3;
+  rtb_Gain = ((DOB_ros_P.Q1_NumCoef[0] * Q1_tmp + DOB_ros_P.Q1_NumCoef[1] *
+               DOB_ros_DW.Q1_states[0]) + DOB_ros_P.Q1_NumCoef[2] *
+              DOB_ros_DW.Q1_states[1]) - DOB_ros_P.kc2 * rtb_Sum3;
 
   /* Outputs for Atomic SubSystem: '<Root>/Subscribe' */
   /* MATLABSystem: '<S2>/SourceBlock' incorporates:
@@ -169,11 +169,9 @@ void DOB_ros_step(void)
      *  Sum: '<S1>/Subtract'
      */
     rtb_BusAssignment = DOB_ros_P.Constant_Value_jb;
-    rtb_BusAssignment.SteeringWheelAngleCmd = DOB_ros_P.Gain2_Gain * rtb_Gain2;
-    rtb_BusAssignment.SteeringWheelAngleVelocity = (rtb_Gain2 -
-      DOB_ros_P.Gain1_Gain * DOB_ros_B.In1.SteeringWheelAngle) * (1.0F /
-      DOB_ros_P.dt_ros_single);
-    rtb_BusAssignment.Enable = DOB_ros_P.Constant_Value_b;
+    rtb_BusAssignment.SteeringWheelAngleCmd = rtb_Gain;
+    rtb_BusAssignment.SteeringWheelAngleVelocity = 1.0F /
+      DOB_ros_P.dt_ros_single * (rtb_Gain - DOB_ros_B.In1.SteeringWheelAngle);
 
     /* Outputs for Atomic SubSystem: '<S1>/Publish' */
     /* MATLABSystem: '<S6>/SinkBlock' */
@@ -203,7 +201,7 @@ void DOB_ros_step(void)
 
   /* Update for Delay: '<Root>/Delay1' */
   DOB_ros_DW.Delay1_DSTATE[0] = DOB_ros_DW.Delay1_DSTATE[1];
-  DOB_ros_DW.Delay1_DSTATE[1] = rtb_Gain2;
+  DOB_ros_DW.Delay1_DSTATE[1] = rtb_Gain;
 
   /* Update for DiscreteTransferFcn: '<Root>/Q1' */
   DOB_ros_DW.Q1_states[1] = DOB_ros_DW.Q1_states[0];

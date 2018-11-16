@@ -7,9 +7,9 @@
  *
  * Code generation for model "DOB_ros".
  *
- * Model version              : 1.188
+ * Model version              : 1.185
  * Simulink Coder version : 8.14 (R2018a) 06-Feb-2018
- * C++ source code generated on : Mon Sep  3 19:45:28 2018
+ * C++ source code generated on : Mon Sep  3 11:40:24 2018
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -102,12 +102,7 @@ struct P_DOB_ros_T_ {
   SL_Bus_DOB_ros_dbw_mkz_msgs_SteeringCmd Constant_Value_jb;/* Computed Parameter: Constant_Value_jb
                                                              * Referenced by: '<S5>/Constant'
                                                              */
-  real32_T Gain2_Gain;                 /* Computed Parameter: Gain2_Gain
-                                        * Referenced by: '<S1>/Gain2'
-                                        */
-  real32_T Gain1_Gain;                 /* Computed Parameter: Gain1_Gain
-                                        * Referenced by: '<S1>/Gain1'
-                                        */
+
   real32_T D1_InitialStates;           /* Computed Parameter: D1_InitialStates
                                         * Referenced by: '<Root>/D1'
                                         */
@@ -125,10 +120,7 @@ struct P_DOB_ros_T_ {
                                         */
   uint32_T Delay1_DelayLength;         /* Computed Parameter: Delay1_DelayLength
                                         * Referenced by: '<Root>/Delay1'
-                                        */
-  boolean_T Constant_Value_b;          /* Computed Parameter: Constant_Value_b
-                                        * Referenced by: '<S1>/Constant'
-                                        */
+
 };
 
 /* Real-time Model Data Structure */

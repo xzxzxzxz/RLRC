@@ -7,9 +7,7 @@
  *
  * Code generation for model "DOB_ros".
  *
- * Model version              : 1.188
- * Simulink Coder version : 8.14 (R2018a) 06-Feb-2018
- * C++ source code generated on : Mon Sep  3 19:45:28 2018
+
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -25,14 +23,12 @@
 P_DOB_ros_T DOB_ros_P = {
   /* Variable: Dd
    * Referenced by: '<Root>/D1'
-   */
-  { 1.0F, -1.71273625F, 0.693692F, 0.021270128F, 0.0F, 0.0F },
+
 
   /* Variable: Dn
    * Referenced by: '<Root>/D1'
    */
-  { 1.04711163F, -2.46986628F, 1.78064489F, -0.340137661F, -0.0177526344F, 0.0F
-  },
+
 
   /* Variable: dt_ros_single
    * Referenced by: '<S1>/Gain'
@@ -173,15 +169,6 @@ P_DOB_ros_T DOB_ros_P = {
     0U                                 /* Count */
   },
 
-  /* Computed Parameter: Gain2_Gain
-   * Referenced by: '<S1>/Gain2'
-   */
-  14.8F,
-
-  /* Computed Parameter: Gain1_Gain
-   * Referenced by: '<S1>/Gain1'
-   */
-  14.8F,
 
   /* Computed Parameter: D1_InitialStates
    * Referenced by: '<Root>/D1'
@@ -211,10 +198,5 @@ P_DOB_ros_T DOB_ros_P = {
   /* Computed Parameter: Delay1_DelayLength
    * Referenced by: '<Root>/Delay1'
    */
-  2U,
 
-  /* Computed Parameter: Constant_Value_b
-   * Referenced by: '<S1>/Constant'
-   */
-  1
 };

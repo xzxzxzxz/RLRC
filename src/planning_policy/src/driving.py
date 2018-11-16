@@ -13,7 +13,7 @@ from scipy.io import savemat
 
 class LaneKeeping:
 
-    def __init__(self, track='Tra_curve2', dt=0.02, linear=False, fixed_speed=False, horizon=50, random=False,
+    def __init__(self, track='Tra_1', dt=0.02, linear=False, fixed_speed=False, horizon=50, random=False,
                  seed=0, errorBound=0.3, F_side=0):
         """
         input:
@@ -175,9 +175,9 @@ class LaneChanging:
             change lane at 800 from -3 to 0
         """
         self.vehicle = vehicle(dt, linear, fixed_speed, horizon, random, seed, errorBound, F_side)
-        self.track0 = Tra(track, dt, horizon, deviation=0)
-        self.track1 = Tra(track, dt, horizon, deviation=7)
-        self.track2 = Tra(track, dt, horizon, deviation=-7)
+        self.track = Tra(track, dt, horizon)
+        self.track1 = Tra(track, dt, horizon, deviation=3)
+        self.track2 = Tra(track, dt, horizon, deviation=-3)
         self.trajectory = []
         self.indexList = []
         self.trackSelect = []
@@ -188,23 +188,22 @@ class LaneChanging:
 
     def reset(self):
         # randomly generated initial state
-        X0, Y0, phi0 = self.track0.setStartPosYaw()
+        X0, Y0, phi0 = self.track.setStartPosYaw()
         self.vehicle.setStart(X0, Y0, phi0, initial_speed=10)
         # save the list for traj and index
         self.trajectory = [self.vehicle.state]
-        self.indexList = [self.track0.currentIndex]
+        self.indexList = [self.track.currentIndex]
         self.trackSelect = [0]
         # synchronize currentIndex
-        self.track = self.track0
         self.track1.currentIndex = self.track.currentIndex
         self.track2.currentIndex = self.track.currentIndex
         # get vehicle and track measurement
         obs, status = self.vehicle.getMeasurement(self.track)
         return obs
 
-    def step(self, action, laneChange):
+    def step(self, action, steps):
         # determine the objective track (assuming 0 <= steps <=1000)
-        """
+
         if steps < 200:
             track = self.track
             self.trackSelect.append(0)
@@ -220,7 +219,7 @@ class LaneChanging:
         else:
             track = self.track
             self.trackSelect.append(0)
-        
+        """
         if self.left_change:
             if steps < 333:
                 track = self.track0
@@ -242,25 +241,17 @@ class LaneChanging:
                 track = self.track0
                 self.trackSelect.append(0)
         """
-        if laneChange == 0:
-            self.track = self.track0
-            self.trackSelect.append(0)
-        elif laneChange == 1:
-            self.track = self.track1
-            self.trackSelect.append(1)
-        else:
-            print("only support two lanes now.")
         # simulate the vehicle forward
         self.vehicle.simulate(action)
         # add the traj and index into list
         self.trajectory.append(self.vehicle.state)
-        self.indexList.append(self.track.currentIndex)
+        self.indexList.append(track.currentIndex)
         # synchronize currentIndex
-        self.track0.currentIndex = self.track.currentIndex
-        self.track1.currentIndex = self.track.currentIndex
-        self.track2.currentIndex = self.track.currentIndex
+        self.track.currentIndex = track.currentIndex
+        self.track1.currentIndex = track.currentIndex
+        self.track2.currentIndex = track.currentIndex
         # get vehicle and track measurement
-        ob, status = self.vehicle.getMeasurement(self.track)
+        ob, status = self.vehicle.getMeasurement(track)
         # calculate reward
         r = self.rewardFunc(ob, status)
         return ob, r, status != 0
@@ -367,8 +358,7 @@ class LaneChanging:
         self.carPlot = updatePlot(num, self.trajectory, self.indexList, tracks, ax, self.carPlot, tracksPlot, self.trackSelect)
 
 class ObstacleAvoiding:
-
-    def __init__(self, track='line_curve', dt=0.02, linear=False, fixed_speed=False, horizon=50, random=False,
+    def __init__(self, track='Tra_1', dt=0.02, linear=False, fixed_speed=False, horizon=50, random=False,
                  seed=0, errorBound=0.3, F_side=0):
         """
         input:
@@ -921,4 +911,3 @@ def updatePlot(num, traj, indexList, tracks, ax, carPlot, tracksPlot, trackselec
         obstaclePlot.visible = True
 
     return carPlot
-

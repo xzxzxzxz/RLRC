@@ -92,13 +92,15 @@ def main(sim_steps):
 
                 ob[0] = 20
                 ac = expert.obs_to_dyn_act(ob)
-                ob, _, _ = env.step(ac, laneChange)
+                ob, _, _ = env.step(ac, i)
+                if ob[0] > 5:
+                    ac[0]=0
             pub.publish(traj)
             steps += 1
             rate.sleep()
 
 if __name__ == '__main__':
     try: 
-        main(200)
+        main(180)
     except rospy.ROSInterruptException:
         pass 
