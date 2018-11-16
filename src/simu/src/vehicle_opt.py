@@ -37,6 +37,7 @@ rm
             self.trMdl[0] = (weights[4:8] + 1) * self.trMdl[0]
             self.trMdl[1] = (weights[8:12] + 1) * self.trMdl[1]
             self.F_ext = (weights[12:14] + 1) * self.F_ext
+            print self.vhMdl[3]
             #self.maxSteeringRate = (weights[14] + 1) * self.maxSteeringRate
             #self.maxSteering = (weights[15] + 1) * self.maxSteering
             #self.steeringRatio = (weights[16] + 1) * self.steeringRatio

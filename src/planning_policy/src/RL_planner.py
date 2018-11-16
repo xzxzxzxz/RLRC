@@ -44,7 +44,7 @@ def main(sim_steps):
     psi = 0
     wz = 0
     stateEstimate_mark = False
-    dt = 0.02
+
 
 
 
@@ -84,13 +84,15 @@ def main(sim_steps):
                 traj.point.append(pt)
 
                 ac = expert.obs_to_dyn_act(ob)
-                ob, _, _ = env.step(ac, steps + i)
+                ob, _, _ = env.step(ac, i)
+                if ob[0] > 5:
+                    ac[0]=0
             pub.publish(traj)
             steps += 1
             rate.sleep()
 
 if __name__ == '__main__':
     try: 
-        main(50)
+        main(180)
     except rospy.ROSInterruptException:
         pass 
