@@ -84,11 +84,13 @@ def main(sim_steps):
 
                 ac = expert.obs_to_dyn_act(ob)
                 ob, _, _ = env.step(ac, i)
+                if ob[0] > 5:
+                    ac[0]=0
             pub.publish(traj)
             rate.sleep()
 
 if __name__ == '__main__':
     try: 
-        main(60)
+        main(180)
     except rospy.ROSInterruptException:
         pass 
