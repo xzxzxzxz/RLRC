@@ -2,22 +2,20 @@
 
 
 import rospy
-import scipy.io, time
+import time
 from path_follower.msg import state_Dynamic, Trajectory2D, TrajectoryPoint2D
-import os, rospkg
 from geometry_msgs.msg import TwistStamped
-from dbw_mkz_msgs.msg import SteeringReport,SteeringCmd
+from dbw_mkz_msgs.msg import SteeringReport, SteeringCmd
 from vehicle_opt import vehicle
-from numpy import sign
 from dynamic_reconfigure.server import Server
 # from simu.cfg import DynamicParamConfig
 
 action = [0, 0]
 dt = 0.02
-car = vehicle(dt, False, 0, 500, True, 34, 0.5)
+car = vehicle(dt, False, 0, 500, False, 6, 0.3)
 start_flag = False
 init_flag = 0
-errorbound = 0
+
 
 def cmd_vel_stampedCallback(data):
     global action, car
@@ -49,10 +47,9 @@ def simu():
     time.sleep(5)
     rate = rospy.Rate(1/dt)
     rospy.loginfo("simulator node starts")
-    state=[558640.9252, 4196656.6405, 1.20719921, 10, 0, 0, 0]
-#  state = [0, 1, 0, 10, 0, 0, 0]
+    state=[558640.9252, 4196656.6405, 1.20719921, 5, 0, 0, 0]
+    #state = [0, 1, 0, 10, 0, 0, 0]
     car.setState(state)
-    car.setParameter()
     rospy.Subscriber('/vehicle/cmd_vel_stamped', TwistStamped, cmd_vel_stampedCallback, queue_size=1)
     rospy.Subscriber('/vehicle/steering_cmd', SteeringCmd, steering_cmdCallback, queue_size=1)
     pub1 = rospy.Publisher('/vehicle/steering_report', SteeringReport, queue_size=1)
@@ -60,22 +57,11 @@ def simu():
   #  srv = Server(DynamicParamConfig, errorcallback)
     steering_report = SteeringReport()
     state_report = state_Dynamic()
-    while (rospy.is_shutdown() != 1):
-       # if init_flag*start_flag == 0:
 
+
+    while (rospy.is_shutdown() != 1):
         car.simulate(action)
         steering_report.steering_wheel_angle = car.state[6]*car.steeringRatio
-
-        '''
-        rospy.loginfo("X%f", car.state[0])
-        rospy.loginfo("Y%f",car.state[1])
-        rospy.loginfo("phi%f",car.state[2])
-        rospy.loginfo("v_x%f",car.state[3])
-        rospy.loginfo("v_y%f",car.state[4])
-        rospy.loginfo("r%f",car.state[5])
-        rospy.loginfo("d_f%f", car.state[6])
-        '''
-
         state_report.vx = car.state[3]
         state_report.vy = car.state[4]
         state_report.X = car.state[0]
