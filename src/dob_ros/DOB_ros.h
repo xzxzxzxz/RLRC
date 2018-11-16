@@ -102,6 +102,7 @@ struct P_DOB_ros_T_ {
   SL_Bus_DOB_ros_dbw_mkz_msgs_SteeringCmd Constant_Value_jb;/* Computed Parameter: Constant_Value_jb
                                                              * Referenced by: '<S5>/Constant'
                                                              */
+
   real32_T D1_InitialStates;           /* Computed Parameter: D1_InitialStates
                                         * Referenced by: '<Root>/D1'
                                         */
@@ -119,7 +120,7 @@ struct P_DOB_ros_T_ {
                                         */
   uint32_T Delay1_DelayLength;         /* Computed Parameter: Delay1_DelayLength
                                         * Referenced by: '<Root>/Delay1'
-                                        */
+
 };
 
 /* Real-time Model Data Structure */

@@ -161,8 +161,11 @@ void DOB_ros_step(void)
   /* MATLABSystem: '<S3>/SourceBlock' */
   if (b_varargout_1) {
     /* BusAssignment: '<S1>/Bus Assignment' incorporates:
+     *  Constant: '<S1>/Constant'
      *  Constant: '<S5>/Constant'
      *  Gain: '<S1>/Gain'
+     *  Gain: '<S1>/Gain1'
+     *  Gain: '<S1>/Gain2'
      *  Sum: '<S1>/Subtract'
      */
     rtb_BusAssignment = DOB_ros_P.Constant_Value_jb;

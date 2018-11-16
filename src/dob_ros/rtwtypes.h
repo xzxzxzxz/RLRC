@@ -5,11 +5,7 @@
  * course requirements at degree granting institutions only.  Not for
  * government, commercial, or other organizational use.
  *
- * Code generation for model "DOB_ros".
- *
- * Model version              : 1.185
- * Simulink Coder version : 8.14 (R2018a) 06-Feb-2018
- * C++ source code generated on : Mon Sep  3 11:40:24 2018
+
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping

@@ -25,8 +25,8 @@ def vehicle_state_callback(data):
     global ax, i, ini_flag, obj1, obj2, obj3, obj4, obj5
     if ini_flag2 * ini_flag3 * (pause_signal + 1):
         if ini_flag == 1:
-            while len(ax.lines) > 1:
-                ax.lines.pop(1)
+            while len(ax.lines) > 3:
+                ax.lines.pop(3)
         i = i + 1
         if i >= 1:
             ini_flag = 1

@@ -30,26 +30,25 @@ def console(dt):
     lane_signal = Int8()
     pause_signal = 0
     rate = rospy.Rate(1 / dt)
-
+    lane_signal = Int8()
     # detect keyboard input and publish signal
     while (rospy.is_shutdown() != 1):
         for event in pygame.event.get():
             if event.type == KEYDOWN:
                 if event.key == pygame.K_LEFT:
-                    lane_signal = Int8()
                     lane_signal.data = 1
-                    pub1.publish(lane_signal)
 
                 if event.key == pygame.K_RIGHT:
-                    lane_signal = Int8()
                     lane_signal.data = -1
-                    pub1.publish(lane_signal)
+
+                if event.key == pygame.K_DOWN:
+                    lane_signal.data = 0
 
                 if event.key == pygame.K_SPACE:
                     pause_signal = Int8()
                     pause_signal.data = 1
                     pub2.publish(pause_signal)
-
+        pub1.publish(lane_signal)
         rate.sleep()
     exit()
 if __name__ == '__main__':

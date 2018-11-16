@@ -911,4 +911,3 @@ def updatePlot(num, traj, indexList, tracks, ax, carPlot, tracksPlot, trackselec
         obstaclePlot.visible = True
 
     return carPlot
-
