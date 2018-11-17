@@ -29,11 +29,11 @@
 <tr name="9" id="9">
 <td><a id="l9" class='ln'>9</a></td><td><span class="ct"> *</span></td></tr>
 <tr name="10" id="10">
-<td><a id="l10" class='ln'>10</a></td><td><span class="ct"> * Model version              : 1.184</span></td></tr>
+<td><a id="l10" class='ln'>10</a></td><td><span class="ct"> * Model version              : 1.185</span></td></tr>
 <tr name="11" id="11">
 <td><a id="l11" class='ln'>11</a></td><td><span class="ct"> * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017</span></td></tr>
 <tr name="12" id="12">
-<td><a id="l12" class='ln'>12</a></td><td><span class="ct"> * C++ source code generated on : Sat Nov 17 11:17:43 2018</span></td></tr>
+<td><a id="l12" class='ln'>12</a></td><td><span class="ct"> * C++ source code generated on : Sat Nov 17 12:19:06 2018</span></td></tr>
 <tr name="13" id="13">
 <td><a id="l13" class='ln'>13</a></td><td><span class="ct"> *</span></td></tr>
 <tr name="14" id="14">
@@ -285,461 +285,465 @@
 <tr name="137" id="137">
 <td><a id="l137" class='ln'>137</a></td><td>    <span class="ct">/* BusAssignment: '&lt;S1&gt;/Bus Assignment' incorporates:</span></td></tr>
 <tr name="138" id="138">
-<td><a id="l138" class='ln'>138</a></td><td><span class="ct">     *  Constant: '&lt;S5&gt;/Constant'</span></td></tr>
+<td><a id="l138" class='ln'>138</a></td><td><span class="ct">     *  Constant: '&lt;S1&gt;/Constant'</span></td></tr>
 <tr name="139" id="139">
-<td><a id="l139" class='ln'>139</a></td><td><span class="ct">     *  Gain: '&lt;S1&gt;/Gain'</span></td></tr>
+<td><a id="l139" class='ln'>139</a></td><td><span class="ct">     *  Constant: '&lt;S5&gt;/Constant'</span></td></tr>
 <tr name="140" id="140">
-<td><a id="l140" class='ln'>140</a></td><td><span class="ct">     *  Sum: '&lt;S1&gt;/Subtract'</span></td></tr>
+<td><a id="l140" class='ln'>140</a></td><td><span class="ct">     *  Gain: '&lt;S1&gt;/Gain'</span></td></tr>
 <tr name="141" id="141">
-<td><a id="l141" class='ln'>141</a></td><td><span class="ct">     */</span></td></tr>
+<td><a id="l141" class='ln'>141</a></td><td><span class="ct">     *  Sum: '&lt;S1&gt;/Subtract'</span></td></tr>
 <tr name="142" id="142">
-<td><a id="l142" class='ln'>142</a></td><td>    <a id="142c5" class="tk">rtb_BusAssignment</a> = <a id="142c25" class="tk">DOB_ros_P</a>.<a id="142c35" class="tk">Constant_Value_j</a>;</td></tr>
+<td><a id="l142" class='ln'>142</a></td><td><span class="ct">     */</span></td></tr>
 <tr name="143" id="143">
-<td><a id="l143" class='ln'>143</a></td><td>    <a id="143c5" class="tk">rtb_BusAssignment</a>.<a id="143c23" class="tk">SteeringWheelAngleCmd</a> = <a id="143c47" class="tk">rtb_Sum4</a>;</td></tr>
+<td><a id="l143" class='ln'>143</a></td><td>    <a id="143c5" class="tk">rtb_BusAssignment</a> = <a id="143c25" class="tk">DOB_ros_P</a>.<a id="143c35" class="tk">Constant_Value_j</a>;</td></tr>
 <tr name="144" id="144">
-<td><a id="l144" class='ln'>144</a></td><td>    <a id="144c5" class="tk">rtb_BusAssignment</a>.<a id="144c23" class="tk">SteeringWheelAngleVelocity</a> = 1.0F <a id="144c57" class="tk">/</a></td></tr>
+<td><a id="l144" class='ln'>144</a></td><td>    <a id="144c5" class="tk">rtb_BusAssignment</a>.<a id="144c23" class="tk">SteeringWheelAngleCmd</a> = <a id="144c47" class="tk">rtb_Sum4</a>;</td></tr>
 <tr name="145" id="145">
-<td><a id="l145" class='ln'>145</a></td><td>      <a id="145c7" class="tk">DOB_ros_P</a>.<a id="145c17" class="tk">dt_ros_single</a> <a id="145c31" class="tk">*</a> (<a id="145c34" class="tk">rtb_Sum4</a> <a id="145c43" class="tk">-</a> <a id="145c45" class="tk">DOB_ros_B</a>.<a id="145c55" class="tk">In1</a>.<a id="145c59" class="tk">SteeringWheelAngle</a>);</td></tr>
+<td><a id="l145" class='ln'>145</a></td><td>    <a id="145c5" class="tk">rtb_BusAssignment</a>.<a id="145c23" class="tk">SteeringWheelAngleVelocity</a> = 1.0F <a id="145c57" class="tk">/</a></td></tr>
 <tr name="146" id="146">
-<td><a id="l146" class='ln'>146</a></td><td></td></tr>
+<td><a id="l146" class='ln'>146</a></td><td>      <a id="146c7" class="tk">DOB_ros_P</a>.<a id="146c17" class="tk">dt_ros_single</a> <a id="146c31" class="tk">*</a> (<a id="146c34" class="tk">rtb_Sum4</a> <a id="146c43" class="tk">-</a> <a id="146c45" class="tk">DOB_ros_B</a>.<a id="146c55" class="tk">In1</a>.<a id="146c59" class="tk">SteeringWheelAngle</a>);</td></tr>
 <tr name="147" id="147">
-<td><a id="l147" class='ln'>147</a></td><td>    <span class="ct">/* Outputs for Atomic SubSystem: '&lt;S1&gt;/Publish' */</span></td></tr>
+<td><a id="l147" class='ln'>147</a></td><td>    <a id="147c5" class="tk">rtb_BusAssignment</a>.<a id="147c23" class="tk">Enable</a> = <a id="147c32" class="tk">DOB_ros_P</a>.<a id="147c42" class="tk">Constant_Value_ij</a>;</td></tr>
 <tr name="148" id="148">
-<td><a id="l148" class='ln'>148</a></td><td>    <span class="ct">/* Start for MATLABSystem: '&lt;S6&gt;/SinkBlock' */</span></td></tr>
+<td><a id="l148" class='ln'>148</a></td><td></td></tr>
 <tr name="149" id="149">
-<td><a id="l149" class='ln'>149</a></td><td>    <a id="149c5" class="tk">Pub_DOB_ros_152</a>.<a id="149c21" class="tk">publish</a>(<a id="149c29" class="tk">&amp;</a><a id="149c30" class="tk">rtb_BusAssignment</a>);</td></tr>
+<td><a id="l149" class='ln'>149</a></td><td>    <span class="ct">/* Outputs for Atomic SubSystem: '&lt;S1&gt;/Publish' */</span></td></tr>
 <tr name="150" id="150">
-<td><a id="l150" class='ln'>150</a></td><td></td></tr>
+<td><a id="l150" class='ln'>150</a></td><td>    <span class="ct">/* Start for MATLABSystem: '&lt;S6&gt;/SinkBlock' */</span></td></tr>
 <tr name="151" id="151">
-<td><a id="l151" class='ln'>151</a></td><td>    <span class="ct">/* End of Outputs for SubSystem: '&lt;S1&gt;/Publish' */</span></td></tr>
+<td><a id="l151" class='ln'>151</a></td><td>    <a id="151c5" class="tk">Pub_DOB_ros_152</a>.<a id="151c21" class="tk">publish</a>(<a id="151c29" class="tk">&amp;</a><a id="151c30" class="tk">rtb_BusAssignment</a>);</td></tr>
 <tr name="152" id="152">
 <td><a id="l152" class='ln'>152</a></td><td></td></tr>
 <tr name="153" id="153">
-<td><a id="l153" class='ln'>153</a></td><td>    <span class="ct">/* Outputs for Atomic SubSystem: '&lt;S4&gt;/Publish' */</span></td></tr>
+<td><a id="l153" class='ln'>153</a></td><td>    <span class="ct">/* End of Outputs for SubSystem: '&lt;S1&gt;/Publish' */</span></td></tr>
 <tr name="154" id="154">
-<td><a id="l154" class='ln'>154</a></td><td>    <span class="ct">/* Start for MATLABSystem: '&lt;S10&gt;/SinkBlock' incorporates:</span></td></tr>
+<td><a id="l154" class='ln'>154</a></td><td></td></tr>
 <tr name="155" id="155">
-<td><a id="l155" class='ln'>155</a></td><td><span class="ct">     *  BusAssignment: '&lt;S4&gt;/Bus Assignment'</span></td></tr>
+<td><a id="l155" class='ln'>155</a></td><td>    <span class="ct">/* Outputs for Atomic SubSystem: '&lt;S4&gt;/Publish' */</span></td></tr>
 <tr name="156" id="156">
-<td><a id="l156" class='ln'>156</a></td><td><span class="ct">     */</span></td></tr>
+<td><a id="l156" class='ln'>156</a></td><td>    <span class="ct">/* Start for MATLABSystem: '&lt;S10&gt;/SinkBlock' incorporates:</span></td></tr>
 <tr name="157" id="157">
-<td><a id="l157" class='ln'>157</a></td><td>    <a id="157c5" class="tk">Pub_DOB_ros_158</a>.<a id="157c21" class="tk">publish</a>(<a id="157c29" class="tk">&amp;</a><a id="157c30" class="tk">DOB_ros_B</a>.<a id="157c40" class="tk">In1_i</a>);</td></tr>
+<td><a id="l157" class='ln'>157</a></td><td><span class="ct">     *  BusAssignment: '&lt;S4&gt;/Bus Assignment'</span></td></tr>
 <tr name="158" id="158">
-<td><a id="l158" class='ln'>158</a></td><td></td></tr>
+<td><a id="l158" class='ln'>158</a></td><td><span class="ct">     */</span></td></tr>
 <tr name="159" id="159">
-<td><a id="l159" class='ln'>159</a></td><td>    <span class="ct">/* End of Outputs for SubSystem: '&lt;S4&gt;/Publish' */</span></td></tr>
+<td><a id="l159" class='ln'>159</a></td><td>    <a id="159c5" class="tk">Pub_DOB_ros_158</a>.<a id="159c21" class="tk">publish</a>(<a id="159c29" class="tk">&amp;</a><a id="159c30" class="tk">DOB_ros_B</a>.<a id="159c40" class="tk">In1_i</a>);</td></tr>
 <tr name="160" id="160">
-<td><a id="l160" class='ln'>160</a></td><td>  <span class="br">}</span></td></tr>
+<td><a id="l160" class='ln'>160</a></td><td></td></tr>
 <tr name="161" id="161">
-<td><a id="l161" class='ln'>161</a></td><td></td></tr>
+<td><a id="l161" class='ln'>161</a></td><td>    <span class="ct">/* End of Outputs for SubSystem: '&lt;S4&gt;/Publish' */</span></td></tr>
 <tr name="162" id="162">
-<td><a id="l162" class='ln'>162</a></td><td>  <span class="ct">/* End of Outputs for SubSystem: '&lt;Root&gt;/Subscribe1' */</span></td></tr>
+<td><a id="l162" class='ln'>162</a></td><td>  <span class="br">}</span></td></tr>
 <tr name="163" id="163">
-<td><a id="l163" class='ln'>163</a></td><td>  <span class="ct">/* End of Outputs for SubSystem: '&lt;Root&gt;/Enabled Subsystem1' */</span></td></tr>
+<td><a id="l163" class='ln'>163</a></td><td></td></tr>
 <tr name="164" id="164">
-<td><a id="l164" class='ln'>164</a></td><td>  <span class="ct">/* End of Outputs for SubSystem: '&lt;Root&gt;/Tracking Received' */</span></td></tr>
+<td><a id="l164" class='ln'>164</a></td><td>  <span class="ct">/* End of Outputs for SubSystem: '&lt;Root&gt;/Subscribe1' */</span></td></tr>
 <tr name="165" id="165">
-<td><a id="l165" class='ln'>165</a></td><td></td></tr>
+<td><a id="l165" class='ln'>165</a></td><td>  <span class="ct">/* End of Outputs for SubSystem: '&lt;Root&gt;/Enabled Subsystem1' */</span></td></tr>
 <tr name="166" id="166">
-<td><a id="l166" class='ln'>166</a></td><td>  <span class="ct">/* Update for DiscreteTransferFcn: '&lt;Root&gt;/D1' */</span></td></tr>
+<td><a id="l166" class='ln'>166</a></td><td>  <span class="ct">/* End of Outputs for SubSystem: '&lt;Root&gt;/Tracking Received' */</span></td></tr>
 <tr name="167" id="167">
-<td><a id="l167" class='ln'>167</a></td><td>  <a id="167c3" class="tk">DOB_ros_DW</a>.<a id="167c14" class="tk">D1_states</a>[4] = <a id="167c29" class="tk">DOB_ros_DW</a>.<a id="167c40" class="tk">D1_states</a>[3];</td></tr>
+<td><a id="l167" class='ln'>167</a></td><td></td></tr>
 <tr name="168" id="168">
-<td><a id="l168" class='ln'>168</a></td><td>  <a id="168c3" class="tk">DOB_ros_DW</a>.<a id="168c14" class="tk">D1_states</a>[3] = <a id="168c29" class="tk">DOB_ros_DW</a>.<a id="168c40" class="tk">D1_states</a>[2];</td></tr>
+<td><a id="l168" class='ln'>168</a></td><td>  <span class="ct">/* Update for DiscreteTransferFcn: '&lt;Root&gt;/D1' */</span></td></tr>
 <tr name="169" id="169">
-<td><a id="l169" class='ln'>169</a></td><td>  <a id="169c3" class="tk">DOB_ros_DW</a>.<a id="169c14" class="tk">D1_states</a>[2] = <a id="169c29" class="tk">DOB_ros_DW</a>.<a id="169c40" class="tk">D1_states</a>[1];</td></tr>
+<td><a id="l169" class='ln'>169</a></td><td>  <a id="169c3" class="tk">DOB_ros_DW</a>.<a id="169c14" class="tk">D1_states</a>[4] = <a id="169c29" class="tk">DOB_ros_DW</a>.<a id="169c40" class="tk">D1_states</a>[3];</td></tr>
 <tr name="170" id="170">
-<td><a id="l170" class='ln'>170</a></td><td>  <a id="170c3" class="tk">DOB_ros_DW</a>.<a id="170c14" class="tk">D1_states</a>[1] = <a id="170c29" class="tk">DOB_ros_DW</a>.<a id="170c40" class="tk">D1_states</a>[0];</td></tr>
+<td><a id="l170" class='ln'>170</a></td><td>  <a id="170c3" class="tk">DOB_ros_DW</a>.<a id="170c14" class="tk">D1_states</a>[3] = <a id="170c29" class="tk">DOB_ros_DW</a>.<a id="170c40" class="tk">D1_states</a>[2];</td></tr>
 <tr name="171" id="171">
-<td><a id="l171" class='ln'>171</a></td><td>  <a id="171c3" class="tk">DOB_ros_DW</a>.<a id="171c14" class="tk">D1_states</a>[0] = <a id="171c29" class="tk">D1_tmp</a>;</td></tr>
+<td><a id="l171" class='ln'>171</a></td><td>  <a id="171c3" class="tk">DOB_ros_DW</a>.<a id="171c14" class="tk">D1_states</a>[2] = <a id="171c29" class="tk">DOB_ros_DW</a>.<a id="171c40" class="tk">D1_states</a>[1];</td></tr>
 <tr name="172" id="172">
-<td><a id="l172" class='ln'>172</a></td><td></td></tr>
+<td><a id="l172" class='ln'>172</a></td><td>  <a id="172c3" class="tk">DOB_ros_DW</a>.<a id="172c14" class="tk">D1_states</a>[1] = <a id="172c29" class="tk">DOB_ros_DW</a>.<a id="172c40" class="tk">D1_states</a>[0];</td></tr>
 <tr name="173" id="173">
-<td><a id="l173" class='ln'>173</a></td><td>  <span class="ct">/* Update for Delay: '&lt;Root&gt;/Delay1' */</span></td></tr>
+<td><a id="l173" class='ln'>173</a></td><td>  <a id="173c3" class="tk">DOB_ros_DW</a>.<a id="173c14" class="tk">D1_states</a>[0] = <a id="173c29" class="tk">D1_tmp</a>;</td></tr>
 <tr name="174" id="174">
-<td><a id="l174" class='ln'>174</a></td><td>  <a id="174c3" class="tk">DOB_ros_DW</a>.<a id="174c14" class="tk">Delay1_DSTATE</a>[0] = <a id="174c33" class="tk">DOB_ros_DW</a>.<a id="174c44" class="tk">Delay1_DSTATE</a>[1];</td></tr>
+<td><a id="l174" class='ln'>174</a></td><td></td></tr>
 <tr name="175" id="175">
-<td><a id="l175" class='ln'>175</a></td><td>  <a id="175c3" class="tk">DOB_ros_DW</a>.<a id="175c14" class="tk">Delay1_DSTATE</a>[1] = <a id="175c33" class="tk">rtb_Sum3</a>;</td></tr>
+<td><a id="l175" class='ln'>175</a></td><td>  <span class="ct">/* Update for Delay: '&lt;Root&gt;/Delay1' */</span></td></tr>
 <tr name="176" id="176">
-<td><a id="l176" class='ln'>176</a></td><td></td></tr>
+<td><a id="l176" class='ln'>176</a></td><td>  <a id="176c3" class="tk">DOB_ros_DW</a>.<a id="176c14" class="tk">Delay1_DSTATE</a>[0] = <a id="176c33" class="tk">DOB_ros_DW</a>.<a id="176c44" class="tk">Delay1_DSTATE</a>[1];</td></tr>
 <tr name="177" id="177">
-<td><a id="l177" class='ln'>177</a></td><td>  <span class="ct">/* Update for DiscreteTransferFcn: '&lt;Root&gt;/Q1' */</span></td></tr>
+<td><a id="l177" class='ln'>177</a></td><td>  <a id="177c3" class="tk">DOB_ros_DW</a>.<a id="177c14" class="tk">Delay1_DSTATE</a>[1] = <a id="177c33" class="tk">rtb_Sum3</a>;</td></tr>
 <tr name="178" id="178">
-<td><a id="l178" class='ln'>178</a></td><td>  <a id="178c3" class="tk">DOB_ros_DW</a>.<a id="178c14" class="tk">Q1_states</a>[1] = <a id="178c29" class="tk">DOB_ros_DW</a>.<a id="178c40" class="tk">Q1_states</a>[0];</td></tr>
+<td><a id="l178" class='ln'>178</a></td><td></td></tr>
 <tr name="179" id="179">
-<td><a id="l179" class='ln'>179</a></td><td>  <a id="179c3" class="tk">DOB_ros_DW</a>.<a id="179c14" class="tk">Q1_states</a>[0] = <a id="179c29" class="tk">rtb_Q1</a>;</td></tr>
+<td><a id="l179" class='ln'>179</a></td><td>  <span class="ct">/* Update for DiscreteTransferFcn: '&lt;Root&gt;/Q1' */</span></td></tr>
 <tr name="180" id="180">
-<td><a id="l180" class='ln'>180</a></td><td><span class="br">}</span></td></tr>
+<td><a id="l180" class='ln'>180</a></td><td>  <a id="180c3" class="tk">DOB_ros_DW</a>.<a id="180c14" class="tk">Q1_states</a>[1] = <a id="180c29" class="tk">DOB_ros_DW</a>.<a id="180c40" class="tk">Q1_states</a>[0];</td></tr>
 <tr name="181" id="181">
-<td><a id="l181" class='ln'>181</a></td><td></td></tr>
+<td><a id="l181" class='ln'>181</a></td><td>  <a id="181c3" class="tk">DOB_ros_DW</a>.<a id="181c14" class="tk">Q1_states</a>[0] = <a id="181c29" class="tk">rtb_Q1</a>;</td></tr>
 <tr name="182" id="182">
-<td><a id="l182" class='ln'>182</a></td><td><span class="ct">/* Model initialize function */</span></td></tr>
+<td><a id="l182" class='ln'>182</a></td><td><span class="br">}</span></td></tr>
 <tr name="183" id="183">
-<td><a id="l183" class='ln'>183</a></td><td><span class="kw">void</span> <a id="183c6" class="tk">DOB_ros_initialize</a>(<span class="kw">void</span>)</td></tr>
+<td><a id="l183" class='ln'>183</a></td><td></td></tr>
 <tr name="184" id="184">
-<td><a id="l184" class='ln'>184</a></td><td><span class="br">{</span></td></tr>
+<td><a id="l184" class='ln'>184</a></td><td><span class="ct">/* Model initialize function */</span></td></tr>
 <tr name="185" id="185">
-<td><a id="l185" class='ln'>185</a></td><td>  <span class="ct">/* Registration code */</span></td></tr>
+<td><a id="l185" class='ln'>185</a></td><td><span class="kw">void</span> <a id="185c6" class="tk">DOB_ros_initialize</a>(<span class="kw">void</span>)</td></tr>
 <tr name="186" id="186">
-<td><a id="l186" class='ln'>186</a></td><td></td></tr>
+<td><a id="l186" class='ln'>186</a></td><td><span class="br">{</span></td></tr>
 <tr name="187" id="187">
-<td><a id="l187" class='ln'>187</a></td><td>  <span class="ct">/* initialize error status */</span></td></tr>
+<td><a id="l187" class='ln'>187</a></td><td>  <span class="ct">/* Registration code */</span></td></tr>
 <tr name="188" id="188">
-<td><a id="l188" class='ln'>188</a></td><td>  <a id="188c3" class="tk">rtmSetErrorStatus</a>(<a id="188c21" class="tk">DOB_ros_M</a>, (<a id="188c33" class="tk">NULL</a>));</td></tr>
+<td><a id="l188" class='ln'>188</a></td><td></td></tr>
 <tr name="189" id="189">
-<td><a id="l189" class='ln'>189</a></td><td></td></tr>
+<td><a id="l189" class='ln'>189</a></td><td>  <span class="ct">/* initialize error status */</span></td></tr>
 <tr name="190" id="190">
-<td><a id="l190" class='ln'>190</a></td><td>  <span class="ct">/* block I/O */</span></td></tr>
+<td><a id="l190" class='ln'>190</a></td><td>  <a id="190c3" class="tk">rtmSetErrorStatus</a>(<a id="190c21" class="tk">DOB_ros_M</a>, (<a id="190c33" class="tk">NULL</a>));</td></tr>
 <tr name="191" id="191">
-<td><a id="l191" class='ln'>191</a></td><td>  (<span class="kw">void</span>) <a id="191c10" class="tk">memset</a>(((<span class="kw">void</span> <a id="191c24" class="tk">*</a>) <a id="191c27" class="tk">&amp;</a><a id="191c28" class="tk">DOB_ros_B</a>), 0,</td></tr>
+<td><a id="l191" class='ln'>191</a></td><td></td></tr>
 <tr name="192" id="192">
-<td><a id="l192" class='ln'>192</a></td><td>                <span class="kw">sizeof</span>(<a id="192c24" class="tk">B_DOB_ros_T</a>));</td></tr>
+<td><a id="l192" class='ln'>192</a></td><td>  <span class="ct">/* block I/O */</span></td></tr>
 <tr name="193" id="193">
-<td><a id="l193" class='ln'>193</a></td><td></td></tr>
+<td><a id="l193" class='ln'>193</a></td><td>  (<span class="kw">void</span>) <a id="193c10" class="tk">memset</a>(((<span class="kw">void</span> <a id="193c24" class="tk">*</a>) <a id="193c27" class="tk">&amp;</a><a id="193c28" class="tk">DOB_ros_B</a>), 0,</td></tr>
 <tr name="194" id="194">
-<td><a id="l194" class='ln'>194</a></td><td>  <span class="ct">/* states (dwork) */</span></td></tr>
+<td><a id="l194" class='ln'>194</a></td><td>                <span class="kw">sizeof</span>(<a id="194c24" class="tk">B_DOB_ros_T</a>));</td></tr>
 <tr name="195" id="195">
-<td><a id="l195" class='ln'>195</a></td><td>  (<span class="kw">void</span>) <a id="195c10" class="tk">memset</a>((<span class="kw">void</span> <a id="195c23" class="tk">*</a>)<a id="195c25" class="tk">&amp;</a><a id="195c26" class="tk">DOB_ros_DW</a>, 0,</td></tr>
+<td><a id="l195" class='ln'>195</a></td><td></td></tr>
 <tr name="196" id="196">
-<td><a id="l196" class='ln'>196</a></td><td>                <span class="kw">sizeof</span>(<a id="196c24" class="tk">DW_DOB_ros_T</a>));</td></tr>
+<td><a id="l196" class='ln'>196</a></td><td>  <span class="ct">/* states (dwork) */</span></td></tr>
 <tr name="197" id="197">
-<td><a id="l197" class='ln'>197</a></td><td></td></tr>
+<td><a id="l197" class='ln'>197</a></td><td>  (<span class="kw">void</span>) <a id="197c10" class="tk">memset</a>((<span class="kw">void</span> <a id="197c23" class="tk">*</a>)<a id="197c25" class="tk">&amp;</a><a id="197c26" class="tk">DOB_ros_DW</a>, 0,</td></tr>
 <tr name="198" id="198">
-<td><a id="l198" class='ln'>198</a></td><td>  <span class="br">{</span></td></tr>
+<td><a id="l198" class='ln'>198</a></td><td>                <span class="kw">sizeof</span>(<a id="198c24" class="tk">DW_DOB_ros_T</a>));</td></tr>
 <tr name="199" id="199">
-<td><a id="l199" class='ln'>199</a></td><td>    <span class="kw">static</span> <span class="kw">const</span> <a id="199c18" class="tk">char_T</a> <a id="199c25" class="tk">tmp</a>[24] = <span class="br">{</span> '/', 't', 'r', 'a', 'c', 'k', 'i', 'n', 'g',</td></tr>
+<td><a id="l199" class='ln'>199</a></td><td></td></tr>
 <tr name="200" id="200">
-<td><a id="l200" class='ln'>200</a></td><td>      '_', 'e', 'r', 'r', 'o', 'r', '_', 'r', 'e', 'c', 'e', 'i', 'v', 'e', 'd'</td></tr>
+<td><a id="l200" class='ln'>200</a></td><td>  <span class="br">{</span></td></tr>
 <tr name="201" id="201">
-<td><a id="l201" class='ln'>201</a></td><td>    <span class="br">}</span>;</td></tr>
+<td><a id="l201" class='ln'>201</a></td><td>    <span class="kw">static</span> <span class="kw">const</span> <a id="201c18" class="tk">char_T</a> <a id="201c25" class="tk">tmp</a>[24] = <span class="br">{</span> '/', 't', 'r', 'a', 'c', 'k', 'i', 'n', 'g',</td></tr>
 <tr name="202" id="202">
-<td><a id="l202" class='ln'>202</a></td><td></td></tr>
+<td><a id="l202" class='ln'>202</a></td><td>      '_', 'e', 'r', 'r', 'o', 'r', '_', 'r', 'e', 'c', 'e', 'i', 'v', 'e', 'd'</td></tr>
 <tr name="203" id="203">
-<td><a id="l203" class='ln'>203</a></td><td>    <span class="kw">static</span> <span class="kw">const</span> <a id="203c18" class="tk">char_T</a> <a id="203c25" class="tk">tmp_0</a>[21] = <span class="br">{</span> '/', 'v', 'e', 'h', 'i', 'c', 'l', 'e',</td></tr>
+<td><a id="l203" class='ln'>203</a></td><td>    <span class="br">}</span>;</td></tr>
 <tr name="204" id="204">
-<td><a id="l204" class='ln'>204</a></td><td>      '/', 's', 't', 'e', 'e', 'r', 'i', 'n', 'g', '_', 'c', 'm', 'd' <span class="br">}</span>;</td></tr>
+<td><a id="l204" class='ln'>204</a></td><td></td></tr>
 <tr name="205" id="205">
-<td><a id="l205" class='ln'>205</a></td><td></td></tr>
+<td><a id="l205" class='ln'>205</a></td><td>    <span class="kw">static</span> <span class="kw">const</span> <a id="205c18" class="tk">char_T</a> <a id="205c25" class="tk">tmp_0</a>[21] = <span class="br">{</span> '/', 'v', 'e', 'h', 'i', 'c', 'l', 'e',</td></tr>
 <tr name="206" id="206">
-<td><a id="l206" class='ln'>206</a></td><td>    <span class="kw">static</span> <span class="kw">const</span> <a id="206c18" class="tk">char_T</a> <a id="206c25" class="tk">tmp_1</a>[24] = <span class="br">{</span> '/', 'v', 'e', 'h', 'i', 'c', 'l', 'e',</td></tr>
+<td><a id="l206" class='ln'>206</a></td><td>      '/', 's', 't', 'e', 'e', 'r', 'i', 'n', 'g', '_', 'c', 'm', 'd' <span class="br">}</span>;</td></tr>
 <tr name="207" id="207">
-<td><a id="l207" class='ln'>207</a></td><td>      '/', 's', 't', 'e', 'e', 'r', 'i', 'n', 'g', '_', 'r', 'e', 'p', 'o', 'r',</td></tr>
+<td><a id="l207" class='ln'>207</a></td><td></td></tr>
 <tr name="208" id="208">
-<td><a id="l208" class='ln'>208</a></td><td>      't' <span class="br">}</span>;</td></tr>
+<td><a id="l208" class='ln'>208</a></td><td>    <span class="kw">static</span> <span class="kw">const</span> <a id="208c18" class="tk">char_T</a> <a id="208c25" class="tk">tmp_1</a>[24] = <span class="br">{</span> '/', 'v', 'e', 'h', 'i', 'c', 'l', 'e',</td></tr>
 <tr name="209" id="209">
-<td><a id="l209" class='ln'>209</a></td><td></td></tr>
+<td><a id="l209" class='ln'>209</a></td><td>      '/', 's', 't', 'e', 'e', 'r', 'i', 'n', 'g', '_', 'r', 'e', 'p', 'o', 'r',</td></tr>
 <tr name="210" id="210">
-<td><a id="l210" class='ln'>210</a></td><td>    <span class="kw">static</span> <span class="kw">const</span> <a id="210c18" class="tk">char_T</a> <a id="210c25" class="tk">tmp_2</a>[14] = <span class="br">{</span> '/', 't', 'r', 'a', 'c', 'k', 'i', 'n',</td></tr>
+<td><a id="l210" class='ln'>210</a></td><td>      't' <span class="br">}</span>;</td></tr>
 <tr name="211" id="211">
-<td><a id="l211" class='ln'>211</a></td><td>      'g', '_', 'i', 'n', 'f', 'o' <span class="br">}</span>;</td></tr>
+<td><a id="l211" class='ln'>211</a></td><td></td></tr>
 <tr name="212" id="212">
-<td><a id="l212" class='ln'>212</a></td><td></td></tr>
+<td><a id="l212" class='ln'>212</a></td><td>    <span class="kw">static</span> <span class="kw">const</span> <a id="212c18" class="tk">char_T</a> <a id="212c25" class="tk">tmp_2</a>[14] = <span class="br">{</span> '/', 't', 'r', 'a', 'c', 'k', 'i', 'n',</td></tr>
 <tr name="213" id="213">
-<td><a id="l213" class='ln'>213</a></td><td>    <a id="213c5" class="tk">char_T</a> <a id="213c12" class="tk">tmp_3</a>[22];</td></tr>
+<td><a id="l213" class='ln'>213</a></td><td>      'g', '_', 'i', 'n', 'f', 'o' <span class="br">}</span>;</td></tr>
 <tr name="214" id="214">
-<td><a id="l214" class='ln'>214</a></td><td>    <a id="214c5" class="tk">char_T</a> <a id="214c12" class="tk">tmp_4</a>[15];</td></tr>
+<td><a id="l214" class='ln'>214</a></td><td></td></tr>
 <tr name="215" id="215">
-<td><a id="l215" class='ln'>215</a></td><td>    <a id="215c5" class="tk">int32_T</a> <a id="215c13" class="tk">i</a>;</td></tr>
+<td><a id="l215" class='ln'>215</a></td><td>    <a id="215c5" class="tk">char_T</a> <a id="215c12" class="tk">tmp_3</a>[22];</td></tr>
 <tr name="216" id="216">
-<td><a id="l216" class='ln'>216</a></td><td></td></tr>
+<td><a id="l216" class='ln'>216</a></td><td>    <a id="216c5" class="tk">char_T</a> <a id="216c12" class="tk">tmp_4</a>[15];</td></tr>
 <tr name="217" id="217">
-<td><a id="l217" class='ln'>217</a></td><td>    <span class="ct">/* Start for Atomic SubSystem: '&lt;Root&gt;/Subscribe1' */</span></td></tr>
+<td><a id="l217" class='ln'>217</a></td><td>    <a id="217c5" class="tk">int32_T</a> <a id="217c13" class="tk">i</a>;</td></tr>
 <tr name="218" id="218">
-<td><a id="l218" class='ln'>218</a></td><td>    <span class="ct">/* Start for MATLABSystem: '&lt;S3&gt;/SourceBlock' */</span></td></tr>
+<td><a id="l218" class='ln'>218</a></td><td></td></tr>
 <tr name="219" id="219">
-<td><a id="l219" class='ln'>219</a></td><td>    <a id="219c5" class="tk">DOB_ros_DW</a>.<a id="219c16" class="tk">obj_a</a>.<a id="219c22" class="tk">isInitialized</a> = 0;</td></tr>
+<td><a id="l219" class='ln'>219</a></td><td>    <span class="ct">/* Start for Atomic SubSystem: '&lt;Root&gt;/Subscribe1' */</span></td></tr>
 <tr name="220" id="220">
-<td><a id="l220" class='ln'>220</a></td><td>    <a id="220c5" class="tk">DOB_ros_DW</a>.<a id="220c16" class="tk">objisempty_d</a> = true;</td></tr>
+<td><a id="l220" class='ln'>220</a></td><td>    <span class="ct">/* Start for MATLABSystem: '&lt;S3&gt;/SourceBlock' */</span></td></tr>
 <tr name="221" id="221">
-<td><a id="l221" class='ln'>221</a></td><td>    <a id="221c5" class="tk">DOB_ros_DW</a>.<a id="221c16" class="tk">obj_a</a>.<a id="221c22" class="tk">isInitialized</a> = 1;</td></tr>
+<td><a id="l221" class='ln'>221</a></td><td>    <a id="221c5" class="tk">DOB_ros_DW</a>.<a id="221c16" class="tk">obj_a</a>.<a id="221c22" class="tk">isInitialized</a> = 0;</td></tr>
 <tr name="222" id="222">
-<td><a id="l222" class='ln'>222</a></td><td>    <span class="kw">for</span> (<a id="222c10" class="tk">i</a> = 0; <a id="222c17" class="tk">i</a> <a id="222c19" class="tk">&lt;</a> 14; <a id="222c25" class="tk">i</a><a id="222c26" class="tk">++</a>) <span class="br">{</span></td></tr>
+<td><a id="l222" class='ln'>222</a></td><td>    <a id="222c5" class="tk">DOB_ros_DW</a>.<a id="222c16" class="tk">objisempty_d</a> = true;</td></tr>
 <tr name="223" id="223">
-<td><a id="l223" class='ln'>223</a></td><td>      <a id="223c7" class="tk">tmp_4</a>[<a id="223c13" class="tk">i</a>] = <a id="223c18" class="tk">tmp_2</a>[<a id="223c24" class="tk">i</a>];</td></tr>
+<td><a id="l223" class='ln'>223</a></td><td>    <a id="223c5" class="tk">DOB_ros_DW</a>.<a id="223c16" class="tk">obj_a</a>.<a id="223c22" class="tk">isInitialized</a> = 1;</td></tr>
 <tr name="224" id="224">
-<td><a id="l224" class='ln'>224</a></td><td>    <span class="br">}</span></td></tr>
+<td><a id="l224" class='ln'>224</a></td><td>    <span class="kw">for</span> (<a id="224c10" class="tk">i</a> = 0; <a id="224c17" class="tk">i</a> <a id="224c19" class="tk">&lt;</a> 14; <a id="224c25" class="tk">i</a><a id="224c26" class="tk">++</a>) <span class="br">{</span></td></tr>
 <tr name="225" id="225">
-<td><a id="l225" class='ln'>225</a></td><td></td></tr>
+<td><a id="l225" class='ln'>225</a></td><td>      <a id="225c7" class="tk">tmp_4</a>[<a id="225c13" class="tk">i</a>] = <a id="225c18" class="tk">tmp_2</a>[<a id="225c24" class="tk">i</a>];</td></tr>
 <tr name="226" id="226">
-<td><a id="l226" class='ln'>226</a></td><td>    <a id="226c5" class="tk">tmp_4</a>[14] = '\x00';</td></tr>
+<td><a id="l226" class='ln'>226</a></td><td>    <span class="br">}</span></td></tr>
 <tr name="227" id="227">
-<td><a id="l227" class='ln'>227</a></td><td>    <a id="227c5" class="tk">Sub_DOB_ros_174</a>.<a id="227c21" class="tk">createSubscriber</a>(<a id="227c38" class="tk">tmp_4</a>, <a id="227c45" class="tk">DOB_ros_MessageQueueLen</a>);</td></tr>
+<td><a id="l227" class='ln'>227</a></td><td></td></tr>
 <tr name="228" id="228">
-<td><a id="l228" class='ln'>228</a></td><td></td></tr>
+<td><a id="l228" class='ln'>228</a></td><td>    <a id="228c5" class="tk">tmp_4</a>[14] = '\x00';</td></tr>
 <tr name="229" id="229">
-<td><a id="l229" class='ln'>229</a></td><td>    <span class="ct">/* End of Start for MATLABSystem: '&lt;S3&gt;/SourceBlock' */</span></td></tr>
+<td><a id="l229" class='ln'>229</a></td><td>    <a id="229c5" class="tk">Sub_DOB_ros_174</a>.<a id="229c21" class="tk">createSubscriber</a>(<a id="229c38" class="tk">tmp_4</a>, <a id="229c45" class="tk">DOB_ros_MessageQueueLen</a>);</td></tr>
 <tr name="230" id="230">
-<td><a id="l230" class='ln'>230</a></td><td>    <span class="ct">/* End of Start for SubSystem: '&lt;Root&gt;/Subscribe1' */</span></td></tr>
+<td><a id="l230" class='ln'>230</a></td><td></td></tr>
 <tr name="231" id="231">
-<td><a id="l231" class='ln'>231</a></td><td></td></tr>
+<td><a id="l231" class='ln'>231</a></td><td>    <span class="ct">/* End of Start for MATLABSystem: '&lt;S3&gt;/SourceBlock' */</span></td></tr>
 <tr name="232" id="232">
-<td><a id="l232" class='ln'>232</a></td><td>    <span class="ct">/* Start for Atomic SubSystem: '&lt;Root&gt;/Subscribe' */</span></td></tr>
+<td><a id="l232" class='ln'>232</a></td><td>    <span class="ct">/* End of Start for SubSystem: '&lt;Root&gt;/Subscribe1' */</span></td></tr>
 <tr name="233" id="233">
-<td><a id="l233" class='ln'>233</a></td><td>    <span class="ct">/* Start for MATLABSystem: '&lt;S2&gt;/SourceBlock' */</span></td></tr>
+<td><a id="l233" class='ln'>233</a></td><td></td></tr>
 <tr name="234" id="234">
-<td><a id="l234" class='ln'>234</a></td><td>    <a id="234c5" class="tk">DOB_ros_DW</a>.<a id="234c16" class="tk">obj_ax</a>.<a id="234c23" class="tk">isInitialized</a> = 0;</td></tr>
+<td><a id="l234" class='ln'>234</a></td><td>    <span class="ct">/* Start for Atomic SubSystem: '&lt;Root&gt;/Subscribe' */</span></td></tr>
 <tr name="235" id="235">
-<td><a id="l235" class='ln'>235</a></td><td>    <a id="235c5" class="tk">DOB_ros_DW</a>.<a id="235c16" class="tk">objisempty_n</a> = true;</td></tr>
+<td><a id="l235" class='ln'>235</a></td><td>    <span class="ct">/* Start for MATLABSystem: '&lt;S2&gt;/SourceBlock' */</span></td></tr>
 <tr name="236" id="236">
-<td><a id="l236" class='ln'>236</a></td><td>    <a id="236c5" class="tk">DOB_ros_DW</a>.<a id="236c16" class="tk">obj_ax</a>.<a id="236c23" class="tk">isInitialized</a> = 1;</td></tr>
+<td><a id="l236" class='ln'>236</a></td><td>    <a id="236c5" class="tk">DOB_ros_DW</a>.<a id="236c16" class="tk">obj_ax</a>.<a id="236c23" class="tk">isInitialized</a> = 0;</td></tr>
 <tr name="237" id="237">
-<td><a id="l237" class='ln'>237</a></td><td>    <span class="kw">for</span> (<a id="237c10" class="tk">i</a> = 0; <a id="237c17" class="tk">i</a> <a id="237c19" class="tk">&lt;</a> 24; <a id="237c25" class="tk">i</a><a id="237c26" class="tk">++</a>) <span class="br">{</span></td></tr>
+<td><a id="l237" class='ln'>237</a></td><td>    <a id="237c5" class="tk">DOB_ros_DW</a>.<a id="237c16" class="tk">objisempty_n</a> = true;</td></tr>
 <tr name="238" id="238">
-<td><a id="l238" class='ln'>238</a></td><td>      <a id="238c7" class="tk">DOB_ros_B</a>.<a id="238c17" class="tk">cv0</a>[<a id="238c21" class="tk">i</a>] = <a id="238c26" class="tk">tmp_1</a>[<a id="238c32" class="tk">i</a>];</td></tr>
+<td><a id="l238" class='ln'>238</a></td><td>    <a id="238c5" class="tk">DOB_ros_DW</a>.<a id="238c16" class="tk">obj_ax</a>.<a id="238c23" class="tk">isInitialized</a> = 1;</td></tr>
 <tr name="239" id="239">
-<td><a id="l239" class='ln'>239</a></td><td>    <span class="br">}</span></td></tr>
+<td><a id="l239" class='ln'>239</a></td><td>    <span class="kw">for</span> (<a id="239c10" class="tk">i</a> = 0; <a id="239c17" class="tk">i</a> <a id="239c19" class="tk">&lt;</a> 24; <a id="239c25" class="tk">i</a><a id="239c26" class="tk">++</a>) <span class="br">{</span></td></tr>
 <tr name="240" id="240">
-<td><a id="l240" class='ln'>240</a></td><td></td></tr>
+<td><a id="l240" class='ln'>240</a></td><td>      <a id="240c7" class="tk">DOB_ros_B</a>.<a id="240c17" class="tk">cv0</a>[<a id="240c21" class="tk">i</a>] = <a id="240c26" class="tk">tmp_1</a>[<a id="240c32" class="tk">i</a>];</td></tr>
 <tr name="241" id="241">
-<td><a id="l241" class='ln'>241</a></td><td>    <a id="241c5" class="tk">DOB_ros_B</a>.<a id="241c15" class="tk">cv0</a>[24] = '\x00';</td></tr>
+<td><a id="l241" class='ln'>241</a></td><td>    <span class="br">}</span></td></tr>
 <tr name="242" id="242">
-<td><a id="l242" class='ln'>242</a></td><td>    <a id="242c5" class="tk">Sub_DOB_ros_191</a>.<a id="242c21" class="tk">createSubscriber</a>(<a id="242c38" class="tk">DOB_ros_B</a>.<a id="242c48" class="tk">cv0</a>, <a id="242c53" class="tk">DOB_ros_MessageQueueLen</a>);</td></tr>
+<td><a id="l242" class='ln'>242</a></td><td></td></tr>
 <tr name="243" id="243">
-<td><a id="l243" class='ln'>243</a></td><td></td></tr>
+<td><a id="l243" class='ln'>243</a></td><td>    <a id="243c5" class="tk">DOB_ros_B</a>.<a id="243c15" class="tk">cv0</a>[24] = '\x00';</td></tr>
 <tr name="244" id="244">
-<td><a id="l244" class='ln'>244</a></td><td>    <span class="ct">/* End of Start for MATLABSystem: '&lt;S2&gt;/SourceBlock' */</span></td></tr>
+<td><a id="l244" class='ln'>244</a></td><td>    <a id="244c5" class="tk">Sub_DOB_ros_191</a>.<a id="244c21" class="tk">createSubscriber</a>(<a id="244c38" class="tk">DOB_ros_B</a>.<a id="244c48" class="tk">cv0</a>, <a id="244c53" class="tk">DOB_ros_MessageQueueLen</a>);</td></tr>
 <tr name="245" id="245">
-<td><a id="l245" class='ln'>245</a></td><td>    <span class="ct">/* End of Start for SubSystem: '&lt;Root&gt;/Subscribe' */</span></td></tr>
+<td><a id="l245" class='ln'>245</a></td><td></td></tr>
 <tr name="246" id="246">
-<td><a id="l246" class='ln'>246</a></td><td></td></tr>
+<td><a id="l246" class='ln'>246</a></td><td>    <span class="ct">/* End of Start for MATLABSystem: '&lt;S2&gt;/SourceBlock' */</span></td></tr>
 <tr name="247" id="247">
-<td><a id="l247" class='ln'>247</a></td><td>    <span class="ct">/* Start for Enabled SubSystem: '&lt;Root&gt;/Enabled Subsystem1' */</span></td></tr>
+<td><a id="l247" class='ln'>247</a></td><td>    <span class="ct">/* End of Start for SubSystem: '&lt;Root&gt;/Subscribe' */</span></td></tr>
 <tr name="248" id="248">
-<td><a id="l248" class='ln'>248</a></td><td>    <span class="ct">/* Start for Atomic SubSystem: '&lt;S1&gt;/Publish' */</span></td></tr>
+<td><a id="l248" class='ln'>248</a></td><td></td></tr>
 <tr name="249" id="249">
-<td><a id="l249" class='ln'>249</a></td><td>    <span class="ct">/* Start for MATLABSystem: '&lt;S6&gt;/SinkBlock' */</span></td></tr>
+<td><a id="l249" class='ln'>249</a></td><td>    <span class="ct">/* Start for Enabled SubSystem: '&lt;Root&gt;/Enabled Subsystem1' */</span></td></tr>
 <tr name="250" id="250">
-<td><a id="l250" class='ln'>250</a></td><td>    <a id="250c5" class="tk">DOB_ros_DW</a>.<a id="250c16" class="tk">obj_e</a>.<a id="250c22" class="tk">isInitialized</a> = 0;</td></tr>
+<td><a id="l250" class='ln'>250</a></td><td>    <span class="ct">/* Start for Atomic SubSystem: '&lt;S1&gt;/Publish' */</span></td></tr>
 <tr name="251" id="251">
-<td><a id="l251" class='ln'>251</a></td><td>    <a id="251c5" class="tk">DOB_ros_DW</a>.<a id="251c16" class="tk">objisempty_k</a> = true;</td></tr>
+<td><a id="l251" class='ln'>251</a></td><td>    <span class="ct">/* Start for MATLABSystem: '&lt;S6&gt;/SinkBlock' */</span></td></tr>
 <tr name="252" id="252">
-<td><a id="l252" class='ln'>252</a></td><td>    <a id="252c5" class="tk">DOB_ros_DW</a>.<a id="252c16" class="tk">obj_e</a>.<a id="252c22" class="tk">isInitialized</a> = 1;</td></tr>
+<td><a id="l252" class='ln'>252</a></td><td>    <a id="252c5" class="tk">DOB_ros_DW</a>.<a id="252c16" class="tk">obj_e</a>.<a id="252c22" class="tk">isInitialized</a> = 0;</td></tr>
 <tr name="253" id="253">
-<td><a id="l253" class='ln'>253</a></td><td>    <span class="kw">for</span> (<a id="253c10" class="tk">i</a> = 0; <a id="253c17" class="tk">i</a> <a id="253c19" class="tk">&lt;</a> 21; <a id="253c25" class="tk">i</a><a id="253c26" class="tk">++</a>) <span class="br">{</span></td></tr>
+<td><a id="l253" class='ln'>253</a></td><td>    <a id="253c5" class="tk">DOB_ros_DW</a>.<a id="253c16" class="tk">objisempty_k</a> = true;</td></tr>
 <tr name="254" id="254">
-<td><a id="l254" class='ln'>254</a></td><td>      <a id="254c7" class="tk">tmp_3</a>[<a id="254c13" class="tk">i</a>] = <a id="254c18" class="tk">tmp_0</a>[<a id="254c24" class="tk">i</a>];</td></tr>
+<td><a id="l254" class='ln'>254</a></td><td>    <a id="254c5" class="tk">DOB_ros_DW</a>.<a id="254c16" class="tk">obj_e</a>.<a id="254c22" class="tk">isInitialized</a> = 1;</td></tr>
 <tr name="255" id="255">
-<td><a id="l255" class='ln'>255</a></td><td>    <span class="br">}</span></td></tr>
+<td><a id="l255" class='ln'>255</a></td><td>    <span class="kw">for</span> (<a id="255c10" class="tk">i</a> = 0; <a id="255c17" class="tk">i</a> <a id="255c19" class="tk">&lt;</a> 21; <a id="255c25" class="tk">i</a><a id="255c26" class="tk">++</a>) <span class="br">{</span></td></tr>
 <tr name="256" id="256">
-<td><a id="l256" class='ln'>256</a></td><td></td></tr>
+<td><a id="l256" class='ln'>256</a></td><td>      <a id="256c7" class="tk">tmp_3</a>[<a id="256c13" class="tk">i</a>] = <a id="256c18" class="tk">tmp_0</a>[<a id="256c24" class="tk">i</a>];</td></tr>
 <tr name="257" id="257">
-<td><a id="l257" class='ln'>257</a></td><td>    <a id="257c5" class="tk">tmp_3</a>[21] = '\x00';</td></tr>
+<td><a id="l257" class='ln'>257</a></td><td>    <span class="br">}</span></td></tr>
 <tr name="258" id="258">
-<td><a id="l258" class='ln'>258</a></td><td>    <a id="258c5" class="tk">Pub_DOB_ros_152</a>.<a id="258c21" class="tk">createPublisher</a>(<a id="258c37" class="tk">tmp_3</a>, <a id="258c44" class="tk">DOB_ros_MessageQueueLen</a>);</td></tr>
+<td><a id="l258" class='ln'>258</a></td><td></td></tr>
 <tr name="259" id="259">
-<td><a id="l259" class='ln'>259</a></td><td></td></tr>
+<td><a id="l259" class='ln'>259</a></td><td>    <a id="259c5" class="tk">tmp_3</a>[21] = '\x00';</td></tr>
 <tr name="260" id="260">
-<td><a id="l260" class='ln'>260</a></td><td>    <span class="ct">/* End of Start for MATLABSystem: '&lt;S6&gt;/SinkBlock' */</span></td></tr>
+<td><a id="l260" class='ln'>260</a></td><td>    <a id="260c5" class="tk">Pub_DOB_ros_152</a>.<a id="260c21" class="tk">createPublisher</a>(<a id="260c37" class="tk">tmp_3</a>, <a id="260c44" class="tk">DOB_ros_MessageQueueLen</a>);</td></tr>
 <tr name="261" id="261">
-<td><a id="l261" class='ln'>261</a></td><td>    <span class="ct">/* End of Start for SubSystem: '&lt;S1&gt;/Publish' */</span></td></tr>
+<td><a id="l261" class='ln'>261</a></td><td></td></tr>
 <tr name="262" id="262">
-<td><a id="l262" class='ln'>262</a></td><td>    <span class="ct">/* End of Start for SubSystem: '&lt;Root&gt;/Enabled Subsystem1' */</span></td></tr>
+<td><a id="l262" class='ln'>262</a></td><td>    <span class="ct">/* End of Start for MATLABSystem: '&lt;S6&gt;/SinkBlock' */</span></td></tr>
 <tr name="263" id="263">
-<td><a id="l263" class='ln'>263</a></td><td></td></tr>
+<td><a id="l263" class='ln'>263</a></td><td>    <span class="ct">/* End of Start for SubSystem: '&lt;S1&gt;/Publish' */</span></td></tr>
 <tr name="264" id="264">
-<td><a id="l264" class='ln'>264</a></td><td>    <span class="ct">/* Start for Enabled SubSystem: '&lt;Root&gt;/Tracking Received' */</span></td></tr>
+<td><a id="l264" class='ln'>264</a></td><td>    <span class="ct">/* End of Start for SubSystem: '&lt;Root&gt;/Enabled Subsystem1' */</span></td></tr>
 <tr name="265" id="265">
-<td><a id="l265" class='ln'>265</a></td><td>    <span class="ct">/* Start for Atomic SubSystem: '&lt;S4&gt;/Publish' */</span></td></tr>
+<td><a id="l265" class='ln'>265</a></td><td></td></tr>
 <tr name="266" id="266">
-<td><a id="l266" class='ln'>266</a></td><td>    <span class="ct">/* Start for MATLABSystem: '&lt;S10&gt;/SinkBlock' */</span></td></tr>
+<td><a id="l266" class='ln'>266</a></td><td>    <span class="ct">/* Start for Enabled SubSystem: '&lt;Root&gt;/Tracking Received' */</span></td></tr>
 <tr name="267" id="267">
-<td><a id="l267" class='ln'>267</a></td><td>    <a id="267c5" class="tk">DOB_ros_DW</a>.<a id="267c16" class="tk">obj</a>.<a id="267c20" class="tk">isInitialized</a> = 0;</td></tr>
+<td><a id="l267" class='ln'>267</a></td><td>    <span class="ct">/* Start for Atomic SubSystem: '&lt;S4&gt;/Publish' */</span></td></tr>
 <tr name="268" id="268">
-<td><a id="l268" class='ln'>268</a></td><td>    <a id="268c5" class="tk">DOB_ros_DW</a>.<a id="268c16" class="tk">objisempty</a> = true;</td></tr>
+<td><a id="l268" class='ln'>268</a></td><td>    <span class="ct">/* Start for MATLABSystem: '&lt;S10&gt;/SinkBlock' */</span></td></tr>
 <tr name="269" id="269">
-<td><a id="l269" class='ln'>269</a></td><td>    <a id="269c5" class="tk">DOB_ros_DW</a>.<a id="269c16" class="tk">obj</a>.<a id="269c20" class="tk">isInitialized</a> = 1;</td></tr>
+<td><a id="l269" class='ln'>269</a></td><td>    <a id="269c5" class="tk">DOB_ros_DW</a>.<a id="269c16" class="tk">obj</a>.<a id="269c20" class="tk">isInitialized</a> = 0;</td></tr>
 <tr name="270" id="270">
-<td><a id="l270" class='ln'>270</a></td><td>    <span class="kw">for</span> (<a id="270c10" class="tk">i</a> = 0; <a id="270c17" class="tk">i</a> <a id="270c19" class="tk">&lt;</a> 24; <a id="270c25" class="tk">i</a><a id="270c26" class="tk">++</a>) <span class="br">{</span></td></tr>
+<td><a id="l270" class='ln'>270</a></td><td>    <a id="270c5" class="tk">DOB_ros_DW</a>.<a id="270c16" class="tk">objisempty</a> = true;</td></tr>
 <tr name="271" id="271">
-<td><a id="l271" class='ln'>271</a></td><td>      <a id="271c7" class="tk">DOB_ros_B</a>.<a id="271c17" class="tk">cv0</a>[<a id="271c21" class="tk">i</a>] = <a id="271c26" class="tk">tmp</a>[<a id="271c30" class="tk">i</a>];</td></tr>
+<td><a id="l271" class='ln'>271</a></td><td>    <a id="271c5" class="tk">DOB_ros_DW</a>.<a id="271c16" class="tk">obj</a>.<a id="271c20" class="tk">isInitialized</a> = 1;</td></tr>
 <tr name="272" id="272">
-<td><a id="l272" class='ln'>272</a></td><td>    <span class="br">}</span></td></tr>
+<td><a id="l272" class='ln'>272</a></td><td>    <span class="kw">for</span> (<a id="272c10" class="tk">i</a> = 0; <a id="272c17" class="tk">i</a> <a id="272c19" class="tk">&lt;</a> 24; <a id="272c25" class="tk">i</a><a id="272c26" class="tk">++</a>) <span class="br">{</span></td></tr>
 <tr name="273" id="273">
-<td><a id="l273" class='ln'>273</a></td><td></td></tr>
+<td><a id="l273" class='ln'>273</a></td><td>      <a id="273c7" class="tk">DOB_ros_B</a>.<a id="273c17" class="tk">cv0</a>[<a id="273c21" class="tk">i</a>] = <a id="273c26" class="tk">tmp</a>[<a id="273c30" class="tk">i</a>];</td></tr>
 <tr name="274" id="274">
-<td><a id="l274" class='ln'>274</a></td><td>    <a id="274c5" class="tk">DOB_ros_B</a>.<a id="274c15" class="tk">cv0</a>[24] = '\x00';</td></tr>
+<td><a id="l274" class='ln'>274</a></td><td>    <span class="br">}</span></td></tr>
 <tr name="275" id="275">
-<td><a id="l275" class='ln'>275</a></td><td>    <a id="275c5" class="tk">Pub_DOB_ros_158</a>.<a id="275c21" class="tk">createPublisher</a>(<a id="275c37" class="tk">DOB_ros_B</a>.<a id="275c47" class="tk">cv0</a>, <a id="275c52" class="tk">DOB_ros_MessageQueueLen</a>);</td></tr>
+<td><a id="l275" class='ln'>275</a></td><td></td></tr>
 <tr name="276" id="276">
-<td><a id="l276" class='ln'>276</a></td><td></td></tr>
+<td><a id="l276" class='ln'>276</a></td><td>    <a id="276c5" class="tk">DOB_ros_B</a>.<a id="276c15" class="tk">cv0</a>[24] = '\x00';</td></tr>
 <tr name="277" id="277">
-<td><a id="l277" class='ln'>277</a></td><td>    <span class="ct">/* End of Start for MATLABSystem: '&lt;S10&gt;/SinkBlock' */</span></td></tr>
+<td><a id="l277" class='ln'>277</a></td><td>    <a id="277c5" class="tk">Pub_DOB_ros_158</a>.<a id="277c21" class="tk">createPublisher</a>(<a id="277c37" class="tk">DOB_ros_B</a>.<a id="277c47" class="tk">cv0</a>, <a id="277c52" class="tk">DOB_ros_MessageQueueLen</a>);</td></tr>
 <tr name="278" id="278">
-<td><a id="l278" class='ln'>278</a></td><td>    <span class="ct">/* End of Start for SubSystem: '&lt;S4&gt;/Publish' */</span></td></tr>
+<td><a id="l278" class='ln'>278</a></td><td></td></tr>
 <tr name="279" id="279">
-<td><a id="l279" class='ln'>279</a></td><td>    <span class="ct">/* End of Start for SubSystem: '&lt;Root&gt;/Tracking Received' */</span></td></tr>
+<td><a id="l279" class='ln'>279</a></td><td>    <span class="ct">/* End of Start for MATLABSystem: '&lt;S10&gt;/SinkBlock' */</span></td></tr>
 <tr name="280" id="280">
-<td><a id="l280" class='ln'>280</a></td><td>  <span class="br">}</span></td></tr>
+<td><a id="l280" class='ln'>280</a></td><td>    <span class="ct">/* End of Start for SubSystem: '&lt;S4&gt;/Publish' */</span></td></tr>
 <tr name="281" id="281">
-<td><a id="l281" class='ln'>281</a></td><td></td></tr>
+<td><a id="l281" class='ln'>281</a></td><td>    <span class="ct">/* End of Start for SubSystem: '&lt;Root&gt;/Tracking Received' */</span></td></tr>
 <tr name="282" id="282">
-<td><a id="l282" class='ln'>282</a></td><td>  <span class="br">{</span></td></tr>
+<td><a id="l282" class='ln'>282</a></td><td>  <span class="br">}</span></td></tr>
 <tr name="283" id="283">
-<td><a id="l283" class='ln'>283</a></td><td>    <a id="283c5" class="tk">int32_T</a> <a id="283c13" class="tk">i</a>;</td></tr>
+<td><a id="l283" class='ln'>283</a></td><td></td></tr>
 <tr name="284" id="284">
-<td><a id="l284" class='ln'>284</a></td><td></td></tr>
+<td><a id="l284" class='ln'>284</a></td><td>  <span class="br">{</span></td></tr>
 <tr name="285" id="285">
-<td><a id="l285" class='ln'>285</a></td><td>    <span class="ct">/* InitializeConditions for DiscreteTransferFcn: '&lt;Root&gt;/D1' */</span></td></tr>
+<td><a id="l285" class='ln'>285</a></td><td>    <a id="285c5" class="tk">int32_T</a> <a id="285c13" class="tk">i</a>;</td></tr>
 <tr name="286" id="286">
-<td><a id="l286" class='ln'>286</a></td><td>    <span class="kw">for</span> (<a id="286c10" class="tk">i</a> = 0; <a id="286c17" class="tk">i</a> <a id="286c19" class="tk">&lt;</a> 5; <a id="286c24" class="tk">i</a><a id="286c25" class="tk">++</a>) <span class="br">{</span></td></tr>
+<td><a id="l286" class='ln'>286</a></td><td></td></tr>
 <tr name="287" id="287">
-<td><a id="l287" class='ln'>287</a></td><td>      <a id="287c7" class="tk">DOB_ros_DW</a>.<a id="287c18" class="tk">D1_states</a>[<a id="287c28" class="tk">i</a>] = <a id="287c33" class="tk">DOB_ros_P</a>.<a id="287c43" class="tk">D1_InitialStates</a>;</td></tr>
+<td><a id="l287" class='ln'>287</a></td><td>    <span class="ct">/* InitializeConditions for DiscreteTransferFcn: '&lt;Root&gt;/D1' */</span></td></tr>
 <tr name="288" id="288">
-<td><a id="l288" class='ln'>288</a></td><td>    <span class="br">}</span></td></tr>
+<td><a id="l288" class='ln'>288</a></td><td>    <span class="kw">for</span> (<a id="288c10" class="tk">i</a> = 0; <a id="288c17" class="tk">i</a> <a id="288c19" class="tk">&lt;</a> 5; <a id="288c24" class="tk">i</a><a id="288c25" class="tk">++</a>) <span class="br">{</span></td></tr>
 <tr name="289" id="289">
-<td><a id="l289" class='ln'>289</a></td><td></td></tr>
+<td><a id="l289" class='ln'>289</a></td><td>      <a id="289c7" class="tk">DOB_ros_DW</a>.<a id="289c18" class="tk">D1_states</a>[<a id="289c28" class="tk">i</a>] = <a id="289c33" class="tk">DOB_ros_P</a>.<a id="289c43" class="tk">D1_InitialStates</a>;</td></tr>
 <tr name="290" id="290">
-<td><a id="l290" class='ln'>290</a></td><td>    <span class="ct">/* End of InitializeConditions for DiscreteTransferFcn: '&lt;Root&gt;/D1' */</span></td></tr>
+<td><a id="l290" class='ln'>290</a></td><td>    <span class="br">}</span></td></tr>
 <tr name="291" id="291">
 <td><a id="l291" class='ln'>291</a></td><td></td></tr>
 <tr name="292" id="292">
-<td><a id="l292" class='ln'>292</a></td><td>    <span class="ct">/* InitializeConditions for Delay: '&lt;Root&gt;/Delay1' */</span></td></tr>
+<td><a id="l292" class='ln'>292</a></td><td>    <span class="ct">/* End of InitializeConditions for DiscreteTransferFcn: '&lt;Root&gt;/D1' */</span></td></tr>
 <tr name="293" id="293">
-<td><a id="l293" class='ln'>293</a></td><td>    <a id="293c5" class="tk">DOB_ros_DW</a>.<a id="293c16" class="tk">Delay1_DSTATE</a>[0] = <a id="293c35" class="tk">DOB_ros_P</a>.<a id="293c45" class="tk">Delay1_InitialCondition</a>;</td></tr>
+<td><a id="l293" class='ln'>293</a></td><td></td></tr>
 <tr name="294" id="294">
-<td><a id="l294" class='ln'>294</a></td><td></td></tr>
+<td><a id="l294" class='ln'>294</a></td><td>    <span class="ct">/* InitializeConditions for Delay: '&lt;Root&gt;/Delay1' */</span></td></tr>
 <tr name="295" id="295">
-<td><a id="l295" class='ln'>295</a></td><td>    <span class="ct">/* InitializeConditions for DiscreteTransferFcn: '&lt;Root&gt;/Q1' */</span></td></tr>
+<td><a id="l295" class='ln'>295</a></td><td>    <a id="295c5" class="tk">DOB_ros_DW</a>.<a id="295c16" class="tk">Delay1_DSTATE</a>[0] = <a id="295c35" class="tk">DOB_ros_P</a>.<a id="295c45" class="tk">Delay1_InitialCondition</a>;</td></tr>
 <tr name="296" id="296">
-<td><a id="l296" class='ln'>296</a></td><td>    <a id="296c5" class="tk">DOB_ros_DW</a>.<a id="296c16" class="tk">Q1_states</a>[0] = <a id="296c31" class="tk">DOB_ros_P</a>.<a id="296c41" class="tk">Q1_InitialStates</a>;</td></tr>
+<td><a id="l296" class='ln'>296</a></td><td></td></tr>
 <tr name="297" id="297">
-<td><a id="l297" class='ln'>297</a></td><td></td></tr>
+<td><a id="l297" class='ln'>297</a></td><td>    <span class="ct">/* InitializeConditions for DiscreteTransferFcn: '&lt;Root&gt;/Q1' */</span></td></tr>
 <tr name="298" id="298">
-<td><a id="l298" class='ln'>298</a></td><td>    <span class="ct">/* InitializeConditions for Delay: '&lt;Root&gt;/Delay1' */</span></td></tr>
+<td><a id="l298" class='ln'>298</a></td><td>    <a id="298c5" class="tk">DOB_ros_DW</a>.<a id="298c16" class="tk">Q1_states</a>[0] = <a id="298c31" class="tk">DOB_ros_P</a>.<a id="298c41" class="tk">Q1_InitialStates</a>;</td></tr>
 <tr name="299" id="299">
-<td><a id="l299" class='ln'>299</a></td><td>    <a id="299c5" class="tk">DOB_ros_DW</a>.<a id="299c16" class="tk">Delay1_DSTATE</a>[1] = <a id="299c35" class="tk">DOB_ros_P</a>.<a id="299c45" class="tk">Delay1_InitialCondition</a>;</td></tr>
+<td><a id="l299" class='ln'>299</a></td><td></td></tr>
 <tr name="300" id="300">
-<td><a id="l300" class='ln'>300</a></td><td></td></tr>
+<td><a id="l300" class='ln'>300</a></td><td>    <span class="ct">/* InitializeConditions for Delay: '&lt;Root&gt;/Delay1' */</span></td></tr>
 <tr name="301" id="301">
-<td><a id="l301" class='ln'>301</a></td><td>    <span class="ct">/* InitializeConditions for DiscreteTransferFcn: '&lt;Root&gt;/Q1' */</span></td></tr>
+<td><a id="l301" class='ln'>301</a></td><td>    <a id="301c5" class="tk">DOB_ros_DW</a>.<a id="301c16" class="tk">Delay1_DSTATE</a>[1] = <a id="301c35" class="tk">DOB_ros_P</a>.<a id="301c45" class="tk">Delay1_InitialCondition</a>;</td></tr>
 <tr name="302" id="302">
-<td><a id="l302" class='ln'>302</a></td><td>    <a id="302c5" class="tk">DOB_ros_DW</a>.<a id="302c16" class="tk">Q1_states</a>[1] = <a id="302c31" class="tk">DOB_ros_P</a>.<a id="302c41" class="tk">Q1_InitialStates</a>;</td></tr>
+<td><a id="l302" class='ln'>302</a></td><td></td></tr>
 <tr name="303" id="303">
-<td><a id="l303" class='ln'>303</a></td><td></td></tr>
+<td><a id="l303" class='ln'>303</a></td><td>    <span class="ct">/* InitializeConditions for DiscreteTransferFcn: '&lt;Root&gt;/Q1' */</span></td></tr>
 <tr name="304" id="304">
-<td><a id="l304" class='ln'>304</a></td><td>    <span class="ct">/* SystemInitialize for Atomic SubSystem: '&lt;Root&gt;/Subscribe1' */</span></td></tr>
+<td><a id="l304" class='ln'>304</a></td><td>    <a id="304c5" class="tk">DOB_ros_DW</a>.<a id="304c16" class="tk">Q1_states</a>[1] = <a id="304c31" class="tk">DOB_ros_P</a>.<a id="304c41" class="tk">Q1_InitialStates</a>;</td></tr>
 <tr name="305" id="305">
-<td><a id="l305" class='ln'>305</a></td><td>    <span class="ct">/* SystemInitialize for Enabled SubSystem: '&lt;S3&gt;/Enabled Subsystem' */</span></td></tr>
+<td><a id="l305" class='ln'>305</a></td><td></td></tr>
 <tr name="306" id="306">
-<td><a id="l306" class='ln'>306</a></td><td>    <span class="ct">/* SystemInitialize for Outport: '&lt;S8&gt;/Out1' */</span></td></tr>
+<td><a id="l306" class='ln'>306</a></td><td>    <span class="ct">/* SystemInitialize for Atomic SubSystem: '&lt;Root&gt;/Subscribe1' */</span></td></tr>
 <tr name="307" id="307">
-<td><a id="l307" class='ln'>307</a></td><td>    <a id="307c5" class="tk">DOB_ros_B</a>.<a id="307c15" class="tk">In1_i</a> = <a id="307c23" class="tk">DOB_ros_P</a>.<a id="307c33" class="tk">Out1_Y0_n</a>;</td></tr>
+<td><a id="l307" class='ln'>307</a></td><td>    <span class="ct">/* SystemInitialize for Enabled SubSystem: '&lt;S3&gt;/Enabled Subsystem' */</span></td></tr>
 <tr name="308" id="308">
-<td><a id="l308" class='ln'>308</a></td><td></td></tr>
+<td><a id="l308" class='ln'>308</a></td><td>    <span class="ct">/* SystemInitialize for Outport: '&lt;S8&gt;/Out1' */</span></td></tr>
 <tr name="309" id="309">
-<td><a id="l309" class='ln'>309</a></td><td>    <span class="ct">/* End of SystemInitialize for SubSystem: '&lt;S3&gt;/Enabled Subsystem' */</span></td></tr>
+<td><a id="l309" class='ln'>309</a></td><td>    <a id="309c5" class="tk">DOB_ros_B</a>.<a id="309c15" class="tk">In1_i</a> = <a id="309c23" class="tk">DOB_ros_P</a>.<a id="309c33" class="tk">Out1_Y0_n</a>;</td></tr>
 <tr name="310" id="310">
-<td><a id="l310" class='ln'>310</a></td><td>    <span class="ct">/* End of SystemInitialize for SubSystem: '&lt;Root&gt;/Subscribe1' */</span></td></tr>
+<td><a id="l310" class='ln'>310</a></td><td></td></tr>
 <tr name="311" id="311">
-<td><a id="l311" class='ln'>311</a></td><td></td></tr>
+<td><a id="l311" class='ln'>311</a></td><td>    <span class="ct">/* End of SystemInitialize for SubSystem: '&lt;S3&gt;/Enabled Subsystem' */</span></td></tr>
 <tr name="312" id="312">
-<td><a id="l312" class='ln'>312</a></td><td>    <span class="ct">/* SystemInitialize for Atomic SubSystem: '&lt;Root&gt;/Subscribe' */</span></td></tr>
+<td><a id="l312" class='ln'>312</a></td><td>    <span class="ct">/* End of SystemInitialize for SubSystem: '&lt;Root&gt;/Subscribe1' */</span></td></tr>
 <tr name="313" id="313">
-<td><a id="l313" class='ln'>313</a></td><td>    <span class="ct">/* SystemInitialize for Enabled SubSystem: '&lt;S2&gt;/Enabled Subsystem' */</span></td></tr>
+<td><a id="l313" class='ln'>313</a></td><td></td></tr>
 <tr name="314" id="314">
-<td><a id="l314" class='ln'>314</a></td><td>    <span class="ct">/* SystemInitialize for Outport: '&lt;S7&gt;/Out1' */</span></td></tr>
+<td><a id="l314" class='ln'>314</a></td><td>    <span class="ct">/* SystemInitialize for Atomic SubSystem: '&lt;Root&gt;/Subscribe' */</span></td></tr>
 <tr name="315" id="315">
-<td><a id="l315" class='ln'>315</a></td><td>    <a id="315c5" class="tk">DOB_ros_B</a>.<a id="315c15" class="tk">In1</a> = <a id="315c21" class="tk">DOB_ros_P</a>.<a id="315c31" class="tk">Out1_Y0</a>;</td></tr>
+<td><a id="l315" class='ln'>315</a></td><td>    <span class="ct">/* SystemInitialize for Enabled SubSystem: '&lt;S2&gt;/Enabled Subsystem' */</span></td></tr>
 <tr name="316" id="316">
-<td><a id="l316" class='ln'>316</a></td><td></td></tr>
+<td><a id="l316" class='ln'>316</a></td><td>    <span class="ct">/* SystemInitialize for Outport: '&lt;S7&gt;/Out1' */</span></td></tr>
 <tr name="317" id="317">
-<td><a id="l317" class='ln'>317</a></td><td>    <span class="ct">/* End of SystemInitialize for SubSystem: '&lt;S2&gt;/Enabled Subsystem' */</span></td></tr>
+<td><a id="l317" class='ln'>317</a></td><td>    <a id="317c5" class="tk">DOB_ros_B</a>.<a id="317c15" class="tk">In1</a> = <a id="317c21" class="tk">DOB_ros_P</a>.<a id="317c31" class="tk">Out1_Y0</a>;</td></tr>
 <tr name="318" id="318">
-<td><a id="l318" class='ln'>318</a></td><td>    <span class="ct">/* End of SystemInitialize for SubSystem: '&lt;Root&gt;/Subscribe' */</span></td></tr>
+<td><a id="l318" class='ln'>318</a></td><td></td></tr>
 <tr name="319" id="319">
-<td><a id="l319" class='ln'>319</a></td><td>  <span class="br">}</span></td></tr>
+<td><a id="l319" class='ln'>319</a></td><td>    <span class="ct">/* End of SystemInitialize for SubSystem: '&lt;S2&gt;/Enabled Subsystem' */</span></td></tr>
 <tr name="320" id="320">
-<td><a id="l320" class='ln'>320</a></td><td><span class="br">}</span></td></tr>
+<td><a id="l320" class='ln'>320</a></td><td>    <span class="ct">/* End of SystemInitialize for SubSystem: '&lt;Root&gt;/Subscribe' */</span></td></tr>
 <tr name="321" id="321">
-<td><a id="l321" class='ln'>321</a></td><td></td></tr>
+<td><a id="l321" class='ln'>321</a></td><td>  <span class="br">}</span></td></tr>
 <tr name="322" id="322">
-<td><a id="l322" class='ln'>322</a></td><td><span class="ct">/* Model terminate function */</span></td></tr>
+<td><a id="l322" class='ln'>322</a></td><td><span class="br">}</span></td></tr>
 <tr name="323" id="323">
-<td><a id="l323" class='ln'>323</a></td><td><span class="kw">void</span> <a id="323c6" class="tk">DOB_ros_terminate</a>(<span class="kw">void</span>)</td></tr>
+<td><a id="l323" class='ln'>323</a></td><td></td></tr>
 <tr name="324" id="324">
-<td><a id="l324" class='ln'>324</a></td><td><span class="br">{</span></td></tr>
+<td><a id="l324" class='ln'>324</a></td><td><span class="ct">/* Model terminate function */</span></td></tr>
 <tr name="325" id="325">
-<td><a id="l325" class='ln'>325</a></td><td>  <span class="ct">/* Terminate for Atomic SubSystem: '&lt;Root&gt;/Subscribe1' */</span></td></tr>
+<td><a id="l325" class='ln'>325</a></td><td><span class="kw">void</span> <a id="325c6" class="tk">DOB_ros_terminate</a>(<span class="kw">void</span>)</td></tr>
 <tr name="326" id="326">
-<td><a id="l326" class='ln'>326</a></td><td>  <span class="ct">/* Start for MATLABSystem: '&lt;S3&gt;/SourceBlock' */</span></td></tr>
+<td><a id="l326" class='ln'>326</a></td><td><span class="br">{</span></td></tr>
 <tr name="327" id="327">
-<td><a id="l327" class='ln'>327</a></td><td>  <span class="kw">if</span> (<a id="327c7" class="tk">DOB_ros_DW</a>.<a id="327c18" class="tk">obj_a</a>.<a id="327c24" class="tk">isInitialized</a> <a id="327c38" class="tk">==</a> 1) <span class="br">{</span></td></tr>
+<td><a id="l327" class='ln'>327</a></td><td>  <span class="ct">/* Terminate for Atomic SubSystem: '&lt;Root&gt;/Subscribe1' */</span></td></tr>
 <tr name="328" id="328">
-<td><a id="l328" class='ln'>328</a></td><td>    <a id="328c5" class="tk">DOB_ros_DW</a>.<a id="328c16" class="tk">obj_a</a>.<a id="328c22" class="tk">isInitialized</a> = 2;</td></tr>
+<td><a id="l328" class='ln'>328</a></td><td>  <span class="ct">/* Start for MATLABSystem: '&lt;S3&gt;/SourceBlock' */</span></td></tr>
 <tr name="329" id="329">
-<td><a id="l329" class='ln'>329</a></td><td>  <span class="br">}</span></td></tr>
+<td><a id="l329" class='ln'>329</a></td><td>  <span class="kw">if</span> (<a id="329c7" class="tk">DOB_ros_DW</a>.<a id="329c18" class="tk">obj_a</a>.<a id="329c24" class="tk">isInitialized</a> <a id="329c38" class="tk">==</a> 1) <span class="br">{</span></td></tr>
 <tr name="330" id="330">
-<td><a id="l330" class='ln'>330</a></td><td></td></tr>
+<td><a id="l330" class='ln'>330</a></td><td>    <a id="330c5" class="tk">DOB_ros_DW</a>.<a id="330c16" class="tk">obj_a</a>.<a id="330c22" class="tk">isInitialized</a> = 2;</td></tr>
 <tr name="331" id="331">
-<td><a id="l331" class='ln'>331</a></td><td>  <span class="ct">/* End of Start for MATLABSystem: '&lt;S3&gt;/SourceBlock' */</span></td></tr>
+<td><a id="l331" class='ln'>331</a></td><td>  <span class="br">}</span></td></tr>
 <tr name="332" id="332">
-<td><a id="l332" class='ln'>332</a></td><td>  <span class="ct">/* End of Terminate for SubSystem: '&lt;Root&gt;/Subscribe1' */</span></td></tr>
+<td><a id="l332" class='ln'>332</a></td><td></td></tr>
 <tr name="333" id="333">
-<td><a id="l333" class='ln'>333</a></td><td></td></tr>
+<td><a id="l333" class='ln'>333</a></td><td>  <span class="ct">/* End of Start for MATLABSystem: '&lt;S3&gt;/SourceBlock' */</span></td></tr>
 <tr name="334" id="334">
-<td><a id="l334" class='ln'>334</a></td><td>  <span class="ct">/* Terminate for Atomic SubSystem: '&lt;Root&gt;/Subscribe' */</span></td></tr>
+<td><a id="l334" class='ln'>334</a></td><td>  <span class="ct">/* End of Terminate for SubSystem: '&lt;Root&gt;/Subscribe1' */</span></td></tr>
 <tr name="335" id="335">
-<td><a id="l335" class='ln'>335</a></td><td>  <span class="ct">/* Start for MATLABSystem: '&lt;S2&gt;/SourceBlock' */</span></td></tr>
+<td><a id="l335" class='ln'>335</a></td><td></td></tr>
 <tr name="336" id="336">
-<td><a id="l336" class='ln'>336</a></td><td>  <span class="kw">if</span> (<a id="336c7" class="tk">DOB_ros_DW</a>.<a id="336c18" class="tk">obj_ax</a>.<a id="336c25" class="tk">isInitialized</a> <a id="336c39" class="tk">==</a> 1) <span class="br">{</span></td></tr>
+<td><a id="l336" class='ln'>336</a></td><td>  <span class="ct">/* Terminate for Atomic SubSystem: '&lt;Root&gt;/Subscribe' */</span></td></tr>
 <tr name="337" id="337">
-<td><a id="l337" class='ln'>337</a></td><td>    <a id="337c5" class="tk">DOB_ros_DW</a>.<a id="337c16" class="tk">obj_ax</a>.<a id="337c23" class="tk">isInitialized</a> = 2;</td></tr>
+<td><a id="l337" class='ln'>337</a></td><td>  <span class="ct">/* Start for MATLABSystem: '&lt;S2&gt;/SourceBlock' */</span></td></tr>
 <tr name="338" id="338">
-<td><a id="l338" class='ln'>338</a></td><td>  <span class="br">}</span></td></tr>
+<td><a id="l338" class='ln'>338</a></td><td>  <span class="kw">if</span> (<a id="338c7" class="tk">DOB_ros_DW</a>.<a id="338c18" class="tk">obj_ax</a>.<a id="338c25" class="tk">isInitialized</a> <a id="338c39" class="tk">==</a> 1) <span class="br">{</span></td></tr>
 <tr name="339" id="339">
-<td><a id="l339" class='ln'>339</a></td><td></td></tr>
+<td><a id="l339" class='ln'>339</a></td><td>    <a id="339c5" class="tk">DOB_ros_DW</a>.<a id="339c16" class="tk">obj_ax</a>.<a id="339c23" class="tk">isInitialized</a> = 2;</td></tr>
 <tr name="340" id="340">
-<td><a id="l340" class='ln'>340</a></td><td>  <span class="ct">/* End of Start for MATLABSystem: '&lt;S2&gt;/SourceBlock' */</span></td></tr>
+<td><a id="l340" class='ln'>340</a></td><td>  <span class="br">}</span></td></tr>
 <tr name="341" id="341">
-<td><a id="l341" class='ln'>341</a></td><td>  <span class="ct">/* End of Terminate for SubSystem: '&lt;Root&gt;/Subscribe' */</span></td></tr>
+<td><a id="l341" class='ln'>341</a></td><td></td></tr>
 <tr name="342" id="342">
-<td><a id="l342" class='ln'>342</a></td><td></td></tr>
+<td><a id="l342" class='ln'>342</a></td><td>  <span class="ct">/* End of Start for MATLABSystem: '&lt;S2&gt;/SourceBlock' */</span></td></tr>
 <tr name="343" id="343">
-<td><a id="l343" class='ln'>343</a></td><td>  <span class="ct">/* Terminate for Enabled SubSystem: '&lt;Root&gt;/Enabled Subsystem1' */</span></td></tr>
+<td><a id="l343" class='ln'>343</a></td><td>  <span class="ct">/* End of Terminate for SubSystem: '&lt;Root&gt;/Subscribe' */</span></td></tr>
 <tr name="344" id="344">
-<td><a id="l344" class='ln'>344</a></td><td>  <span class="ct">/* Terminate for Atomic SubSystem: '&lt;S1&gt;/Publish' */</span></td></tr>
+<td><a id="l344" class='ln'>344</a></td><td></td></tr>
 <tr name="345" id="345">
-<td><a id="l345" class='ln'>345</a></td><td>  <span class="ct">/* Start for MATLABSystem: '&lt;S6&gt;/SinkBlock' */</span></td></tr>
+<td><a id="l345" class='ln'>345</a></td><td>  <span class="ct">/* Terminate for Enabled SubSystem: '&lt;Root&gt;/Enabled Subsystem1' */</span></td></tr>
 <tr name="346" id="346">
-<td><a id="l346" class='ln'>346</a></td><td>  <span class="kw">if</span> (<a id="346c7" class="tk">DOB_ros_DW</a>.<a id="346c18" class="tk">obj_e</a>.<a id="346c24" class="tk">isInitialized</a> <a id="346c38" class="tk">==</a> 1) <span class="br">{</span></td></tr>
+<td><a id="l346" class='ln'>346</a></td><td>  <span class="ct">/* Terminate for Atomic SubSystem: '&lt;S1&gt;/Publish' */</span></td></tr>
 <tr name="347" id="347">
-<td><a id="l347" class='ln'>347</a></td><td>    <a id="347c5" class="tk">DOB_ros_DW</a>.<a id="347c16" class="tk">obj_e</a>.<a id="347c22" class="tk">isInitialized</a> = 2;</td></tr>
+<td><a id="l347" class='ln'>347</a></td><td>  <span class="ct">/* Start for MATLABSystem: '&lt;S6&gt;/SinkBlock' */</span></td></tr>
 <tr name="348" id="348">
-<td><a id="l348" class='ln'>348</a></td><td>  <span class="br">}</span></td></tr>
+<td><a id="l348" class='ln'>348</a></td><td>  <span class="kw">if</span> (<a id="348c7" class="tk">DOB_ros_DW</a>.<a id="348c18" class="tk">obj_e</a>.<a id="348c24" class="tk">isInitialized</a> <a id="348c38" class="tk">==</a> 1) <span class="br">{</span></td></tr>
 <tr name="349" id="349">
-<td><a id="l349" class='ln'>349</a></td><td></td></tr>
+<td><a id="l349" class='ln'>349</a></td><td>    <a id="349c5" class="tk">DOB_ros_DW</a>.<a id="349c16" class="tk">obj_e</a>.<a id="349c22" class="tk">isInitialized</a> = 2;</td></tr>
 <tr name="350" id="350">
-<td><a id="l350" class='ln'>350</a></td><td>  <span class="ct">/* End of Start for MATLABSystem: '&lt;S6&gt;/SinkBlock' */</span></td></tr>
+<td><a id="l350" class='ln'>350</a></td><td>  <span class="br">}</span></td></tr>
 <tr name="351" id="351">
-<td><a id="l351" class='ln'>351</a></td><td>  <span class="ct">/* End of Terminate for SubSystem: '&lt;S1&gt;/Publish' */</span></td></tr>
+<td><a id="l351" class='ln'>351</a></td><td></td></tr>
 <tr name="352" id="352">
-<td><a id="l352" class='ln'>352</a></td><td>  <span class="ct">/* End of Terminate for SubSystem: '&lt;Root&gt;/Enabled Subsystem1' */</span></td></tr>
+<td><a id="l352" class='ln'>352</a></td><td>  <span class="ct">/* End of Start for MATLABSystem: '&lt;S6&gt;/SinkBlock' */</span></td></tr>
 <tr name="353" id="353">
-<td><a id="l353" class='ln'>353</a></td><td></td></tr>
+<td><a id="l353" class='ln'>353</a></td><td>  <span class="ct">/* End of Terminate for SubSystem: '&lt;S1&gt;/Publish' */</span></td></tr>
 <tr name="354" id="354">
-<td><a id="l354" class='ln'>354</a></td><td>  <span class="ct">/* Terminate for Enabled SubSystem: '&lt;Root&gt;/Tracking Received' */</span></td></tr>
+<td><a id="l354" class='ln'>354</a></td><td>  <span class="ct">/* End of Terminate for SubSystem: '&lt;Root&gt;/Enabled Subsystem1' */</span></td></tr>
 <tr name="355" id="355">
-<td><a id="l355" class='ln'>355</a></td><td>  <span class="ct">/* Terminate for Atomic SubSystem: '&lt;S4&gt;/Publish' */</span></td></tr>
+<td><a id="l355" class='ln'>355</a></td><td></td></tr>
 <tr name="356" id="356">
-<td><a id="l356" class='ln'>356</a></td><td>  <span class="ct">/* Start for MATLABSystem: '&lt;S10&gt;/SinkBlock' */</span></td></tr>
+<td><a id="l356" class='ln'>356</a></td><td>  <span class="ct">/* Terminate for Enabled SubSystem: '&lt;Root&gt;/Tracking Received' */</span></td></tr>
 <tr name="357" id="357">
-<td><a id="l357" class='ln'>357</a></td><td>  <span class="kw">if</span> (<a id="357c7" class="tk">DOB_ros_DW</a>.<a id="357c18" class="tk">obj</a>.<a id="357c22" class="tk">isInitialized</a> <a id="357c36" class="tk">==</a> 1) <span class="br">{</span></td></tr>
+<td><a id="l357" class='ln'>357</a></td><td>  <span class="ct">/* Terminate for Atomic SubSystem: '&lt;S4&gt;/Publish' */</span></td></tr>
 <tr name="358" id="358">
-<td><a id="l358" class='ln'>358</a></td><td>    <a id="358c5" class="tk">DOB_ros_DW</a>.<a id="358c16" class="tk">obj</a>.<a id="358c20" class="tk">isInitialized</a> = 2;</td></tr>
+<td><a id="l358" class='ln'>358</a></td><td>  <span class="ct">/* Start for MATLABSystem: '&lt;S10&gt;/SinkBlock' */</span></td></tr>
 <tr name="359" id="359">
-<td><a id="l359" class='ln'>359</a></td><td>  <span class="br">}</span></td></tr>
+<td><a id="l359" class='ln'>359</a></td><td>  <span class="kw">if</span> (<a id="359c7" class="tk">DOB_ros_DW</a>.<a id="359c18" class="tk">obj</a>.<a id="359c22" class="tk">isInitialized</a> <a id="359c36" class="tk">==</a> 1) <span class="br">{</span></td></tr>
 <tr name="360" id="360">
-<td><a id="l360" class='ln'>360</a></td><td></td></tr>
+<td><a id="l360" class='ln'>360</a></td><td>    <a id="360c5" class="tk">DOB_ros_DW</a>.<a id="360c16" class="tk">obj</a>.<a id="360c20" class="tk">isInitialized</a> = 2;</td></tr>
 <tr name="361" id="361">
-<td><a id="l361" class='ln'>361</a></td><td>  <span class="ct">/* End of Start for MATLABSystem: '&lt;S10&gt;/SinkBlock' */</span></td></tr>
+<td><a id="l361" class='ln'>361</a></td><td>  <span class="br">}</span></td></tr>
 <tr name="362" id="362">
-<td><a id="l362" class='ln'>362</a></td><td>  <span class="ct">/* End of Terminate for SubSystem: '&lt;S4&gt;/Publish' */</span></td></tr>
+<td><a id="l362" class='ln'>362</a></td><td></td></tr>
 <tr name="363" id="363">
-<td><a id="l363" class='ln'>363</a></td><td>  <span class="ct">/* End of Terminate for SubSystem: '&lt;Root&gt;/Tracking Received' */</span></td></tr>
+<td><a id="l363" class='ln'>363</a></td><td>  <span class="ct">/* End of Start for MATLABSystem: '&lt;S10&gt;/SinkBlock' */</span></td></tr>
 <tr name="364" id="364">
-<td><a id="l364" class='ln'>364</a></td><td><span class="br">}</span></td></tr>
+<td><a id="l364" class='ln'>364</a></td><td>  <span class="ct">/* End of Terminate for SubSystem: '&lt;S4&gt;/Publish' */</span></td></tr>
 <tr name="365" id="365">
-<td><a id="l365" class='ln'>365</a></td><td></td></tr>
+<td><a id="l365" class='ln'>365</a></td><td>  <span class="ct">/* End of Terminate for SubSystem: '&lt;Root&gt;/Tracking Received' */</span></td></tr>
+<tr name="366" id="366">
+<td><a id="l366" class='ln'>366</a></td><td><span class="br">}</span></td></tr>
+<tr name="367" id="367">
+<td><a id="l367" class='ln'>367</a></td><td></td></tr>
 </table>
 </pre>
 </body>
