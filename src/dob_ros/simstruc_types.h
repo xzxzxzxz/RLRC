@@ -140,13 +140,13 @@ struct _rtTimingBridge_tag
     boolean_T    *firstInitCond;
 };
 
-typedef struct _rtCtrlRateMdlRefTiming_tag rtCtrlRateMdlRefTiming;
+typedef struct _rtVDRMdlRefTiming_tag rtVDRMdlRefTiming;
 
-struct _rtCtrlRateMdlRefTiming_tag
+struct _rtVDRMdlRefTiming_tag
 {
 
-    uint32_T firstCtrlRateTID;
-    uint32_T* numTicksToNextHitForCtrlRate;
+    uint32_T firstVDRTID;
+    uint32_T* numTicksToNextHitForVDR;
 
 };
 
@@ -355,7 +355,6 @@ typedef enum
 typedef struct _ssFcnCallExecArgInfo_tag {
     void       *dataPtr;
     int_T       dataSize;
-    void       *reserved;
 } _ssFcnCallExecArgInfo;
 
 typedef struct _ssFcnCallExecData_tag {
