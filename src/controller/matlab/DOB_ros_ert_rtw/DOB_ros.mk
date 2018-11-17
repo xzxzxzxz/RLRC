@@ -2,7 +2,7 @@
 ## Makefile generated for Simulink model 'DOB_ros'. 
 ## 
 ## Makefile     : DOB_ros.mk
-## Generated on : Sat Nov 17 11:17:52 2018
+## Generated on : Sat Nov 17 12:21:48 2018
 ## MATLAB Coder version: 3.4 (R2017b)
 ## 
 ## Build Info:
@@ -238,7 +238,7 @@ SYSTEM_LIBS =
 # C Compiler
 #---------------
 
-CFLAGS_SKIPFORSIL =   -fpermissive
+CFLAGS_SKIPFORSIL =   -fpermissive -fpermissive
 CFLAGS_BASIC = $(DEFINES) $(INCLUDES)
 
 CFLAGS += $(CFLAGS_SKIPFORSIL) $(CFLAGS_BASIC)
@@ -247,7 +247,7 @@ CFLAGS += $(CFLAGS_SKIPFORSIL) $(CFLAGS_BASIC)
 # C++ Compiler
 #-----------------
 
-CPPFLAGS_SKIPFORSIL =   -fpermissive
+CPPFLAGS_SKIPFORSIL =   -fpermissive -fpermissive
 CPPFLAGS_BASIC = $(DEFINES) $(INCLUDES)
 
 CPPFLAGS += $(CPPFLAGS_SKIPFORSIL) $(CPPFLAGS_BASIC)
