@@ -7,9 +7,9 @@
  *
  * Code generation for model "DOB_ros".
  *
- * Model version              : 1.184
+ * Model version              : 1.185
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Sat Nov 17 11:17:43 2018
+ * C++ source code generated on : Sat Nov 17 12:19:06 2018
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -122,6 +122,9 @@ struct P_DOB_ros_T_ {
                                         */
   uint32_T Delay1_DelayLength;         /* Computed Parameter: Delay1_DelayLength
                                         * Referenced by: '<Root>/Delay1'
+                                        */
+  boolean_T Constant_Value_ij;         /* Computed Parameter: Constant_Value_ij
+                                        * Referenced by: '<S1>/Constant'
                                         */
 };
 

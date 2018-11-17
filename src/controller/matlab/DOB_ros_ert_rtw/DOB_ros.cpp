@@ -7,9 +7,9 @@
  *
  * Code generation for model "DOB_ros".
  *
- * Model version              : 1.184
+ * Model version              : 1.185
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Sat Nov 17 11:17:43 2018
+ * C++ source code generated on : Sat Nov 17 12:19:06 2018
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -135,6 +135,7 @@ void DOB_ros_step(void)
     rtb_Sum4 = DOB_ros_P.steering_ratio * rtb_Sum3;
 
     /* BusAssignment: '<S1>/Bus Assignment' incorporates:
+     *  Constant: '<S1>/Constant'
      *  Constant: '<S5>/Constant'
      *  Gain: '<S1>/Gain'
      *  Sum: '<S1>/Subtract'
@@ -143,6 +144,7 @@ void DOB_ros_step(void)
     rtb_BusAssignment.SteeringWheelAngleCmd = rtb_Sum4;
     rtb_BusAssignment.SteeringWheelAngleVelocity = 1.0F /
       DOB_ros_P.dt_ros_single * (rtb_Sum4 - DOB_ros_B.In1.SteeringWheelAngle);
+    rtb_BusAssignment.Enable = DOB_ros_P.Constant_Value_ij;
 
     /* Outputs for Atomic SubSystem: '<S1>/Publish' */
     /* Start for MATLABSystem: '<S6>/SinkBlock' */
