@@ -235,17 +235,8 @@ function updateToken(codeElement) {
             lineNo = lines[i].id.substring(1)
             if(lineTraceFlag[srcFilename+":"+ lineNo]) {
                 lines[i].className += " active";
-                if (top.testHarnessInfo && top.testHarnessInfo.IsTestHarness==="1") {
-                    lines[i].href = "matlab:rtw.report.code2model('" + top.reportModel 
-                        + "','" + srcFilename
-                        + "','" + lineNo
-                        + "','" + top.testHarnessInfo.HarnessName 
-                        + "','" + top.testHarnessInfo.HarnessOwner
-                        + "','" + top.testHarnessInfo.OwnerFileName + "')";
-                } else {
-                    lines[i].href = "matlab:rtw.report.code2model('" + top.reportModel 
-                        + "','" + srcFilename + "','" + lineNo + "')";
-                }
+                lines[i].href = "matlab:rtw.report.code2model(\'" + top.reportModel 
+                    + "\',\'" + srcFilename + "\',\'" + lineNo + "')";
             }
         }
     }

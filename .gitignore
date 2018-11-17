@@ -2,7 +2,6 @@
 build/
 devel/
 install/
-src/dob_ros/
 src/matlab_gen
 
 *.*.save

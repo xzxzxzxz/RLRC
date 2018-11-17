@@ -7,9 +7,9 @@
  *
  * Code generation for model "DOB_ros".
  *
- * Model version              : 1.183
- * Simulink Coder version : 9.0 (R2018b) 24-May-2018
- * C++ source code generated on : Fri Nov 16 19:31:46 2018
+ * Model version              : 1.184
+ * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
+ * C++ source code generated on : Sat Nov 17 11:17:43 2018
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -44,7 +44,7 @@
 # define rtmSetErrorStatus(rtm, val)   ((rtm)->errorStatus = (val))
 #endif
 
-/* Block signals (default storage) */
+/* Block signals (auto storage) */
 typedef struct {
   SL_Bus_DOB_ros_dbw_mkz_msgs_SteeringReport In1;/* '<S7>/In1' */
   SL_Bus_DOB_ros_dbw_mkz_msgs_SteeringReport b_varargout_2;
@@ -52,22 +52,22 @@ typedef struct {
   SL_Bus_DOB_ros_controller_TrackingInfo In1_i;/* '<S8>/In1' */
 } B_DOB_ros_T;
 
-/* Block states (default storage) for system '<Root>' */
+/* Block states (auto storage) for system '<Root>' */
 typedef struct {
+  real32_T D1_states[5];               /* '<Root>/D1' */
+  real32_T Delay1_DSTATE[2];           /* '<Root>/Delay1' */
+  real32_T Q1_states[2];               /* '<Root>/Q1' */
   robotics_slros_internal_block_T obj; /* '<S10>/SinkBlock' */
   robotics_slros_internal_block_T obj_e;/* '<S6>/SinkBlock' */
   robotics_slros_internal_blo_k_T obj_a;/* '<S3>/SourceBlock' */
   robotics_slros_internal_blo_k_T obj_ax;/* '<S2>/SourceBlock' */
-  real32_T D1_states[5];               /* '<Root>/D1' */
-  real32_T Delay1_DSTATE[2];           /* '<Root>/Delay1' */
-  real32_T Q1_states[2];               /* '<Root>/Q1' */
   boolean_T objisempty;                /* '<S10>/SinkBlock' */
   boolean_T objisempty_d;              /* '<S3>/SourceBlock' */
   boolean_T objisempty_n;              /* '<S2>/SourceBlock' */
   boolean_T objisempty_k;              /* '<S6>/SinkBlock' */
 } DW_DOB_ros_T;
 
-/* Parameters (default storage) */
+/* Parameters (auto storage) */
 struct P_DOB_ros_T_ {
   real32_T Dd[6];                      /* Variable: Dd
                                         * Referenced by: '<Root>/D1'
@@ -84,24 +84,27 @@ struct P_DOB_ros_T_ {
   real32_T kc2;                        /* Variable: kc2
                                         * Referenced by: '<Root>/Gain5'
                                         */
+  real32_T steering_ratio;             /* Variable: steering_ratio
+                                        * Referenced by: '<S1>/Gain1'
+                                        */
   SL_Bus_DOB_ros_dbw_mkz_msgs_SteeringReport Out1_Y0;/* Computed Parameter: Out1_Y0
                                                       * Referenced by: '<S7>/Out1'
                                                       */
   SL_Bus_DOB_ros_dbw_mkz_msgs_SteeringReport Constant_Value;/* Computed Parameter: Constant_Value
                                                              * Referenced by: '<S2>/Constant'
                                                              */
+  SL_Bus_DOB_ros_dbw_mkz_msgs_SteeringCmd Constant_Value_j;/* Computed Parameter: Constant_Value_j
+                                                            * Referenced by: '<S5>/Constant'
+                                                            */
   SL_Bus_DOB_ros_controller_TrackingInfo Out1_Y0_n;/* Computed Parameter: Out1_Y0_n
                                                     * Referenced by: '<S8>/Out1'
                                                     */
-  SL_Bus_DOB_ros_controller_TrackingInfo Constant_Value_j;/* Computed Parameter: Constant_Value_j
-                                                           * Referenced by: '<S3>/Constant'
-                                                           */
+  SL_Bus_DOB_ros_controller_TrackingInfo Constant_Value_j1;/* Computed Parameter: Constant_Value_j1
+                                                            * Referenced by: '<S3>/Constant'
+                                                            */
   SL_Bus_DOB_ros_controller_TrackingInfo Constant_Value_i;/* Computed Parameter: Constant_Value_i
                                                            * Referenced by: '<S9>/Constant'
                                                            */
-  SL_Bus_DOB_ros_dbw_mkz_msgs_SteeringCmd Constant_Value_jb;/* Computed Parameter: Constant_Value_jb
-                                                             * Referenced by: '<S5>/Constant'
-                                                             */
   real32_T D1_InitialStates;           /* Computed Parameter: D1_InitialStates
                                         * Referenced by: '<Root>/D1'
                                         */
@@ -127,7 +130,7 @@ struct tag_RTM_DOB_ros_T {
   const char_T *errorStatus;
 };
 
-/* Block parameters (default storage) */
+/* Block parameters (auto storage) */
 #ifdef __cplusplus
 
 extern "C" {
@@ -141,10 +144,10 @@ extern "C" {
 }
 #endif
 
-/* Block signals (default storage) */
+/* Block signals (auto storage) */
 extern B_DOB_ros_T DOB_ros_B;
 
-/* Block states (default storage) */
+/* Block states (auto storage) */
 extern DW_DOB_ros_T DOB_ros_DW;
 
 #ifdef __cplusplus

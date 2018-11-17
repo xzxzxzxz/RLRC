@@ -18,8 +18,9 @@ Car = BCD * Fnr;
 dt = 0.02;
 dt_ros_single = single(0.02);
 dt_ros = 0.02;
-vx = 20;
-ds = 15;
+vx = 10;
+ds = 10;
+steering_ratio = 14.8;
 
 % Discrete time ss (output: beta_s & dphidt)
 a11 = @(vx) - (Caf + Car) / (m * vx);

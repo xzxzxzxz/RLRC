@@ -77,17 +77,5 @@ int main(int argc, char **argv)
 
   /* Wait for stop semaphore */
   sem_wait(&stopSem);
-
-#if (MW_NUMBER_TIMER_DRIVEN_TASKS > 0)
-
-  {
-    int i;
-    for (i=0; i < MW_NUMBER_TIMER_DRIVEN_TASKS; i++) {
-      CHECK_STATUS(sem_destroy(&timerTaskSem[i]), 0, "sem_destroy");
-    }
-  }
-
-#endif
-
   return 0;
 }
