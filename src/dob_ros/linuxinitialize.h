@@ -23,7 +23,7 @@ int mw_CreateUnarmedTimer(double periodInSeconds, int idx);
 void mw_ArmTimer(int idx);
 void mw_WaitForTimerEvent(int fd);
 void mw_WaitForTimerEventCatchup(int fd);
-void mw_CreateTask(void (*taskHandler)(void), int priority, int policy, int coreSelection, int coreNum);
+void mw_CreateTask(void (*taskHandler)(void), const char* taskName, int priority, int policy, int coreSelection, int coreNum);
 void myWaitForThisEvent(int sigNo);
 void myAddBlockForThisEvent(int sigNo);
 void myAddHandlerForThisEvent(int sigNo, int sigToBlock[], int numSigToBlock, void (*sigHandler)(int));

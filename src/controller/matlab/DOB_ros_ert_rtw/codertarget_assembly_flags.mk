@@ -1,5 +1,5 @@
 ASFLAGS_ADDITIONAL = 
 TARGET_LOAD_CMD = 
 TARGET_LOAD_CMD_ARGS = 
-TARGET_PKG_INSTALLDIR = /usr/local/MATLAB/R2017b/toolbox/robotics/robotsimulink/@slCustomizer/../robotslros
+TARGET_PKG_INSTALLDIR = /usr/local/MATLAB/R2018b/toolbox/robotics/robotsimulink/robotslros
 STACK_SIZE = 64

@@ -1,4 +1,4 @@
-// Copyright 2007-2016 The MathWorks, Inc.
+// Copyright 2006-2018 The MathWorks, Inc.
 
 // Class RTW_Hash ------------------------------------------------------------
 // Internal web browser doesn't change window.location.hash if the link points
@@ -1176,15 +1176,12 @@ function updateHyperlinks() {
                 if (hidden_link)
                     hidden_link.style.display = "";
             }
-            if (typeof docObj.document.getElementsByClassName === "function")
+            if (typeof docObj.document.getElementsByClassName === "function") {
                 alinks = docObj.document.getElementsByClassName("callMATLAB");
-            else if (typeof docObj.document.getElementsByName === "function")
+            } else if (typeof docObj.document.getElementsByName === "function") {
                 alinks = docObj.document.getElementsByName("callMATLAB");
-            else
+            } else {
                 alinks = [];
-            for (i = 0; i < alinks.length; i++) {
-                alinks[i].href = "javascript:alert('This hyperlink is available only in MATLAB browser.');";
-                alinks[i].style.color = "gray";
             }
             alink = docObj.document.getElementById("CodeGenAdvCheck");
             if (alink && alink.href && alink.href.indexOf("externalweb=true")===-1) {

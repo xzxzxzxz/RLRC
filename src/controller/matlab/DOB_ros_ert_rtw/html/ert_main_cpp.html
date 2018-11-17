@@ -169,11 +169,35 @@
 <tr name="79" id="79">
 <td><a id="l79" class='ln'>79</a></td><td>  <a id="79c3" class="tk">sem_wait</a>(<a id="79c12" class="tk">&amp;</a><a id="79c13" class="tk">stopSem</a>);</td></tr>
 <tr name="80" id="80">
-<td><a id="l80" class='ln'>80</a></td><td>  <span class="kw">return</span> 0;</td></tr>
+<td><a id="l80" class='ln'>80</a></td><td></td></tr>
 <tr name="81" id="81">
-<td><a id="l81" class='ln'>81</a></td><td><span class="br">}</span></td></tr>
+<td><a id="l81" class='ln'>81</a></td><td><span class="pp">#if</span> (<a id="81c6" class="tk">MW_NUMBER_TIMER_DRIVEN_TASKS</a> <a id="81c35" class="tk">&gt;</a> 0)</td></tr>
 <tr name="82" id="82">
 <td><a id="l82" class='ln'>82</a></td><td></td></tr>
+<tr name="83" id="83">
+<td><a id="l83" class='ln'>83</a></td><td>  <span class="br">{</span></td></tr>
+<tr name="84" id="84">
+<td><a id="l84" class='ln'>84</a></td><td>    <span class="kw">int</span> <a id="84c9" class="tk">i</a>;</td></tr>
+<tr name="85" id="85">
+<td><a id="l85" class='ln'>85</a></td><td>    <span class="kw">for</span> (<a id="85c10" class="tk">i</a>=0; <a id="85c15" class="tk">i</a> <a id="85c17" class="tk">&lt;</a> <a id="85c19" class="tk">MW_NUMBER_TIMER_DRIVEN_TASKS</a>; <a id="85c49" class="tk">i</a><a id="85c50" class="tk">++</a>) <span class="br">{</span></td></tr>
+<tr name="86" id="86">
+<td><a id="l86" class='ln'>86</a></td><td>      <a id="86c7" class="tk">CHECK_STATUS</a>(<a id="86c20" class="tk">sem_destroy</a>(<a id="86c32" class="tk">&amp;</a><a id="86c33" class="tk">timerTaskSem</a>[<a id="86c46" class="tk">i</a>]), 0, "sem_destroy");</td></tr>
+<tr name="87" id="87">
+<td><a id="l87" class='ln'>87</a></td><td>    <span class="br">}</span></td></tr>
+<tr name="88" id="88">
+<td><a id="l88" class='ln'>88</a></td><td>  <span class="br">}</span></td></tr>
+<tr name="89" id="89">
+<td><a id="l89" class='ln'>89</a></td><td></td></tr>
+<tr name="90" id="90">
+<td><a id="l90" class='ln'>90</a></td><td><span class="pp">#endif</span></td></tr>
+<tr name="91" id="91">
+<td><a id="l91" class='ln'>91</a></td><td></td></tr>
+<tr name="92" id="92">
+<td><a id="l92" class='ln'>92</a></td><td>  <span class="kw">return</span> 0;</td></tr>
+<tr name="93" id="93">
+<td><a id="l93" class='ln'>93</a></td><td><span class="br">}</span></td></tr>
+<tr name="94" id="94">
+<td><a id="l94" class='ln'>94</a></td><td></td></tr>
 </table>
 </pre>
 </body>

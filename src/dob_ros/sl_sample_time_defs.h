@@ -45,10 +45,6 @@ typedef enum{
     SS_INVALID_TIMESOURCE
 } slTimeSource;
 
-#define BASE_RATE SS_TIMESOURCE_BASERATE
-#define SELF SS_TIMESOURCE_SELF
-#define CALLER SS_TIMESOURCE_CALLER
-
 /* Value/representation of an unknown tid */
 #define UNKNOWN_TID   (-5)
 

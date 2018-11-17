@@ -8,8 +8,8 @@
  * Code generation for model "DOB_ros".
  *
  * Model version              : 1.183
- * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Fri Aug 10 15:24:39 2018
+ * Simulink Coder version : 9.0 (R2018b) 24-May-2018
+ * C++ source code generated on : Fri Nov 16 19:31:46 2018
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -21,7 +21,7 @@
 #include "DOB_ros.h"
 #include "DOB_ros_private.h"
 
-/* Block parameters (auto storage) */
+/* Block parameters (default storage) */
 P_DOB_ros_T DOB_ros_P = {
   /* Variable: Dd
    * Referenced by: '<Root>/D1'
@@ -132,19 +132,6 @@ P_DOB_ros_T DOB_ros_P = {
     }                                  /* Header */
   },
 
-  /* Computed Parameter: Constant_Value_j
-   * Referenced by: '<S5>/Constant'
-   */
-  {
-    0.0F,                              /* SteeringWheelAngleCmd */
-    0.0F,                              /* SteeringWheelAngleVelocity */
-    false,                             /* Enable */
-    false,                             /* Clear */
-    false,                             /* Ignore */
-    false,                             /* Quiet */
-    0U                                 /* Count */
-  },
-
   /* Computed Parameter: Out1_Y0_n
    * Referenced by: '<S8>/Out1'
    */
@@ -154,7 +141,7 @@ P_DOB_ros_T DOB_ros_P = {
     0.0F                               /* Dtheta */
   },
 
-  /* Computed Parameter: Constant_Value_j1
+  /* Computed Parameter: Constant_Value_j
    * Referenced by: '<S3>/Constant'
    */
   {
@@ -170,6 +157,19 @@ P_DOB_ros_T DOB_ros_P = {
     0.0F,                              /* Vx */
     0.0F,                              /* Dy */
     0.0F                               /* Dtheta */
+  },
+
+  /* Computed Parameter: Constant_Value_jb
+   * Referenced by: '<S5>/Constant'
+   */
+  {
+    0.0F,                              /* SteeringWheelAngleCmd */
+    0.0F,                              /* SteeringWheelAngleVelocity */
+    false,                             /* Enable */
+    false,                             /* Clear */
+    false,                             /* Ignore */
+    false,                             /* Quiet */
+    0U                                 /* Count */
   },
 
   /* Computed Parameter: D1_InitialStates

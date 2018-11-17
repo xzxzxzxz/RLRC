@@ -2,8 +2,8 @@
 ## Makefile generated for Simulink model 'DOB_ros'. 
 ## 
 ## Makefile     : DOB_ros.mk
-## Generated on : Mon Aug 06 11:00:14 2018
-## MATLAB Coder version: 3.4 (R2017b)
+## Generated on : Fri Nov 16 19:31:53 2018
+## MATLAB Coder version: 4.1 (R2018b)
 ## 
 ## Build Info:
 ## 
@@ -25,18 +25,17 @@
 PRODUCT_NAME              = DOB_ros
 MAKEFILE                  = DOB_ros.mk
 COMPUTER                  = GLNXA64
-MATLAB_ROOT               = /usr/local/MATLAB/R2017b
-MATLAB_BIN                = /usr/local/MATLAB/R2017b/bin
+MATLAB_ROOT               = /usr/local/MATLAB/R2018b
+MATLAB_BIN                = /usr/local/MATLAB/R2018b/bin
 MATLAB_ARCH_BIN           = $(MATLAB_BIN)/glnxa64
 MASTER_ANCHOR_DIR         = 
-START_DIR                 = /home/chen/ProjectCodes/RLRC/RLRC/src/controller/matlab
+START_DIR                 = /home/zhuoxu/RLRC/src/controller/matlab
 ARCH                      = glnxa64
 SOLVER                    = 
 SOLVER_OBJ                = 
 CLASSIC_INTERFACE         = 0
 TGT_FCN_LIB               = None
 MODEL_HAS_DYNAMICALLY_LOADED_SFCNS = 0
-MODELREF_LINK_RSPFILE_NAME = DOB_ros_ref.rsp
 RELATIVE_PATH_TO_ANCHOR   = ..
 C_STANDARD_OPTS           = 
 CPP_STANDARD_OPTS         = 
@@ -47,7 +46,7 @@ CPP_STANDARD_OPTS         =
 
 # Toolchain Name:          Catkin v1.0 | gmake (64-bit Linux)
 # Supported Version(s):    
-# ToolchainInfo Version:   R2017b
+# ToolchainInfo Version:   R2018b
 # Specification Revision:  1.0
 # 
 
@@ -176,7 +175,7 @@ BUILD_TYPE = "Top-Level Standalone Executable"
 ## INCLUDE PATHS
 ###########################################################################
 
-INCLUDES_BUILDINFO = -I$(START_DIR) -I$(START_DIR)/DOB_ros_ert_rtw -I$(MATLAB_ROOT)/extern/include -I$(MATLAB_ROOT)/simulink/include -I$(MATLAB_ROOT)/rtw/c/src -I$(MATLAB_ROOT)/rtw/c/src/ext_mode/common -I$(MATLAB_ROOT)/rtw/c/ert -I$(MATLAB_ROOT)/toolbox/robotics/robotsimulink/@slCustomizer/../robotslros/include -I$(MATLAB_ROOT)/toolbox/target/codertarget/rtos/inc
+INCLUDES_BUILDINFO = -I$(START_DIR) -I$(START_DIR)/DOB_ros_ert_rtw -I$(MATLAB_ROOT)/extern/include -I$(MATLAB_ROOT)/simulink/include -I$(MATLAB_ROOT)/rtw/c/src -I$(MATLAB_ROOT)/rtw/c/src/ext_mode/common -I$(MATLAB_ROOT)/rtw/c/ert -I$(MATLAB_ROOT)/toolbox/robotics/robotsimulink/robotslros/include -I$(MATLAB_ROOT)/toolbox/target/codertarget/rtos/inc
 
 INCLUDES = $(INCLUDES_BUILDINFO)
 
@@ -184,11 +183,11 @@ INCLUDES = $(INCLUDES_BUILDINFO)
 ## DEFINES
 ###########################################################################
 
-DEFINES_ = -DMODEL=DOB_ros -DNUMST=1 -DNCSTATES=0 -DHAVESTDIO -DUNIX -DINTEGER_CODE=0 -DMT=0 -DCLASSIC_INTERFACE=0 -DALLOCATIONFCN=0 -DONESTEPFCN=1 -DTERMFCN=1 -DMULTI_INSTANCE_CODE=0 -DTID01EQ=0 -DROS_PROJECT -DMW_SCHED_OTHER -DSTACK_SIZE=64 -D__MW_TARGET_USE_HARDWARE_RESOURCES_H__ -DRT=RT
-DEFINES_BUILD_ARGS = -DINTEGER_CODE=0 -DMT=0 -DCLASSIC_INTERFACE=0 -DALLOCATIONFCN=0 -DONESTEPFCN=1 -DTERMFCN=1 -DMULTI_INSTANCE_CODE=0
+DEFINES_ = -DMODEL=DOB_ros -DNUMST=1 -DNCSTATES=0 -DHAVESTDIO -DMODEL_HAS_DYNAMICALLY_LOADED_SFCNS=0 -DUNIX -DCLASSIC_INTERFACE=0 -DALLOCATIONFCN=0 -DTID01EQ=0 -DONESTEPFCN=1 -DTERMFCN=1 -DMULTI_INSTANCE_CODE=0 -DINTEGER_CODE=0 -DMT=0 -DROS_PROJECT -DMW_SCHED_OTHER -DSTACK_SIZE=64 -D__MW_TARGET_USE_HARDWARE_RESOURCES_H__ -DRT=RT
+DEFINES_BUILD_ARGS = -DCLASSIC_INTERFACE=0 -DALLOCATIONFCN=0 -DONESTEPFCN=1 -DTERMFCN=1 -DMULTI_INSTANCE_CODE=0 -DINTEGER_CODE=0 -DMT=0
 DEFINES_IMPLIED = -DTID01EQ=0
 DEFINES_SKIPFORSIL = -DROS_PROJECT -DMW_SCHED_OTHER -DSTACK_SIZE=64
-DEFINES_STANDARD = -DMODEL=DOB_ros -DNUMST=1 -DNCSTATES=0 -DHAVESTDIO -DUNIX
+DEFINES_STANDARD = -DMODEL=DOB_ros -DNUMST=1 -DNCSTATES=0 -DHAVESTDIO -DMODEL_HAS_DYNAMICALLY_LOADED_SFCNS=0 -DUNIX
 
 DEFINES = $(DEFINES_) $(DEFINES_BUILD_ARGS) $(DEFINES_IMPLIED) $(DEFINES_SKIPFORSIL) $(DEFINES_STANDARD)
 
@@ -196,7 +195,7 @@ DEFINES = $(DEFINES_) $(DEFINES_BUILD_ARGS) $(DEFINES_IMPLIED) $(DEFINES_SKIPFOR
 ## SOURCE FILES
 ###########################################################################
 
-SRCS = $(START_DIR)/DOB_ros_ert_rtw/DOB_ros.cpp $(START_DIR)/DOB_ros_ert_rtw/DOB_ros_data.cpp $(MATLAB_ROOT)/toolbox/target/codertarget/rtos/src/linuxinitialize.cpp $(START_DIR)/DOB_ros_ert_rtw/slros_busmsg_conversion.cpp $(START_DIR)/DOB_ros_ert_rtw/slros_initialize.cpp /usr/local/MATLAB/R2017b/toolbox/robotics/robotsimulink/robotslros/src/slros_generic_param.cpp
+SRCS = $(START_DIR)/DOB_ros_ert_rtw/DOB_ros.cpp $(START_DIR)/DOB_ros_ert_rtw/DOB_ros_data.cpp $(MATLAB_ROOT)/toolbox/target/codertarget/rtos/src/linuxinitialize.cpp $(START_DIR)/DOB_ros_ert_rtw/slros_busmsg_conversion.cpp $(START_DIR)/DOB_ros_ert_rtw/slros_initialize.cpp /usr/local/MATLAB/R2018b/toolbox/robotics/robotsimulink/robotslros/src/slros_generic_param.cpp
 
 MAIN_SRC = $(START_DIR)/DOB_ros_ert_rtw/ert_main.cpp
 
@@ -206,7 +205,7 @@ ALL_SRCS = $(SRCS) $(MAIN_SRC)
 ## OBJECTS
 ###########################################################################
 
-OBJS = DOB_ros.cpp.o DOB_ros_data.cpp.o linuxinitialize.cpp.o slros_busmsg_conversion.cpp.o slros_initialize.cpp.o /usr/local/MATLAB/R2017b/toolbox/robotics/robotsimulink/robotslros/src/slros_generic_param.cpp.o
+OBJS = DOB_ros.cpp.o DOB_ros_data.cpp.o linuxinitialize.cpp.o slros_busmsg_conversion.cpp.o slros_initialize.cpp.o /usr/local/MATLAB/R2018b/toolbox/robotics/robotsimulink/robotslros/src/slros_generic_param.cpp.o
 
 MAIN_OBJ = ert_main.cpp.o
 
@@ -421,7 +420,7 @@ linuxinitialize.cpp.o : $(MATLAB_ROOT)/toolbox/target/codertarget/rtos/src/linux
 	$(CPP) $(CPPFLAGS) -o $@ $<
 
 
-/usr/local/MATLAB/R2017b/toolbox/robotics/robotsimulink/robotslros/src/slros_generic_param.cpp.o : /usr/local/MATLAB/R2017b/toolbox/robotics/robotsimulink/robotslros/src/slros_generic_param.cpp
+/usr/local/MATLAB/R2018b/toolbox/robotics/robotsimulink/robotslros/src/slros_generic_param.cpp.o : /usr/local/MATLAB/R2018b/toolbox/robotics/robotsimulink/robotslros/src/slros_generic_param.cpp
 	$(CPP) $(CPPFLAGS) -o $@ $<
 
 
@@ -429,7 +428,7 @@ linuxinitialize.cpp.o : $(MATLAB_ROOT)/toolbox/target/codertarget/rtos/src/linux
 ## DEPENDENCIES
 ###########################################################################
 
-$(ALL_OBJS) : $(MAKEFILE) rtw_proj.tmw
+$(ALL_OBJS) : rtw_proj.tmw $(MAKEFILE)
 
 
 ###########################################################################

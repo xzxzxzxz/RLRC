@@ -54,7 +54,7 @@ def simu():
     rospy.Subscriber('/vehicle/steering_cmd', SteeringCmd, steering_cmdCallback, queue_size=1)
     pub1 = rospy.Publisher('/vehicle/steering_report', SteeringReport, queue_size=1)
     pub2 = rospy.Publisher('state_estimate', state_Dynamic, queue_size=1)
-  #  srv = Server(DynamicParamConfig, errorcallback)
+    # srv = Server(DynamicParamConfig, errorcallback)
     steering_report = SteeringReport()
     state_report = state_Dynamic()
 

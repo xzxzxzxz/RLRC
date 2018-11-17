@@ -79,12 +79,10 @@ def plotter():
     ref_x = reference[0][:]
     ref_y = reference[1][:]
     ref_y1 = reference[1][:] + 3
-    ref_y2 = reference[1][:] - 3
     fig = plt.figure()
     ax = fig.add_subplot(1, 1, 1)
     ax.plot(ref_x, ref_y)
     ax.plot(ref_x, ref_y1)
-    ax.plot(ref_x, ref_y2)
     rospy.Subscriber('state_estimate', state_Dynamic, vehicle_state_callback, queue_size=1)
     rospy.Subscriber('ref_trajectory', Trajectory2D, ref_traje_callback, queue_size=1)
     rospy.Subscriber('/vehicle/traj_cg', Trajectory2D, traj_cg_callback, queue_size=1)

@@ -21,3 +21,5 @@ extern int taskId[];
 extern int subratePriority[];
 
 #endif
+
+#define MW_MAX_TASKNAME                16

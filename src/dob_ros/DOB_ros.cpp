@@ -7,9 +7,9 @@
  *
  * Code generation for model "DOB_ros".
  *
- * Model version              : 1.185
- * Simulink Coder version : 8.14 (R2018a) 06-Feb-2018
- * C++ source code generated on : Mon Sep  3 11:40:24 2018
+ * Model version              : 1.183
+ * Simulink Coder version : 9.0 (R2018b) 24-May-2018
+ * C++ source code generated on : Fri Nov 16 19:31:46 2018
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -20,7 +20,6 @@
 
 #include "DOB_ros.h"
 #include "DOB_ros_private.h"
-#define DOB_ros_MessageQueueLen        (1)
 
 /* Block signals (default storage) */
 B_DOB_ros_T DOB_ros_B;
@@ -33,35 +32,19 @@ RT_MODEL_DOB_ros_T DOB_ros_M_;
 RT_MODEL_DOB_ros_T *const DOB_ros_M = &DOB_ros_M_;
 
 /* Forward declaration for local functions */
-static void SystemProp_matlabCodegenSetAn_k(robotics_slros_internal_blo_k_T *obj,
-  boolean_T value);
 static void matlabCodegenHandle_matlabCod_k(robotics_slros_internal_blo_k_T *obj);
-static void SystemProp_matlabCodegenSetAnyP(robotics_slros_internal_block_T *obj,
-  boolean_T value);
 static void matlabCodegenHandle_matlabCodeg(robotics_slros_internal_block_T *obj);
-static void SystemProp_matlabCodegenSetAn_k(robotics_slros_internal_blo_k_T *obj,
-  boolean_T value)
-{
-  obj->matlabCodegenIsDeleted = value;
-}
-
 static void matlabCodegenHandle_matlabCod_k(robotics_slros_internal_blo_k_T *obj)
 {
   if (!obj->matlabCodegenIsDeleted) {
-    SystemProp_matlabCodegenSetAn_k(obj, true);
+    obj->matlabCodegenIsDeleted = true;
   }
-}
-
-static void SystemProp_matlabCodegenSetAnyP(robotics_slros_internal_block_T *obj,
-  boolean_T value)
-{
-  obj->matlabCodegenIsDeleted = value;
 }
 
 static void matlabCodegenHandle_matlabCodeg(robotics_slros_internal_block_T *obj)
 {
   if (!obj->matlabCodegenIsDeleted) {
-    SystemProp_matlabCodegenSetAnyP(obj, true);
+    obj->matlabCodegenIsDeleted = true;
   }
 }
 
@@ -161,11 +144,8 @@ void DOB_ros_step(void)
   /* MATLABSystem: '<S3>/SourceBlock' */
   if (b_varargout_1) {
     /* BusAssignment: '<S1>/Bus Assignment' incorporates:
-     *  Constant: '<S1>/Constant'
      *  Constant: '<S5>/Constant'
      *  Gain: '<S1>/Gain'
-     *  Gain: '<S1>/Gain1'
-     *  Gain: '<S1>/Gain2'
      *  Sum: '<S1>/Subtract'
      */
     rtb_BusAssignment = DOB_ros_P.Constant_Value_jb;
@@ -256,7 +236,7 @@ void DOB_ros_initialize(void)
     }
 
     tmp_4[14] = '\x00';
-    Sub_DOB_ros_174.createSubscriber(tmp_4, DOB_ros_MessageQueueLen);
+    Sub_DOB_ros_174.createSubscriber(tmp_4, 1);
     DOB_ros_DW.obj_a.isSetupComplete = true;
 
     /* End of Start for MATLABSystem: '<S3>/SourceBlock' */
@@ -275,7 +255,7 @@ void DOB_ros_initialize(void)
     }
 
     DOB_ros_B.cv0[24] = '\x00';
-    Sub_DOB_ros_191.createSubscriber(DOB_ros_B.cv0, DOB_ros_MessageQueueLen);
+    Sub_DOB_ros_191.createSubscriber(DOB_ros_B.cv0, 1);
     DOB_ros_DW.obj_ax.isSetupComplete = true;
 
     /* End of Start for MATLABSystem: '<S2>/SourceBlock' */
@@ -295,7 +275,7 @@ void DOB_ros_initialize(void)
     }
 
     tmp_3[21] = '\x00';
-    Pub_DOB_ros_152.createPublisher(tmp_3, DOB_ros_MessageQueueLen);
+    Pub_DOB_ros_152.createPublisher(tmp_3, 1);
     DOB_ros_DW.obj_e.isSetupComplete = true;
 
     /* End of Start for MATLABSystem: '<S6>/SinkBlock' */
@@ -316,7 +296,7 @@ void DOB_ros_initialize(void)
     }
 
     DOB_ros_B.cv0[24] = '\x00';
-    Pub_DOB_ros_158.createPublisher(DOB_ros_B.cv0, DOB_ros_MessageQueueLen);
+    Pub_DOB_ros_158.createPublisher(DOB_ros_B.cv0, 1);
     DOB_ros_DW.obj.isSetupComplete = true;
 
     /* End of Start for MATLABSystem: '<S10>/SinkBlock' */

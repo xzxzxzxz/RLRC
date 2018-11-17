@@ -11,10 +11,8 @@ find_package(catkin REQUIRED COMPONENTS
   dbw_mkz_msgs
   geometry_msgs
   path_follower
-  roscpp
   rospy
   std_msgs
-  dynamic_reconfigure
 )
 
 ## System dependencies are found with CMake's conventions
@@ -94,9 +92,7 @@ find_package(catkin REQUIRED COMPONENTS
 ##     and list every .cfg file to be processed
 
 ## Generate dynamic reconfigure parameters in the 'cfg' folder
- generate_dynamic_reconfigure_options(
-   cfg/DynamicParam.cfg
- )
+
 
 ###################################
 ## catkin specific configuration ##
@@ -107,12 +103,6 @@ find_package(catkin REQUIRED COMPONENTS
 ## LIBRARIES: libraries you create in this project that dependent projects also need
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
-catkin_package(
-  INCLUDE_DIRS include
-  LIBRARIES simu
-  CATKIN_DEPENDS dbw_mkz_msgs geometry_msgs path_follower roscpp rospy std_msgs
- # DEPENDS system_lib
-)
 
 ###########
 ## Build ##
@@ -120,25 +110,18 @@ catkin_package(
 
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
-include_directories(
-  include
-  ${catkin_INCLUDE_DIRS} 
-)
 
 ## Declare a C++ library
-add_library(${PROJECT_NAME}
-  src/f_6s.cpp
-)
+
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-add_executable(simu_env src/simu_env.cpp src/f_6s.cpp)
+
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
 ## either from message generation or dynamic reconfigure
-add_dependencies(simu_env ${simu_env_EXPORTED_TARGETS} ${PROJECT_NAME}_gencfg ${catkin_EXPORTED_TARGETS})
-add_dependencies(simu ${PROJECT_NAME}_gencfg)
+
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
 ## target back to the shorter version for ease of user use
@@ -150,8 +133,6 @@ add_dependencies(simu ${PROJECT_NAME}_gencfg)
 
 
 ## Specify libraries to link a library or executable target against
-target_link_libraries (simu_env ${catkin_LIBRARIES})
-
 # )
 
 #############
