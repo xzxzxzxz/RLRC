@@ -66,7 +66,7 @@ int main(int argc, char **argv)
   ros::NodeHandle n;
   ros::Subscriber sub1 = n.subscribe("/vehicle/steering_report",1,SteeringReportCallback); 
   ros::Subscriber sub2 = n.subscribe("gnss_pose",1,UTMCallback);
-  ros::Subscriber sub3 = n.subscribe("/imu_raw",1,ImuCallback);
+  ros::Subscriber sub3 = n.subscribe("/xsens/imu/data",1,ImuCallback);
   ros::Publisher pub1 = n.advertise<geometry_msgs::TwistStamped>("current_velocity",1); 
   ros::Publisher pub2 = n.advertise<geometry_msgs::PoseStamped>("current_pose",1);
   ros::Publisher pub3 = n.advertise<geometry_msgs::Pose2D>("current_pose_2D",1);

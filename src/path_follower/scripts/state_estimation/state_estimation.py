@@ -119,7 +119,7 @@ def state_estimation():
     rospy.init_node('state_estimation', anonymous=True)
 
     # topic subscriptions / publications
-    rospy.Subscriber('imu_raw', Imu, IMUCallback)
+    rospy.Subscriber('xsens/imu/data', Imu, IMUCallback)
     rospy.Subscriber('vehicle/steering_report', SteeringReport, SteeringReportCallback)
     rospy.Subscriber('current_pose_2D', Pose2D, CurrentPose2DCallback)
     rospy.Subscriber('relative_quaternion', Quaternion , RelativeOrientationCallback)
@@ -197,8 +197,8 @@ def state_estimation():
         if sqrt((state_est[2]-start_X)**2+(state_est[3]-start_Y)**2)<1:
             print('start')
             pub_flag = 1
-        if pub_flag == 1:
-            state_pub.publish(state_est_obj)	
+        #if pub_flag == 1:
+        state_pub.publish(state_est_obj)	
         rate.sleep()
 
 
