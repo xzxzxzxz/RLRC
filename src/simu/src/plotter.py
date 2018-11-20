@@ -8,8 +8,8 @@ import os, rospkg
 from std_msgs.msg import Int8
 
 
-axis_range = 10
-axis_range_y = 10
+axis_range = 15
+axis_range_y = 30
 i = 0
 obj1 = [0]; obj2 = [0]; obj3 = 0; obj4 = 0; obj5=0
 ini_flag = 0; ini_flag2 = 0; ini_flag3 = 0
@@ -32,7 +32,8 @@ def vehicle_state_callback(data):
             ini_flag = 1
         obj2 = ax.plot(X2, Y2, color='blue', marker='*', markersize=4)
         obj1 = ax.plot(data.X, data.Y, color='red', marker='s', markersize=8)
-        ax.axis([data.X - axis_range, data.X + axis_range, data.Y - axis_range_y, data.Y + axis_range_y])
+        plt.axis('scaled')
+        ax.axis([data.X - axis_range/2, data.X + axis_range, data.Y - axis_range_y/2, data.Y + axis_range_y])
         obj3 = ax.plot(X3, Y3, color='green', marker='o', markersize=8)
         obj4 = ax.plot(X4, Y4, color='black', marker='*', markersize=8)
         obj5 = ax.plot(X5, Y5, color='blue', marker='o', markersize=8)
@@ -78,7 +79,7 @@ def plotter():
     reference = scipy.io.loadmat(os.path.join(rospack.get_path("planning_policy"), "src", "Tra_1.mat"))['Tra_1']
     ref_x = reference[0][:]
     ref_y = reference[1][:]
-    ref_y1 = reference[1][:] + 3
+    ref_y1 = reference[1][:] + 6
     fig = plt.figure()
     ax = fig.add_subplot(1, 1, 1)
     ax.plot(ref_x, ref_y)

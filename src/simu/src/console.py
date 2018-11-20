@@ -14,7 +14,7 @@ def console(dt):
     screen = pygame.display.set_mode(SCREEN_SIZE, 0, 32)
     pygame.display.set_caption('Console (must keep active)')
     font = pygame.font.SysFont("arial", 17)
-    textSurfaceObj = font.render('Press SPACE to pause .Press LEFT to turn left. Press RIGHT to turn right', True,
+    textSurfaceObj = font.render('SPACE: pause | LEFT: left lane change | RIGHT: right lane change', True,
                                  (0, 0, 0))
     textRectObj = textSurfaceObj.get_rect()
     textRectObj.center = (300, 150)

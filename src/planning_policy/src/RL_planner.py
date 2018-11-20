@@ -43,6 +43,7 @@ def laneChangeCallback(data):
 def main(sim_steps):
     global vx, vy, X, Y, psi, wz, d_f, stateEstimate_mark, laneChange
 
+    model_path = "/home/zhuoxu/trained_model"
     config = dict()
     config['mode'] = 'Imitation'
     config['run_type'] = 'train'
@@ -53,15 +54,15 @@ def main(sim_steps):
     config['update_name'] = 'driver'
     config['e_update_type'] = 'regular'
     # network config:
-    network_config(config)
+    network_config(config, model_path)
     network = Palnet(config)
     network.restore()
     # start expert structure.
     g1 = tf.Graph()
     with g1.as_default():
-        expert = Expert()
+        expert = Expert(model_path)
         expert.restore()
-    env = Driving(story_index=0, track_data='Tra_1')
+    env = Driving(story_index=0, track_data='Tra_1', lane_deviation=6)
 
     # define the initial states and timestep
     vx = 0
@@ -89,6 +90,9 @@ def main(sim_steps):
     while (rospy.is_shutdown() != 1):
         if stateEstimate_mark:
             env.ego.state = np.array([X, Y, vx, psi])
+            if laneChange != 0:
+                env.hand_lanechange(laneChange)
+                laneChange = 0
             env.get_all_ref()
             ob = np.append(env.ego.state[2], env.ego_track_ref_list[env.ego.track_select])
 
