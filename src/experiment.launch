@@ -3,7 +3,7 @@
    <param name="/comp_error/ds" value="$(arg ds)"/>
    <!--node name="reconfigure_gui" pkg="rqt_reconfigure" type="rqt_reconfigure" output="screen" /-->
    <node name="plotter"  pkg="simu"  type="plotter.py" output="screen"/>
-   <node name="comp_error"  pkg="controller"  type="comp_error_node" output="screen"/>
+   <node name="comp_error"  pkg="controller"  type="comp_error_node_exp" output="screen"/>
    <node name="dob_ros"  pkg="dob_ros"  type="dob_ros_node" output="screen"/>
    <node name="RL_planner"  pkg="planning_policy"  type="RL_planner.py" output="screen"/>
    <node name="ZOH"  pkg="planning_policy"  type="ZOH.py" output="screen"/>
