@@ -73,7 +73,7 @@ rm
         # max steering and dvxdt
         self.maxSteeringRate = 850/180*pi
         self.maxSteering = 525.0/180*pi
-        self.steeringRatio = 16         # steering angle / tire angle = 16
+        self.steeringRatio = 14.8       # steering angle / tire angle = 16
         self.maxDvxdt = 5               # warning! tuning needed! (human factor, no need to rand)
 
     def simulate(self, action):
@@ -109,11 +109,6 @@ rm
         else:
             nextState[:6] = f_6s(state[:6], u, self.vhMdl, self.trMdl, self.F_ext, self.dt, self.F_side)
         return nextState
-
-
-
-
-
 
     def getMeasurement(self, track):
         """
