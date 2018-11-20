@@ -37,8 +37,9 @@ def errorcallback(config):
         car.state[1] = config.Y_init
         car.state[2] = config.phi_init
         car.state[3] = config.vx_init
-        car.state[6] = config.steering_init / 14.8
+        car.state[6] = config.steering_init / 16
         init_flag = 1
+
 
 def simu():
     global action
