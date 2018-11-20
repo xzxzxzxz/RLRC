@@ -42,6 +42,7 @@ src/matlab_gen
 # Data files
 *.dat
 *.csv
+*.bag
 
 # Emacs temp files
 .#*
