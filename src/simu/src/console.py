@@ -51,5 +51,7 @@ def console(dt):
         pub1.publish(lane_signal)
         rate.sleep()
     exit()
+
+
 if __name__ == '__main__':
     console(0.02)

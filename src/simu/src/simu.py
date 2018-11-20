@@ -28,7 +28,7 @@ def steering_cmdCallback(data):
     action[1] = (steering_cmd-car.state[6]*car.steeringRatio)/dt/car.maxSteeringRate
 
 
-def errorcallback(config, level):
+def errorcallback(config):
     global start_flag, init_flag, errorbound
     start_flag = config.Run
     if init_flag == 0 and start_flag == True:
