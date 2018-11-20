@@ -65,7 +65,7 @@ def main(sim_steps):
     with g1.as_default():
         expert = Expert(model_path)
         expert.restore()
-    env = Driving(story_index=100, track_data='Tra_1', lane_deviation=12)
+    env = Driving(story_index=100, track_data='long_straight', lane_deviation=12, dt=0.1)
     P = np.array([[100, 0], [0, 1]])
     solvers.options['show_progress'] = False  # don't let cvxopt print iterations
 
@@ -138,7 +138,6 @@ def main(sim_steps):
                 if len(obstacle_ref_list):
                     # extract parameters from obstacle_ref_list
                     data = {'state0': np.vstack(obstacle_ref_list)[:, :10]}
-                    print data
                     feed_data = network.get_feed_dict(data)
                     ob_param = network.sess.run(network.means[network.index], feed_data)
                     # None, 3.
@@ -168,8 +167,8 @@ def main(sim_steps):
                 ac[0] = dudt[0] / 5
                 ac[1] = dudt[1]
                 np.clip(ac, -1, 1, out=ac)
+
                 ob, r, done, obstacle_ref_list = env.step(ac)
-                print done
 
                 # speed limit
                 # if ob[0] > 5:
@@ -180,6 +179,6 @@ def main(sim_steps):
 
 if __name__ == '__main__':
     try: 
-        main(500)
+        main(50)
     except rospy.ROSInterruptException:
         pass 

@@ -18,7 +18,7 @@ def plotter():
     # initialize node
     rospy.init_node('plotter', anonymous=True)
 
-    reference = scipy.io.loadmat(os.path.join(rospack.get_path("path_follower"), "scripts", "waypoint_loader", "Tra_1.mat"))['Tra_1']
+    reference = scipy.io.loadmat(os.path.join(rospack.get_path("path_follower"), "scripts", "waypoint_loader", "long_straight.mat"))['long_straight']
     ref_x = reference[0][:]
     ref_y = reference[1][:]
 

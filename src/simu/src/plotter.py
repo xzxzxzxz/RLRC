@@ -8,8 +8,8 @@ import os, rospkg
 from std_msgs.msg import Int8
 
 
-axis_range = 15
-axis_range_y = 30
+axis_range = 25
+axis_range_y = 50
 i = 0
 obj1 = [0]; obj2 = [0]; obj3 = 0; obj4 = 0; obj5=0
 ini_flag = 0; init_flag_ref_traj = 0; init_flag_obstacle = 0; init_flag_ds_cg = 0
@@ -77,7 +77,7 @@ def plotter():
     # initialize node
     rospy.init_node('plotter', anonymous=True)
     rospack = rospkg.RosPack()
-    reference = scipy.io.loadmat(os.path.join(rospack.get_path("planning_policy"), "src", "Tra_1.mat"))['Tra_1']
+    reference = scipy.io.loadmat(os.path.join(rospack.get_path("planning_policy"), "src", "long_straight.mat"))['long_straight']
     ref_x = reference[0][:]
     ref_y = reference[1][:]
     ref_y1 = reference[1][:] + 12
