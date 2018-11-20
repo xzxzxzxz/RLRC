@@ -13,6 +13,7 @@ using namespace std;
 path_follower::state_Dynamic current_state;
 path_follower::Trajectory2D ref_traj;
 
+
 bool received_traj_flag = false,received_state_flag = false;
 float ds;
 
@@ -79,8 +80,8 @@ int main(int argc, char **argv)
       traj_cg.point.push_back(ref_point);
 
       cmd_vel_stamped.header.stamp = ros::Time::now();
-      cmd_vel_stamped.twist.linear.x = error_msg[0];
-      //cmd_vel_stamped.twist.linear.x = 8;
+      //cmd_vel_stamped.twist.linear.x = error_msg[0];
+      cmd_vel_stamped.twist.linear.x = 8;
       //cmd_vel_stamped.twist.linear.x = ref_traj.point[0].v;
 
       error_pub.publish(tracking_info);
