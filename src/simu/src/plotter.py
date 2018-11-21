@@ -80,7 +80,7 @@ def plotter():
     reference = scipy.io.loadmat(os.path.join(rospack.get_path("planning_policy"), "src", "long_straight.mat"))['long_straight']
     ref_x = reference[0][:]
     ref_y = reference[1][:]
-    ref_y1 = reference[1][:] + 12
+    ref_y1 = reference[1][:] + 9
     fig = plt.figure()
     ax = fig.add_subplot(1, 1, 1)
     ax.plot(ref_x, ref_y, color='green')

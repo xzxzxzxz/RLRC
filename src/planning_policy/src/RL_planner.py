@@ -46,7 +46,7 @@ def main(sim_steps):
     global vx, vy, X, Y, psi, wz, d_f, stateEstimate_mark, laneChange
 
     # env, base policy, attribute policy and PAL-Net related
-    model_path = "/home/zhuoxu/trained_model"
+    model_path = "/home/bdd/zhuo/trained_model"
     config = dict()
     config['mode'] = 'Imitation'
     config['run_type'] = 'train'
@@ -65,7 +65,7 @@ def main(sim_steps):
     with g1.as_default():
         expert = Expert(model_path)
         expert.restore()
-    env = Driving(story_index=100, track_data='long_straight', lane_deviation=12, dt=0.1)
+    env = Driving(story_index=100, track_data='long_straight', lane_deviation=9, dt=0.1)
     P = np.array([[100, 0], [0, 1]])
     solvers.options['show_progress'] = False  # don't let cvxopt print iterations
 

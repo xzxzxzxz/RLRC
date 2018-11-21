@@ -46,7 +46,7 @@ int main(int argc, char **argv)
   ros::NodeHandle n;
   ros::Subscriber sub_state = n.subscribe("state_estimate", 1, StateCallback); 
   ros::Subscriber sub_traj  = n.subscribe("ref_trajectory", 1, TrajCallback);
-  ros::Subscriber sub_enable_ = n.subscribe("dbw_enabled", 1, EnableCallback);
+  ros::Subscriber sub_enable_ = n.subscribe("vehicle/dbw_enabled", 1, EnableCallback);
   dynamic_reconfigure::Server<controller::DynamicParamConfig> server;
   dynamic_reconfigure::Server<controller::DynamicParamConfig>::CallbackType f;
   f = boost::bind(&DynamicCallback, _1, _2);
@@ -88,9 +88,9 @@ int main(int argc, char **argv)
       traj_cg.point.push_back(ref_point);
 
       cmd_vel_stamped.header.stamp = ros::Time::now();
-      cmd_vel_stamped.twist.linear.x = error_msg[0];
-      //cmd_vel_stamped.twist.linear.x = 8;
-      //cmd_vel_stamped.twist.linear.x = ref_traj.point[0].v;
+      //cmd_vel_stamped.twist.linear.x = error_msg[0];
+      //cmd_vel_stamped.twist.linear.x = 10;
+      cmd_vel_stamped.twist.linear.x = ref_traj.point[0].v;
 
       error_pub.publish(tracking_info);
       vel_cmd_pub.publish(cmd_vel_stamped);
