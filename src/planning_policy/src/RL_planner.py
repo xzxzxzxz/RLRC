@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 import rospy
 import numpy as np
-from dbw_mkz_msgs.msg import SteeringReport
 from path_follower.msg import state_Dynamic, Trajectory2D, TrajectoryPoint2D
 from std_msgs.msg import Int8
 from palnet.network.palnet import Palnet
@@ -11,7 +10,7 @@ from palnet.config.utility import *
 import tensorflow as tf
 from driving_env.driving import Driving
 from cvxopt import matrix, solvers
-
+import os, rospkg
 
 vx = 0
 vy = 0
@@ -19,10 +18,8 @@ X = 0
 Y = 0
 psi = 0
 wz = 0
-d_f = 0
 stateEstimate_mark = False
 laneChange = 0
-
 
 def stateEstimateCallback(data):
     global vx, vy, X, Y, psi, wz, stateEstimate_mark
@@ -34,19 +31,16 @@ def stateEstimateCallback(data):
     wz = data.wz
     stateEstimate_mark = True
 
-def steeringReportCallback(data):
-    global d_f
-    d_f = data.steering_wheel_angle / 16.0
-
 def laneChangeCallback(data):
     global laneChange
     laneChange = data.data
 
 def main(sim_steps):
-    global vx, vy, X, Y, psi, wz, d_f, stateEstimate_mark, laneChange
+    global vx, vy, X, Y, psi, wz, stateEstimate_mark, laneChange
 
     # env, base policy, attribute policy and PAL-Net related
-    model_path = "/home/bdd/zhuo/trained_model"
+    rospack = rospkg.RosPack()
+    model_path = os.path.join(rospack.get_path("planning_policy"), "trained_model")
     config = dict()
     config['mode'] = 'Imitation'
     config['run_type'] = 'train'
@@ -65,23 +59,16 @@ def main(sim_steps):
     with g1.as_default():
         expert = Expert(model_path)
         expert.restore()
-    env = Driving(story_index=100, track_data='long_straight', lane_deviation=9, dt=0.1)
+    env = Driving(story_index=100, track_data='long_straight', lane_deviation=9.5, dt=0.1)
     P = np.array([[100, 0], [0, 1]])
     solvers.options['show_progress'] = False  # don't let cvxopt print iterations
 
     # define the initial states and timestep
-    vx = 0
-    vy = 0
-    X = 0
-    Y = 0
-    psi = 0
-    wz = 0
     stateEstimate_mark = False
 
     # import track file
     rospy.init_node('RL_planner', anonymous=True)
     rospy.Subscriber('state_estimate', state_Dynamic, stateEstimateCallback)
-    rospy.Subscriber('vehicle/steering_report', SteeringReport, steeringReportCallback)
     rospy.Subscriber('lane_signal', Int8, laneChangeCallback)
     ref_traj_pub = rospy.Publisher('ref_trajectory_origin', Trajectory2D, queue_size=1)
     obstacle_pub = rospy.Publisher('obstacle_pos', TrajectoryPoint2D, queue_size=1)
@@ -148,7 +135,7 @@ def main(sim_steps):
                         sol = solvers.qp(P=matrix(0.5 * P), q=matrix(- np.matmul(P, dudt0)), G=matrix(M), h=matrix(b))
                     except:
                         # if dAger is not useful, transfer back.
-                        print("Somthing wrong with dAger run.")
+                        print("RL_planner:Something wrong with dAger run.")
                         num = len(obstacle_ref_list)
                         for i in range(num):
                             obstacle_ref = obstacle_ref_list[i]
@@ -167,18 +154,14 @@ def main(sim_steps):
                 ac[0] = dudt[0] / 5
                 ac[1] = dudt[1]
                 np.clip(ac, -1, 1, out=ac)
-
                 ob, r, done, obstacle_ref_list = env.step(ac)
 
-                # speed limit
-                # if ob[0] > 5:
-                #     ac[0]=0
             ref_traj_pub.publish(traj)
             steps += 1
             rate.sleep()
 
 if __name__ == '__main__':
     try: 
-        main(50)
+        main(80)
     except rospy.ROSInterruptException:
         pass 

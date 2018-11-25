@@ -53,11 +53,11 @@ int main(int argc, char **argv)
   server.setCallback(f);
 
   ros::Publisher error_pub = n.advertise<controller::TrackingInfo>("tracking_info", 1); 
-  ros::Publisher vel_cmd_pub = n.advertise<geometry_msgs::TwistStamped>("/vehicle/cmd_vel_stamped", 1);
+  //ros::Publisher vel_cmd_pub = n.advertise<geometry_msgs::TwistStamped>("/vehicle/cmd_vel_stamped", 1);
   ros::Publisher traj_cg_pub = n.advertise<path_follower::Trajectory2D>("/vehicle/traj_cg", 1);
   ros::Rate loop_rate(50);
 
-  geometry_msgs::TwistStamped cmd_vel_stamped;
+  //geometry_msgs::TwistStamped cmd_vel_stamped;
   controller::TrackingInfo tracking_info;
   path_follower::Trajectory2D traj_cg;
   path_follower::TrajectoryPoint2D cg_point,ds_point,ref_point;
@@ -83,17 +83,18 @@ int main(int argc, char **argv)
       ds_point.y=error_msg[6];
       ref_point.x=error_msg[7];
       ref_point.y=error_msg[8];
+      float index = error_msg[9];
       traj_cg.point.push_back(cg_point);      
       traj_cg.point.push_back(ds_point);
       traj_cg.point.push_back(ref_point);
 
-      cmd_vel_stamped.header.stamp = ros::Time::now();
+      //cmd_vel_stamped.header.stamp = ros::Time::now();
       //cmd_vel_stamped.twist.linear.x = error_msg[0];
       //cmd_vel_stamped.twist.linear.x = 10;
-      cmd_vel_stamped.twist.linear.x = ref_traj.point[0].v;
+      //cmd_vel_stamped.twist.linear.x = ref_traj.point[0].v;
 
       error_pub.publish(tracking_info);
-      vel_cmd_pub.publish(cmd_vel_stamped);
+      //vel_cmd_pub.publish(cmd_vel_stamped);
       traj_cg_pub.publish(traj_cg);
       traj_cg.point.clear();
     }

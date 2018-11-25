@@ -46,7 +46,7 @@ def simu():
     time.sleep(5)
     rate = rospy.Rate(1/dt)
     rospy.loginfo("simulator node starts")
-    state=[558586.699614032, 4196501.20232720, 1.25432777404785, 10, 0, 0, 0]
+    state=[558586.699614032, 4196501.20232720, 1.25432777404785, 5, 0, 0, 0]
     #state = [0, 1, 0, 10, 0, 0, 0]
     car.setState(state)
     rospy.Subscriber('/vehicle/cmd_vel_stamped', TwistStamped, cmd_vel_stampedCallback, queue_size=1)
@@ -56,7 +56,6 @@ def simu():
     # srv = Server(DynamicParamConfig, errorcallback)
     steering_report = SteeringReport()
     state_report = state_Dynamic()
-
 
     while (rospy.is_shutdown() != 1):
         car.simulate(action)
