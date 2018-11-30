@@ -91,7 +91,7 @@ int main(int argc, char **argv)
     pub1.publish(actual_vel);
     //initialize yaw angle and publish pose
     distance = sqrt(pow(current_position.x-initial_position.x,2)+pow(current_position.y-initial_position.y,2));
-    if (initialize == 0 && distance >= 2)
+    if (initialize == 0 && distance >= 5)
     {
       initial_yaw = atan2(current_position.y-initial_position.y,current_position.x-initial_position.x);
       initial_rot.setEulerYPR(initial_yaw,0,0);
