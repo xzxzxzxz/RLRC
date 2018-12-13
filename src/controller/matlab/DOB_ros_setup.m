@@ -47,8 +47,8 @@ Gde = tf(1, [1,0], 'Ts', dt, 'Variable', 'z');
 Gop = tf(bpeq, apeq, 'Ts', dt, 'Variable', 'z');
 Gop = Gop * Gde;
 
-kc1 = single(0.4);
-kc2 = single(0.06);
+kc1 = single(0.3);
+kc2 = single(0.1);
 Gc1 = kc1 + vx*Gi;
 Gc2 = kc2;
 Gop = Gop * Gc1;
