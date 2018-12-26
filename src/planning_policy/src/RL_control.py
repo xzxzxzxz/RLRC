@@ -11,7 +11,9 @@ from palnet.config.utility import *
 import tensorflow as tf
 from driving_env.driving import Driving
 from cvxopt import matrix, solvers
+from dbw_mkz_msgs import SteeringCmd 
 import os, rospkg
+from math import asin, tan, atan
 
 vx = 0
 vy = 0
@@ -68,11 +70,11 @@ def main():
     stateEstimate_mark = False
 
     # import track file
-    rospy.init_node('RL_planner_vel', anonymous=True)
+    rospy.init_node('RL_control', anonymous=True)
     rospy.Subscriber('state_estimate', state_Dynamic, stateEstimateCallback)
     rospy.Subscriber('lane_signal', Int8, laneChangeCallback)
     vel_cmd_pub = rospy.Publisher('/vehicle/cmd_vel_stamped', TwistStamped, queue_size=1)
-
+    steering_cmd_pub = rospy.Publisher('/vehicle/steering_cmd', SteeringCmd, queue_size=1)
     dt = 0.02
     rate = rospy.Rate(1 / dt)
 
@@ -114,7 +116,7 @@ def main():
                     sol = solvers.qp(P=matrix(0.5 * P), q=matrix(- np.matmul(P, dudt0)), G=matrix(M), h=matrix(b))
                 except:
                     # if dAger is not useful, transfer back.
-                    print("RL_planner_vel:Something wrong with dAger run.")
+                    print("RL_control:Something wrong with dAger run.")
                     num = len(obstacle_ref_list)
                     for i in range(num):
                         obstacle_ref = obstacle_ref_list[i]
@@ -135,8 +137,14 @@ def main():
             np.clip(ac, -1, 1, out=ac)
 
             cmd_vel_stamped = TwistStamped()
-            cmd_vel_stamped.twist.linear.x = ac[0] * 5. * dt + vx;
+            cmd_vel_stamped.twist.linear.x = ac[0] * 5 * dt + vx;
             vel_cmd_pub.publish(cmd_vel_stamped)
+            steering_cmd = SteeringCmd()
+            steering_cmd.enable = True
+            beta = asin(ac[1] * 0.5  * 1.65 / vx)
+            delta = atan(tan(beta) * (1.65 + 1.20) / 1.65)
+            steering_cmd.steering_wheel_angle_cmd = delta
+            steering_cmd_pub.publish(steering_cmd)
 
             rate.sleep()
 
