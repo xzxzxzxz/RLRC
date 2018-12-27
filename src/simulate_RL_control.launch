@@ -1,0 +1,12 @@
+<launch>
+   <arg name="ds" default="10"/>
+   <param name="/comp_error/ds" value="$(arg ds)"/>
+   <!--node name="reconfigure_gui" pkg="rqt_reconfigure" type="rqt_reconfigure" output="screen" /-->
+   <node name="plotter"  pkg="simu"  type="plotter.py" output="screen"/>
+   <node name="simu" pkg="simu" type="simu.py" output="screen"/>
+   <node name="RL_planner"  pkg="planning_policy"  type="RL_planner.py" output="screen"/>
+   <node name="comp_error"  pkg="controller"  type="comp_error_node_sim" output="screen"/>
+   <node name="RL_control"  pkg="planning_policy"  type="RL_control.py" output="screen"/>
+   <node name="ZOH"  pkg="planning_policy"  type="ZOH.py" output="screen"/>
+   <node name="console"  pkg="simu"  type="console.py" output="screen"/>
+</launch>

@@ -137,143 +137,147 @@
 <tr name="63" id="63">
 <td><a id="l63" class='ln'>63</a></td><td>  <a id="63c3" class="tk">msgPtr</a>-&gt;<a id="63c11" class="tk">fault_calibration</a> =  <a id="63c32" class="tk">busPtr</a>-&gt;<a id="63c40" class="tk">FaultCalibration</a>;</td></tr>
 <tr name="64" id="64">
-<td><a id="l64" class='ln'>64</a></td><td>  <a id="64c3" class="tk">msgPtr</a>-&gt;<a id="64c11" class="tk">fault_wdc</a> =  <a id="64c24" class="tk">busPtr</a>-&gt;<a id="64c32" class="tk">FaultWdc</a>;</td></tr>
+<td><a id="l64" class='ln'>64</a></td><td>  <a id="64c3" class="tk">msgPtr</a>-&gt;<a id="64c11" class="tk">fault_power</a> =  <a id="64c26" class="tk">busPtr</a>-&gt;<a id="64c34" class="tk">FaultPower</a>;</td></tr>
 <tr name="65" id="65">
-<td><a id="l65" class='ln'>65</a></td><td>  <a id="65c3" class="tk">convertFromBus</a>(<a id="65c18" class="tk">&amp;</a><a id="65c19" class="tk">msgPtr</a>-&gt;<a id="65c27" class="tk">header</a>, <a id="65c35" class="tk">&amp;</a><a id="65c36" class="tk">busPtr</a>-&gt;<a id="65c44" class="tk">Header</a>);</td></tr>
+<td><a id="l65" class='ln'>65</a></td><td>  <a id="65c3" class="tk">msgPtr</a>-&gt;<a id="65c11" class="tk">fault_wdc</a> =  <a id="65c24" class="tk">busPtr</a>-&gt;<a id="65c32" class="tk">FaultWdc</a>;</td></tr>
 <tr name="66" id="66">
-<td><a id="l66" class='ln'>66</a></td><td>  <a id="66c3" class="tk">msgPtr</a>-&gt;<a id="66c11" class="tk">override</a> =  <a id="66c23" class="tk">busPtr</a>-&gt;<a id="66c31" class="tk">Override</a>;</td></tr>
+<td><a id="l66" class='ln'>66</a></td><td>  <a id="66c3" class="tk">convertFromBus</a>(<a id="66c18" class="tk">&amp;</a><a id="66c19" class="tk">msgPtr</a>-&gt;<a id="66c27" class="tk">header</a>, <a id="66c35" class="tk">&amp;</a><a id="66c36" class="tk">busPtr</a>-&gt;<a id="66c44" class="tk">Header</a>);</td></tr>
 <tr name="67" id="67">
-<td><a id="l67" class='ln'>67</a></td><td>  <a id="67c3" class="tk">msgPtr</a>-&gt;<a id="67c11" class="tk">speed</a> =  <a id="67c20" class="tk">busPtr</a>-&gt;<a id="67c28" class="tk">Speed</a>;</td></tr>
+<td><a id="l67" class='ln'>67</a></td><td>  <a id="67c3" class="tk">msgPtr</a>-&gt;<a id="67c11" class="tk">override</a> =  <a id="67c23" class="tk">busPtr</a>-&gt;<a id="67c31" class="tk">Override</a>;</td></tr>
 <tr name="68" id="68">
-<td><a id="l68" class='ln'>68</a></td><td>  <a id="68c3" class="tk">msgPtr</a>-&gt;<a id="68c11" class="tk">steering_wheel_angle</a> =  <a id="68c35" class="tk">busPtr</a>-&gt;<a id="68c43" class="tk">SteeringWheelAngle</a>;</td></tr>
+<td><a id="l68" class='ln'>68</a></td><td>  <a id="68c3" class="tk">msgPtr</a>-&gt;<a id="68c11" class="tk">speed</a> =  <a id="68c20" class="tk">busPtr</a>-&gt;<a id="68c28" class="tk">Speed</a>;</td></tr>
 <tr name="69" id="69">
-<td><a id="l69" class='ln'>69</a></td><td>  <a id="69c3" class="tk">msgPtr</a>-&gt;<a id="69c11" class="tk">steering_wheel_angle_cmd</a> =  <a id="69c39" class="tk">busPtr</a>-&gt;<a id="69c47" class="tk">SteeringWheelAngleCmd</a>;</td></tr>
+<td><a id="l69" class='ln'>69</a></td><td>  <a id="69c3" class="tk">msgPtr</a>-&gt;<a id="69c11" class="tk">steering_wheel_angle</a> =  <a id="69c35" class="tk">busPtr</a>-&gt;<a id="69c43" class="tk">SteeringWheelAngle</a>;</td></tr>
 <tr name="70" id="70">
-<td><a id="l70" class='ln'>70</a></td><td>  <a id="70c3" class="tk">msgPtr</a>-&gt;<a id="70c11" class="tk">steering_wheel_torque</a> =  <a id="70c36" class="tk">busPtr</a>-&gt;<a id="70c44" class="tk">SteeringWheelTorque</a>;</td></tr>
+<td><a id="l70" class='ln'>70</a></td><td>  <a id="70c3" class="tk">msgPtr</a>-&gt;<a id="70c11" class="tk">steering_wheel_angle_cmd</a> =  <a id="70c39" class="tk">busPtr</a>-&gt;<a id="70c47" class="tk">SteeringWheelAngleCmd</a>;</td></tr>
 <tr name="71" id="71">
-<td><a id="l71" class='ln'>71</a></td><td>  <a id="71c3" class="tk">msgPtr</a>-&gt;<a id="71c11" class="tk">timeout</a> =  <a id="71c22" class="tk">busPtr</a>-&gt;<a id="71c30" class="tk">Timeout</a>;</td></tr>
+<td><a id="l71" class='ln'>71</a></td><td>  <a id="71c3" class="tk">msgPtr</a>-&gt;<a id="71c11" class="tk">steering_wheel_torque</a> =  <a id="71c36" class="tk">busPtr</a>-&gt;<a id="71c44" class="tk">SteeringWheelTorque</a>;</td></tr>
 <tr name="72" id="72">
-<td><a id="l72" class='ln'>72</a></td><td><span class="br">}</span></td></tr>
+<td><a id="l72" class='ln'>72</a></td><td>  <a id="72c3" class="tk">msgPtr</a>-&gt;<a id="72c11" class="tk">timeout</a> =  <a id="72c22" class="tk">busPtr</a>-&gt;<a id="72c30" class="tk">Timeout</a>;</td></tr>
 <tr name="73" id="73">
-<td><a id="l73" class='ln'>73</a></td><td></td></tr>
+<td><a id="l73" class='ln'>73</a></td><td><span class="br">}</span></td></tr>
 <tr name="74" id="74">
-<td><a id="l74" class='ln'>74</a></td><td><span class="kw">void</span> <a id="74c6" class="tk">convertToBus</a>(<a id="74c19" class="tk">SL_Bus_DOB_ros_dbw_mkz_msgs_SteeringReport</a><a id="74c61" class="tk">*</a> <a id="74c63" class="tk">busPtr</a>, <a id="74c71" class="tk">dbw_mkz_msgs</a>::<a id="74c85" class="tk">SteeringReport</a> <span class="kw">const</span><a id="74c105" class="tk">*</a> <a id="74c107" class="tk">msgPtr</a>)</td></tr>
+<td><a id="l74" class='ln'>74</a></td><td></td></tr>
 <tr name="75" id="75">
-<td><a id="l75" class='ln'>75</a></td><td><span class="br">{</span></td></tr>
+<td><a id="l75" class='ln'>75</a></td><td><span class="kw">void</span> <a id="75c6" class="tk">convertToBus</a>(<a id="75c19" class="tk">SL_Bus_DOB_ros_dbw_mkz_msgs_SteeringReport</a><a id="75c61" class="tk">*</a> <a id="75c63" class="tk">busPtr</a>, <a id="75c71" class="tk">dbw_mkz_msgs</a>::<a id="75c85" class="tk">SteeringReport</a> <span class="kw">const</span><a id="75c105" class="tk">*</a> <a id="75c107" class="tk">msgPtr</a>)</td></tr>
 <tr name="76" id="76">
-<td><a id="l76" class='ln'>76</a></td><td>  <span class="kw">const</span> <a id="76c9" class="tk">std</a>::<a id="76c14" class="tk">string</a> <a id="76c21" class="tk">rosMessageType</a>("dbw_mkz_msgs/SteeringReport");</td></tr>
+<td><a id="l76" class='ln'>76</a></td><td><span class="br">{</span></td></tr>
 <tr name="77" id="77">
-<td><a id="l77" class='ln'>77</a></td><td></td></tr>
+<td><a id="l77" class='ln'>77</a></td><td>  <span class="kw">const</span> <a id="77c9" class="tk">std</a>::<a id="77c14" class="tk">string</a> <a id="77c21" class="tk">rosMessageType</a>("dbw_mkz_msgs/SteeringReport");</td></tr>
 <tr name="78" id="78">
-<td><a id="l78" class='ln'>78</a></td><td>  <a id="78c3" class="tk">busPtr</a>-&gt;<a id="78c11" class="tk">Enabled</a> =  <a id="78c22" class="tk">msgPtr</a>-&gt;<a id="78c30" class="tk">enabled</a>;</td></tr>
+<td><a id="l78" class='ln'>78</a></td><td></td></tr>
 <tr name="79" id="79">
-<td><a id="l79" class='ln'>79</a></td><td>  <a id="79c3" class="tk">busPtr</a>-&gt;<a id="79c11" class="tk">FaultBus1</a> =  <a id="79c24" class="tk">msgPtr</a>-&gt;<a id="79c32" class="tk">fault_bus1</a>;</td></tr>
+<td><a id="l79" class='ln'>79</a></td><td>  <a id="79c3" class="tk">busPtr</a>-&gt;<a id="79c11" class="tk">Enabled</a> =  <a id="79c22" class="tk">msgPtr</a>-&gt;<a id="79c30" class="tk">enabled</a>;</td></tr>
 <tr name="80" id="80">
-<td><a id="l80" class='ln'>80</a></td><td>  <a id="80c3" class="tk">busPtr</a>-&gt;<a id="80c11" class="tk">FaultBus2</a> =  <a id="80c24" class="tk">msgPtr</a>-&gt;<a id="80c32" class="tk">fault_bus2</a>;</td></tr>
+<td><a id="l80" class='ln'>80</a></td><td>  <a id="80c3" class="tk">busPtr</a>-&gt;<a id="80c11" class="tk">FaultBus1</a> =  <a id="80c24" class="tk">msgPtr</a>-&gt;<a id="80c32" class="tk">fault_bus1</a>;</td></tr>
 <tr name="81" id="81">
-<td><a id="l81" class='ln'>81</a></td><td>  <a id="81c3" class="tk">busPtr</a>-&gt;<a id="81c11" class="tk">FaultCalibration</a> =  <a id="81c31" class="tk">msgPtr</a>-&gt;<a id="81c39" class="tk">fault_calibration</a>;</td></tr>
+<td><a id="l81" class='ln'>81</a></td><td>  <a id="81c3" class="tk">busPtr</a>-&gt;<a id="81c11" class="tk">FaultBus2</a> =  <a id="81c24" class="tk">msgPtr</a>-&gt;<a id="81c32" class="tk">fault_bus2</a>;</td></tr>
 <tr name="82" id="82">
-<td><a id="l82" class='ln'>82</a></td><td>  <a id="82c3" class="tk">busPtr</a>-&gt;<a id="82c11" class="tk">FaultWdc</a> =  <a id="82c23" class="tk">msgPtr</a>-&gt;<a id="82c31" class="tk">fault_wdc</a>;</td></tr>
+<td><a id="l82" class='ln'>82</a></td><td>  <a id="82c3" class="tk">busPtr</a>-&gt;<a id="82c11" class="tk">FaultCalibration</a> =  <a id="82c31" class="tk">msgPtr</a>-&gt;<a id="82c39" class="tk">fault_calibration</a>;</td></tr>
 <tr name="83" id="83">
-<td><a id="l83" class='ln'>83</a></td><td>  <a id="83c3" class="tk">convertToBus</a>(<a id="83c16" class="tk">&amp;</a><a id="83c17" class="tk">busPtr</a>-&gt;<a id="83c25" class="tk">Header</a>, <a id="83c33" class="tk">&amp;</a><a id="83c34" class="tk">msgPtr</a>-&gt;<a id="83c42" class="tk">header</a>);</td></tr>
+<td><a id="l83" class='ln'>83</a></td><td>  <a id="83c3" class="tk">busPtr</a>-&gt;<a id="83c11" class="tk">FaultPower</a> =  <a id="83c25" class="tk">msgPtr</a>-&gt;<a id="83c33" class="tk">fault_power</a>;</td></tr>
 <tr name="84" id="84">
-<td><a id="l84" class='ln'>84</a></td><td>  <a id="84c3" class="tk">busPtr</a>-&gt;<a id="84c11" class="tk">Override</a> =  <a id="84c23" class="tk">msgPtr</a>-&gt;<a id="84c31" class="tk">override</a>;</td></tr>
+<td><a id="l84" class='ln'>84</a></td><td>  <a id="84c3" class="tk">busPtr</a>-&gt;<a id="84c11" class="tk">FaultWdc</a> =  <a id="84c23" class="tk">msgPtr</a>-&gt;<a id="84c31" class="tk">fault_wdc</a>;</td></tr>
 <tr name="85" id="85">
-<td><a id="l85" class='ln'>85</a></td><td>  <a id="85c3" class="tk">busPtr</a>-&gt;<a id="85c11" class="tk">Speed</a> =  <a id="85c20" class="tk">msgPtr</a>-&gt;<a id="85c28" class="tk">speed</a>;</td></tr>
+<td><a id="l85" class='ln'>85</a></td><td>  <a id="85c3" class="tk">convertToBus</a>(<a id="85c16" class="tk">&amp;</a><a id="85c17" class="tk">busPtr</a>-&gt;<a id="85c25" class="tk">Header</a>, <a id="85c33" class="tk">&amp;</a><a id="85c34" class="tk">msgPtr</a>-&gt;<a id="85c42" class="tk">header</a>);</td></tr>
 <tr name="86" id="86">
-<td><a id="l86" class='ln'>86</a></td><td>  <a id="86c3" class="tk">busPtr</a>-&gt;<a id="86c11" class="tk">SteeringWheelAngle</a> =  <a id="86c33" class="tk">msgPtr</a>-&gt;<a id="86c41" class="tk">steering_wheel_angle</a>;</td></tr>
+<td><a id="l86" class='ln'>86</a></td><td>  <a id="86c3" class="tk">busPtr</a>-&gt;<a id="86c11" class="tk">Override</a> =  <a id="86c23" class="tk">msgPtr</a>-&gt;<a id="86c31" class="tk">override</a>;</td></tr>
 <tr name="87" id="87">
-<td><a id="l87" class='ln'>87</a></td><td>  <a id="87c3" class="tk">busPtr</a>-&gt;<a id="87c11" class="tk">SteeringWheelAngleCmd</a> =  <a id="87c36" class="tk">msgPtr</a>-&gt;<a id="87c44" class="tk">steering_wheel_angle_cmd</a>;</td></tr>
+<td><a id="l87" class='ln'>87</a></td><td>  <a id="87c3" class="tk">busPtr</a>-&gt;<a id="87c11" class="tk">Speed</a> =  <a id="87c20" class="tk">msgPtr</a>-&gt;<a id="87c28" class="tk">speed</a>;</td></tr>
 <tr name="88" id="88">
-<td><a id="l88" class='ln'>88</a></td><td>  <a id="88c3" class="tk">busPtr</a>-&gt;<a id="88c11" class="tk">SteeringWheelTorque</a> =  <a id="88c34" class="tk">msgPtr</a>-&gt;<a id="88c42" class="tk">steering_wheel_torque</a>;</td></tr>
+<td><a id="l88" class='ln'>88</a></td><td>  <a id="88c3" class="tk">busPtr</a>-&gt;<a id="88c11" class="tk">SteeringWheelAngle</a> =  <a id="88c33" class="tk">msgPtr</a>-&gt;<a id="88c41" class="tk">steering_wheel_angle</a>;</td></tr>
 <tr name="89" id="89">
-<td><a id="l89" class='ln'>89</a></td><td>  <a id="89c3" class="tk">busPtr</a>-&gt;<a id="89c11" class="tk">Timeout</a> =  <a id="89c22" class="tk">msgPtr</a>-&gt;<a id="89c30" class="tk">timeout</a>;</td></tr>
+<td><a id="l89" class='ln'>89</a></td><td>  <a id="89c3" class="tk">busPtr</a>-&gt;<a id="89c11" class="tk">SteeringWheelAngleCmd</a> =  <a id="89c36" class="tk">msgPtr</a>-&gt;<a id="89c44" class="tk">steering_wheel_angle_cmd</a>;</td></tr>
 <tr name="90" id="90">
-<td><a id="l90" class='ln'>90</a></td><td><span class="br">}</span></td></tr>
+<td><a id="l90" class='ln'>90</a></td><td>  <a id="90c3" class="tk">busPtr</a>-&gt;<a id="90c11" class="tk">SteeringWheelTorque</a> =  <a id="90c34" class="tk">msgPtr</a>-&gt;<a id="90c42" class="tk">steering_wheel_torque</a>;</td></tr>
 <tr name="91" id="91">
-<td><a id="l91" class='ln'>91</a></td><td></td></tr>
+<td><a id="l91" class='ln'>91</a></td><td>  <a id="91c3" class="tk">busPtr</a>-&gt;<a id="91c11" class="tk">Timeout</a> =  <a id="91c22" class="tk">msgPtr</a>-&gt;<a id="91c30" class="tk">timeout</a>;</td></tr>
 <tr name="92" id="92">
-<td><a id="l92" class='ln'>92</a></td><td></td></tr>
+<td><a id="l92" class='ln'>92</a></td><td><span class="br">}</span></td></tr>
 <tr name="93" id="93">
-<td><a id="l93" class='ln'>93</a></td><td><span class="ct">// Conversions between SL_Bus_DOB_ros_ros_time_Time and ros::Time</span></td></tr>
+<td><a id="l93" class='ln'>93</a></td><td></td></tr>
 <tr name="94" id="94">
 <td><a id="l94" class='ln'>94</a></td><td></td></tr>
 <tr name="95" id="95">
-<td><a id="l95" class='ln'>95</a></td><td><span class="kw">void</span> <a id="95c6" class="tk">convertFromBus</a>(<a id="95c21" class="tk">ros</a>::<a id="95c26" class="tk">Time</a><a id="95c30" class="tk">*</a> <a id="95c32" class="tk">msgPtr</a>, <a id="95c40" class="tk">SL_Bus_DOB_ros_ros_time_Time</a> <span class="kw">const</span><a id="95c74" class="tk">*</a> <a id="95c76" class="tk">busPtr</a>)</td></tr>
+<td><a id="l95" class='ln'>95</a></td><td><span class="ct">// Conversions between SL_Bus_DOB_ros_ros_time_Time and ros::Time</span></td></tr>
 <tr name="96" id="96">
-<td><a id="l96" class='ln'>96</a></td><td><span class="br">{</span></td></tr>
+<td><a id="l96" class='ln'>96</a></td><td></td></tr>
 <tr name="97" id="97">
-<td><a id="l97" class='ln'>97</a></td><td>  <span class="kw">const</span> <a id="97c9" class="tk">std</a>::<a id="97c14" class="tk">string</a> <a id="97c21" class="tk">rosMessageType</a>("ros_time/Time");</td></tr>
+<td><a id="l97" class='ln'>97</a></td><td><span class="kw">void</span> <a id="97c6" class="tk">convertFromBus</a>(<a id="97c21" class="tk">ros</a>::<a id="97c26" class="tk">Time</a><a id="97c30" class="tk">*</a> <a id="97c32" class="tk">msgPtr</a>, <a id="97c40" class="tk">SL_Bus_DOB_ros_ros_time_Time</a> <span class="kw">const</span><a id="97c74" class="tk">*</a> <a id="97c76" class="tk">busPtr</a>)</td></tr>
 <tr name="98" id="98">
-<td><a id="l98" class='ln'>98</a></td><td></td></tr>
+<td><a id="l98" class='ln'>98</a></td><td><span class="br">{</span></td></tr>
 <tr name="99" id="99">
-<td><a id="l99" class='ln'>99</a></td><td>  <a id="99c3" class="tk">msgPtr</a>-&gt;<a id="99c11" class="tk">sec</a> =  <a id="99c18" class="tk">busPtr</a>-&gt;<a id="99c26" class="tk">Sec</a>;</td></tr>
+<td><a id="l99" class='ln'>99</a></td><td>  <span class="kw">const</span> <a id="99c9" class="tk">std</a>::<a id="99c14" class="tk">string</a> <a id="99c21" class="tk">rosMessageType</a>("ros_time/Time");</td></tr>
 <tr name="100" id="100">
-<td><a id="l100" class='ln'>100</a></td><td>  <a id="100c3" class="tk">msgPtr</a>-&gt;<a id="100c11" class="tk">nsec</a> =  <a id="100c19" class="tk">busPtr</a>-&gt;<a id="100c27" class="tk">Nsec</a>;</td></tr>
+<td><a id="l100" class='ln'>100</a></td><td></td></tr>
 <tr name="101" id="101">
-<td><a id="l101" class='ln'>101</a></td><td><span class="br">}</span></td></tr>
+<td><a id="l101" class='ln'>101</a></td><td>  <a id="101c3" class="tk">msgPtr</a>-&gt;<a id="101c11" class="tk">sec</a> =  <a id="101c18" class="tk">busPtr</a>-&gt;<a id="101c26" class="tk">Sec</a>;</td></tr>
 <tr name="102" id="102">
-<td><a id="l102" class='ln'>102</a></td><td></td></tr>
+<td><a id="l102" class='ln'>102</a></td><td>  <a id="102c3" class="tk">msgPtr</a>-&gt;<a id="102c11" class="tk">nsec</a> =  <a id="102c19" class="tk">busPtr</a>-&gt;<a id="102c27" class="tk">Nsec</a>;</td></tr>
 <tr name="103" id="103">
-<td><a id="l103" class='ln'>103</a></td><td><span class="kw">void</span> <a id="103c6" class="tk">convertToBus</a>(<a id="103c19" class="tk">SL_Bus_DOB_ros_ros_time_Time</a><a id="103c47" class="tk">*</a> <a id="103c49" class="tk">busPtr</a>, <a id="103c57" class="tk">ros</a>::<a id="103c62" class="tk">Time</a> <span class="kw">const</span><a id="103c72" class="tk">*</a> <a id="103c74" class="tk">msgPtr</a>)</td></tr>
+<td><a id="l103" class='ln'>103</a></td><td><span class="br">}</span></td></tr>
 <tr name="104" id="104">
-<td><a id="l104" class='ln'>104</a></td><td><span class="br">{</span></td></tr>
+<td><a id="l104" class='ln'>104</a></td><td></td></tr>
 <tr name="105" id="105">
-<td><a id="l105" class='ln'>105</a></td><td>  <span class="kw">const</span> <a id="105c9" class="tk">std</a>::<a id="105c14" class="tk">string</a> <a id="105c21" class="tk">rosMessageType</a>("ros_time/Time");</td></tr>
+<td><a id="l105" class='ln'>105</a></td><td><span class="kw">void</span> <a id="105c6" class="tk">convertToBus</a>(<a id="105c19" class="tk">SL_Bus_DOB_ros_ros_time_Time</a><a id="105c47" class="tk">*</a> <a id="105c49" class="tk">busPtr</a>, <a id="105c57" class="tk">ros</a>::<a id="105c62" class="tk">Time</a> <span class="kw">const</span><a id="105c72" class="tk">*</a> <a id="105c74" class="tk">msgPtr</a>)</td></tr>
 <tr name="106" id="106">
-<td><a id="l106" class='ln'>106</a></td><td></td></tr>
+<td><a id="l106" class='ln'>106</a></td><td><span class="br">{</span></td></tr>
 <tr name="107" id="107">
-<td><a id="l107" class='ln'>107</a></td><td>  <a id="107c3" class="tk">busPtr</a>-&gt;<a id="107c11" class="tk">Sec</a> =  <a id="107c18" class="tk">msgPtr</a>-&gt;<a id="107c26" class="tk">sec</a>;</td></tr>
+<td><a id="l107" class='ln'>107</a></td><td>  <span class="kw">const</span> <a id="107c9" class="tk">std</a>::<a id="107c14" class="tk">string</a> <a id="107c21" class="tk">rosMessageType</a>("ros_time/Time");</td></tr>
 <tr name="108" id="108">
-<td><a id="l108" class='ln'>108</a></td><td>  <a id="108c3" class="tk">busPtr</a>-&gt;<a id="108c11" class="tk">Nsec</a> =  <a id="108c19" class="tk">msgPtr</a>-&gt;<a id="108c27" class="tk">nsec</a>;</td></tr>
+<td><a id="l108" class='ln'>108</a></td><td></td></tr>
 <tr name="109" id="109">
-<td><a id="l109" class='ln'>109</a></td><td><span class="br">}</span></td></tr>
+<td><a id="l109" class='ln'>109</a></td><td>  <a id="109c3" class="tk">busPtr</a>-&gt;<a id="109c11" class="tk">Sec</a> =  <a id="109c18" class="tk">msgPtr</a>-&gt;<a id="109c26" class="tk">sec</a>;</td></tr>
 <tr name="110" id="110">
-<td><a id="l110" class='ln'>110</a></td><td></td></tr>
+<td><a id="l110" class='ln'>110</a></td><td>  <a id="110c3" class="tk">busPtr</a>-&gt;<a id="110c11" class="tk">Nsec</a> =  <a id="110c19" class="tk">msgPtr</a>-&gt;<a id="110c27" class="tk">nsec</a>;</td></tr>
 <tr name="111" id="111">
-<td><a id="l111" class='ln'>111</a></td><td></td></tr>
+<td><a id="l111" class='ln'>111</a></td><td><span class="br">}</span></td></tr>
 <tr name="112" id="112">
-<td><a id="l112" class='ln'>112</a></td><td><span class="ct">// Conversions between SL_Bus_DOB_ros_std_msgs_Header and std_msgs::Header</span></td></tr>
+<td><a id="l112" class='ln'>112</a></td><td></td></tr>
 <tr name="113" id="113">
 <td><a id="l113" class='ln'>113</a></td><td></td></tr>
 <tr name="114" id="114">
-<td><a id="l114" class='ln'>114</a></td><td><span class="kw">void</span> <a id="114c6" class="tk">convertFromBus</a>(<a id="114c21" class="tk">std_msgs</a>::<a id="114c31" class="tk">Header</a><a id="114c37" class="tk">*</a> <a id="114c39" class="tk">msgPtr</a>, <a id="114c47" class="tk">SL_Bus_DOB_ros_std_msgs_Header</a> <span class="kw">const</span><a id="114c83" class="tk">*</a> <a id="114c85" class="tk">busPtr</a>)</td></tr>
+<td><a id="l114" class='ln'>114</a></td><td><span class="ct">// Conversions between SL_Bus_DOB_ros_std_msgs_Header and std_msgs::Header</span></td></tr>
 <tr name="115" id="115">
-<td><a id="l115" class='ln'>115</a></td><td><span class="br">{</span></td></tr>
+<td><a id="l115" class='ln'>115</a></td><td></td></tr>
 <tr name="116" id="116">
-<td><a id="l116" class='ln'>116</a></td><td>  <span class="kw">const</span> <a id="116c9" class="tk">std</a>::<a id="116c14" class="tk">string</a> <a id="116c21" class="tk">rosMessageType</a>("std_msgs/Header");</td></tr>
+<td><a id="l116" class='ln'>116</a></td><td><span class="kw">void</span> <a id="116c6" class="tk">convertFromBus</a>(<a id="116c21" class="tk">std_msgs</a>::<a id="116c31" class="tk">Header</a><a id="116c37" class="tk">*</a> <a id="116c39" class="tk">msgPtr</a>, <a id="116c47" class="tk">SL_Bus_DOB_ros_std_msgs_Header</a> <span class="kw">const</span><a id="116c83" class="tk">*</a> <a id="116c85" class="tk">busPtr</a>)</td></tr>
 <tr name="117" id="117">
-<td><a id="l117" class='ln'>117</a></td><td></td></tr>
+<td><a id="l117" class='ln'>117</a></td><td><span class="br">{</span></td></tr>
 <tr name="118" id="118">
-<td><a id="l118" class='ln'>118</a></td><td>  <a id="118c3" class="tk">convertFromBusVariablePrimitiveArray</a>(<a id="118c40" class="tk">msgPtr</a>-&gt;<a id="118c48" class="tk">frame_id</a>, <a id="118c58" class="tk">busPtr</a>-&gt;<a id="118c66" class="tk">FrameId</a>, <a id="118c75" class="tk">busPtr</a>-&gt;<a id="118c83" class="tk">FrameId_SL_Info</a>);</td></tr>
+<td><a id="l118" class='ln'>118</a></td><td>  <span class="kw">const</span> <a id="118c9" class="tk">std</a>::<a id="118c14" class="tk">string</a> <a id="118c21" class="tk">rosMessageType</a>("std_msgs/Header");</td></tr>
 <tr name="119" id="119">
-<td><a id="l119" class='ln'>119</a></td><td>  <a id="119c3" class="tk">msgPtr</a>-&gt;<a id="119c11" class="tk">seq</a> =  <a id="119c18" class="tk">busPtr</a>-&gt;<a id="119c26" class="tk">Seq</a>;</td></tr>
+<td><a id="l119" class='ln'>119</a></td><td></td></tr>
 <tr name="120" id="120">
-<td><a id="l120" class='ln'>120</a></td><td>  <a id="120c3" class="tk">convertFromBus</a>(<a id="120c18" class="tk">&amp;</a><a id="120c19" class="tk">msgPtr</a>-&gt;<a id="120c27" class="tk">stamp</a>, <a id="120c34" class="tk">&amp;</a><a id="120c35" class="tk">busPtr</a>-&gt;<a id="120c43" class="tk">Stamp</a>);</td></tr>
+<td><a id="l120" class='ln'>120</a></td><td>  <a id="120c3" class="tk">convertFromBusVariablePrimitiveArray</a>(<a id="120c40" class="tk">msgPtr</a>-&gt;<a id="120c48" class="tk">frame_id</a>, <a id="120c58" class="tk">busPtr</a>-&gt;<a id="120c66" class="tk">FrameId</a>, <a id="120c75" class="tk">busPtr</a>-&gt;<a id="120c83" class="tk">FrameId_SL_Info</a>);</td></tr>
 <tr name="121" id="121">
-<td><a id="l121" class='ln'>121</a></td><td><span class="br">}</span></td></tr>
+<td><a id="l121" class='ln'>121</a></td><td>  <a id="121c3" class="tk">msgPtr</a>-&gt;<a id="121c11" class="tk">seq</a> =  <a id="121c18" class="tk">busPtr</a>-&gt;<a id="121c26" class="tk">Seq</a>;</td></tr>
 <tr name="122" id="122">
-<td><a id="l122" class='ln'>122</a></td><td></td></tr>
+<td><a id="l122" class='ln'>122</a></td><td>  <a id="122c3" class="tk">convertFromBus</a>(<a id="122c18" class="tk">&amp;</a><a id="122c19" class="tk">msgPtr</a>-&gt;<a id="122c27" class="tk">stamp</a>, <a id="122c34" class="tk">&amp;</a><a id="122c35" class="tk">busPtr</a>-&gt;<a id="122c43" class="tk">Stamp</a>);</td></tr>
 <tr name="123" id="123">
-<td><a id="l123" class='ln'>123</a></td><td><span class="kw">void</span> <a id="123c6" class="tk">convertToBus</a>(<a id="123c19" class="tk">SL_Bus_DOB_ros_std_msgs_Header</a><a id="123c49" class="tk">*</a> <a id="123c51" class="tk">busPtr</a>, <a id="123c59" class="tk">std_msgs</a>::<a id="123c69" class="tk">Header</a> <span class="kw">const</span><a id="123c81" class="tk">*</a> <a id="123c83" class="tk">msgPtr</a>)</td></tr>
+<td><a id="l123" class='ln'>123</a></td><td><span class="br">}</span></td></tr>
 <tr name="124" id="124">
-<td><a id="l124" class='ln'>124</a></td><td><span class="br">{</span></td></tr>
+<td><a id="l124" class='ln'>124</a></td><td></td></tr>
 <tr name="125" id="125">
-<td><a id="l125" class='ln'>125</a></td><td>  <span class="kw">const</span> <a id="125c9" class="tk">std</a>::<a id="125c14" class="tk">string</a> <a id="125c21" class="tk">rosMessageType</a>("std_msgs/Header");</td></tr>
+<td><a id="l125" class='ln'>125</a></td><td><span class="kw">void</span> <a id="125c6" class="tk">convertToBus</a>(<a id="125c19" class="tk">SL_Bus_DOB_ros_std_msgs_Header</a><a id="125c49" class="tk">*</a> <a id="125c51" class="tk">busPtr</a>, <a id="125c59" class="tk">std_msgs</a>::<a id="125c69" class="tk">Header</a> <span class="kw">const</span><a id="125c81" class="tk">*</a> <a id="125c83" class="tk">msgPtr</a>)</td></tr>
 <tr name="126" id="126">
-<td><a id="l126" class='ln'>126</a></td><td></td></tr>
+<td><a id="l126" class='ln'>126</a></td><td><span class="br">{</span></td></tr>
 <tr name="127" id="127">
-<td><a id="l127" class='ln'>127</a></td><td>  <a id="127c3" class="tk">convertToBusVariablePrimitiveArray</a>(<a id="127c38" class="tk">busPtr</a>-&gt;<a id="127c46" class="tk">FrameId</a>, <a id="127c55" class="tk">busPtr</a>-&gt;<a id="127c63" class="tk">FrameId_SL_Info</a>, <a id="127c80" class="tk">msgPtr</a>-&gt;<a id="127c88" class="tk">frame_id</a>, <a id="127c98" class="tk">slros</a>::<a id="127c105" class="tk">EnabledWarning</a>(<a id="127c120" class="tk">rosMessageType</a>, "frame_id"));</td></tr>
+<td><a id="l127" class='ln'>127</a></td><td>  <span class="kw">const</span> <a id="127c9" class="tk">std</a>::<a id="127c14" class="tk">string</a> <a id="127c21" class="tk">rosMessageType</a>("std_msgs/Header");</td></tr>
 <tr name="128" id="128">
-<td><a id="l128" class='ln'>128</a></td><td>  <a id="128c3" class="tk">busPtr</a>-&gt;<a id="128c11" class="tk">Seq</a> =  <a id="128c18" class="tk">msgPtr</a>-&gt;<a id="128c26" class="tk">seq</a>;</td></tr>
+<td><a id="l128" class='ln'>128</a></td><td></td></tr>
 <tr name="129" id="129">
-<td><a id="l129" class='ln'>129</a></td><td>  <a id="129c3" class="tk">convertToBus</a>(<a id="129c16" class="tk">&amp;</a><a id="129c17" class="tk">busPtr</a>-&gt;<a id="129c25" class="tk">Stamp</a>, <a id="129c32" class="tk">&amp;</a><a id="129c33" class="tk">msgPtr</a>-&gt;<a id="129c41" class="tk">stamp</a>);</td></tr>
+<td><a id="l129" class='ln'>129</a></td><td>  <a id="129c3" class="tk">convertToBusVariablePrimitiveArray</a>(<a id="129c38" class="tk">busPtr</a>-&gt;<a id="129c46" class="tk">FrameId</a>, <a id="129c55" class="tk">busPtr</a>-&gt;<a id="129c63" class="tk">FrameId_SL_Info</a>, <a id="129c80" class="tk">msgPtr</a>-&gt;<a id="129c88" class="tk">frame_id</a>, <a id="129c98" class="tk">slros</a>::<a id="129c105" class="tk">EnabledWarning</a>(<a id="129c120" class="tk">rosMessageType</a>, "frame_id"));</td></tr>
 <tr name="130" id="130">
-<td><a id="l130" class='ln'>130</a></td><td><span class="br">}</span></td></tr>
+<td><a id="l130" class='ln'>130</a></td><td>  <a id="130c3" class="tk">busPtr</a>-&gt;<a id="130c11" class="tk">Seq</a> =  <a id="130c18" class="tk">msgPtr</a>-&gt;<a id="130c26" class="tk">seq</a>;</td></tr>
 <tr name="131" id="131">
-<td><a id="l131" class='ln'>131</a></td><td></td></tr>
+<td><a id="l131" class='ln'>131</a></td><td>  <a id="131c3" class="tk">convertToBus</a>(<a id="131c16" class="tk">&amp;</a><a id="131c17" class="tk">busPtr</a>-&gt;<a id="131c25" class="tk">Stamp</a>, <a id="131c32" class="tk">&amp;</a><a id="131c33" class="tk">msgPtr</a>-&gt;<a id="131c41" class="tk">stamp</a>);</td></tr>
 <tr name="132" id="132">
-<td><a id="l132" class='ln'>132</a></td><td></td></tr>
+<td><a id="l132" class='ln'>132</a></td><td><span class="br">}</span></td></tr>
+<tr name="133" id="133">
+<td><a id="l133" class='ln'>133</a></td><td></td></tr>
+<tr name="134" id="134">
+<td><a id="l134" class='ln'>134</a></td><td></td></tr>
 </table>
 </pre>
 </body>

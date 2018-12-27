@@ -131,7 +131,7 @@ def main():
 
             ac = np.zeros(2)            
             ac[0] = dudt[0] / 5
-            ac[1] = dudt[1]
+            ac[1] = dudt[1] / 0.5
             np.clip(ac, -1, 1, out=ac)
 
             cmd_vel_stamped = TwistStamped()
