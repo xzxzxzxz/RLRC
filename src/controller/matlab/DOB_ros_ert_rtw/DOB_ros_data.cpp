@@ -7,9 +7,9 @@
  *
  * Code generation for model "DOB_ros".
  *
- * Model version              : 1.191
+ * Model version              : 1.192
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Wed Dec 26 22:26:04 2018
+ * C++ source code generated on : Thu Dec 27 10:14:04 2018
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -191,12 +191,12 @@ P_DOB_ros_T DOB_ros_P = {
   /* Expression: NQ{1}
    * Referenced by: '<Root>/Q1'
    */
-  { 0.01F, 0.0F, 0.0F },
+  { 0.1F, 0.0F, 0.0F },
 
   /* Expression: DQ{1}
    * Referenced by: '<Root>/Q1'
    */
-  { 1.0F, -1.0F, 0.01F },
+  { 1.0F, -1.0F, 0.1F },
 
   /* Computed Parameter: Q1_InitialStates
    * Referenced by: '<Root>/Q1'
