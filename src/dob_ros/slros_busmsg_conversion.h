@@ -2,6 +2,7 @@
 #define _SLROS_BUSMSG_CONVERSION_H_
 
 #include <ros/ros.h>
+#include <controller/DobInfo.h>
 #include <controller/TrackingInfo.h>
 #include <dbw_mkz_msgs/SteeringCmd.h>
 #include <dbw_mkz_msgs/SteeringReport.h>
@@ -10,6 +11,9 @@
 #include "DOB_ros_types.h"
 #include "slros_msgconvert_utils.h"
 
+
+void convertFromBus(controller::DobInfo* msgPtr, SL_Bus_DOB_ros_controller_DobInfo const* busPtr);
+void convertToBus(SL_Bus_DOB_ros_controller_DobInfo* busPtr, controller::DobInfo const* msgPtr);
 
 void convertFromBus(controller::TrackingInfo* msgPtr, SL_Bus_DOB_ros_controller_TrackingInfo const* busPtr);
 void convertToBus(SL_Bus_DOB_ros_controller_TrackingInfo* busPtr, controller::TrackingInfo const* msgPtr);

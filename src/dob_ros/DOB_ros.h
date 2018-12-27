@@ -7,9 +7,9 @@
  *
  * Code generation for model "DOB_ros".
  *
- * Model version              : 1.187
+ * Model version              : 1.191
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Wed Dec 26 17:23:18 2018
+ * C++ source code generated on : Wed Dec 26 22:26:04 2018
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -46,10 +46,11 @@
 
 /* Block signals (auto storage) */
 typedef struct {
-  SL_Bus_DOB_ros_dbw_mkz_msgs_SteeringReport In1;/* '<S7>/In1' */
+  SL_Bus_DOB_ros_dbw_mkz_msgs_SteeringReport In1;/* '<S9>/In1' */
   SL_Bus_DOB_ros_dbw_mkz_msgs_SteeringReport b_varargout_2;
   char_T cv0[25];
-  SL_Bus_DOB_ros_controller_TrackingInfo In1_i;/* '<S8>/In1' */
+  SL_Bus_DOB_ros_controller_TrackingInfo In1_i;/* '<S10>/In1' */
+  SL_Bus_DOB_ros_dbw_mkz_msgs_SteeringCmd BusAssignment;/* '<S2>/Bus Assignment' */
 } B_DOB_ros_T;
 
 /* Block states (auto storage) for system '<Root>' */
@@ -57,14 +58,14 @@ typedef struct {
   real32_T D1_states[5];               /* '<Root>/D1' */
   real32_T Delay1_DSTATE[2];           /* '<Root>/Delay1' */
   real32_T Q1_states[2];               /* '<Root>/Q1' */
-  robotics_slros_internal_block_T obj; /* '<S10>/SinkBlock' */
-  robotics_slros_internal_block_T obj_e;/* '<S6>/SinkBlock' */
-  robotics_slros_internal_blo_k_T obj_a;/* '<S3>/SourceBlock' */
-  robotics_slros_internal_blo_k_T obj_ax;/* '<S2>/SourceBlock' */
-  boolean_T objisempty;                /* '<S10>/SinkBlock' */
-  boolean_T objisempty_d;              /* '<S3>/SourceBlock' */
-  boolean_T objisempty_n;              /* '<S2>/SourceBlock' */
-  boolean_T objisempty_k;              /* '<S6>/SinkBlock' */
+  robotics_slros_internal_block_T obj; /* '<S8>/SinkBlock' */
+  robotics_slros_internal_block_T obj_f;/* '<S6>/SinkBlock' */
+  robotics_slros_internal_blo_k_T obj_a;/* '<S4>/SourceBlock' */
+  robotics_slros_internal_blo_k_T obj_ax;/* '<S3>/SourceBlock' */
+  boolean_T objisempty;                /* '<S4>/SourceBlock' */
+  boolean_T objisempty_n;              /* '<S3>/SourceBlock' */
+  boolean_T objisempty_k;              /* '<S8>/SinkBlock' */
+  boolean_T objisempty_f;              /* '<S6>/SinkBlock' */
 } DW_DOB_ros_T;
 
 /* Parameters (auto storage) */
@@ -76,7 +77,7 @@ struct P_DOB_ros_T_ {
                                         * Referenced by: '<Root>/D1'
                                         */
   real32_T dt_ros_single;              /* Variable: dt_ros_single
-                                        * Referenced by: '<S1>/Gain'
+                                        * Referenced by: '<S2>/Gain'
                                         */
   real32_T kc1;                        /* Variable: kc1
                                         * Referenced by: '<Root>/Gain3'
@@ -85,26 +86,26 @@ struct P_DOB_ros_T_ {
                                         * Referenced by: '<Root>/Gain5'
                                         */
   real32_T steering_ratio;             /* Variable: steering_ratio
-                                        * Referenced by: '<S1>/Gain1'
+                                        * Referenced by: '<S2>/Gain1'
                                         */
   SL_Bus_DOB_ros_dbw_mkz_msgs_SteeringReport Out1_Y0;/* Computed Parameter: Out1_Y0
-                                                      * Referenced by: '<S7>/Out1'
+                                                      * Referenced by: '<S9>/Out1'
                                                       */
   SL_Bus_DOB_ros_dbw_mkz_msgs_SteeringReport Constant_Value;/* Computed Parameter: Constant_Value
-                                                             * Referenced by: '<S2>/Constant'
+                                                             * Referenced by: '<S3>/Constant'
                                                              */
   SL_Bus_DOB_ros_dbw_mkz_msgs_SteeringCmd Constant_Value_j;/* Computed Parameter: Constant_Value_j
-                                                            * Referenced by: '<S5>/Constant'
+                                                            * Referenced by: '<S7>/Constant'
                                                             */
   SL_Bus_DOB_ros_controller_TrackingInfo Out1_Y0_n;/* Computed Parameter: Out1_Y0_n
-                                                    * Referenced by: '<S8>/Out1'
+                                                    * Referenced by: '<S10>/Out1'
                                                     */
   SL_Bus_DOB_ros_controller_TrackingInfo Constant_Value_j1;/* Computed Parameter: Constant_Value_j1
-                                                            * Referenced by: '<S3>/Constant'
+                                                            * Referenced by: '<S4>/Constant'
                                                             */
-  SL_Bus_DOB_ros_controller_TrackingInfo Constant_Value_i;/* Computed Parameter: Constant_Value_i
-                                                           * Referenced by: '<S9>/Constant'
-                                                           */
+  SL_Bus_DOB_ros_controller_DobInfo Constant_Value_k;/* Computed Parameter: Constant_Value_k
+                                                      * Referenced by: '<S5>/Constant'
+                                                      */
   real32_T D1_InitialStates;           /* Computed Parameter: D1_InitialStates
                                         * Referenced by: '<Root>/D1'
                                         */
@@ -123,8 +124,8 @@ struct P_DOB_ros_T_ {
   uint32_T Delay1_DelayLength;         /* Computed Parameter: Delay1_DelayLength
                                         * Referenced by: '<Root>/Delay1'
                                         */
-  boolean_T Constant_Value_ij;         /* Computed Parameter: Constant_Value_ij
-                                        * Referenced by: '<S1>/Constant'
+  boolean_T Constant_Value_i;          /* Computed Parameter: Constant_Value_i
+                                        * Referenced by: '<S2>/Constant'
                                         */
 };
 
@@ -198,15 +199,15 @@ extern "C" {
  * Here is the system hierarchy for this model
  *
  * '<Root>' : 'DOB_ros'
- * '<S1>'   : 'DOB_ros/Enabled Subsystem1'
- * '<S2>'   : 'DOB_ros/Subscribe'
- * '<S3>'   : 'DOB_ros/Subscribe1'
- * '<S4>'   : 'DOB_ros/Tracking Received'
- * '<S5>'   : 'DOB_ros/Enabled Subsystem1/Blank Message'
- * '<S6>'   : 'DOB_ros/Enabled Subsystem1/Publish'
- * '<S7>'   : 'DOB_ros/Subscribe/Enabled Subsystem'
- * '<S8>'   : 'DOB_ros/Subscribe1/Enabled Subsystem'
- * '<S9>'   : 'DOB_ros/Tracking Received/Blank Message'
- * '<S10>'  : 'DOB_ros/Tracking Received/Publish'
+ * '<S1>'   : 'DOB_ros/DOB Info'
+ * '<S2>'   : 'DOB_ros/Enabled Subsystem1'
+ * '<S3>'   : 'DOB_ros/Subscribe'
+ * '<S4>'   : 'DOB_ros/Subscribe1'
+ * '<S5>'   : 'DOB_ros/DOB Info/Blank Message'
+ * '<S6>'   : 'DOB_ros/DOB Info/Publish'
+ * '<S7>'   : 'DOB_ros/Enabled Subsystem1/Blank Message'
+ * '<S8>'   : 'DOB_ros/Enabled Subsystem1/Publish'
+ * '<S9>'   : 'DOB_ros/Subscribe/Enabled Subsystem'
+ * '<S10>'  : 'DOB_ros/Subscribe1/Enabled Subsystem'
  */
 #endif                                 /* RTW_HEADER_DOB_ros_h_ */

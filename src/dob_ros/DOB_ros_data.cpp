@@ -7,9 +7,9 @@
  *
  * Code generation for model "DOB_ros".
  *
- * Model version              : 1.187
+ * Model version              : 1.191
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Wed Dec 26 17:23:18 2018
+ * C++ source code generated on : Wed Dec 26 22:26:04 2018
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -34,7 +34,7 @@ P_DOB_ros_T DOB_ros_P = {
   { 2.7922976F, -8.87775F, 10.3539515F, -5.24384308F, 0.975344062F, 0.0F },
 
   /* Variable: dt_ros_single
-   * Referenced by: '<S1>/Gain'
+   * Referenced by: '<S2>/Gain'
    */
   0.02F,
 
@@ -49,12 +49,12 @@ P_DOB_ros_T DOB_ros_P = {
   0.1F,
 
   /* Variable: steering_ratio
-   * Referenced by: '<S1>/Gain1'
+   * Referenced by: '<S2>/Gain1'
    */
   14.8F,
 
   /* Computed Parameter: Out1_Y0
-   * Referenced by: '<S7>/Out1'
+   * Referenced by: '<S9>/Out1'
    */
   {
     0.0F,                              /* SteeringWheelAngle */
@@ -97,7 +97,7 @@ P_DOB_ros_T DOB_ros_P = {
   },
 
   /* Computed Parameter: Constant_Value
-   * Referenced by: '<S2>/Constant'
+   * Referenced by: '<S3>/Constant'
    */
   {
     0.0F,                              /* SteeringWheelAngle */
@@ -140,7 +140,7 @@ P_DOB_ros_T DOB_ros_P = {
   },
 
   /* Computed Parameter: Constant_Value_j
-   * Referenced by: '<S5>/Constant'
+   * Referenced by: '<S7>/Constant'
    */
   {
     0.0F,                              /* SteeringWheelAngleCmd */
@@ -153,7 +153,7 @@ P_DOB_ros_T DOB_ros_P = {
   },
 
   /* Computed Parameter: Out1_Y0_n
-   * Referenced by: '<S8>/Out1'
+   * Referenced by: '<S10>/Out1'
    */
   {
     0.0F,                              /* Vx */
@@ -162,7 +162,7 @@ P_DOB_ros_T DOB_ros_P = {
   },
 
   /* Computed Parameter: Constant_Value_j1
-   * Referenced by: '<S3>/Constant'
+   * Referenced by: '<S4>/Constant'
    */
   {
     0.0F,                              /* Vx */
@@ -170,13 +170,12 @@ P_DOB_ros_T DOB_ros_P = {
     0.0F                               /* Dtheta */
   },
 
-  /* Computed Parameter: Constant_Value_i
-   * Referenced by: '<S9>/Constant'
+  /* Computed Parameter: Constant_Value_k
+   * Referenced by: '<S5>/Constant'
    */
   {
-    0.0F,                              /* Vx */
-    0.0F,                              /* Dy */
-    0.0F                               /* Dtheta */
+    0.0F,                              /* DEst */
+    0.0F                               /* DCancel */
   },
 
   /* Computed Parameter: D1_InitialStates
@@ -209,8 +208,8 @@ P_DOB_ros_T DOB_ros_P = {
    */
   2U,
 
-  /* Computed Parameter: Constant_Value_ij
-   * Referenced by: '<S1>/Constant'
+  /* Computed Parameter: Constant_Value_i
+   * Referenced by: '<S2>/Constant'
    */
   1
 };

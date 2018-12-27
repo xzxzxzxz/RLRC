@@ -1,6 +1,25 @@
 #include "slros_busmsg_conversion.h"
 
 
+// Conversions between SL_Bus_DOB_ros_controller_DobInfo and controller::DobInfo
+
+void convertFromBus(controller::DobInfo* msgPtr, SL_Bus_DOB_ros_controller_DobInfo const* busPtr)
+{
+  const std::string rosMessageType("controller/DobInfo");
+
+  msgPtr->d_cancel =  busPtr->DCancel;
+  msgPtr->d_est =  busPtr->DEst;
+}
+
+void convertToBus(SL_Bus_DOB_ros_controller_DobInfo* busPtr, controller::DobInfo const* msgPtr)
+{
+  const std::string rosMessageType("controller/DobInfo");
+
+  busPtr->DCancel =  msgPtr->d_cancel;
+  busPtr->DEst =  msgPtr->d_est;
+}
+
+
 // Conversions between SL_Bus_DOB_ros_controller_TrackingInfo and controller::TrackingInfo
 
 void convertFromBus(controller::TrackingInfo* msgPtr, SL_Bus_DOB_ros_controller_TrackingInfo const* busPtr)
