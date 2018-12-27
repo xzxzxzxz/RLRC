@@ -11,7 +11,7 @@ from palnet.config.utility import *
 import tensorflow as tf
 from driving_env.driving import Driving
 from cvxopt import matrix, solvers
-from dbw_mkz_msgs import SteeringCmd 
+from dbw_mkz_msgs.msg import SteeringCmd 
 import os, rospkg
 from math import asin, tan, atan
 
@@ -143,7 +143,7 @@ def main():
             steering_cmd.enable = True
             beta = asin(ac[1] * 0.5  * 1.65 / vx)
             delta = atan(tan(beta) * (1.65 + 1.20) / 1.65)
-            steering_cmd.steering_wheel_angle_cmd = delta
+            steering_cmd.steering_wheel_angle_cmd = delta * 14.8
             steering_cmd_pub.publish(steering_cmd)
 
             rate.sleep()

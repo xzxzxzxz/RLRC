@@ -3,6 +3,7 @@ build/
 devel/
 install/
 src/matlab_gen
+src/dbw_mkz_msgs
 
 *.*.save
 

@@ -61,6 +61,7 @@ void convertFromBus(dbw_mkz_msgs::SteeringReport* msgPtr, SL_Bus_DOB_ros_dbw_mkz
   msgPtr->fault_bus1 =  busPtr->FaultBus1;
   msgPtr->fault_bus2 =  busPtr->FaultBus2;
   msgPtr->fault_calibration =  busPtr->FaultCalibration;
+  msgPtr->fault_power =  busPtr->FaultPower;
   msgPtr->fault_wdc =  busPtr->FaultWdc;
   convertFromBus(&msgPtr->header, &busPtr->Header);
   msgPtr->override =  busPtr->Override;
@@ -79,6 +80,7 @@ void convertToBus(SL_Bus_DOB_ros_dbw_mkz_msgs_SteeringReport* busPtr, dbw_mkz_ms
   busPtr->FaultBus1 =  msgPtr->fault_bus1;
   busPtr->FaultBus2 =  msgPtr->fault_bus2;
   busPtr->FaultCalibration =  msgPtr->fault_calibration;
+  busPtr->FaultPower =  msgPtr->fault_power;
   busPtr->FaultWdc =  msgPtr->fault_wdc;
   convertToBus(&busPtr->Header, &msgPtr->header);
   busPtr->Override =  msgPtr->override;

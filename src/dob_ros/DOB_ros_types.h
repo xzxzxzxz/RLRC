@@ -9,7 +9,7 @@
  *
  * Model version              : 1.187
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Thu Dec 13 11:03:58 2018
+ * C++ source code generated on : Wed Dec 26 17:23:18 2018
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -84,6 +84,7 @@ typedef struct {
   boolean_T FaultBus1;
   boolean_T FaultBus2;
   boolean_T FaultCalibration;
+  boolean_T FaultPower;
   SL_Bus_DOB_ros_std_msgs_Header Header;
 } SL_Bus_DOB_ros_dbw_mkz_msgs_SteeringReport;
 
