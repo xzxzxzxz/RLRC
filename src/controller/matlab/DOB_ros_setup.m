@@ -11,14 +11,13 @@ m = 1800.0;
 Iz = 3270.0;
 BCD = 19.0;
 g = 9.81;
-Fnf = m * g * a/(a+b);
-Fnr = m * g * b/(a+b);
+Fnf = m * g * b/(a+b);
+Fnr = m * g * a/(a+b);
 Caf = BCD * Fnf;
 Car = BCD * Fnr;
 dt = 0.02;
 dt_ros_single = single(0.02);
 dt_ros = 0.02;
-vx = 10;
 ds = 10;
 steering_ratio = 14.8;
 
@@ -48,14 +47,13 @@ Gop = tf(bpeq, apeq, 'Ts', dt, 'Variable', 'z');
 Gop = Gop * Gde;
 
 kc1 = single(0.3);
-kc2 = single(0.1);
 Gc1 = kc1 + vx*Gi;
-Gc2 = kc2;
 Gop = Gop * Gc1;
 
 rlocus(Gop);
 %% Controller Configuration
 % dsigmadt = k1 * delta_phi + k2 * delta_y
+kc2 = single(0.1);
 k1 = kc1 * kc2;
 k2 = kc2;
 

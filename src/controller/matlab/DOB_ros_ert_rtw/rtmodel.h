@@ -7,9 +7,9 @@
  *
  * Code generation for model "DOB_ros".
  *
- * Model version              : 1.192
+ * Model version              : 1.207
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Thu Dec 27 10:14:04 2018
+ * C++ source code generated on : Tue Jan  1 19:50:07 2019
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -23,7 +23,7 @@
  * Code generation for Simulink model "DOB_ros".
  *
  * Simulink Coder version                : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Thu Dec 27 10:14:04 2018
+ * C++ source code generated on : Tue Jan  1 19:50:07 2019
  *
  * Note that the generated code is not dependent on this header file.
  * The file is used in cojuction with the automatic build procedure.
