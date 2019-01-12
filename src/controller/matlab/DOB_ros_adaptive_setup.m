@@ -23,7 +23,7 @@ dphi = 0;
 ds = 10;
 steering_ratio = 14.8;
 
-kc11 = single(0.15);
+kc11 = single(0.3);
 kc12 = single(1);
 % Discrete time ss (output: beta_s & dphidt)
 a1 = @(vx, dphi) [0, 0, 0, 1];
