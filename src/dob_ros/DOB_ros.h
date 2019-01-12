@@ -9,7 +9,7 @@
  *
  * Model version              : 1.233
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Sat Jan 12 11:42:13 2019
+ * C++ source code generated on : Sat Jan 12 11:58:34 2019
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -79,34 +79,34 @@ typedef struct {
 
 /* Parameters (auto storage) */
 struct P_DOB_ros_T_ {
-  real32_T a1[4011];                   /* Variable: a1
+  real32_T a1[4];                      /* Variable: a1
                                         * Referenced by: '<S5>/2-D Lookup Table1'
                                         */
-  real32_T a2[4011];                   /* Variable: a2
+  real32_T a2[4];                      /* Variable: a2
                                         * Referenced by: '<S5>/2-D Lookup Table3'
                                         */
-  real32_T a3[4011];                   /* Variable: a3
+  real32_T a3[4];                      /* Variable: a3
                                         * Referenced by: '<S5>/2-D Lookup Table7'
                                         */
-  real32_T b0[4011];                   /* Variable: b0
+  real32_T b0[4];                      /* Variable: b0
                                         * Referenced by: '<S5>/2-D Lookup Table'
                                         */
-  real32_T b1[4011];                   /* Variable: b1
+  real32_T b1[4];                      /* Variable: b1
                                         * Referenced by: '<S5>/2-D Lookup Table2'
                                         */
-  real32_T b2[4011];                   /* Variable: b2
+  real32_T b2[4];                      /* Variable: b2
                                         * Referenced by: '<S5>/2-D Lookup Table4'
                                         */
-  real32_T b3[4011];                   /* Variable: b3
+  real32_T b3[4];                      /* Variable: b3
                                         * Referenced by: '<S5>/2-D Lookup Table5'
                                         */
-  real32_T b4[4011];                   /* Variable: b4
+  real32_T b4[4];                      /* Variable: b4
                                         * Referenced by: '<S5>/2-D Lookup Table6'
                                         */
-  real32_T b5[4011];                   /* Variable: b5
+  real32_T b5[4];                      /* Variable: b5
                                         * Referenced by: '<S5>/2-D Lookup Table8'
                                         */
-  real32_T dphi_list[21];              /* Variable: dphi_list
+  real32_T dphi_list[2];               /* Variable: dphi_list
                                         * Referenced by:
                                         *   '<S5>/2-D Lookup Table'
                                         *   '<S5>/2-D Lookup Table1'
@@ -133,7 +133,7 @@ struct P_DOB_ros_T_ {
   real32_T steering_ratio;             /* Variable: steering_ratio
                                         * Referenced by: '<S2>/Gain1'
                                         */
-  real32_T vx_list[191];               /* Variable: vx_list
+  real32_T vx_list[2];                 /* Variable: vx_list
                                         * Referenced by:
                                         *   '<S5>/2-D Lookup Table'
                                         *   '<S5>/2-D Lookup Table1'

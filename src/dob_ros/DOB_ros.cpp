@@ -9,7 +9,7 @@
  *
  * Model version              : 1.233
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Sat Jan 12 11:42:13 2019
+ * C++ source code generated on : Sat Jan 12 11:58:34 2019
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -281,7 +281,7 @@ void DOB_ros_step(void)
   /* Lookup_n-D: '<S5>/2-D Lookup Table' */
   rtb_Sum1 = look2_iflf_pbinlxpw(DOB_ros_B.In1_i.Vx, DOB_ros_B.In1_i.Dtheta,
     DOB_ros_P.vx_list, DOB_ros_P.dphi_list, DOB_ros_P.b0, DOB_ros_DW.m_bpIndex,
-    DOB_ros_P.uDLookupTable_maxIndex, 191U);
+    DOB_ros_P.uDLookupTable_maxIndex, 2U);
 
   /* Sum: '<S12>/Sum1' incorporates:
    *  Product: '<S12>/Product1'
@@ -379,22 +379,22 @@ void DOB_ros_step(void)
   /* Lookup_n-D: '<S5>/2-D Lookup Table2' */
   rtb_Q1 = look2_iflf_pbinlxpw(DOB_ros_B.In1_i.Vx, DOB_ros_B.In1_i.Dtheta,
     DOB_ros_P.vx_list, DOB_ros_P.dphi_list, DOB_ros_P.b1, DOB_ros_DW.m_bpIndex_p,
-    DOB_ros_P.uDLookupTable2_maxIndex, 191U);
+    DOB_ros_P.uDLookupTable2_maxIndex, 2U);
 
   /* Lookup_n-D: '<S5>/2-D Lookup Table5' */
   rtb_uDLookupTable5 = look2_iflf_pbinlxpw(DOB_ros_B.In1_i.Vx,
     DOB_ros_B.In1_i.Dtheta, DOB_ros_P.vx_list, DOB_ros_P.dphi_list, DOB_ros_P.b3,
-    DOB_ros_DW.m_bpIndex_j, DOB_ros_P.uDLookupTable5_maxIndex, 191U);
+    DOB_ros_DW.m_bpIndex_j, DOB_ros_P.uDLookupTable5_maxIndex, 2U);
 
   /* Lookup_n-D: '<S5>/2-D Lookup Table7' */
   rtb_uDLookupTable7 = look2_iflf_pbinlxpw(DOB_ros_B.In1_i.Vx,
     DOB_ros_B.In1_i.Dtheta, DOB_ros_P.vx_list, DOB_ros_P.dphi_list, DOB_ros_P.a3,
-    DOB_ros_DW.m_bpIndex_b, DOB_ros_P.uDLookupTable7_maxIndex, 191U);
+    DOB_ros_DW.m_bpIndex_b, DOB_ros_P.uDLookupTable7_maxIndex, 2U);
 
   /* Lookup_n-D: '<S5>/2-D Lookup Table8' */
   rtb_uDLookupTable8 = look2_iflf_pbinlxpw(DOB_ros_B.In1_i.Vx,
     DOB_ros_B.In1_i.Dtheta, DOB_ros_P.vx_list, DOB_ros_P.dphi_list, DOB_ros_P.b5,
-    DOB_ros_DW.m_bpIndex_o, DOB_ros_P.uDLookupTable8_maxIndex, 191U);
+    DOB_ros_DW.m_bpIndex_o, DOB_ros_P.uDLookupTable8_maxIndex, 2U);
 
   /* Update for UnitDelay: '<S12>/Delay1' incorporates:
    *  Lookup_n-D: '<S5>/2-D Lookup Table1'
@@ -406,7 +406,7 @@ void DOB_ros_step(void)
   DOB_ros_DW.Delay1_DSTATE = (rtb_Sum3_o * rtb_Q1 + DOB_ros_DW.Delay2_DSTATE) -
     rtb_Sum1 * look2_iflf_binlxpw(DOB_ros_B.In1_i.Vx, DOB_ros_B.In1_i.Dtheta,
     DOB_ros_P.vx_list, DOB_ros_P.dphi_list, DOB_ros_P.a1,
-    DOB_ros_P.uDLookupTable1_maxIndex, 191U);
+    DOB_ros_P.uDLookupTable1_maxIndex, 2U);
 
   /* Update for Delay: '<Root>/Delay1' */
   DOB_ros_DW.Delay1_DSTATE_a[0] = DOB_ros_DW.Delay1_DSTATE_a[1];
@@ -426,10 +426,10 @@ void DOB_ros_step(void)
    */
   DOB_ros_DW.Delay2_DSTATE = (rtb_Sum3_o * look2_iflf_binlxpw(DOB_ros_B.In1_i.Vx,
     DOB_ros_B.In1_i.Dtheta, DOB_ros_P.vx_list, DOB_ros_P.dphi_list, DOB_ros_P.b2,
-    DOB_ros_P.uDLookupTable4_maxIndex, 191U) + DOB_ros_DW.Delay3_DSTATE) -
+    DOB_ros_P.uDLookupTable4_maxIndex, 2U) + DOB_ros_DW.Delay3_DSTATE) -
     rtb_Sum1 * look2_iflf_binlxpw(DOB_ros_B.In1_i.Vx, DOB_ros_B.In1_i.Dtheta,
     DOB_ros_P.vx_list, DOB_ros_P.dphi_list, DOB_ros_P.a2,
-    DOB_ros_P.uDLookupTable3_maxIndex, 191U);
+    DOB_ros_P.uDLookupTable3_maxIndex, 2U);
 
   /* Update for UnitDelay: '<S12>/Delay3' incorporates:
    *  Product: '<S12>/Product6'
@@ -450,7 +450,7 @@ void DOB_ros_step(void)
    */
   DOB_ros_DW.Delay4_DSTATE = (rtb_Sum3_o * look2_iflf_binlxpw(DOB_ros_B.In1_i.Vx,
     DOB_ros_B.In1_i.Dtheta, DOB_ros_P.vx_list, DOB_ros_P.dphi_list, DOB_ros_P.b4,
-    DOB_ros_P.uDLookupTable6_maxIndex, 191U) + DOB_ros_DW.Delay5_DSTATE) -
+    DOB_ros_P.uDLookupTable6_maxIndex, 2U) + DOB_ros_DW.Delay5_DSTATE) -
     rtb_Sum1 * DOB_ros_P.Constant1_Value;
 
   /* Update for UnitDelay: '<S12>/Delay5' incorporates:

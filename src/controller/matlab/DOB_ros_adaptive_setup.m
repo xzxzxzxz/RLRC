@@ -65,14 +65,14 @@ wn = 5;
 eps = 0.8;
 %Q = tf(wn^2, [1 2*eps*wn wn^2],'Variable','s');
 %Q = c2d(Q, dt, 'zoh');
-Q = tf(0.02,[1 -1 0.02],dt,'Variable','z^-1');
+Q = tf(0.05,[1 -1 0.05],dt,'Variable','z^-1');
 [NQ, DQ] = tfdata(Q);
 NQ{1} = single(NQ{1});
 DQ{1} = single(DQ{1});
 
 %% Lookup Table
-%vx_list = 1:0.1:20;
-%dphi_list = -1:0.1:1;
+vx_list = 1:0.1:20;
+dphi_list = -1:0.1:1;
 vx_list = [10, 10.1];
 dphi_list = [0, 0.0001];
 
