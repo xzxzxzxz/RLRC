@@ -9,7 +9,7 @@
  *
  * Model version              : 1.189
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Wed Dec 26 17:25:28 2018
+ * C++ source code generated on : Sat Jan 12 11:44:14 2019
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -39,7 +39,7 @@ void PID_ros_step(void)
   boolean_T b_varargout_1;
   boolean_T b_varargout_1_0;
   SL_Bus_PID_ros_dbw_mkz_msgs_SteeringCmd rtb_BusAssignment;
-  real32_T rtb_Gain1;
+  real32_T rtb_Gain1_e;
 
   /* Outputs for Atomic SubSystem: '<Root>/Subscribe1' */
   /* MATLABSystem: '<S3>/SourceBlock' incorporates:
@@ -84,12 +84,14 @@ void PID_ros_step(void)
   /* MATLABSystem: '<S3>/SourceBlock' */
   if (b_varargout_1) {
     /* Gain: '<S1>/Gain1' incorporates:
+     *  Gain: '<Root>/Gain1'
      *  Gain: '<Root>/Gain3'
      *  Gain: '<Root>/Gain5'
      *  Sum: '<Root>/Sum3'
      */
-    rtb_Gain1 = (PID_ros_P.kc1 * PID_ros_B.In1_i.Dtheta + PID_ros_B.In1_i.Dy) *
-      -PID_ros_P.kc2 * PID_ros_P.steering_ratio;
+    rtb_Gain1_e = (PID_ros_P.kc12 * PID_ros_B.In1_i.Dy + PID_ros_P.kc11 *
+                   PID_ros_B.In1_i.Dtheta) * -PID_ros_P.kc2 *
+      PID_ros_P.steering_ratio;
 
     /* BusAssignment: '<S1>/Bus Assignment' incorporates:
      *  Constant: '<S1>/Constant'
@@ -98,9 +100,9 @@ void PID_ros_step(void)
      *  Sum: '<S1>/Subtract'
      */
     rtb_BusAssignment = PID_ros_P.Constant_Value_j;
-    rtb_BusAssignment.SteeringWheelAngleCmd = rtb_Gain1;
+    rtb_BusAssignment.SteeringWheelAngleCmd = rtb_Gain1_e;
     rtb_BusAssignment.SteeringWheelAngleVelocity = 1.0F /
-      PID_ros_P.dt_ros_single * (rtb_Gain1 - PID_ros_B.In1.SteeringWheelAngle);
+      PID_ros_P.dt_ros_single * (rtb_Gain1_e - PID_ros_B.In1.SteeringWheelAngle);
     rtb_BusAssignment.Enable = PID_ros_P.Constant_Value_ij;
 
     /* Outputs for Atomic SubSystem: '<S1>/Publish' */

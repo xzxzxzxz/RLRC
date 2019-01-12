@@ -1,7 +1,7 @@
 %% DOB Implementation 
 %  Setting encoding
 clear
-clc
+%clc
 
 %% Vehicle Model (Linear Bicycle model)
 % Parameters
@@ -18,7 +18,7 @@ Car = BCD * Fnr;
 dt = 0.02;
 dt_ros_single = single(0.02);
 dt_ros = 0.02;
-vx = 15;
+vx = 10;
 dphi = 0;
 ds = 10;
 steering_ratio = 14.8;
@@ -33,20 +33,23 @@ a3 = @(vx, dphi) [0, 0, -(Caf+Car)/(m*vx), -vx-(Caf*a-Car*b)/(m*vx)];
 a4 = @(vx, dphi) [0, 0,  -(a*Caf-b*Car)/(Iz*vx), -(Caf*a^2+Car*b^2)/(Iz*vx)];
 b3 = Caf / m;
 b4 = a * Caf / Iz;
-A = @(vx, dphi) [a1(vx, dphi); a2(vx, dphi); a3(vx, dphi); a4(vx, dphi)]*dt + eye(4);
-B = [0; 0; b3; b4]*dt;
+A = @(vx, dphi) [a1(vx, dphi); a2(vx, dphi); a3(vx, dphi); a4(vx, dphi)];
+B = [0; 0; b3; b4];
 C1 = @(vx, dphi) [kc11 kc12 1/vx ds/vx];
 C2 = @(vx, dphi) [1 0 1/vx ds/vx; 0 1 0 0];
 
 % Discrete time tf
 sys = ss(A(vx, dphi), B, C1(vx, dphi), zeros(1,1));
-%sysd = c2d(sys, dt);
-sysd = sys;
+sysd = c2d(sys, dt);
+%sysd = sys;
 [bp, ap] = ss2tf(sysd.A, sysd.B, sysd.C, sysd.D);
 pnu = bp;
 pde = ap;
 Gop = tf(pnu, pde, 'Ts', dt, 'Variable', 'z');
-kc2 = single(0.25);
+Gde = tf(1, [1,0], 'Ts', dt, 'Variable', 'z');
+Gop = Gop * Gde;
+
+kc2 = single(0.1);
 %rlocus(Gop);
 
 %% Design DOB
@@ -68,37 +71,42 @@ NQ{1} = single(NQ{1});
 DQ{1} = single(DQ{1});
 
 %% Lookup Table
-%vx_list = [2,6,10,14,18];
-%dphi_list = [-1.5,-1,-0.5,0,0.5,1,1.5];
+%vx_list = 1:0.1:20;
+%dphi_list = -1:0.1:1;
+vx_list = [10, 10.1];
+dphi_list = [0, 0.0001];
 
-% vx_list = [10,10.1];
-% dphi_list = [0, 0.01];
-% a1 = zeros(length(vx_list), length(dphi_list));
-% a2 = zeros(length(vx_list), length(dphi_list));
-% b0 = zeros(length(vx_list), length(dphi_list));
-% b1 = zeros(length(vx_list), length(dphi_list));
-% b2 = zeros(length(vx_list), length(dphi_list));
-% b3 = zeros(length(vx_list), length(dphi_list));
-% b4 = zeros(length(vx_list), length(dphi_list));
-% 
-% for i=1:length(vx_list)
-%     for j=1:length(dphi_list)
-%         vx = vx_list(i);
-%         dphi = dphi_list(j);
-%         sys = ss(A(vx, dphi), B, C1(vx, dphi), zeros(1,1));
-%         sysd = c2d(sys, dt);
-%         [pnu, pde] = ss2tf(sysd.A, sysd.B, sysd.C, sysd.D); 
-%         Gop = tf(pnu, pde, 'Ts', dt, 'Variable', 'z');
-%         [Numc, Denc] = tfdata(Gop);
-%         Dn = single(Denc{1}/Numc{1}(3));
-%         Dd = single([Numc{1}(3:end) 0 0]/Numc{1}(3));
-%         b0(i,j) = Dn(1);
-%         b1(i,j) = Dn(2);
-%         b2(i,j) = Dn(3);
-%         b3(i,j) = Dn(4);
-%         b4(i,j) = Dn(5);
-%         a1(i,j) = Dd(2);
-%         a2(i,j) = Dd(3);
-%     end
-% end
+a1 = zeros(length(vx_list), length(dphi_list));
+a2 = zeros(length(vx_list), length(dphi_list));
+a3 = zeros(length(vx_list), length(dphi_list));
+b0 = zeros(length(vx_list), length(dphi_list));
+b1 = zeros(length(vx_list), length(dphi_list));
+b2 = zeros(length(vx_list), length(dphi_list));
+b3 = zeros(length(vx_list), length(dphi_list));
+b4 = zeros(length(vx_list), length(dphi_list));
+b5 = zeros(length(vx_list), length(dphi_list));
+
+for i=1:length(vx_list)
+    for j=1:length(dphi_list)
+        vx = vx_list(i);
+        dphi = dphi_list(j);
+        sys = ss(A(vx, dphi), B, C1(vx, dphi), zeros(1,1));
+        sysd = c2d(sys, dt);
+        [pnu, pde] = ss2tf(sysd.A, sysd.B, sysd.C, sysd.D); 
+        Gop = tf(pnu, pde, 'Ts', dt, 'Variable', 'z');
+        Gop = Gop * Gde;
+        [Numc, Denc] = tfdata(Gop);
+        Dnk = single(Denc{1}/Numc{1}(3));
+        Ddk = single([Numc{1}(3:end) 0 0]/Numc{1}(3));
+        b0(i,j) = Dnk(1);
+        b1(i,j) = Dnk(2);
+        b2(i,j) = Dnk(3);
+        b3(i,j) = Dnk(4);
+        b4(i,j) = Dnk(5);
+        b5(i,j) = Dnk(6);
+        a1(i,j) = Ddk(2);
+        a2(i,j) = Ddk(3);
+        a3(i,j) = Ddk(4);
+    end
+end
 %         

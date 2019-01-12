@@ -1,7 +1,7 @@
 %% DOB Implementation 
 %  Setting encoding
 clear
-clc
+%clc
 
 %% Vehicle Model (Linear Bicycle model)
 % Parameters
@@ -18,6 +18,7 @@ Car = BCD * Fnr;
 dt = 0.02;
 dt_ros_single = single(0.02);
 dt_ros = 0.02;
+vx = 15;
 ds = 10;
 steering_ratio = 14.8;
 
@@ -50,12 +51,14 @@ kc1 = single(0.3);
 Gc1 = kc1 + vx*Gi;
 Gop = Gop * Gc1;
 
-rlocus(Gop);
+%rlocus(Gop);
 %% Controller Configuration
 % dsigmadt = k1 * delta_phi + k2 * delta_y
 kc2 = single(0.1);
 k1 = kc1 * kc2;
 k2 = kc2;
+kc11 = kc1;
+kc12 = 1;
 
 %% Design DOB
 % inverse Gop in realizable form 
