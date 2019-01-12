@@ -23,7 +23,7 @@ dphi = 0;
 ds = 10;
 steering_ratio = 14.8;
 
-kc11 = single(0.3);
+kc11 = single(0.15);
 kc12 = single(1);
 % Discrete time ss (output: beta_s & dphidt)
 a1 = @(vx, dphi) [0, 0, 0, 1];
@@ -73,8 +73,8 @@ DQ{1} = single(DQ{1});
 %% Lookup Table
 vx_list = 1:0.1:20;
 dphi_list = -1:0.1:1;
-vx_list = [10, 10.1];
-dphi_list = [0, 0.0001];
+%vx_list = [10, 10.1];
+%dphi_list = [0, 0.0001];
 
 a1 = zeros(length(vx_list), length(dphi_list));
 a2 = zeros(length(vx_list), length(dphi_list));

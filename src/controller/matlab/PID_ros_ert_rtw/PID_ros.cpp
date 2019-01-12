@@ -9,7 +9,7 @@
  *
  * Model version              : 1.189
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Sat Jan 12 11:44:14 2019
+ * C++ source code generated on : Sat Jan 12 12:32:24 2019
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -42,7 +42,7 @@ void PID_ros_step(void)
   real32_T rtb_Gain1_e;
 
   /* Outputs for Atomic SubSystem: '<Root>/Subscribe1' */
-  /* MATLABSystem: '<S3>/SourceBlock' incorporates:
+  /* Start for MATLABSystem: '<S3>/SourceBlock' incorporates:
    *  Inport: '<S8>/In1'
    */
   b_varargout_1 = Sub_PID_ros_174.getLatestMessage(&b_varargout_2);
@@ -58,7 +58,7 @@ void PID_ros_step(void)
   /* End of Outputs for SubSystem: '<Root>/Subscribe1' */
 
   /* Outputs for Atomic SubSystem: '<Root>/Subscribe' */
-  /* MATLABSystem: '<S2>/SourceBlock' incorporates:
+  /* Start for MATLABSystem: '<S2>/SourceBlock' incorporates:
    *  Inport: '<S7>/In1'
    */
   b_varargout_1_0 = Sub_PID_ros_191.getLatestMessage(&PID_ros_B.b_varargout_2);
@@ -70,7 +70,7 @@ void PID_ros_step(void)
     PID_ros_B.In1 = PID_ros_B.b_varargout_2;
   }
 
-  /* End of MATLABSystem: '<S2>/SourceBlock' */
+  /* End of Start for MATLABSystem: '<S2>/SourceBlock' */
   /* End of Outputs for SubSystem: '<S2>/Enabled Subsystem' */
   /* End of Outputs for SubSystem: '<Root>/Subscribe' */
 
@@ -81,7 +81,7 @@ void PID_ros_step(void)
    *  EnablePort: '<S1>/Enable'
    */
   /* Outputs for Atomic SubSystem: '<Root>/Subscribe1' */
-  /* MATLABSystem: '<S3>/SourceBlock' */
+  /* Start for MATLABSystem: '<S3>/SourceBlock' */
   if (b_varargout_1) {
     /* Gain: '<S1>/Gain1' incorporates:
      *  Gain: '<Root>/Gain1'
@@ -106,13 +106,13 @@ void PID_ros_step(void)
     rtb_BusAssignment.Enable = PID_ros_P.Constant_Value_ij;
 
     /* Outputs for Atomic SubSystem: '<S1>/Publish' */
-    /* MATLABSystem: '<S6>/SinkBlock' */
+    /* Start for MATLABSystem: '<S6>/SinkBlock' */
     Pub_PID_ros_152.publish(&rtb_BusAssignment);
 
     /* End of Outputs for SubSystem: '<S1>/Publish' */
 
     /* Outputs for Atomic SubSystem: '<S4>/Publish' */
-    /* MATLABSystem: '<S10>/SinkBlock' incorporates:
+    /* Start for MATLABSystem: '<S10>/SinkBlock' incorporates:
      *  BusAssignment: '<S4>/Bus Assignment'
      */
     Pub_PID_ros_158.publish(&PID_ros_B.In1_i);
@@ -246,42 +246,42 @@ void PID_ros_initialize(void)
 void PID_ros_terminate(void)
 {
   /* Terminate for Atomic SubSystem: '<Root>/Subscribe1' */
-  /* Terminate for MATLABSystem: '<S3>/SourceBlock' */
+  /* Start for MATLABSystem: '<S3>/SourceBlock' */
   if (PID_ros_DW.obj_a.isInitialized == 1) {
     PID_ros_DW.obj_a.isInitialized = 2;
   }
 
-  /* End of Terminate for MATLABSystem: '<S3>/SourceBlock' */
+  /* End of Start for MATLABSystem: '<S3>/SourceBlock' */
   /* End of Terminate for SubSystem: '<Root>/Subscribe1' */
 
   /* Terminate for Atomic SubSystem: '<Root>/Subscribe' */
-  /* Terminate for MATLABSystem: '<S2>/SourceBlock' */
+  /* Start for MATLABSystem: '<S2>/SourceBlock' */
   if (PID_ros_DW.obj_ax.isInitialized == 1) {
     PID_ros_DW.obj_ax.isInitialized = 2;
   }
 
-  /* End of Terminate for MATLABSystem: '<S2>/SourceBlock' */
+  /* End of Start for MATLABSystem: '<S2>/SourceBlock' */
   /* End of Terminate for SubSystem: '<Root>/Subscribe' */
 
   /* Terminate for Enabled SubSystem: '<Root>/Enabled Subsystem1' */
   /* Terminate for Atomic SubSystem: '<S1>/Publish' */
-  /* Terminate for MATLABSystem: '<S6>/SinkBlock' */
+  /* Start for MATLABSystem: '<S6>/SinkBlock' */
   if (PID_ros_DW.obj_e.isInitialized == 1) {
     PID_ros_DW.obj_e.isInitialized = 2;
   }
 
-  /* End of Terminate for MATLABSystem: '<S6>/SinkBlock' */
+  /* End of Start for MATLABSystem: '<S6>/SinkBlock' */
   /* End of Terminate for SubSystem: '<S1>/Publish' */
   /* End of Terminate for SubSystem: '<Root>/Enabled Subsystem1' */
 
   /* Terminate for Enabled SubSystem: '<Root>/Tracking Received' */
   /* Terminate for Atomic SubSystem: '<S4>/Publish' */
-  /* Terminate for MATLABSystem: '<S10>/SinkBlock' */
+  /* Start for MATLABSystem: '<S10>/SinkBlock' */
   if (PID_ros_DW.obj.isInitialized == 1) {
     PID_ros_DW.obj.isInitialized = 2;
   }
 
-  /* End of Terminate for MATLABSystem: '<S10>/SinkBlock' */
+  /* End of Start for MATLABSystem: '<S10>/SinkBlock' */
   /* End of Terminate for SubSystem: '<S4>/Publish' */
   /* End of Terminate for SubSystem: '<Root>/Tracking Received' */
 }
