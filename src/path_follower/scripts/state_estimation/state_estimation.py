@@ -43,37 +43,26 @@ Yaw_initialize      = 0
 GPS_initialize      = 0
 IMU_start           = 0
 
-start_X = 558640.93
-start_Y = 4196656.64
-pub_flag = 0
-
-
 def RelativeOrientationCallback(data):
 	global relative_quaternion
 	global Yaw_initialize
 	relative_quaternion = (data.x,data.y,data.z,data.w)
 	Yaw_initialize = 1
 
-
-
 def SteeringReportCallback(data):
 	global Vx_meas
 	global delta_meas
 	Vx_meas = data.speed
-	delta_meas = data.steering_wheel_angle / 16.0
-
-
+	delta_meas = data.steering_wheel_angle / 14.8
 
 def CurrentPose2DCallback(data):
 	global Yaw_meas, X_meas, Y_meas
 	global GPS_read, GPS_initialize
 	Yaw_meas = data.theta
-	X_meas = data.x
-	Y_meas = data.y
+	X_meas = data.x 
+	Y_meas = data.y 
 	GPS_read = 1
 	GPS_initialize = 1
-
-
 
 def IMUCallback(data):
 	global Yaw_meas, Yaw_meas_prev, Yawrate_meas
@@ -99,16 +88,12 @@ def IMUCallback(data):
 	else:
 		Yawrate_meas = (Yaw_meas-Yaw_meas_prev)/(IMU_time-IMU_time_prev)
 
-
 	Yaw_meas_prev    = Yaw_meas
 	quaternion_prev  = quaternion
 	IMU_time_prev    = IMU_time
 
 	ax_meas          = data.linear_acceleration.x
 	ay_meas          = data.linear_acceleration.y
-
-
-
 
 def state_estimation():
     global Vx_meas, Yaw_meas, X_meas, Y_meas, delta_meas
@@ -119,15 +104,14 @@ def state_estimation():
     rospy.init_node('state_estimation', anonymous=True)
 
     # topic subscriptions / publications
-    rospy.Subscriber('xsens/imu/data', Imu, IMUCallback)
+    rospy.Subscriber('/xsens/imu/data', Imu, IMUCallback)
     rospy.Subscriber('vehicle/steering_report', SteeringReport, SteeringReportCallback)
     rospy.Subscriber('current_pose_2D', Pose2D, CurrentPose2DCallback)
     rospy.Subscriber('relative_quaternion', Quaternion , RelativeOrientationCallback)
     state_pub = rospy.Publisher('state_estimate', state_Dynamic, queue_size = 10)
 
-
     # set node rate
-    loop_rate = 100
+    loop_rate = 50
     dt        = 1.0 / loop_rate
     rate      = rospy.Rate(loop_rate)
 
@@ -139,18 +123,19 @@ def state_estimation():
     state_est_obj    = state_Dynamic()
 
     # estimation variables for EKF
-    var_gps   = 1.0e-06
+    var_gps   = 1.0e-05
     var_v     = 1.0e-04
     var_psi   = 1.0e-06
 
     var_ax    = 1.0e-04
+    var_ay    = 1.0e-04
     var_delta = 1.0e-04
     var_noise = 1.0e-04
 
     P         = eye(6)    # initial dynamics coveriance matrix
     Q         = diag(array([var_ax, var_delta, var_noise, var_noise, var_noise, var_noise]))     # process noise coveriance matrix
     R2         = diag(array([var_v, var_gps, var_gps, var_psi]))     # measurement noise coveriance matrix
-    R1         = diag(array([var_v, var_psi]))
+    R1         = diag(array([var_v, var_psi, var_ay]))
 
     while (rospy.is_shutdown() != 1):
 
@@ -175,8 +160,8 @@ def state_estimation():
     		z_EKF_prev = z_EKF
 
     		if GPS_read == 0:
-    			y_ekf      = array([Vx_meas, Yaw_meas])
-    			v_ekf      = array([0.,0.])
+    			y_ekf      = array([Vx_meas, Yaw_meas, ay_meas])
+    			v_ekf      = array([0.,0.,0.])
     			(z_EKF, P) = ekf(f_BicycleModel, z_EKF, w_ekf, v_ekf, P, h_BicycleModel_withoutGPS, y_ekf, Q, R1, args)
     		else:
     			y_ekf      = array([Vx_meas, X_meas, Y_meas, Yaw_meas])
@@ -187,21 +172,14 @@ def state_estimation():
     		
     		state_est = z_EKF
 
-    	print(z_EKF)
     	state_est_obj.vx = state_est[0]
     	state_est_obj.vy = state_est[1]
     	state_est_obj.X  = state_est[2]
     	state_est_obj.Y  = state_est[3]
     	state_est_obj.psi= state_est[4]
     	state_est_obj.wz = state_est[5]
-        if sqrt((state_est[2]-start_X)**2+(state_est[3]-start_Y)**2)<1:
-            print('start')
-            pub_flag = 1
-        #if pub_flag == 1:
         state_pub.publish(state_est_obj)	
         rate.sleep()
-
-
 
 if __name__ == '__main__':
 	try:

@@ -59,16 +59,17 @@ find_package(catkin REQUIRED COMPONENTS
   Actuator.msg
   ApplanixPose.msg
   ControllerTarget.msg
-  dtlane.msg
   SteeringCurrent.msg
   state_Dynamic.msg
   SteeringCmd.msg
-  traj_plan.msg
   Trajectory2D.msg
   TrajectoryPoint2D.msg
+  Waypoints.msg
+  Point2D.msg
   Time.msg
   Uout.msg
-  waypoint.msg
+  vehicleinfo.msg
+  vehicleinfomation.msg
  )
 
 ## Generate services in the 'srv' folder
@@ -108,9 +109,9 @@ find_package(catkin REQUIRED COMPONENTS
 ##     and list every .cfg file to be processed 
 
 ## Generate dynamic reconfigure parameters in the 'cfg' folder
- generate_dynamic_reconfigure_options(
-   cfg/DynamicParam.cfg
- )
+# generate_dynamic_reconfigure_options(
+#   cfg/DynamicParam.cfg
+# )
 
 ###################################
 ## catkin specific configuration ##
@@ -124,7 +125,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
   INCLUDE_DIRS include
   LIBRARIES path_follower
-  CATKIN_DEPENDS roscpp rospy std_msgs dynamic_reconfigure geometry_msgs sensor_msgs nmea_msgs  message_generation tf dbw_mkz_msgs
+  CATKIN_DEPENDS roscpp rospy std_msgs geometry_msgs sensor_msgs nmea_msgs  message_generation tf dbw_mkz_msgs
   #DEPENDS system_lib
 )
 
@@ -193,7 +194,7 @@ add_executable(MPC src/MPC/MPC.cpp src/MPC/Vehicle.cpp src/MPC/scaledTime.cpp
 add_dependencies(cmd_converter_node path_follower_generate_messages_cpp) 
 add_dependencies(pose_estimation path_follower_generate_messages_cpp) 
 add_dependencies(nmea_to_UTM path_follower_generate_messages_cpp) 
-add_dependencies(MPC path_follower_generate_messages_cpp path_follower_gencfg)
+add_dependencies(MPC path_follower_generate_messages_cpp)
 
 ## Specify libraries to link a library or executable target against
 # target_link_libraries(${PROJECT_NAME}_node

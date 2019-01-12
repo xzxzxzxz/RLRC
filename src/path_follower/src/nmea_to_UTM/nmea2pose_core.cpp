@@ -33,9 +33,9 @@ Nmea2PoseNode::~Nmea2PoseNode()
 void Nmea2PoseNode::initForROS()
 {
   // setup subscriber
-  this->sub1_ = this->nh_.subscribe("nmea_sentence", 1, &Nmea2PoseNode::callbackFromNmeaSentence, this);
+  this->sub1_ = this->nh_.subscribe("nmea_sentence", 100, &Nmea2PoseNode::callbackFromNmeaSentence, this);
   // setup publisher
-  this->pub1_ = this->nh_.advertise<geometry_msgs::PoseStamped>("gnss_pose", 1);
+  this->pub1_ = this->nh_.advertise<geometry_msgs::PoseStamped>("gnss_pose", 10);
 }
 
 void Nmea2PoseNode::run()

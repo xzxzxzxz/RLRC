@@ -40,7 +40,7 @@ void UTMCallback(const geometry_msgs::PoseStamped::ConstPtr& msg)
   current_position = msg->pose.position;
   actual_pose.header.stamp = msg->header.stamp;
   actual_pose.pose.position = current_position;
-  if (initial_read == 0)
+  if (initial_read == 0 && actual_vel.twist.linear.x > 0)
   {
     initial_position.x = current_position.x;
     initial_position.y = current_position.y;
@@ -91,7 +91,7 @@ int main(int argc, char **argv)
     pub1.publish(actual_vel);
     //initialize yaw angle and publish pose
     distance = sqrt(pow(current_position.x-initial_position.x,2)+pow(current_position.y-initial_position.y,2));
-    if (initialize == 0 && distance >= 5)
+    if (initialize == 0 && distance >= 5 && actual_vel.twist.linear.x > 0)
     {
       initial_yaw = atan2(current_position.y-initial_position.y,current_position.x-initial_position.x);
       initial_rot.setEulerYPR(initial_yaw,0,0);

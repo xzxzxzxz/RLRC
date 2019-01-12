@@ -11,10 +11,6 @@
 #include <geometry_msgs/TwistStamped.h>
 #include <dbw_mkz_msgs/SteeringCmd.h>
 
-
-// User defined includes
-
-//To do: define global variable 
 geometry_msgs::TwistStamped ts;
 dbw_mkz_msgs::SteeringCmd steering_cmd_;
 
@@ -27,7 +23,6 @@ void SteeringCallback(const dbw_mkz_msgs::SteeringCmd msg)
 {
   steering_cmd_ = msg;
 }
-
 
 int main(int argc, char **argv)
 {
