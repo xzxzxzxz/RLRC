@@ -1,0 +1,14 @@
+<launch>
+   <arg name="ds" default="3"/>
+   <param name="/comp_error/ds" value="$(arg ds)"/>
+   <!--node name="reconfigure_gui" pkg="rqt_reconfigure" type="rqt_reconfigure" output="screen" /-->
+   <node name="plotter"  pkg="path_follower"  type="plotter.py" output="screen"/>
+   <node name="plotter_dob"  pkg="controller"  type="plotter.py" output="screen"/>
+   <node name="simu" pkg="simu" type="simu.py" output="screen"/>
+   <node name="dob_ros"  pkg="dob_ros"  type="dob_ros_node" output="screen"/>
+   <node name="comp_error"  pkg="controller"  type="comp_error_node_sim" output="screen"/>
+   <node name="planner"  pkg="path_follower"  type="toy_planner_smooth.py" output="screen"/>
+   <node name="console"  pkg="simu"  type="console.py" output="screen"/>
+</launch>
+
+

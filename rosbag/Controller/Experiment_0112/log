@@ -1,0 +1,7 @@
+name, rmse_dy, std_dy, rmse_dtheta, std_dtheta
+adaptive_dob2, 0.321, 0.448, 0.135, 0.097
+constant_dob2, 0.343, 0.328, 0.110, 0.031
+pid2, 0.431, 0.433, 0.146, 0.043
+adaptive_dob, 0.474, 0.670, 0.160, 0.061
+constant_dob, 0.390, 0.559, 0.128, 0.055
+pid, 0.338, 0.441, 0.166, 0.331

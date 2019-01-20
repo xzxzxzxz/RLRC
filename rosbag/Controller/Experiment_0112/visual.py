@@ -4,9 +4,9 @@ import numpy as np
 from math import floor, cos, sin
 from scipy.interpolate import UnivariateSpline
 
-adapt_bag = rosbag.Bag('adaptive_dob2.bag')
-dob_bag = rosbag.Bag('dob2.bag')
-pid_bag = rosbag.Bag('pid2.bag')
+adapt_bag = rosbag.Bag('adaptive_dob.bag')
+dob_bag = rosbag.Bag('constant_dob.bag')
+pid_bag = rosbag.Bag('pid.bag')
 
 init = False
 dy_adapt = []
@@ -23,8 +23,10 @@ for topic, msg, t in adapt_bag.read_messages(topics='/tracking_info'):
     dtheta_adapt.append(msg.dtheta)
     T_adapt.append(t_current)
 rmse_dy_adapt = np.sqrt(np.mean(np.square(np.array(dy_adapt))))
+std_dy_adapt = np.sqrt(np.var(np.square(np.array(dy_adapt))))
 rmse_dtheta_adapt = np.sqrt(np.mean(np.square(np.array(dtheta_adapt))))
-print(rmse_dy_adapt, rmse_dtheta_adapt)
+std_dtheta_adapt = np.sqrt(np.var(np.square(np.array(dtheta_adapt))))
+print(rmse_dy_adapt, std_dy_adapt, rmse_dtheta_adapt, std_dtheta_adapt)
 
 init = False
 dy_dob = []
@@ -41,8 +43,10 @@ for topic, msg, t in dob_bag.read_messages(topics='/tracking_info'):
     dtheta_dob.append(msg.dtheta)
     T_dob.append(t_current)
 rmse_dy_dob = np.sqrt(np.mean(np.square(np.array(dy_dob))))
+std_dy_dob = np.sqrt(np.var(np.square(np.array(dy_dob))))
 rmse_dtheta_dob = np.sqrt(np.mean(np.square(np.array(dtheta_dob))))
-print(rmse_dy_dob, rmse_dtheta_dob)
+std_dtheta_dob = np.sqrt(np.var(np.square(np.array(dtheta_dob))))
+print(rmse_dy_dob, std_dy_dob, rmse_dtheta_dob, std_dtheta_dob)
 
 init = False
 dy_pid = []
@@ -59,8 +63,10 @@ for topic, msg, t in pid_bag.read_messages(topics='/tracking_info'):
     dtheta_pid.append(msg.dtheta)
     T_pid.append(t_current)
 rmse_dy_pid = np.sqrt(np.mean(np.square(np.array(dy_pid))))
+std_dy_pid = np.sqrt(np.var(np.square(np.array(dy_pid))))
 rmse_dtheta_pid = np.sqrt(np.mean(np.square(np.array(dtheta_pid))))
-print(rmse_dy_pid, rmse_dtheta_pid)
+std_dtheta_pid = np.sqrt(np.var(np.square(np.array(dtheta_pid))))
+print(rmse_dy_pid, std_dy_pid, rmse_dtheta_pid, std_dtheta_pid)
 
 fig = plt.figure()
 ax1 = fig.add_subplot(2,1,1)

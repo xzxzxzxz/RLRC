@@ -4,6 +4,7 @@ import rospy
 import scipy.io 
 from path_follower.msg import state_Dynamic, Trajectory2D, TrajectoryPoint2D
 import matplotlib.pyplot as plt
+matplotlib.use("TkAgg")
 import os, rospkg
 from std_msgs.msg import Int8
 
@@ -37,7 +38,7 @@ def vehicle_state_callback(data):
         obj3 = ax.plot(X3, Y3, color='blue', marker='s', markersize=12)
         obj4 = ax.plot(X4, Y4, color='black', marker='*', markersize=12)
         ax.plot([data.X, X4], [data.Y, Y4], color='black')
-        ax.legend((obj1[0], obj2[0], obj3[0], obj4[0]), ('vehicle', 'ref_traj', 'obstacle', 'vehi_ds'), loc='upper left')
+        #ax.legend((obj1[0], obj2[0], obj3[0], obj4[0]), ('vehicle', 'ref_traj', 'obstacle', 'vehi_ds'), loc='upper left')
         plt.draw()
         plt.pause(0.01)
 
@@ -77,7 +78,7 @@ def plotter():
     # initialize node
     rospy.init_node('plotter', anonymous=True)
     rospack = rospkg.RosPack()
-    reference = scipy.io.loadmat(os.path.join(rospack.get_path("planning_policy"), "src", "long_straight.mat"))['long_straight']
+    reference = scipy.io.loadmat(os.path.join(rospack.get_path("planning_policy"), "src", "Tra_1.mat"))['Tra_1']
     ref_x = reference[0][:]
     ref_y = reference[1][:]
     ref_y1 = reference[1][:] + 9
@@ -86,7 +87,7 @@ def plotter():
     ax.plot(ref_x, ref_y, color='green')
     ax.plot(ref_x, ref_y1, color='green')
     rospy.Subscriber('state_estimate', state_Dynamic, vehicle_state_callback, queue_size=1)
-    rospy.Subscriber('ref_trajectory', Trajectory2D, ref_traje_callback, queue_size=1)
+    rospy.Subscriber('final_trajectory', Trajectory2D, ref_traje_callback, queue_size=1)
     rospy.Subscriber('obstacle_pos', TrajectoryPoint2D, obstacle_state_callback, queue_size=1)
     rospy.Subscriber('/vehicle/traj_cg', Trajectory2D, traj_cg_callback, queue_size=1)
     rospy.Subscriber('pause_signal', Int8, pausecallback, queue_size=10)

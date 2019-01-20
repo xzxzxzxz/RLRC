@@ -70,7 +70,7 @@ def main(sim_steps):
     rospy.init_node('RL_planner', anonymous=True)
     rospy.Subscriber('state_estimate', state_Dynamic, stateEstimateCallback)
     rospy.Subscriber('lane_signal', Int8, laneChangeCallback)
-    ref_traj_pub = rospy.Publisher('ref_trajectory_origin', Trajectory2D, queue_size=1)
+    ref_traj_pub = rospy.Publisher('final_trajectory_origin', Trajectory2D, queue_size=1)
     obstacle_pub = rospy.Publisher('obstacle_pos', TrajectoryPoint2D, queue_size=1)
 
     dt = 0.02

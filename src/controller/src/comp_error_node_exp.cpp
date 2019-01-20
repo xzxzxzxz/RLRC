@@ -45,7 +45,7 @@ int main(int argc, char **argv)
   ros::init(argc, argv, "comp_error");
   ros::NodeHandle n;
   ros::Subscriber sub_state = n.subscribe("state_estimate", 1, StateCallback); 
-  ros::Subscriber sub_traj  = n.subscribe("ref_trajectory", 1, TrajCallback);
+  ros::Subscriber sub_traj  = n.subscribe("final_trajectory", 1, TrajCallback);
   ros::Subscriber sub_enable_ = n.subscribe("vehicle/dbw_enabled", 1, EnableCallback);
   dynamic_reconfigure::Server<controller::DynamicParamConfig> server;
   dynamic_reconfigure::Server<controller::DynamicParamConfig>::CallbackType f;
