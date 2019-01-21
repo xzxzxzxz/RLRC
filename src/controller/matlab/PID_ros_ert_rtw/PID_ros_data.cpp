@@ -9,7 +9,7 @@
  *
  * Model version              : 1.190
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Sun Jan 20 21:43:17 2019
+ * C++ source code generated on : Mon Jan 21 12:38:32 2019
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -31,7 +31,7 @@ P_PID_ros_T PID_ros_P = {
   /* Variable: kc11
    * Referenced by: '<Root>/Gain3'
    */
-  0.25F,
+  0.15F,
 
   /* Variable: kc12
    * Referenced by: '<Root>/Gain1'
@@ -41,7 +41,7 @@ P_PID_ros_T PID_ros_P = {
   /* Variable: kc2
    * Referenced by: '<Root>/Gain5'
    */
-  0.05F,
+  0.2F,
 
   /* Variable: steering_ratio
    * Referenced by: '<S1>/Gain1'
