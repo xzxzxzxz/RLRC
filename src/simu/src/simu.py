@@ -46,9 +46,9 @@ def simu():
     time.sleep(5)
     rate = rospy.Rate(1/dt)
     rospy.loginfo("simulator node starts")
-    #state=[558586.699614032, 4196501.20232720, 1.25432777404785, 5, 0, 0, 0]
+    state=[558586.699614032, 4196501.20232720, 1.25432777404785, 5, 0, 0, 0]
     #state = [0, 1, 0, 10, 0, 0, 0]
-    state = [558641.76, 4196659.62, 1.25, 5, 0, 0, 0]
+    #state = [558641.76, 4196659.62, 1.25, 5, 0, 0, 0]
     car.setState(state)
     rospy.Subscriber('/vehicle/cmd_vel_stamped', TwistStamped, cmd_vel_stampedCallback, queue_size=1)
     rospy.Subscriber('/vehicle/steering_cmd', SteeringCmd, steering_cmdCallback, queue_size=1)

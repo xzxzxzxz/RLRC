@@ -32,7 +32,6 @@ def dobInfoCallback(data):
         length = len(time_list)
         ax.plot(time_list[-min(length, draw_length):], d_est_list[-min(length, draw_length):], color='red', marker='s', markersize=2)
         ax.plot(time_list[-min(length, draw_length):], d_cancel_list[-min(length, draw_length):], color='blue', marker='s', markersize=2)
-        ax.legend('d_est', 'd_cancel')
         plt.draw()
         plt.pause(0.01)
 

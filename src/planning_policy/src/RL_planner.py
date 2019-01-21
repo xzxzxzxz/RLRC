@@ -74,7 +74,8 @@ def main(sim_steps):
     obstacle_pub = rospy.Publisher('obstacle_pos', TrajectoryPoint2D, queue_size=1)
 
     dt = 0.02
-    rate = rospy.Rate(1 / dt)
+    dt_planner = 0.02
+    rate = rospy.Rate(1 / dt_planner)
 
     # get the sim_env ready
     env.reset()

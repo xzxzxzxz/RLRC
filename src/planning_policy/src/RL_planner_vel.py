@@ -72,6 +72,7 @@ def main():
     rospy.Subscriber('state_estimate', state_Dynamic, stateEstimateCallback)
     rospy.Subscriber('lane_signal', Int8, laneChangeCallback)
     vel_cmd_pub = rospy.Publisher('/vehicle/cmd_vel_stamped', TwistStamped, queue_size=1)
+    vel_rl_pub = rospy.Publisher('/RL/cmd_vel_stamped', TwistStamped, queue_size=1)
 
     dt = 0.02
     rate = rospy.Rate(1 / dt)
@@ -137,6 +138,10 @@ def main():
             cmd_vel_stamped = TwistStamped()
             cmd_vel_stamped.twist.linear.x = ac[0] * 5. * dt + vx;
             vel_cmd_pub.publish(cmd_vel_stamped)
+
+            cmd_vel_stamped = TwistStamped()
+            cmd_vel_stamped.twist.linear.x = (ac[0] - ac0[0]) * 5.;
+            vel_rl_pub.publish(cmd_vel_stamped)
 
             rate.sleep()
 

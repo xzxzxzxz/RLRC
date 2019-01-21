@@ -4,10 +4,12 @@ import scipy.io
 import os, rospkg
 from path_follower.msg import state_Dynamic, Trajectory2D, TrajectoryPoint2D
 import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.use("TkAgg")
 from math import cos, sin
 import numpy as np
 
-axis_range = 20
+axis_range = 30
 ini_flag = False
 ini_flag2 = False
 fig = plt.figure()
@@ -26,8 +28,9 @@ def callback(data):
         ini_flag = True
         ax.plot(np.array(X2), np.array(Y2), color='blue', marker='.', markersize = 3, linewidth=2)
         ax.plot([- 0.5 * cos(data.psi) + data.X, (2.85 + 0.5) * cos(data.psi) + data.X], [ - 0.5 * sin(data.psi) + data.Y,  + (2.85 + 0.5) * sin(data.psi)+data.Y], color = 'red', marker = '*', markersize = 8)
-        ax.axis([- axis_range + data.X, + axis_range + data.X, - axis_range + data.Y, + axis_range + data.Y])
+        ax.axis([- axis_range + data.X, axis_range + data.X, - axis_range + data.Y, axis_range + data.Y])
         plt.draw()
+        plt.pause(0.001)
 
 def clearmomery():
     print "clear done"

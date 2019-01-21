@@ -4,9 +4,9 @@ import numpy as np
 from math import floor, cos, sin
 from scipy.interpolate import UnivariateSpline
 
-adapt_bag = rosbag.Bag('adaptive_dob.bag')
-dob_bag = rosbag.Bag('constant_dob.bag')
-pid_bag = rosbag.Bag('pid.bag')
+adapt_bag = rosbag.Bag('adaptive_dob2.bag')
+dob_bag = rosbag.Bag('constant_dob2.bag')
+pid_bag = rosbag.Bag('pid2.bag')
 
 init = False
 dy_adapt = []

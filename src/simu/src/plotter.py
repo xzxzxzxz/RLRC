@@ -4,6 +4,7 @@ import rospy
 import scipy.io 
 from path_follower.msg import state_Dynamic, Trajectory2D, TrajectoryPoint2D
 import matplotlib.pyplot as plt
+import matplotlib
 matplotlib.use("TkAgg")
 import os, rospkg
 from std_msgs.msg import Int8
@@ -78,7 +79,7 @@ def plotter():
     # initialize node
     rospy.init_node('plotter', anonymous=True)
     rospack = rospkg.RosPack()
-    reference = scipy.io.loadmat(os.path.join(rospack.get_path("planning_policy"), "src", "Tra_1.mat"))['Tra_1']
+    reference = scipy.io.loadmat(os.path.join(rospack.get_path("planning_policy"), "src", "long_straight.mat"))['long_straight']
     ref_x = reference[0][:]
     ref_y = reference[1][:]
     ref_y1 = reference[1][:] + 9

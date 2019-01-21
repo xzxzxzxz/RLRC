@@ -7,9 +7,9 @@
  *
  * Code generation for model "DOB_ros_const".
  *
- * Model version              : 1.235
+ * Model version              : 1.236
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Sat Jan 12 12:58:53 2019
+ * C++ source code generated on : Sun Jan 20 21:40:16 2019
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -26,12 +26,12 @@ P_DOB_ros_const_T DOB_ros_const_P = {
   /* Variable: Dd
    * Referenced by: '<Root>/D1'
    */
-  { 1.0F, -2.50966859F, 2.07939887F, -0.56875062F, 0.0F, 0.0F },
+  { 1.0F, -2.51213527F, 2.08689785F, -0.573026061F, 0.0F, 0.0F },
 
   /* Variable: Dn
    * Referenced by: '<Root>/D1'
    */
-  { 0.671738505F, -2.25363541F, 2.80026913F, -1.5265857F, 0.308213621F, 0.0F },
+  { 1.19083047F, -3.99515247F, 4.96420193F, -2.70626855F, 0.546388447F, 0.0F },
 
   /* Variable: dt_ros_single
    * Referenced by: '<S2>/Gain'
@@ -41,7 +41,7 @@ P_DOB_ros_const_T DOB_ros_const_P = {
   /* Variable: kc11
    * Referenced by: '<Root>/Gain3'
    */
-  0.3F,
+  0.25F,
 
   /* Variable: kc12
    * Referenced by: '<Root>/Gain1'
@@ -51,7 +51,7 @@ P_DOB_ros_const_T DOB_ros_const_P = {
   /* Variable: kc2
    * Referenced by: '<Root>/Gain5'
    */
-  0.1F,
+  0.05F,
 
   /* Variable: steering_ratio
    * Referenced by: '<S2>/Gain1'
