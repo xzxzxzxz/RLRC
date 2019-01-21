@@ -4,9 +4,11 @@
    <!--node name="reconfigure_gui" pkg="rqt_reconfigure" type="rqt_reconfigure" output="screen" /-->
    <node name="plotter"  pkg="path_follower"  type="plotter.py" output="screen"/>
    <node name="plotter_dob"  pkg="controller"  type="plotter.py" output="screen"/>
-   <node name="simu" pkg="simu" type="simu.py" output="screen"/>
-   <node name="dob_ros"  pkg="dob_ros"  type="dob_ros_node" output="screen"/>
-   <node name="comp_error"  pkg="controller"  type="comp_error_node_sim" output="screen"/>
+   <node name="comp_error"  pkg="controller"  type="comp_error_node_exp" output="screen"/>
+   <node name="dob_ros"  pkg="dob_ros_const"  type="dob_ros_const_node" output="screen"/>
+   <node pkg="path_follower" name="nmea_to_UTM" type="nmea_to_UTM"/> 
+   <node pkg="path_follower" name="pose_estimation" type="pose_estimation"/>
+   <node pkg="path_follower" name="state_estimation" type="state_estimation.py"/>
    <node name="planner"  pkg="path_follower"  type="toy_planner_smooth.py" output="screen"/>
 </launch>
 
