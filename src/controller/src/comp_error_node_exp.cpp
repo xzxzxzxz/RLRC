@@ -82,9 +82,15 @@ int main(int argc, char **argv)
       cg_point.y=error_msg[4];
       ds_point.x=error_msg[5];
       ds_point.y=error_msg[6];
+      float index = error_msg[9];
       ref_point.x=error_msg[7];
       ref_point.y=error_msg[8];
-      float index = error_msg[9];
+      ref_point.v=ref_traj.point[index].v;
+      ref_point.theta=ref_traj.point[index].theta;
+      ref_point.kappa=ref_traj.point[index].kappa;
+      traj_cg.point.push_back(cg_point);      
+      traj_cg.point.push_back(ds_point);
+      traj_cg.point.push_back(ref_point);
       traj_cg.point.push_back(cg_point);      
       traj_cg.point.push_back(ds_point);
       traj_cg.point.push_back(ref_point);
