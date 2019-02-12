@@ -64,17 +64,21 @@ int main(int argc, char **argv)
   	ros::spinOnce();
     if (received_traj_flag == true && received_state_flag == true)
     {
-      vector<float> error_msg = ComputeTrackingError(ref_traj, current_state, p_vs.param.b, ds);
-      tracking_info.vx = current_state.vx;
+      vector<float> error_msg = ComputeTrackingError(ref_traj, current_state, 0, ds);
+      tracking_info.v = sqrt(pow(current_state.vx, 2) + pow(current_state.vy, 2));
       tracking_info.dy = error_msg[1];
       tracking_info.dtheta = error_msg[2];
+      tracking_info.kappa = error_msg[10];
       cg_point.x=error_msg[3];
       cg_point.y=error_msg[4];
       ds_point.x=error_msg[5];
       ds_point.y=error_msg[6];
+      float index = error_msg[9];
       ref_point.x=error_msg[7];
       ref_point.y=error_msg[8];
-      float index = error_msg[9];
+      ref_point.v=ref_traj.point[index].v;
+      ref_point.theta=ref_traj.point[index].theta;
+      ref_point.kappa=ref_traj.point[index].kappa;
       traj_cg.point.push_back(cg_point);      
       traj_cg.point.push_back(ds_point);
       traj_cg.point.push_back(ref_point);

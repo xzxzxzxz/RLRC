@@ -7,9 +7,9 @@
  *
  * Code generation for model "DOB_ros_const".
  *
- * Model version              : 1.236
+ * Model version              : 1.238
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Mon Jan 21 12:39:16 2019
+ * C++ source code generated on : Fri Feb  8 14:48:43 2019
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -26,12 +26,12 @@ P_DOB_ros_const_T DOB_ros_const_P = {
   /* Variable: Dd
    * Referenced by: '<Root>/D1'
    */
-  { 1.0F, -2.51180649F, 2.08301473F, -0.570227385F, 0.0F, 0.0F },
+  { 1.0F, -2.67396355F, 2.35742831F, -0.683464766F, 0.0F, 0.0F },
 
   /* Variable: Dn
    * Referenced by: '<Root>/D1'
    */
-  { 0.672586083F, -2.25647902F, 2.80380225F, -1.52851188F, 0.308602512F, 0.0F },
+  { 1.30312014F, -4.37187672F, 5.43230295F, -2.96145678F, 0.597910345F, 0.0F },
 
   /* Variable: dt_ros_single
    * Referenced by: '<S2>/Gain'
@@ -41,17 +41,17 @@ P_DOB_ros_const_T DOB_ros_const_P = {
   /* Variable: kc11
    * Referenced by: '<Root>/Gain3'
    */
-  0.15F,
+  1.0F,
 
   /* Variable: kc12
    * Referenced by: '<Root>/Gain1'
    */
-  1.0F,
+  0.0F,
 
   /* Variable: kc2
    * Referenced by: '<Root>/Gain5'
    */
-  0.2F,
+  0.5F,
 
   /* Variable: steering_ratio
    * Referenced by: '<S2>/Gain1'
@@ -161,7 +161,8 @@ P_DOB_ros_const_T DOB_ros_const_P = {
    * Referenced by: '<S10>/Out1'
    */
   {
-    0.0F,                              /* Vx */
+    0.0F,                              /* V */
+    0.0F,                              /* Kappa */
     0.0F,                              /* Dy */
     0.0F                               /* Dtheta */
   },
@@ -170,7 +171,8 @@ P_DOB_ros_const_T DOB_ros_const_P = {
    * Referenced by: '<S4>/Constant'
    */
   {
-    0.0F,                              /* Vx */
+    0.0F,                              /* V */
+    0.0F,                              /* Kappa */
     0.0F,                              /* Dy */
     0.0F                               /* Dtheta */
   },
@@ -196,12 +198,12 @@ P_DOB_ros_const_T DOB_ros_const_P = {
   /* Expression: NQ{1}
    * Referenced by: '<Root>/Q1'
    */
-  { 0.05F, 0.0F, 0.0F },
+  { 0.3F, 0.0F, 0.0F },
 
   /* Expression: DQ{1}
    * Referenced by: '<Root>/Q1'
    */
-  { 1.0F, -1.0F, 0.05F },
+  { 1.0F, -1.0F, 0.3F },
 
   /* Computed Parameter: Q1_InitialStates
    * Referenced by: '<Root>/Q1'

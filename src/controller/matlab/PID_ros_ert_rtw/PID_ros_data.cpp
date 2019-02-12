@@ -7,9 +7,9 @@
  *
  * Code generation for model "PID_ros".
  *
- * Model version              : 1.190
+ * Model version              : 1.191
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Mon Jan 21 12:38:32 2019
+ * C++ source code generated on : Fri Feb  8 14:53:15 2019
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -31,17 +31,17 @@ P_PID_ros_T PID_ros_P = {
   /* Variable: kc11
    * Referenced by: '<Root>/Gain3'
    */
-  0.15F,
+  1.0F,
 
   /* Variable: kc12
    * Referenced by: '<Root>/Gain1'
    */
-  1.0F,
+  0.0F,
 
   /* Variable: kc2
    * Referenced by: '<Root>/Gain5'
    */
-  0.2F,
+  0.5F,
 
   /* Variable: steering_ratio
    * Referenced by: '<S1>/Gain1'
@@ -49,7 +49,7 @@ P_PID_ros_T PID_ros_P = {
   14.8F,
 
   /* Computed Parameter: Out1_Y0
-   * Referenced by: '<S7>/Out1'
+   * Referenced by: '<S6>/Out1'
    */
   {
     0.0F,                              /* SteeringWheelAngle */
@@ -135,7 +135,7 @@ P_PID_ros_T PID_ros_P = {
   },
 
   /* Computed Parameter: Constant_Value_j
-   * Referenced by: '<S5>/Constant'
+   * Referenced by: '<S4>/Constant'
    */
   {
     0.0F,                              /* SteeringWheelAngleCmd */
@@ -148,10 +148,11 @@ P_PID_ros_T PID_ros_P = {
   },
 
   /* Computed Parameter: Out1_Y0_n
-   * Referenced by: '<S8>/Out1'
+   * Referenced by: '<S7>/Out1'
    */
   {
-    0.0F,                              /* Vx */
+    0.0F,                              /* V */
+    0.0F,                              /* Kappa */
     0.0F,                              /* Dy */
     0.0F                               /* Dtheta */
   },
@@ -160,21 +161,13 @@ P_PID_ros_T PID_ros_P = {
    * Referenced by: '<S3>/Constant'
    */
   {
-    0.0F,                              /* Vx */
+    0.0F,                              /* V */
+    0.0F,                              /* Kappa */
     0.0F,                              /* Dy */
     0.0F                               /* Dtheta */
   },
 
   /* Computed Parameter: Constant_Value_i
-   * Referenced by: '<S9>/Constant'
-   */
-  {
-    0.0F,                              /* Vx */
-    0.0F,                              /* Dy */
-    0.0F                               /* Dtheta */
-  },
-
-  /* Computed Parameter: Constant_Value_ij
    * Referenced by: '<S1>/Constant'
    */
   1

@@ -11,6 +11,7 @@ import tensorflow as tf
 from driving_env.driving import Driving
 from cvxopt import matrix, solvers
 import os, rospkg
+from scipy.interpolate import UnivariateSpline
 
 vx = 0
 vy = 0
@@ -20,6 +21,40 @@ psi = 0
 wz = 0
 stateEstimate_mark = False
 laneChange = 0
+
+def smooth(traj):
+    x = []
+    y = []
+    t = []
+    w = np.ones(len(traj.point)) 
+    #w[0] = w[0] * 100
+    #w[-1] = w[-1] * 100
+    for k in range(len(traj.point)):
+        x.append(traj.point[k].x)
+        y.append(traj.point[k].y)
+        t.append(traj.point[k].t)
+    spl_x = UnivariateSpline(t, x, k=3, w=w)
+    spl_y = UnivariateSpline(t, y, k=3, w=w)
+    spl_x_dot = spl_x.derivative()
+    spl_y_dot = spl_y.derivative()
+    spl_x_ddot = spl_x.derivative(n=2)
+    spl_y_ddot = spl_y.derivative(n=2)
+    spl_x_val = spl_x(t)
+    spl_y_val = spl_y(t)    
+    spl_x_dot_val = spl_x_dot(t)
+    spl_y_dot_val = spl_y_dot(t)
+    spl_x_ddot_val = spl_x_ddot(t)
+    spl_y_ddot_val = spl_y_ddot(t)
+    spl_v_val = np.sqrt(spl_x_dot_val**2 + spl_y_dot_val**2)
+    spl_theta_val = np.arctan2(spl_y_dot_val, spl_x_dot_val)
+    spl_k_val = (spl_x_dot_val * spl_y_ddot_val - spl_y_dot_val * spl_x_ddot_val) / spl_v_val ** 3
+    for k in range(len(traj.point)):
+        traj.point[k].x = spl_x_val[k]
+        traj.point[k].y = spl_y_val[k]
+        traj.point[k].v = spl_v_val[k]
+        traj.point[k].theta = spl_theta_val[k]
+        traj.point[k].kappa = spl_k_val[k]
+    return traj
 
 def stateEstimateCallback(data):
     global vx, vy, X, Y, psi, wz, stateEstimate_mark
@@ -38,6 +73,7 @@ def laneChangeCallback(data):
 def main(sim_steps):
     global vx, vy, X, Y, psi, wz, stateEstimate_mark, laneChange
 
+    dt = 0.1
     # env, base policy, attribute policy and PAL-Net related
     rospack = rospkg.RosPack()
     model_path = os.path.join(rospack.get_path("planning_policy"), "trained_model")
@@ -59,7 +95,7 @@ def main(sim_steps):
     with g1.as_default():
         expert = Expert(model_path)
         expert.restore()
-    env = Driving(story_index=100, track_data='long_straight', lane_deviation=9.5, dt=0.1)
+    env = Driving(story_index=100, track_data='long_straight', lane_deviation=9.5, dt=dt)
     P = np.array([[100, 0], [0, 1]])
     solvers.options['show_progress'] = False  # don't let cvxopt print iterations
 
@@ -73,8 +109,7 @@ def main(sim_steps):
     ref_traj_pub = rospy.Publisher('final_trajectory_origin', Trajectory2D, queue_size=1)
     obstacle_pub = rospy.Publisher('obstacle_pos', TrajectoryPoint2D, queue_size=1)
 
-    dt = 0.02
-    dt_planner = 0.02
+    dt_planner = 0.8
     rate = rospy.Rate(1 / dt_planner)
 
     # get the sim_env ready
@@ -157,7 +192,8 @@ def main(sim_steps):
                 np.clip(ac, -1, 1, out=ac)
                 ob, r, done, obstacle_ref_list = env.step(ac)
 
-            ref_traj_pub.publish(traj)
+            smooth_traj = smooth(traj)
+            ref_traj_pub.publish(smooth_traj)
             steps += 1
             rate.sleep()
 

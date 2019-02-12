@@ -7,9 +7,9 @@
  *
  * Code generation for model "DOB_ros_const".
  *
- * Model version              : 1.236
+ * Model version              : 1.238
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Mon Jan 21 12:39:16 2019
+ * C++ source code generated on : Fri Feb  8 14:48:43 2019
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -37,9 +37,9 @@ void DOB_ros_const_step(void)
 {
   int32_T denIdx;
   int32_T j;
-  SL_Bus_DOB_ros_const_controller_TrackingInfo b_varargout_2;
   boolean_T b_varargout_1;
   boolean_T b_varargout_1_0;
+  SL_Bus_DOB_ros_const_dbw_mkz_msgs_SteeringCmd rtb_BusAssignment;
   SL_Bus_DOB_ros_const_controller_DobInfo rtb_BusAssignment_o;
   real32_T rtb_Sum4;
   real32_T rtb_Sum3;
@@ -51,13 +51,14 @@ void DOB_ros_const_step(void)
   /* Start for MATLABSystem: '<S4>/SourceBlock' incorporates:
    *  Inport: '<S10>/In1'
    */
-  b_varargout_1 = Sub_DOB_ros_const_174.getLatestMessage(&b_varargout_2);
+  b_varargout_1 = Sub_DOB_ros_const_174.getLatestMessage
+    (&DOB_ros_const_B.b_varargout_2_m);
 
   /* Outputs for Enabled SubSystem: '<S4>/Enabled Subsystem' incorporates:
    *  EnablePort: '<S10>/Enable'
    */
   if (b_varargout_1) {
-    DOB_ros_const_B.In1_i = b_varargout_2;
+    DOB_ros_const_B.In1_i = DOB_ros_const_B.b_varargout_2_m;
   }
 
   /* End of Outputs for SubSystem: '<S4>/Enabled Subsystem' */
@@ -163,16 +164,16 @@ void DOB_ros_const_step(void)
      *  Gain: '<S2>/Gain'
      *  Sum: '<S2>/Subtract'
      */
-    DOB_ros_const_B.BusAssignment = DOB_ros_const_P.Constant_Value_j;
-    DOB_ros_const_B.BusAssignment.SteeringWheelAngleCmd = rtb_Q1;
-    DOB_ros_const_B.BusAssignment.SteeringWheelAngleVelocity = 1.0F /
+    rtb_BusAssignment = DOB_ros_const_P.Constant_Value_j;
+    rtb_BusAssignment.SteeringWheelAngleCmd = rtb_Q1;
+    rtb_BusAssignment.SteeringWheelAngleVelocity = 1.0F /
       DOB_ros_const_P.dt_ros_single * (rtb_Q1 -
       DOB_ros_const_B.In1.SteeringWheelAngle);
-    DOB_ros_const_B.BusAssignment.Enable = DOB_ros_const_P.Constant_Value_i;
+    rtb_BusAssignment.Enable = DOB_ros_const_P.Constant_Value_i;
 
     /* Outputs for Atomic SubSystem: '<S2>/Publish' */
     /* Start for MATLABSystem: '<S8>/SinkBlock' */
-    Pub_DOB_ros_const_152.publish(&DOB_ros_const_B.BusAssignment);
+    Pub_DOB_ros_const_152.publish(&rtb_BusAssignment);
 
     /* End of Outputs for SubSystem: '<S2>/Publish' */
   }

@@ -7,9 +7,9 @@
  *
  * Code generation for model "DOB_ros".
  *
- * Model version              : 1.234
+ * Model version              : 1.235
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Mon Jan 21 12:37:02 2019
+ * C++ source code generated on : Fri Feb  8 14:51:10 2019
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -242,9 +242,9 @@ real32_T look2_iflf_binlxpw(real32_T u0, real32_T u1, const real32_T bp0[],
 /* Model step function */
 void DOB_ros_step(void)
 {
-  SL_Bus_DOB_ros_controller_TrackingInfo b_varargout_2;
   boolean_T b_varargout_1;
   boolean_T b_varargout_1_0;
+  SL_Bus_DOB_ros_dbw_mkz_msgs_SteeringCmd rtb_BusAssignment;
   SL_Bus_DOB_ros_controller_DobInfo rtb_BusAssignment_o;
   real32_T rtb_uDLookupTable8;
   real32_T rtb_uDLookupTable7;
@@ -259,13 +259,13 @@ void DOB_ros_step(void)
   /* Start for MATLABSystem: '<S4>/SourceBlock' incorporates:
    *  Inport: '<S11>/In1'
    */
-  b_varargout_1 = Sub_DOB_ros_174.getLatestMessage(&b_varargout_2);
+  b_varargout_1 = Sub_DOB_ros_174.getLatestMessage(&DOB_ros_B.b_varargout_2_m);
 
   /* Outputs for Enabled SubSystem: '<S4>/Enabled Subsystem' incorporates:
    *  EnablePort: '<S11>/Enable'
    */
   if (b_varargout_1) {
-    DOB_ros_B.In1_i = b_varargout_2;
+    DOB_ros_B.In1_i = DOB_ros_B.b_varargout_2_m;
   }
 
   /* End of Outputs for SubSystem: '<S4>/Enabled Subsystem' */
@@ -279,9 +279,9 @@ void DOB_ros_step(void)
     DOB_ros_B.In1_i.Dtheta;
 
   /* Lookup_n-D: '<S5>/2-D Lookup Table' */
-  rtb_Sum1 = look2_iflf_pbinlxpw(DOB_ros_B.In1_i.Vx, DOB_ros_B.In1_i.Dtheta,
-    DOB_ros_P.vx_list, DOB_ros_P.dphi_list, DOB_ros_P.b0, DOB_ros_DW.m_bpIndex,
-    DOB_ros_P.uDLookupTable_maxIndex, 191U);
+  rtb_Sum1 = look2_iflf_pbinlxpw(DOB_ros_B.In1_i.V, DOB_ros_B.In1_i.Dtheta,
+    DOB_ros_P.v_list, DOB_ros_P.dphi_list, DOB_ros_P.b0, DOB_ros_DW.m_bpIndex,
+    DOB_ros_P.uDLookupTable_maxIndex, 96U);
 
   /* Sum: '<S12>/Sum1' incorporates:
    *  Product: '<S12>/Product1'
@@ -359,15 +359,15 @@ void DOB_ros_step(void)
      *  Gain: '<S2>/Gain'
      *  Sum: '<S2>/Subtract'
      */
-    DOB_ros_B.BusAssignment = DOB_ros_P.Constant_Value_j;
-    DOB_ros_B.BusAssignment.SteeringWheelAngleCmd = rtb_Q1;
-    DOB_ros_B.BusAssignment.SteeringWheelAngleVelocity = 1.0F /
+    rtb_BusAssignment = DOB_ros_P.Constant_Value_j;
+    rtb_BusAssignment.SteeringWheelAngleCmd = rtb_Q1;
+    rtb_BusAssignment.SteeringWheelAngleVelocity = 1.0F /
       DOB_ros_P.dt_ros_single * (rtb_Q1 - DOB_ros_B.In1.SteeringWheelAngle);
-    DOB_ros_B.BusAssignment.Enable = DOB_ros_P.Constant_Value_i;
+    rtb_BusAssignment.Enable = DOB_ros_P.Constant_Value_i;
 
     /* Outputs for Atomic SubSystem: '<S2>/Publish' */
     /* Start for MATLABSystem: '<S9>/SinkBlock' */
-    Pub_DOB_ros_152.publish(&DOB_ros_B.BusAssignment);
+    Pub_DOB_ros_152.publish(&rtb_BusAssignment);
 
     /* End of Outputs for SubSystem: '<S2>/Publish' */
   }
@@ -376,24 +376,24 @@ void DOB_ros_step(void)
   /* End of Outputs for SubSystem: '<Root>/Enabled Subsystem1' */
 
   /* Lookup_n-D: '<S5>/2-D Lookup Table2' */
-  rtb_Q1 = look2_iflf_pbinlxpw(DOB_ros_B.In1_i.Vx, DOB_ros_B.In1_i.Dtheta,
-    DOB_ros_P.vx_list, DOB_ros_P.dphi_list, DOB_ros_P.b1, DOB_ros_DW.m_bpIndex_p,
-    DOB_ros_P.uDLookupTable2_maxIndex, 191U);
+  rtb_Q1 = look2_iflf_pbinlxpw(DOB_ros_B.In1_i.V, DOB_ros_B.In1_i.Dtheta,
+    DOB_ros_P.v_list, DOB_ros_P.dphi_list, DOB_ros_P.b1, DOB_ros_DW.m_bpIndex_p,
+    DOB_ros_P.uDLookupTable2_maxIndex, 96U);
 
   /* Lookup_n-D: '<S5>/2-D Lookup Table5' */
-  rtb_uDLookupTable5 = look2_iflf_pbinlxpw(DOB_ros_B.In1_i.Vx,
-    DOB_ros_B.In1_i.Dtheta, DOB_ros_P.vx_list, DOB_ros_P.dphi_list, DOB_ros_P.b3,
-    DOB_ros_DW.m_bpIndex_j, DOB_ros_P.uDLookupTable5_maxIndex, 191U);
+  rtb_uDLookupTable5 = look2_iflf_pbinlxpw(DOB_ros_B.In1_i.V,
+    DOB_ros_B.In1_i.Dtheta, DOB_ros_P.v_list, DOB_ros_P.dphi_list, DOB_ros_P.b3,
+    DOB_ros_DW.m_bpIndex_j, DOB_ros_P.uDLookupTable5_maxIndex, 96U);
 
   /* Lookup_n-D: '<S5>/2-D Lookup Table7' */
-  rtb_uDLookupTable7 = look2_iflf_pbinlxpw(DOB_ros_B.In1_i.Vx,
-    DOB_ros_B.In1_i.Dtheta, DOB_ros_P.vx_list, DOB_ros_P.dphi_list, DOB_ros_P.a3,
-    DOB_ros_DW.m_bpIndex_b, DOB_ros_P.uDLookupTable7_maxIndex, 191U);
+  rtb_uDLookupTable7 = look2_iflf_pbinlxpw(DOB_ros_B.In1_i.V,
+    DOB_ros_B.In1_i.Dtheta, DOB_ros_P.v_list, DOB_ros_P.dphi_list, DOB_ros_P.a3,
+    DOB_ros_DW.m_bpIndex_b, DOB_ros_P.uDLookupTable7_maxIndex, 96U);
 
   /* Lookup_n-D: '<S5>/2-D Lookup Table8' */
-  rtb_uDLookupTable8 = look2_iflf_pbinlxpw(DOB_ros_B.In1_i.Vx,
-    DOB_ros_B.In1_i.Dtheta, DOB_ros_P.vx_list, DOB_ros_P.dphi_list, DOB_ros_P.b5,
-    DOB_ros_DW.m_bpIndex_o, DOB_ros_P.uDLookupTable8_maxIndex, 191U);
+  rtb_uDLookupTable8 = look2_iflf_pbinlxpw(DOB_ros_B.In1_i.V,
+    DOB_ros_B.In1_i.Dtheta, DOB_ros_P.v_list, DOB_ros_P.dphi_list, DOB_ros_P.b5,
+    DOB_ros_DW.m_bpIndex_o, DOB_ros_P.uDLookupTable8_maxIndex, 96U);
 
   /* Update for UnitDelay: '<S12>/Delay1' incorporates:
    *  Lookup_n-D: '<S5>/2-D Lookup Table1'
@@ -403,9 +403,9 @@ void DOB_ros_step(void)
    *  UnitDelay: '<S12>/Delay2'
    */
   DOB_ros_DW.Delay1_DSTATE = (rtb_Sum3_o * rtb_Q1 + DOB_ros_DW.Delay2_DSTATE) -
-    rtb_Sum1 * look2_iflf_binlxpw(DOB_ros_B.In1_i.Vx, DOB_ros_B.In1_i.Dtheta,
-    DOB_ros_P.vx_list, DOB_ros_P.dphi_list, DOB_ros_P.a1,
-    DOB_ros_P.uDLookupTable1_maxIndex, 191U);
+    rtb_Sum1 * look2_iflf_binlxpw(DOB_ros_B.In1_i.V, DOB_ros_B.In1_i.Dtheta,
+    DOB_ros_P.v_list, DOB_ros_P.dphi_list, DOB_ros_P.a1,
+    DOB_ros_P.uDLookupTable1_maxIndex, 96U);
 
   /* Update for Delay: '<Root>/Delay1' */
   DOB_ros_DW.Delay1_DSTATE_a[0] = DOB_ros_DW.Delay1_DSTATE_a[1];
@@ -423,12 +423,12 @@ void DOB_ros_step(void)
    *  Sum: '<S12>/Sum3'
    *  UnitDelay: '<S12>/Delay3'
    */
-  DOB_ros_DW.Delay2_DSTATE = (rtb_Sum3_o * look2_iflf_binlxpw(DOB_ros_B.In1_i.Vx,
-    DOB_ros_B.In1_i.Dtheta, DOB_ros_P.vx_list, DOB_ros_P.dphi_list, DOB_ros_P.b2,
-    DOB_ros_P.uDLookupTable4_maxIndex, 191U) + DOB_ros_DW.Delay3_DSTATE) -
-    rtb_Sum1 * look2_iflf_binlxpw(DOB_ros_B.In1_i.Vx, DOB_ros_B.In1_i.Dtheta,
-    DOB_ros_P.vx_list, DOB_ros_P.dphi_list, DOB_ros_P.a2,
-    DOB_ros_P.uDLookupTable3_maxIndex, 191U);
+  DOB_ros_DW.Delay2_DSTATE = (rtb_Sum3_o * look2_iflf_binlxpw(DOB_ros_B.In1_i.V,
+    DOB_ros_B.In1_i.Dtheta, DOB_ros_P.v_list, DOB_ros_P.dphi_list, DOB_ros_P.b2,
+    DOB_ros_P.uDLookupTable4_maxIndex, 96U) + DOB_ros_DW.Delay3_DSTATE) -
+    rtb_Sum1 * look2_iflf_binlxpw(DOB_ros_B.In1_i.V, DOB_ros_B.In1_i.Dtheta,
+    DOB_ros_P.v_list, DOB_ros_P.dphi_list, DOB_ros_P.a2,
+    DOB_ros_P.uDLookupTable3_maxIndex, 96U);
 
   /* Update for UnitDelay: '<S12>/Delay3' incorporates:
    *  Product: '<S12>/Product6'
@@ -447,9 +447,9 @@ void DOB_ros_step(void)
    *  Sum: '<S12>/Sum5'
    *  UnitDelay: '<S12>/Delay5'
    */
-  DOB_ros_DW.Delay4_DSTATE = (rtb_Sum3_o * look2_iflf_binlxpw(DOB_ros_B.In1_i.Vx,
-    DOB_ros_B.In1_i.Dtheta, DOB_ros_P.vx_list, DOB_ros_P.dphi_list, DOB_ros_P.b4,
-    DOB_ros_P.uDLookupTable6_maxIndex, 191U) + DOB_ros_DW.Delay5_DSTATE) -
+  DOB_ros_DW.Delay4_DSTATE = (rtb_Sum3_o * look2_iflf_binlxpw(DOB_ros_B.In1_i.V,
+    DOB_ros_B.In1_i.Dtheta, DOB_ros_P.v_list, DOB_ros_P.dphi_list, DOB_ros_P.b4,
+    DOB_ros_P.uDLookupTable6_maxIndex, 96U) + DOB_ros_DW.Delay5_DSTATE) -
     rtb_Sum1 * DOB_ros_P.Constant1_Value;
 
   /* Update for UnitDelay: '<S12>/Delay5' incorporates:

@@ -7,9 +7,9 @@
  *
  * Code generation for model "PID_ros".
  *
- * Model version              : 1.190
+ * Model version              : 1.191
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Mon Jan 21 12:38:32 2019
+ * C++ source code generated on : Fri Feb  8 14:53:15 2019
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -46,22 +46,20 @@
 
 /* Block signals (auto storage) */
 typedef struct {
-  SL_Bus_PID_ros_dbw_mkz_msgs_SteeringReport In1;/* '<S7>/In1' */
+  SL_Bus_PID_ros_dbw_mkz_msgs_SteeringReport In1;/* '<S6>/In1' */
   SL_Bus_PID_ros_dbw_mkz_msgs_SteeringReport b_varargout_2;
   char_T cv0[25];
-  SL_Bus_PID_ros_controller_TrackingInfo In1_i;/* '<S8>/In1' */
+  SL_Bus_PID_ros_controller_TrackingInfo In1_i;/* '<S7>/In1' */
 } B_PID_ros_T;
 
 /* Block states (auto storage) for system '<Root>' */
 typedef struct {
-  robotics_slros_internal_block_T obj; /* '<S10>/SinkBlock' */
-  robotics_slros_internal_block_T obj_e;/* '<S6>/SinkBlock' */
+  robotics_slros_internal_block_T obj; /* '<S5>/SinkBlock' */
   robotics_slros_internal_blo_j_T obj_a;/* '<S3>/SourceBlock' */
   robotics_slros_internal_blo_j_T obj_ax;/* '<S2>/SourceBlock' */
-  boolean_T objisempty;                /* '<S10>/SinkBlock' */
-  boolean_T objisempty_d;              /* '<S3>/SourceBlock' */
+  boolean_T objisempty;                /* '<S3>/SourceBlock' */
   boolean_T objisempty_n;              /* '<S2>/SourceBlock' */
-  boolean_T objisempty_k;              /* '<S6>/SinkBlock' */
+  boolean_T objisempty_k;              /* '<S5>/SinkBlock' */
 } DW_PID_ros_T;
 
 /* Parameters (auto storage) */
@@ -82,24 +80,21 @@ struct P_PID_ros_T_ {
                                         * Referenced by: '<S1>/Gain1'
                                         */
   SL_Bus_PID_ros_dbw_mkz_msgs_SteeringReport Out1_Y0;/* Computed Parameter: Out1_Y0
-                                                      * Referenced by: '<S7>/Out1'
+                                                      * Referenced by: '<S6>/Out1'
                                                       */
   SL_Bus_PID_ros_dbw_mkz_msgs_SteeringReport Constant_Value;/* Computed Parameter: Constant_Value
                                                              * Referenced by: '<S2>/Constant'
                                                              */
   SL_Bus_PID_ros_dbw_mkz_msgs_SteeringCmd Constant_Value_j;/* Computed Parameter: Constant_Value_j
-                                                            * Referenced by: '<S5>/Constant'
+                                                            * Referenced by: '<S4>/Constant'
                                                             */
   SL_Bus_PID_ros_controller_TrackingInfo Out1_Y0_n;/* Computed Parameter: Out1_Y0_n
-                                                    * Referenced by: '<S8>/Out1'
+                                                    * Referenced by: '<S7>/Out1'
                                                     */
   SL_Bus_PID_ros_controller_TrackingInfo Constant_Value_j1;/* Computed Parameter: Constant_Value_j1
                                                             * Referenced by: '<S3>/Constant'
                                                             */
-  SL_Bus_PID_ros_controller_TrackingInfo Constant_Value_i;/* Computed Parameter: Constant_Value_i
-                                                           * Referenced by: '<S9>/Constant'
-                                                           */
-  boolean_T Constant_Value_ij;         /* Computed Parameter: Constant_Value_ij
+  boolean_T Constant_Value_i;          /* Computed Parameter: Constant_Value_i
                                         * Referenced by: '<S1>/Constant'
                                         */
 };
@@ -177,12 +172,9 @@ extern "C" {
  * '<S1>'   : 'PID_ros/Enabled Subsystem1'
  * '<S2>'   : 'PID_ros/Subscribe'
  * '<S3>'   : 'PID_ros/Subscribe1'
- * '<S4>'   : 'PID_ros/Tracking Received'
- * '<S5>'   : 'PID_ros/Enabled Subsystem1/Blank Message'
- * '<S6>'   : 'PID_ros/Enabled Subsystem1/Publish'
- * '<S7>'   : 'PID_ros/Subscribe/Enabled Subsystem'
- * '<S8>'   : 'PID_ros/Subscribe1/Enabled Subsystem'
- * '<S9>'   : 'PID_ros/Tracking Received/Blank Message'
- * '<S10>'  : 'PID_ros/Tracking Received/Publish'
+ * '<S4>'   : 'PID_ros/Enabled Subsystem1/Blank Message'
+ * '<S5>'   : 'PID_ros/Enabled Subsystem1/Publish'
+ * '<S6>'   : 'PID_ros/Subscribe/Enabled Subsystem'
+ * '<S7>'   : 'PID_ros/Subscribe1/Enabled Subsystem'
  */
 #endif                                 /* RTW_HEADER_PID_ros_h_ */

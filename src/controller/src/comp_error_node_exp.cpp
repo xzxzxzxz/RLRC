@@ -74,9 +74,10 @@ int main(int argc, char **argv)
     {
       double factor = (sys_enable_) ? 1. : 0.;
       vector<float> error_msg = ComputeTrackingError(ref_traj, current_state, p_vs.param.b, ds);
-      tracking_info.vx = current_state.vx;
+      tracking_info.v = sqrt(pow(current_state.vx, 2) + pow(current_state.vy, 2));
       tracking_info.dy = error_msg[1] * factor;
       tracking_info.dtheta = error_msg[2] * factor;
+      tracking_info.kappa = error_msg[10];
       cg_point.x=error_msg[3];
       cg_point.y=error_msg[4];
       ds_point.x=error_msg[5];

@@ -39,25 +39,19 @@
 <tr name="14" id="14">
 <td><a id="l14" class='ln'>14</a></td><td></td></tr>
 <tr name="15" id="15">
-<td><a id="l15" class='ln'>15</a></td><td><span class="ct">// For Block PID_ros/Tracking Received/Publish</span></td></tr>
+<td><a id="l15" class='ln'>15</a></td><td><span class="kw">void</span> <a id="15c6" class="tk">slros_node_init</a>(<span class="kw">int</span> <a id="15c26" class="tk">argc</a>, <span class="kw">char</span><a id="15c36" class="tk">*</a><a id="15c37" class="tk">*</a> <a id="15c39" class="tk">argv</a>)</td></tr>
 <tr name="16" id="16">
-<td><a id="l16" class='ln'>16</a></td><td><a id="16c1" class="tk">SimulinkPublisher</a><a id="16c18" class="tk">&lt;</a><a id="16c19" class="tk">controller</a>::<a id="16c31" class="tk">TrackingInfo</a>, <a id="16c45" class="tk">SL_Bus_PID_ros_controller_TrackingInfo</a><a id="16c83" class="tk">&gt;</a> <a id="16c85" class="tk">Pub_PID_ros_158</a>;</td></tr>
+<td><a id="l16" class='ln'>16</a></td><td><span class="br">{</span></td></tr>
 <tr name="17" id="17">
-<td><a id="l17" class='ln'>17</a></td><td></td></tr>
+<td><a id="l17" class='ln'>17</a></td><td>  <a id="17c3" class="tk">ros</a>::<a id="17c8" class="tk">init</a>(<a id="17c13" class="tk">argc</a>, <a id="17c19" class="tk">argv</a>, <a id="17c25" class="tk">SLROSNodeName</a>);</td></tr>
 <tr name="18" id="18">
-<td><a id="l18" class='ln'>18</a></td><td><span class="kw">void</span> <a id="18c6" class="tk">slros_node_init</a>(<span class="kw">int</span> <a id="18c26" class="tk">argc</a>, <span class="kw">char</span><a id="18c36" class="tk">*</a><a id="18c37" class="tk">*</a> <a id="18c39" class="tk">argv</a>)</td></tr>
+<td><a id="l18" class='ln'>18</a></td><td>  <a id="18c3" class="tk">SLROSNodePtr</a> = <span class="kw">new</span> <a id="18c22" class="tk">ros</a>::<a id="18c27" class="tk">NodeHandle</a>();</td></tr>
 <tr name="19" id="19">
-<td><a id="l19" class='ln'>19</a></td><td><span class="br">{</span></td></tr>
+<td><a id="l19" class='ln'>19</a></td><td><span class="br">}</span></td></tr>
 <tr name="20" id="20">
-<td><a id="l20" class='ln'>20</a></td><td>  <a id="20c3" class="tk">ros</a>::<a id="20c8" class="tk">init</a>(<a id="20c13" class="tk">argc</a>, <a id="20c19" class="tk">argv</a>, <a id="20c25" class="tk">SLROSNodeName</a>);</td></tr>
+<td><a id="l20" class='ln'>20</a></td><td></td></tr>
 <tr name="21" id="21">
-<td><a id="l21" class='ln'>21</a></td><td>  <a id="21c3" class="tk">SLROSNodePtr</a> = <span class="kw">new</span> <a id="21c22" class="tk">ros</a>::<a id="21c27" class="tk">NodeHandle</a>();</td></tr>
-<tr name="22" id="22">
-<td><a id="l22" class='ln'>22</a></td><td><span class="br">}</span></td></tr>
-<tr name="23" id="23">
-<td><a id="l23" class='ln'>23</a></td><td></td></tr>
-<tr name="24" id="24">
-<td><a id="l24" class='ln'>24</a></td><td></td></tr>
+<td><a id="l21" class='ln'>21</a></td><td></td></tr>
 </table>
 </pre>
 </body>

@@ -20,11 +20,11 @@ dt_ros_single = single(0.02);
 dt_ros = 0.02;
 vx = 10;
 dphi = 0;
-ds = 10;
+ds = 5;
 steering_ratio = 14.8;
 
-kc11 = single(0.15);
-kc12 = single(1);
+kc11 = single(1);
+kc12 = single(0);
 % Discrete time ss (output: beta_s & dphidt)
 a1 = @(vx, dphi) [0, 0, 0, 1];
 a2 = @(vx, dphi) [vx/cos(dphi)^2, 0, 1, ds]; 
@@ -49,7 +49,7 @@ Gop = tf(pnu, pde, 'Ts', dt, 'Variable', 'z');
 Gde = tf(1, [1,0], 'Ts', dt, 'Variable', 'z');
 Gop = Gop * Gde;
 
-kc2 = single(0.2);
+kc2 = single(0.5);
 %rlocus(Gop);
 
 %% Design DOB
@@ -65,7 +65,7 @@ wn = 5;
 eps = 0.8;
 %Q = tf(wn^2, [1 2*eps*wn wn^2],'Variable','s');
 %Q = c2d(Q, dt, 'zoh');
-Q = tf(0.05,[1 -1 0.05],dt,'Variable','z^-1');
+Q = tf(0.3,[1 -1 0.3],dt,'Variable','z^-1');
 [NQ, DQ] = tfdata(Q);
 NQ{1} = single(NQ{1});
 DQ{1} = single(DQ{1});

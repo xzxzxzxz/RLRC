@@ -9,7 +9,8 @@ void convertFromBus(controller::TrackingInfo* msgPtr, SL_Bus_PID_ros_controller_
 
   msgPtr->dtheta =  busPtr->Dtheta;
   msgPtr->dy =  busPtr->Dy;
-  msgPtr->vx =  busPtr->Vx;
+  msgPtr->kappa =  busPtr->Kappa;
+  msgPtr->v =  busPtr->V;
 }
 
 void convertToBus(SL_Bus_PID_ros_controller_TrackingInfo* busPtr, controller::TrackingInfo const* msgPtr)
@@ -18,7 +19,8 @@ void convertToBus(SL_Bus_PID_ros_controller_TrackingInfo* busPtr, controller::Tr
 
   busPtr->Dtheta =  msgPtr->dtheta;
   busPtr->Dy =  msgPtr->dy;
-  busPtr->Vx =  msgPtr->vx;
+  busPtr->Kappa =  msgPtr->kappa;
+  busPtr->V =  msgPtr->v;
 }
 
 

@@ -35,16 +35,23 @@ vector<float> ComputeTrackingError(const path_follower::Trajectory2D traj, const
 
   float delta_x = - x_cg_ds + x_traj_cg;
   float delta_y = - y_cg_ds + y_traj_cg;
-  float delta_yaw = fmod(traj.point[index].theta - beta_s - state.psi, 2 * M_PI);
+  float delta_yaw = fmod(-traj.point[index].theta + beta_s + state.psi, 2 * M_PI);
 
   if (delta_yaw > M_PI) 
   {
     delta_yaw = delta_yaw - 2 * M_PI;
   }
-  float lateral_error = delta_x * sin(state.psi) - delta_y * cos(state.psi);
+  float sign_error = 0.;
+  if (delta_x * sin(state.psi) - delta_y * cos(state.psi) > 0)
+    sign_error = 1.0;
+  else
+    sign_error = -1.0;
+  //float error = sign_error * sqrt(pow(delta_x, 2) + pow(delta_y, 2));
+  float error = delta_x * sin(state.psi) - delta_y * cos(state.psi);
+
   vector<float> error_msg_vector;
   error_msg_vector.push_back(traj.point[index].v);
-  error_msg_vector.push_back(lateral_error);
+  error_msg_vector.push_back(error);
   error_msg_vector.push_back(delta_yaw);
 
  // ROS_INFO_STREAM("dy"<<lateral_error<<"dthe"<<delta_yaw);
@@ -55,6 +62,7 @@ vector<float> ComputeTrackingError(const path_follower::Trajectory2D traj, const
   error_msg_vector.push_back(traj.point[index].x);
   error_msg_vector.push_back(traj.point[index].y);
   error_msg_vector.push_back(index);
+  error_msg_vector.push_back(traj.point[index].kappa);
 
   return error_msg_vector;
 }
