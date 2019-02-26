@@ -4,6 +4,11 @@ devel/
 install/
 src/matlab_gen
 src/dbw_mkz_msgs
+src/controller/matlab/slprj
+src/controller/matlab/PID_ros_ert_rtw
+src/controller/matlab/DOB_ros_ert_rtw
+src/controller/matlab/DOB_ros_const_ert_rtw
+src/controller/matlab/buold_ros_model.sh
 
 *.*.save
 
