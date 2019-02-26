@@ -20,6 +20,6 @@ using namespace std;
 
 float getDistance(const path_follower::TrajectoryPoint2D point, const path_follower::state_Dynamic state, float ra_to_cg, float ds);
 
-vector<float> ComputeTrackingError(const path_follower::Trajectory2D traj, const path_follower::state_Dynamic state, float ra_to_cg, float ds);
+vector<float> ComputeLateralError(const path_follower::Trajectory2D traj, const path_follower::state_Dynamic state, float ra_to_cg, float ds);
 
 #endif

@@ -7,9 +7,9 @@
  *
  * Code generation for model "DOB_ros".
  *
- * Model version              : 1.235
+ * Model version              : 1.243
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Fri Feb  8 14:51:10 2019
+ * C++ source code generated on : Mon Feb 25 22:12:50 2019
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -51,6 +51,25 @@ typedef struct {
   char_T cv0[25];
   SL_Bus_DOB_ros_controller_TrackingInfo In1_i;/* '<S11>/In1' */
   SL_Bus_DOB_ros_controller_TrackingInfo b_varargout_2_m;
+  uint32_T bpIndices[4];
+  uint32_T bpIndices_c[4];
+  uint32_T bpIndices_k[4];
+  uint32_T bpIndices_cx[4];
+  uint32_T bpIndices_b[4];
+  uint32_T bpIndices_p[4];
+  uint32_T bpIndices_cv[4];
+  uint32_T bpIndices_f[4];
+  uint32_T bpIndices_g[4];
+  real32_T fractions[4];
+  real32_T fractions_g[4];
+  real32_T fractions_m[4];
+  real32_T fractions_n[4];
+  real32_T fractions_p[4];
+  real32_T fractions_l[4];
+  real32_T fractions_j[4];
+  real32_T fractions_d[4];
+  real32_T fractions_gu[4];
+  SL_Bus_DOB_ros_dbw_mkz_msgs_SteeringCmd BusAssignment;/* '<S2>/Bus Assignment' */
 } B_DOB_ros_T;
 
 /* Block states (auto storage) for system '<Root>' */
@@ -62,11 +81,24 @@ typedef struct {
   real32_T Delay3_DSTATE;              /* '<S12>/Delay3' */
   real32_T Delay4_DSTATE;              /* '<S12>/Delay4' */
   real32_T Delay5_DSTATE;              /* '<S12>/Delay5' */
-  uint32_T m_bpIndex[2];               /* '<S5>/2-D Lookup Table' */
-  uint32_T m_bpIndex_p[2];             /* '<S5>/2-D Lookup Table2' */
-  uint32_T m_bpIndex_j[2];             /* '<S5>/2-D Lookup Table5' */
-  uint32_T m_bpIndex_b[2];             /* '<S5>/2-D Lookup Table7' */
-  uint32_T m_bpIndex_o[2];             /* '<S5>/2-D Lookup Table8' */
+  real32_T m_bpLambda[4];              /* '<S5>/2-D Lookup Table' */
+  real32_T m_bpLambda_m[4];            /* '<S5>/2-D Lookup Table1' */
+  real32_T m_bpLambda_b[4];            /* '<S5>/2-D Lookup Table2' */
+  real32_T m_bpLambda_l[4];            /* '<S5>/2-D Lookup Table3' */
+  real32_T m_bpLambda_ln[4];           /* '<S5>/2-D Lookup Table4' */
+  real32_T m_bpLambda_k[4];            /* '<S5>/2-D Lookup Table5' */
+  real32_T m_bpLambda_j[4];            /* '<S5>/2-D Lookup Table6' */
+  real32_T m_bpLambda_p[4];            /* '<S5>/2-D Lookup Table7' */
+  real32_T m_bpLambda_p5[4];           /* '<S5>/2-D Lookup Table8' */
+  uint32_T m_bpIndex[4];               /* '<S5>/2-D Lookup Table' */
+  uint32_T m_bpIndex_l[4];             /* '<S5>/2-D Lookup Table1' */
+  uint32_T m_bpIndex_n[4];             /* '<S5>/2-D Lookup Table2' */
+  uint32_T m_bpIndex_k[4];             /* '<S5>/2-D Lookup Table3' */
+  uint32_T m_bpIndex_j[4];             /* '<S5>/2-D Lookup Table4' */
+  uint32_T m_bpIndex_h[4];             /* '<S5>/2-D Lookup Table5' */
+  uint32_T m_bpIndex_j5[4];            /* '<S5>/2-D Lookup Table6' */
+  uint32_T m_bpIndex_b[4];             /* '<S5>/2-D Lookup Table7' */
+  uint32_T m_bpIndex_l0[4];            /* '<S5>/2-D Lookup Table8' */
   robotics_slros_internal_block_T obj; /* '<S9>/SinkBlock' */
   robotics_slros_internal_block_T obj_f;/* '<S7>/SinkBlock' */
   robotics_slros_internal_blo_k_T obj_a;/* '<S4>/SourceBlock' */
@@ -79,31 +111,31 @@ typedef struct {
 
 /* Parameters (auto storage) */
 struct P_DOB_ros_T_ {
-  real32_T a1[2016];                   /* Variable: a1
+  real32_T a1[308448];                 /* Variable: a1
                                         * Referenced by: '<S5>/2-D Lookup Table1'
                                         */
-  real32_T a2[2016];                   /* Variable: a2
+  real32_T a2[308448];                 /* Variable: a2
                                         * Referenced by: '<S5>/2-D Lookup Table3'
                                         */
-  real32_T a3[2016];                   /* Variable: a3
-                                        * Referenced by: '<S5>/2-D Lookup Table7'
-                                        */
-  real32_T b0[2016];                   /* Variable: b0
-                                        * Referenced by: '<S5>/2-D Lookup Table'
-                                        */
-  real32_T b1[2016];                   /* Variable: b1
-                                        * Referenced by: '<S5>/2-D Lookup Table2'
-                                        */
-  real32_T b2[2016];                   /* Variable: b2
-                                        * Referenced by: '<S5>/2-D Lookup Table4'
-                                        */
-  real32_T b3[2016];                   /* Variable: b3
+  real32_T a3[308448];                 /* Variable: a3
                                         * Referenced by: '<S5>/2-D Lookup Table5'
                                         */
-  real32_T b4[2016];                   /* Variable: b4
+  real32_T b0[308448];                 /* Variable: b0
+                                        * Referenced by: '<S5>/2-D Lookup Table'
+                                        */
+  real32_T b1[308448];                 /* Variable: b1
+                                        * Referenced by: '<S5>/2-D Lookup Table2'
+                                        */
+  real32_T b2[308448];                 /* Variable: b2
+                                        * Referenced by: '<S5>/2-D Lookup Table4'
+                                        */
+  real32_T b3[308448];                 /* Variable: b3
                                         * Referenced by: '<S5>/2-D Lookup Table6'
                                         */
-  real32_T b5[2016];                   /* Variable: b5
+  real32_T b4[308448];                 /* Variable: b4
+                                        * Referenced by: '<S5>/2-D Lookup Table7'
+                                        */
+  real32_T b5[308448];                 /* Variable: b5
                                         * Referenced by: '<S5>/2-D Lookup Table8'
                                         */
   real32_T dphi_list[21];              /* Variable: dphi_list
@@ -120,6 +152,30 @@ struct P_DOB_ros_T_ {
                                         */
   real32_T dt_ros_single;              /* Variable: dt_ros_single
                                         * Referenced by: '<S2>/Gain'
+                                        */
+  real32_T dy_list[17];                /* Variable: dy_list
+                                        * Referenced by:
+                                        *   '<S5>/2-D Lookup Table'
+                                        *   '<S5>/2-D Lookup Table1'
+                                        *   '<S5>/2-D Lookup Table2'
+                                        *   '<S5>/2-D Lookup Table3'
+                                        *   '<S5>/2-D Lookup Table4'
+                                        *   '<S5>/2-D Lookup Table5'
+                                        *   '<S5>/2-D Lookup Table6'
+                                        *   '<S5>/2-D Lookup Table7'
+                                        *   '<S5>/2-D Lookup Table8'
+                                        */
+  real32_T kappa_list[9];              /* Variable: kappa_list
+                                        * Referenced by:
+                                        *   '<S5>/2-D Lookup Table'
+                                        *   '<S5>/2-D Lookup Table1'
+                                        *   '<S5>/2-D Lookup Table2'
+                                        *   '<S5>/2-D Lookup Table3'
+                                        *   '<S5>/2-D Lookup Table4'
+                                        *   '<S5>/2-D Lookup Table5'
+                                        *   '<S5>/2-D Lookup Table6'
+                                        *   '<S5>/2-D Lookup Table7'
+                                        *   '<S5>/2-D Lookup Table8'
                                         */
   real32_T kc11;                       /* Variable: kc11
                                         * Referenced by: '<Root>/Gain3'
@@ -196,34 +252,61 @@ struct P_DOB_ros_T_ {
   real32_T Delay5_InitialCondition;    /* Computed Parameter: Delay5_InitialCondition
                                         * Referenced by: '<S12>/Delay5'
                                         */
-  uint32_T uDLookupTable_maxIndex[2];  /* Computed Parameter: uDLookupTable_maxIndex
+  uint32_T uDLookupTable_maxIndex[4];  /* Computed Parameter: uDLookupTable_maxIndex
+                                        * Referenced by: '<S5>/2-D Lookup Table'
+                                        */
+  uint32_T uDLookupTable_dimSizes[4];  /* Computed Parameter: uDLookupTable_dimSizes
                                         * Referenced by: '<S5>/2-D Lookup Table'
                                         */
   uint32_T Delay1_DelayLength;         /* Computed Parameter: Delay1_DelayLength
                                         * Referenced by: '<Root>/Delay1'
                                         */
-  uint32_T uDLookupTable1_maxIndex[2]; /* Computed Parameter: uDLookupTable1_maxIndex
+  uint32_T uDLookupTable1_maxIndex[4]; /* Computed Parameter: uDLookupTable1_maxIndex
                                         * Referenced by: '<S5>/2-D Lookup Table1'
                                         */
-  uint32_T uDLookupTable2_maxIndex[2]; /* Computed Parameter: uDLookupTable2_maxIndex
+  uint32_T uDLookupTable1_dimSizes[4]; /* Computed Parameter: uDLookupTable1_dimSizes
+                                        * Referenced by: '<S5>/2-D Lookup Table1'
+                                        */
+  uint32_T uDLookupTable2_maxIndex[4]; /* Computed Parameter: uDLookupTable2_maxIndex
                                         * Referenced by: '<S5>/2-D Lookup Table2'
                                         */
-  uint32_T uDLookupTable3_maxIndex[2]; /* Computed Parameter: uDLookupTable3_maxIndex
+  uint32_T uDLookupTable2_dimSizes[4]; /* Computed Parameter: uDLookupTable2_dimSizes
+                                        * Referenced by: '<S5>/2-D Lookup Table2'
+                                        */
+  uint32_T uDLookupTable3_maxIndex[4]; /* Computed Parameter: uDLookupTable3_maxIndex
                                         * Referenced by: '<S5>/2-D Lookup Table3'
                                         */
-  uint32_T uDLookupTable4_maxIndex[2]; /* Computed Parameter: uDLookupTable4_maxIndex
+  uint32_T uDLookupTable3_dimSizes[4]; /* Computed Parameter: uDLookupTable3_dimSizes
+                                        * Referenced by: '<S5>/2-D Lookup Table3'
+                                        */
+  uint32_T uDLookupTable4_maxIndex[4]; /* Computed Parameter: uDLookupTable4_maxIndex
                                         * Referenced by: '<S5>/2-D Lookup Table4'
                                         */
-  uint32_T uDLookupTable5_maxIndex[2]; /* Computed Parameter: uDLookupTable5_maxIndex
+  uint32_T uDLookupTable4_dimSizes[4]; /* Computed Parameter: uDLookupTable4_dimSizes
+                                        * Referenced by: '<S5>/2-D Lookup Table4'
+                                        */
+  uint32_T uDLookupTable5_maxIndex[4]; /* Computed Parameter: uDLookupTable5_maxIndex
                                         * Referenced by: '<S5>/2-D Lookup Table5'
                                         */
-  uint32_T uDLookupTable6_maxIndex[2]; /* Computed Parameter: uDLookupTable6_maxIndex
+  uint32_T uDLookupTable5_dimSizes[4]; /* Computed Parameter: uDLookupTable5_dimSizes
+                                        * Referenced by: '<S5>/2-D Lookup Table5'
+                                        */
+  uint32_T uDLookupTable6_maxIndex[4]; /* Computed Parameter: uDLookupTable6_maxIndex
                                         * Referenced by: '<S5>/2-D Lookup Table6'
                                         */
-  uint32_T uDLookupTable7_maxIndex[2]; /* Computed Parameter: uDLookupTable7_maxIndex
+  uint32_T uDLookupTable6_dimSizes[4]; /* Computed Parameter: uDLookupTable6_dimSizes
+                                        * Referenced by: '<S5>/2-D Lookup Table6'
+                                        */
+  uint32_T uDLookupTable7_maxIndex[4]; /* Computed Parameter: uDLookupTable7_maxIndex
                                         * Referenced by: '<S5>/2-D Lookup Table7'
                                         */
-  uint32_T uDLookupTable8_maxIndex[2]; /* Computed Parameter: uDLookupTable8_maxIndex
+  uint32_T uDLookupTable7_dimSizes[4]; /* Computed Parameter: uDLookupTable7_dimSizes
+                                        * Referenced by: '<S5>/2-D Lookup Table7'
+                                        */
+  uint32_T uDLookupTable8_maxIndex[4]; /* Computed Parameter: uDLookupTable8_maxIndex
+                                        * Referenced by: '<S5>/2-D Lookup Table8'
+                                        */
+  uint32_T uDLookupTable8_dimSizes[4]; /* Computed Parameter: uDLookupTable8_dimSizes
                                         * Referenced by: '<S5>/2-D Lookup Table8'
                                         */
   boolean_T Constant_Value_i;          /* Computed Parameter: Constant_Value_i

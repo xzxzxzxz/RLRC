@@ -7,9 +7,9 @@
  *
  * Code generation for model "DOB_ros".
  *
- * Model version              : 1.235
+ * Model version              : 1.243
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Fri Feb  8 14:51:10 2019
+ * C++ source code generated on : Mon Feb 25 22:12:50 2019
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -31,212 +31,103 @@ DW_DOB_ros_T DOB_ros_DW;
 /* Real-time model */
 RT_MODEL_DOB_ros_T DOB_ros_M_;
 RT_MODEL_DOB_ros_T *const DOB_ros_M = &DOB_ros_M_;
-real32_T look2_iflf_pbinlxpw(real32_T u0, real32_T u1, const real32_T bp0[],
-  const real32_T bp1[], const real32_T table[], uint32_T prevIndex[], const
-  uint32_T maxIndex[], uint32_T stride)
+uint32_T plook_u32ff_binxp(real32_T u, const real32_T bp[], uint32_T maxIndex,
+  real32_T *fraction, uint32_T *prevIndex)
 {
-  real32_T frac;
-  uint32_T bpIndices[2];
-  real32_T fractions[2];
+  uint32_T bpIndex;
+
+  /* Prelookup - Index and Fraction
+     Index Search method: 'binary'
+     Extrapolation method: 'Linear'
+     Use previous index: 'on'
+     Use last breakpoint for index at or above upper limit: 'off'
+     Remove protection against out-of-range input in generated code: 'off'
+   */
+  if (u <= bp[0U]) {
+    bpIndex = 0U;
+    *fraction = (u - bp[0U]) / (bp[1U] - bp[0U]);
+  } else if (u < bp[maxIndex]) {
+    bpIndex = binsearch_u32f_prevIdx(u, bp, *prevIndex, maxIndex);
+    *fraction = (u - bp[bpIndex]) / (bp[bpIndex + 1U] - bp[bpIndex]);
+  } else {
+    bpIndex = maxIndex - 1U;
+    *fraction = (u - bp[maxIndex - 1U]) / (bp[maxIndex] - bp[maxIndex - 1U]);
+  }
+
+  *prevIndex = bpIndex;
+  return bpIndex;
+}
+
+real32_T intrp4d_fu32fl_pw(const uint32_T bpIndex[], const real32_T frac[],
+  const real32_T table[], const uint32_T stride[])
+{
+  real32_T yL_3d;
+  uint32_T offset_3d;
+  real32_T yL_2d;
   real32_T yL_1d;
+  uint32_T offset_0d;
+  uint32_T offset_1d;
+
+  /* Interpolation 4-D
+     Interpolation method: 'Linear'
+     Use last breakpoint for index at or above upper limit: 'off'
+     Overflow mode: 'portable wrapping'
+   */
+  offset_3d = ((bpIndex[3U] * stride[3U] + bpIndex[2U] * stride[2U]) + bpIndex
+               [1U] * stride[1U]) + bpIndex[0U];
+  yL_1d = (table[offset_3d + 1U] - table[offset_3d]) * frac[0U] +
+    table[offset_3d];
+  offset_0d = offset_3d + stride[1U];
+  yL_2d = (((table[offset_0d + 1U] - table[offset_0d]) * frac[0U] +
+            table[offset_0d]) - yL_1d) * frac[1U] + yL_1d;
+  offset_1d = offset_3d + stride[2U];
+  yL_1d = (table[offset_1d + 1U] - table[offset_1d]) * frac[0U] +
+    table[offset_1d];
+  offset_0d = offset_1d + stride[1U];
+  yL_3d = (((((table[offset_0d + 1U] - table[offset_0d]) * frac[0U] +
+              table[offset_0d]) - yL_1d) * frac[1U] + yL_1d) - yL_2d) * frac[2U]
+    + yL_2d;
+  offset_1d = offset_3d + stride[3U];
+  yL_1d = (table[offset_1d + 1U] - table[offset_1d]) * frac[0U] +
+    table[offset_1d];
+  offset_0d = offset_1d + stride[1U];
+  yL_2d = (((table[offset_0d + 1U] - table[offset_0d]) * frac[0U] +
+            table[offset_0d]) - yL_1d) * frac[1U] + yL_1d;
+  offset_1d += stride[2U];
+  yL_1d = (table[offset_1d + 1U] - table[offset_1d]) * frac[0U] +
+    table[offset_1d];
+  offset_0d = offset_1d + stride[1U];
+  return (((((((table[offset_0d + 1U] - table[offset_0d]) * frac[0U] +
+               table[offset_0d]) - yL_1d) * frac[1U] + yL_1d) - yL_2d) * frac[2U]
+           + yL_2d) - yL_3d) * frac[3U] + yL_3d;
+}
+
+uint32_T binsearch_u32f_prevIdx(real32_T u, const real32_T bp[], uint32_T
+  startIndex, uint32_T maxIndex)
+{
+  uint32_T bpIndex;
   uint32_T iRght;
   uint32_T iLeft;
   uint32_T found;
-  uint32_T bpIdx;
 
-  /* Lookup 2-D
-     Search method: 'binary'
-     Use previous index: 'on'
-     Interpolation method: 'Linear'
-     Extrapolation method: 'Linear'
-     Use last breakpoint for index at or above upper limit: 'off'
-     Remove protection against out-of-range input in generated code: 'off'
-   */
-  /* Prelookup - Index and Fraction
-     Index Search method: 'binary'
-     Extrapolation method: 'Linear'
-     Use previous index: 'on'
-     Use last breakpoint for index at or above upper limit: 'off'
-     Remove protection against out-of-range input in generated code: 'off'
-   */
-  if (u0 <= bp0[0U]) {
-    bpIdx = 0U;
-    frac = (u0 - bp0[0U]) / (bp0[1U] - bp0[0U]);
-  } else if (u0 < bp0[maxIndex[0U]]) {
-    /* Binary Search using Previous Index */
-    bpIdx = prevIndex[0U];
-    iLeft = 0U;
-    iRght = maxIndex[0U];
-    found = 0U;
-    while (found == 0U) {
-      if (u0 < bp0[bpIdx]) {
-        iRght = bpIdx - 1U;
-        bpIdx = (iRght + iLeft) >> 1U;
-      } else if (u0 < bp0[bpIdx + 1U]) {
-        found = 1U;
-      } else {
-        iLeft = bpIdx + 1U;
-        bpIdx = (iRght + iLeft) >> 1U;
-      }
+  /* Binary Search using Previous Index */
+  bpIndex = startIndex;
+  iLeft = 0U;
+  iRght = maxIndex;
+  found = 0U;
+  while (found == 0U) {
+    if (u < bp[bpIndex]) {
+      iRght = bpIndex - 1U;
+      bpIndex = (iRght + iLeft) >> 1U;
+    } else if (u < bp[bpIndex + 1U]) {
+      found = 1U;
+    } else {
+      iLeft = bpIndex + 1U;
+      bpIndex = (iRght + iLeft) >> 1U;
     }
-
-    frac = (u0 - bp0[bpIdx]) / (bp0[bpIdx + 1U] - bp0[bpIdx]);
-  } else {
-    bpIdx = maxIndex[0U] - 1U;
-    frac = (u0 - bp0[maxIndex[0U] - 1U]) / (bp0[maxIndex[0U]] - bp0[maxIndex[0U]
-      - 1U]);
   }
 
-  prevIndex[0U] = bpIdx;
-  fractions[0U] = frac;
-  bpIndices[0U] = bpIdx;
-
-  /* Prelookup - Index and Fraction
-     Index Search method: 'binary'
-     Extrapolation method: 'Linear'
-     Use previous index: 'on'
-     Use last breakpoint for index at or above upper limit: 'off'
-     Remove protection against out-of-range input in generated code: 'off'
-   */
-  if (u1 <= bp1[0U]) {
-    bpIdx = 0U;
-    frac = (u1 - bp1[0U]) / (bp1[1U] - bp1[0U]);
-  } else if (u1 < bp1[maxIndex[1U]]) {
-    /* Binary Search using Previous Index */
-    bpIdx = prevIndex[1U];
-    iLeft = 0U;
-    iRght = maxIndex[1U];
-    found = 0U;
-    while (found == 0U) {
-      if (u1 < bp1[bpIdx]) {
-        iRght = bpIdx - 1U;
-        bpIdx = (iRght + iLeft) >> 1U;
-      } else if (u1 < bp1[bpIdx + 1U]) {
-        found = 1U;
-      } else {
-        iLeft = bpIdx + 1U;
-        bpIdx = (iRght + iLeft) >> 1U;
-      }
-    }
-
-    frac = (u1 - bp1[bpIdx]) / (bp1[bpIdx + 1U] - bp1[bpIdx]);
-  } else {
-    bpIdx = maxIndex[1U] - 1U;
-    frac = (u1 - bp1[maxIndex[1U] - 1U]) / (bp1[maxIndex[1U]] - bp1[maxIndex[1U]
-      - 1U]);
-  }
-
-  prevIndex[1U] = bpIdx;
-
-  /* Interpolation 2-D
-     Interpolation method: 'Linear'
-     Use last breakpoint for index at or above upper limit: 'off'
-     Overflow mode: 'portable wrapping'
-   */
-  iLeft = bpIdx * stride + bpIndices[0U];
-  yL_1d = (table[iLeft + 1U] - table[iLeft]) * fractions[0U] + table[iLeft];
-  iLeft += stride;
-  return (((table[iLeft + 1U] - table[iLeft]) * fractions[0U] + table[iLeft]) -
-          yL_1d) * frac + yL_1d;
-}
-
-real32_T look2_iflf_binlxpw(real32_T u0, real32_T u1, const real32_T bp0[],
-  const real32_T bp1[], const real32_T table[], const uint32_T maxIndex[],
-  uint32_T stride)
-{
-  real32_T frac;
-  uint32_T bpIndices[2];
-  real32_T fractions[2];
-  real32_T yL_1d;
-  uint32_T iRght;
-  uint32_T bpIdx;
-  uint32_T iLeft;
-
-  /* Lookup 2-D
-     Search method: 'binary'
-     Use previous index: 'off'
-     Interpolation method: 'Linear'
-     Extrapolation method: 'Linear'
-     Use last breakpoint for index at or above upper limit: 'off'
-     Remove protection against out-of-range input in generated code: 'off'
-   */
-  /* Prelookup - Index and Fraction
-     Index Search method: 'binary'
-     Extrapolation method: 'Linear'
-     Use previous index: 'off'
-     Use last breakpoint for index at or above upper limit: 'off'
-     Remove protection against out-of-range input in generated code: 'off'
-   */
-  if (u0 <= bp0[0U]) {
-    iLeft = 0U;
-    frac = (u0 - bp0[0U]) / (bp0[1U] - bp0[0U]);
-  } else if (u0 < bp0[maxIndex[0U]]) {
-    /* Binary Search */
-    bpIdx = maxIndex[0U] >> 1U;
-    iLeft = 0U;
-    iRght = maxIndex[0U];
-    while (iRght - iLeft > 1U) {
-      if (u0 < bp0[bpIdx]) {
-        iRght = bpIdx;
-      } else {
-        iLeft = bpIdx;
-      }
-
-      bpIdx = (iRght + iLeft) >> 1U;
-    }
-
-    frac = (u0 - bp0[iLeft]) / (bp0[iLeft + 1U] - bp0[iLeft]);
-  } else {
-    iLeft = maxIndex[0U] - 1U;
-    frac = (u0 - bp0[maxIndex[0U] - 1U]) / (bp0[maxIndex[0U]] - bp0[maxIndex[0U]
-      - 1U]);
-  }
-
-  fractions[0U] = frac;
-  bpIndices[0U] = iLeft;
-
-  /* Prelookup - Index and Fraction
-     Index Search method: 'binary'
-     Extrapolation method: 'Linear'
-     Use previous index: 'off'
-     Use last breakpoint for index at or above upper limit: 'off'
-     Remove protection against out-of-range input in generated code: 'off'
-   */
-  if (u1 <= bp1[0U]) {
-    iLeft = 0U;
-    frac = (u1 - bp1[0U]) / (bp1[1U] - bp1[0U]);
-  } else if (u1 < bp1[maxIndex[1U]]) {
-    /* Binary Search */
-    bpIdx = maxIndex[1U] >> 1U;
-    iLeft = 0U;
-    iRght = maxIndex[1U];
-    while (iRght - iLeft > 1U) {
-      if (u1 < bp1[bpIdx]) {
-        iRght = bpIdx;
-      } else {
-        iLeft = bpIdx;
-      }
-
-      bpIdx = (iRght + iLeft) >> 1U;
-    }
-
-    frac = (u1 - bp1[iLeft]) / (bp1[iLeft + 1U] - bp1[iLeft]);
-  } else {
-    iLeft = maxIndex[1U] - 1U;
-    frac = (u1 - bp1[maxIndex[1U] - 1U]) / (bp1[maxIndex[1U]] - bp1[maxIndex[1U]
-      - 1U]);
-  }
-
-  /* Interpolation 2-D
-     Interpolation method: 'Linear'
-     Use last breakpoint for index at or above upper limit: 'off'
-     Overflow mode: 'portable wrapping'
-   */
-  bpIdx = iLeft * stride + bpIndices[0U];
-  yL_1d = (table[bpIdx + 1U] - table[bpIdx]) * fractions[0U] + table[bpIdx];
-  bpIdx += stride;
-  return (((table[bpIdx + 1U] - table[bpIdx]) * fractions[0U] + table[bpIdx]) -
-          yL_1d) * frac + yL_1d;
+  return bpIndex;
 }
 
 /* Model step function */
@@ -244,19 +135,23 @@ void DOB_ros_step(void)
 {
   boolean_T b_varargout_1;
   boolean_T b_varargout_1_0;
-  SL_Bus_DOB_ros_dbw_mkz_msgs_SteeringCmd rtb_BusAssignment;
+  uint32_T bpIdx;
   SL_Bus_DOB_ros_controller_DobInfo rtb_BusAssignment_o;
-  real32_T rtb_uDLookupTable8;
   real32_T rtb_uDLookupTable7;
+  real32_T rtb_uDLookupTable6;
   real32_T rtb_uDLookupTable5;
+  real32_T rtb_uDLookupTable4;
+  real32_T rtb_uDLookupTable3;
+  real32_T rtb_uDLookupTable2;
+  real32_T rtb_uDLookupTable1;
   real32_T rtb_Sum1;
   real32_T rtb_Sum4;
-  real32_T rtb_Sum3_o;
   real32_T rtb_Q1;
+  real32_T rtb_Gain3;
   real32_T Q1_tmp;
 
   /* Outputs for Atomic SubSystem: '<Root>/Subscribe1' */
-  /* Start for MATLABSystem: '<S4>/SourceBlock' incorporates:
+  /* MATLABSystem: '<S4>/SourceBlock' incorporates:
    *  Inport: '<S11>/In1'
    */
   b_varargout_1 = Sub_DOB_ros_174.getLatestMessage(&DOB_ros_B.b_varargout_2_m);
@@ -271,23 +166,34 @@ void DOB_ros_step(void)
   /* End of Outputs for SubSystem: '<S4>/Enabled Subsystem' */
   /* End of Outputs for SubSystem: '<Root>/Subscribe1' */
 
-  /* Sum: '<Root>/Sum3' incorporates:
-   *  Gain: '<Root>/Gain1'
-   *  Gain: '<Root>/Gain3'
-   */
-  rtb_Sum3_o = DOB_ros_P.kc12 * DOB_ros_B.In1_i.Dy + DOB_ros_P.kc11 *
-    DOB_ros_B.In1_i.Dtheta;
+  /* Gain: '<Root>/Gain3' */
+  rtb_Gain3 = DOB_ros_P.kc11 * DOB_ros_B.In1_i.Dtheta;
 
   /* Lookup_n-D: '<S5>/2-D Lookup Table' */
-  rtb_Sum1 = look2_iflf_pbinlxpw(DOB_ros_B.In1_i.V, DOB_ros_B.In1_i.Dtheta,
-    DOB_ros_P.v_list, DOB_ros_P.dphi_list, DOB_ros_P.b0, DOB_ros_DW.m_bpIndex,
-    DOB_ros_P.uDLookupTable_maxIndex, 96U);
+  bpIdx = plook_u32ff_binxp(DOB_ros_B.In1_i.V, DOB_ros_P.v_list, 95U, &rtb_Sum4,
+    &DOB_ros_DW.m_bpIndex[0U]);
+  DOB_ros_B.fractions[0U] = rtb_Sum4;
+  DOB_ros_B.bpIndices[0U] = bpIdx;
+  bpIdx = plook_u32ff_binxp(DOB_ros_B.In1_i.Dtheta, DOB_ros_P.dphi_list, 20U,
+    &rtb_Sum4, &DOB_ros_DW.m_bpIndex[1U]);
+  DOB_ros_B.fractions[1U] = rtb_Sum4;
+  DOB_ros_B.bpIndices[1U] = bpIdx;
+  bpIdx = plook_u32ff_binxp(DOB_ros_B.In1_i.Kappa, DOB_ros_P.kappa_list, 8U,
+    &rtb_Sum4, &DOB_ros_DW.m_bpIndex[2U]);
+  DOB_ros_B.fractions[2U] = rtb_Sum4;
+  DOB_ros_B.bpIndices[2U] = bpIdx;
+  bpIdx = plook_u32ff_binxp(DOB_ros_B.In1_i.Dy, DOB_ros_P.dy_list, 16U,
+    &rtb_Sum4, &DOB_ros_DW.m_bpIndex[3U]);
+  DOB_ros_B.fractions[3U] = rtb_Sum4;
+  DOB_ros_B.bpIndices[3U] = bpIdx;
+  rtb_Sum1 = intrp4d_fu32fl_pw(DOB_ros_B.bpIndices, DOB_ros_B.fractions,
+    DOB_ros_P.b0, DOB_ros_P.uDLookupTable_dimSizes);
 
   /* Sum: '<S12>/Sum1' incorporates:
    *  Product: '<S12>/Product1'
    *  UnitDelay: '<S12>/Delay1'
    */
-  rtb_Sum1 = rtb_Sum3_o * rtb_Sum1 + DOB_ros_DW.Delay1_DSTATE;
+  rtb_Sum1 = rtb_Gain3 * rtb_Sum1 + DOB_ros_DW.Delay1_DSTATE;
 
   /* Sum: '<Root>/Sum4' incorporates:
    *  Delay: '<Root>/Delay1'
@@ -306,14 +212,14 @@ void DOB_ros_step(void)
    *  EnablePort: '<S1>/Enable'
    */
   /* Outputs for Atomic SubSystem: '<Root>/Subscribe1' */
-  /* Start for MATLABSystem: '<S4>/SourceBlock' */
+  /* MATLABSystem: '<S4>/SourceBlock' */
   if (b_varargout_1) {
     /* BusAssignment: '<S1>/Bus Assignment' */
     rtb_BusAssignment_o.DEst = rtb_Sum4;
     rtb_BusAssignment_o.DCancel = rtb_Q1;
 
     /* Outputs for Atomic SubSystem: '<S1>/Publish' */
-    /* Start for MATLABSystem: '<S7>/SinkBlock' */
+    /* MATLABSystem: '<S7>/SinkBlock' */
     Pub_DOB_ros_209.publish(&rtb_BusAssignment_o);
 
     /* End of Outputs for SubSystem: '<S1>/Publish' */
@@ -323,12 +229,14 @@ void DOB_ros_step(void)
   /* End of Outputs for SubSystem: '<Root>/DOB Info' */
 
   /* Sum: '<Root>/subtract3' incorporates:
+   *  Gain: '<Root>/Gain1'
    *  Gain: '<Root>/Gain5'
+   *  Sum: '<Root>/Sum3'
    */
-  rtb_Sum4 = rtb_Q1 - DOB_ros_P.kc2 * rtb_Sum3_o;
+  rtb_Q1 -= (DOB_ros_P.kc12 * DOB_ros_B.In1_i.Dy + rtb_Gain3) * DOB_ros_P.kc2;
 
   /* Outputs for Atomic SubSystem: '<Root>/Subscribe' */
-  /* Start for MATLABSystem: '<S3>/SourceBlock' incorporates:
+  /* MATLABSystem: '<S3>/SourceBlock' incorporates:
    *  Inport: '<S10>/In1'
    */
   b_varargout_1_0 = Sub_DOB_ros_191.getLatestMessage(&DOB_ros_B.b_varargout_2);
@@ -340,7 +248,7 @@ void DOB_ros_step(void)
     DOB_ros_B.In1 = DOB_ros_B.b_varargout_2;
   }
 
-  /* End of Start for MATLABSystem: '<S3>/SourceBlock' */
+  /* End of MATLABSystem: '<S3>/SourceBlock' */
   /* End of Outputs for SubSystem: '<S3>/Enabled Subsystem' */
   /* End of Outputs for SubSystem: '<Root>/Subscribe' */
 
@@ -348,10 +256,10 @@ void DOB_ros_step(void)
    *  EnablePort: '<S2>/Enable'
    */
   /* Outputs for Atomic SubSystem: '<Root>/Subscribe1' */
-  /* Start for MATLABSystem: '<S4>/SourceBlock' */
+  /* MATLABSystem: '<S4>/SourceBlock' */
   if (b_varargout_1) {
     /* Gain: '<S2>/Gain1' */
-    rtb_Q1 = DOB_ros_P.steering_ratio * rtb_Sum4;
+    rtb_Sum4 = DOB_ros_P.steering_ratio * rtb_Q1;
 
     /* BusAssignment: '<S2>/Bus Assignment' incorporates:
      *  Constant: '<S2>/Constant'
@@ -359,15 +267,15 @@ void DOB_ros_step(void)
      *  Gain: '<S2>/Gain'
      *  Sum: '<S2>/Subtract'
      */
-    rtb_BusAssignment = DOB_ros_P.Constant_Value_j;
-    rtb_BusAssignment.SteeringWheelAngleCmd = rtb_Q1;
-    rtb_BusAssignment.SteeringWheelAngleVelocity = 1.0F /
-      DOB_ros_P.dt_ros_single * (rtb_Q1 - DOB_ros_B.In1.SteeringWheelAngle);
-    rtb_BusAssignment.Enable = DOB_ros_P.Constant_Value_i;
+    DOB_ros_B.BusAssignment = DOB_ros_P.Constant_Value_j;
+    DOB_ros_B.BusAssignment.SteeringWheelAngleCmd = rtb_Sum4;
+    DOB_ros_B.BusAssignment.SteeringWheelAngleVelocity = 1.0F /
+      DOB_ros_P.dt_ros_single * (rtb_Sum4 - DOB_ros_B.In1.SteeringWheelAngle);
+    DOB_ros_B.BusAssignment.Enable = DOB_ros_P.Constant_Value_i;
 
     /* Outputs for Atomic SubSystem: '<S2>/Publish' */
-    /* Start for MATLABSystem: '<S9>/SinkBlock' */
-    Pub_DOB_ros_152.publish(&rtb_BusAssignment);
+    /* MATLABSystem: '<S9>/SinkBlock' */
+    Pub_DOB_ros_152.publish(&DOB_ros_B.BusAssignment);
 
     /* End of Outputs for SubSystem: '<S2>/Publish' */
   }
@@ -375,60 +283,191 @@ void DOB_ros_step(void)
   /* End of Outputs for SubSystem: '<Root>/Subscribe1' */
   /* End of Outputs for SubSystem: '<Root>/Enabled Subsystem1' */
 
+  /* Lookup_n-D: '<S5>/2-D Lookup Table1' */
+  bpIdx = plook_u32ff_binxp(DOB_ros_B.In1_i.V, DOB_ros_P.v_list, 95U, &rtb_Sum4,
+    &DOB_ros_DW.m_bpIndex_l[0U]);
+  DOB_ros_B.fractions_g[0U] = rtb_Sum4;
+  DOB_ros_B.bpIndices_c[0U] = bpIdx;
+  bpIdx = plook_u32ff_binxp(DOB_ros_B.In1_i.Dtheta, DOB_ros_P.dphi_list, 20U,
+    &rtb_Sum4, &DOB_ros_DW.m_bpIndex_l[1U]);
+  DOB_ros_B.fractions_g[1U] = rtb_Sum4;
+  DOB_ros_B.bpIndices_c[1U] = bpIdx;
+  bpIdx = plook_u32ff_binxp(DOB_ros_B.In1_i.Kappa, DOB_ros_P.kappa_list, 8U,
+    &rtb_Sum4, &DOB_ros_DW.m_bpIndex_l[2U]);
+  DOB_ros_B.fractions_g[2U] = rtb_Sum4;
+  DOB_ros_B.bpIndices_c[2U] = bpIdx;
+  bpIdx = plook_u32ff_binxp(DOB_ros_B.In1_i.Dy, DOB_ros_P.dy_list, 16U,
+    &rtb_Sum4, &DOB_ros_DW.m_bpIndex_l[3U]);
+  DOB_ros_B.fractions_g[3U] = rtb_Sum4;
+  DOB_ros_B.bpIndices_c[3U] = bpIdx;
+  rtb_uDLookupTable1 = intrp4d_fu32fl_pw(DOB_ros_B.bpIndices_c,
+    DOB_ros_B.fractions_g, DOB_ros_P.a1, DOB_ros_P.uDLookupTable1_dimSizes);
+
   /* Lookup_n-D: '<S5>/2-D Lookup Table2' */
-  rtb_Q1 = look2_iflf_pbinlxpw(DOB_ros_B.In1_i.V, DOB_ros_B.In1_i.Dtheta,
-    DOB_ros_P.v_list, DOB_ros_P.dphi_list, DOB_ros_P.b1, DOB_ros_DW.m_bpIndex_p,
-    DOB_ros_P.uDLookupTable2_maxIndex, 96U);
+  bpIdx = plook_u32ff_binxp(DOB_ros_B.In1_i.V, DOB_ros_P.v_list, 95U, &rtb_Sum4,
+    &DOB_ros_DW.m_bpIndex_n[0U]);
+  DOB_ros_B.fractions_m[0U] = rtb_Sum4;
+  DOB_ros_B.bpIndices_k[0U] = bpIdx;
+  bpIdx = plook_u32ff_binxp(DOB_ros_B.In1_i.Dtheta, DOB_ros_P.dphi_list, 20U,
+    &rtb_Sum4, &DOB_ros_DW.m_bpIndex_n[1U]);
+  DOB_ros_B.fractions_m[1U] = rtb_Sum4;
+  DOB_ros_B.bpIndices_k[1U] = bpIdx;
+  bpIdx = plook_u32ff_binxp(DOB_ros_B.In1_i.Kappa, DOB_ros_P.kappa_list, 8U,
+    &rtb_Sum4, &DOB_ros_DW.m_bpIndex_n[2U]);
+  DOB_ros_B.fractions_m[2U] = rtb_Sum4;
+  DOB_ros_B.bpIndices_k[2U] = bpIdx;
+  bpIdx = plook_u32ff_binxp(DOB_ros_B.In1_i.Dy, DOB_ros_P.dy_list, 16U,
+    &rtb_Sum4, &DOB_ros_DW.m_bpIndex_n[3U]);
+  DOB_ros_B.fractions_m[3U] = rtb_Sum4;
+  DOB_ros_B.bpIndices_k[3U] = bpIdx;
+  rtb_uDLookupTable2 = intrp4d_fu32fl_pw(DOB_ros_B.bpIndices_k,
+    DOB_ros_B.fractions_m, DOB_ros_P.b1, DOB_ros_P.uDLookupTable2_dimSizes);
+
+  /* Lookup_n-D: '<S5>/2-D Lookup Table3' */
+  bpIdx = plook_u32ff_binxp(DOB_ros_B.In1_i.V, DOB_ros_P.v_list, 95U, &rtb_Sum4,
+    &DOB_ros_DW.m_bpIndex_k[0U]);
+  DOB_ros_B.fractions_n[0U] = rtb_Sum4;
+  DOB_ros_B.bpIndices_cx[0U] = bpIdx;
+  bpIdx = plook_u32ff_binxp(DOB_ros_B.In1_i.Dtheta, DOB_ros_P.dphi_list, 20U,
+    &rtb_Sum4, &DOB_ros_DW.m_bpIndex_k[1U]);
+  DOB_ros_B.fractions_n[1U] = rtb_Sum4;
+  DOB_ros_B.bpIndices_cx[1U] = bpIdx;
+  bpIdx = plook_u32ff_binxp(DOB_ros_B.In1_i.Kappa, DOB_ros_P.kappa_list, 8U,
+    &rtb_Sum4, &DOB_ros_DW.m_bpIndex_k[2U]);
+  DOB_ros_B.fractions_n[2U] = rtb_Sum4;
+  DOB_ros_B.bpIndices_cx[2U] = bpIdx;
+  bpIdx = plook_u32ff_binxp(DOB_ros_B.In1_i.Dy, DOB_ros_P.dy_list, 16U,
+    &rtb_Sum4, &DOB_ros_DW.m_bpIndex_k[3U]);
+  DOB_ros_B.fractions_n[3U] = rtb_Sum4;
+  DOB_ros_B.bpIndices_cx[3U] = bpIdx;
+  rtb_uDLookupTable3 = intrp4d_fu32fl_pw(DOB_ros_B.bpIndices_cx,
+    DOB_ros_B.fractions_n, DOB_ros_P.a2, DOB_ros_P.uDLookupTable3_dimSizes);
+
+  /* Lookup_n-D: '<S5>/2-D Lookup Table4' */
+  bpIdx = plook_u32ff_binxp(DOB_ros_B.In1_i.V, DOB_ros_P.v_list, 95U, &rtb_Sum4,
+    &DOB_ros_DW.m_bpIndex_j[0U]);
+  DOB_ros_B.fractions_p[0U] = rtb_Sum4;
+  DOB_ros_B.bpIndices_b[0U] = bpIdx;
+  bpIdx = plook_u32ff_binxp(DOB_ros_B.In1_i.Dtheta, DOB_ros_P.dphi_list, 20U,
+    &rtb_Sum4, &DOB_ros_DW.m_bpIndex_j[1U]);
+  DOB_ros_B.fractions_p[1U] = rtb_Sum4;
+  DOB_ros_B.bpIndices_b[1U] = bpIdx;
+  bpIdx = plook_u32ff_binxp(DOB_ros_B.In1_i.Kappa, DOB_ros_P.kappa_list, 8U,
+    &rtb_Sum4, &DOB_ros_DW.m_bpIndex_j[2U]);
+  DOB_ros_B.fractions_p[2U] = rtb_Sum4;
+  DOB_ros_B.bpIndices_b[2U] = bpIdx;
+  bpIdx = plook_u32ff_binxp(DOB_ros_B.In1_i.Dy, DOB_ros_P.dy_list, 16U,
+    &rtb_Sum4, &DOB_ros_DW.m_bpIndex_j[3U]);
+  DOB_ros_B.fractions_p[3U] = rtb_Sum4;
+  DOB_ros_B.bpIndices_b[3U] = bpIdx;
+  rtb_uDLookupTable4 = intrp4d_fu32fl_pw(DOB_ros_B.bpIndices_b,
+    DOB_ros_B.fractions_p, DOB_ros_P.b2, DOB_ros_P.uDLookupTable4_dimSizes);
 
   /* Lookup_n-D: '<S5>/2-D Lookup Table5' */
-  rtb_uDLookupTable5 = look2_iflf_pbinlxpw(DOB_ros_B.In1_i.V,
-    DOB_ros_B.In1_i.Dtheta, DOB_ros_P.v_list, DOB_ros_P.dphi_list, DOB_ros_P.b3,
-    DOB_ros_DW.m_bpIndex_j, DOB_ros_P.uDLookupTable5_maxIndex, 96U);
+  bpIdx = plook_u32ff_binxp(DOB_ros_B.In1_i.V, DOB_ros_P.v_list, 95U, &rtb_Sum4,
+    &DOB_ros_DW.m_bpIndex_h[0U]);
+  DOB_ros_B.fractions_l[0U] = rtb_Sum4;
+  DOB_ros_B.bpIndices_p[0U] = bpIdx;
+  bpIdx = plook_u32ff_binxp(DOB_ros_B.In1_i.Dtheta, DOB_ros_P.dphi_list, 20U,
+    &rtb_Sum4, &DOB_ros_DW.m_bpIndex_h[1U]);
+  DOB_ros_B.fractions_l[1U] = rtb_Sum4;
+  DOB_ros_B.bpIndices_p[1U] = bpIdx;
+  bpIdx = plook_u32ff_binxp(DOB_ros_B.In1_i.Kappa, DOB_ros_P.kappa_list, 8U,
+    &rtb_Sum4, &DOB_ros_DW.m_bpIndex_h[2U]);
+  DOB_ros_B.fractions_l[2U] = rtb_Sum4;
+  DOB_ros_B.bpIndices_p[2U] = bpIdx;
+  bpIdx = plook_u32ff_binxp(DOB_ros_B.In1_i.Dy, DOB_ros_P.dy_list, 16U,
+    &rtb_Sum4, &DOB_ros_DW.m_bpIndex_h[3U]);
+  DOB_ros_B.fractions_l[3U] = rtb_Sum4;
+  DOB_ros_B.bpIndices_p[3U] = bpIdx;
+  rtb_uDLookupTable5 = intrp4d_fu32fl_pw(DOB_ros_B.bpIndices_p,
+    DOB_ros_B.fractions_l, DOB_ros_P.a3, DOB_ros_P.uDLookupTable5_dimSizes);
+
+  /* Lookup_n-D: '<S5>/2-D Lookup Table6' */
+  bpIdx = plook_u32ff_binxp(DOB_ros_B.In1_i.V, DOB_ros_P.v_list, 95U, &rtb_Sum4,
+    &DOB_ros_DW.m_bpIndex_j5[0U]);
+  DOB_ros_B.fractions_j[0U] = rtb_Sum4;
+  DOB_ros_B.bpIndices_cv[0U] = bpIdx;
+  bpIdx = plook_u32ff_binxp(DOB_ros_B.In1_i.Dtheta, DOB_ros_P.dphi_list, 20U,
+    &rtb_Sum4, &DOB_ros_DW.m_bpIndex_j5[1U]);
+  DOB_ros_B.fractions_j[1U] = rtb_Sum4;
+  DOB_ros_B.bpIndices_cv[1U] = bpIdx;
+  bpIdx = plook_u32ff_binxp(DOB_ros_B.In1_i.Kappa, DOB_ros_P.kappa_list, 8U,
+    &rtb_Sum4, &DOB_ros_DW.m_bpIndex_j5[2U]);
+  DOB_ros_B.fractions_j[2U] = rtb_Sum4;
+  DOB_ros_B.bpIndices_cv[2U] = bpIdx;
+  bpIdx = plook_u32ff_binxp(DOB_ros_B.In1_i.Dy, DOB_ros_P.dy_list, 16U,
+    &rtb_Sum4, &DOB_ros_DW.m_bpIndex_j5[3U]);
+  DOB_ros_B.fractions_j[3U] = rtb_Sum4;
+  DOB_ros_B.bpIndices_cv[3U] = bpIdx;
+  rtb_uDLookupTable6 = intrp4d_fu32fl_pw(DOB_ros_B.bpIndices_cv,
+    DOB_ros_B.fractions_j, DOB_ros_P.b3, DOB_ros_P.uDLookupTable6_dimSizes);
 
   /* Lookup_n-D: '<S5>/2-D Lookup Table7' */
-  rtb_uDLookupTable7 = look2_iflf_pbinlxpw(DOB_ros_B.In1_i.V,
-    DOB_ros_B.In1_i.Dtheta, DOB_ros_P.v_list, DOB_ros_P.dphi_list, DOB_ros_P.a3,
-    DOB_ros_DW.m_bpIndex_b, DOB_ros_P.uDLookupTable7_maxIndex, 96U);
+  bpIdx = plook_u32ff_binxp(DOB_ros_B.In1_i.V, DOB_ros_P.v_list, 95U, &rtb_Sum4,
+    &DOB_ros_DW.m_bpIndex_b[0U]);
+  DOB_ros_B.fractions_d[0U] = rtb_Sum4;
+  DOB_ros_B.bpIndices_f[0U] = bpIdx;
+  bpIdx = plook_u32ff_binxp(DOB_ros_B.In1_i.Dtheta, DOB_ros_P.dphi_list, 20U,
+    &rtb_Sum4, &DOB_ros_DW.m_bpIndex_b[1U]);
+  DOB_ros_B.fractions_d[1U] = rtb_Sum4;
+  DOB_ros_B.bpIndices_f[1U] = bpIdx;
+  bpIdx = plook_u32ff_binxp(DOB_ros_B.In1_i.Kappa, DOB_ros_P.kappa_list, 8U,
+    &rtb_Sum4, &DOB_ros_DW.m_bpIndex_b[2U]);
+  DOB_ros_B.fractions_d[2U] = rtb_Sum4;
+  DOB_ros_B.bpIndices_f[2U] = bpIdx;
+  bpIdx = plook_u32ff_binxp(DOB_ros_B.In1_i.Dy, DOB_ros_P.dy_list, 16U,
+    &rtb_Sum4, &DOB_ros_DW.m_bpIndex_b[3U]);
+  DOB_ros_B.fractions_d[3U] = rtb_Sum4;
+  DOB_ros_B.bpIndices_f[3U] = bpIdx;
+  rtb_uDLookupTable7 = intrp4d_fu32fl_pw(DOB_ros_B.bpIndices_f,
+    DOB_ros_B.fractions_d, DOB_ros_P.b4, DOB_ros_P.uDLookupTable7_dimSizes);
 
   /* Lookup_n-D: '<S5>/2-D Lookup Table8' */
-  rtb_uDLookupTable8 = look2_iflf_pbinlxpw(DOB_ros_B.In1_i.V,
-    DOB_ros_B.In1_i.Dtheta, DOB_ros_P.v_list, DOB_ros_P.dphi_list, DOB_ros_P.b5,
-    DOB_ros_DW.m_bpIndex_o, DOB_ros_P.uDLookupTable8_maxIndex, 96U);
+  bpIdx = plook_u32ff_binxp(DOB_ros_B.In1_i.V, DOB_ros_P.v_list, 95U, &rtb_Sum4,
+    &DOB_ros_DW.m_bpIndex_l0[0U]);
+  DOB_ros_B.fractions_gu[0U] = rtb_Sum4;
+  DOB_ros_B.bpIndices_g[0U] = bpIdx;
+  bpIdx = plook_u32ff_binxp(DOB_ros_B.In1_i.Dtheta, DOB_ros_P.dphi_list, 20U,
+    &rtb_Sum4, &DOB_ros_DW.m_bpIndex_l0[1U]);
+  DOB_ros_B.fractions_gu[1U] = rtb_Sum4;
+  DOB_ros_B.bpIndices_g[1U] = bpIdx;
+  bpIdx = plook_u32ff_binxp(DOB_ros_B.In1_i.Kappa, DOB_ros_P.kappa_list, 8U,
+    &rtb_Sum4, &DOB_ros_DW.m_bpIndex_l0[2U]);
+  DOB_ros_B.fractions_gu[2U] = rtb_Sum4;
+  DOB_ros_B.bpIndices_g[2U] = bpIdx;
+  bpIdx = plook_u32ff_binxp(DOB_ros_B.In1_i.Dy, DOB_ros_P.dy_list, 16U,
+    &rtb_Sum4, &DOB_ros_DW.m_bpIndex_l0[3U]);
+  DOB_ros_B.fractions_gu[3U] = rtb_Sum4;
+  DOB_ros_B.bpIndices_g[3U] = bpIdx;
+  rtb_Sum4 = intrp4d_fu32fl_pw(DOB_ros_B.bpIndices_g, DOB_ros_B.fractions_gu,
+    DOB_ros_P.b5, DOB_ros_P.uDLookupTable8_dimSizes);
 
   /* Update for UnitDelay: '<S12>/Delay1' incorporates:
-   *  Lookup_n-D: '<S5>/2-D Lookup Table1'
    *  Product: '<S12>/Product2'
    *  Product: '<S12>/Product3'
    *  Sum: '<S12>/Sum2'
    *  UnitDelay: '<S12>/Delay2'
    */
-  DOB_ros_DW.Delay1_DSTATE = (rtb_Sum3_o * rtb_Q1 + DOB_ros_DW.Delay2_DSTATE) -
-    rtb_Sum1 * look2_iflf_binlxpw(DOB_ros_B.In1_i.V, DOB_ros_B.In1_i.Dtheta,
-    DOB_ros_P.v_list, DOB_ros_P.dphi_list, DOB_ros_P.a1,
-    DOB_ros_P.uDLookupTable1_maxIndex, 96U);
+  DOB_ros_DW.Delay1_DSTATE = (rtb_Gain3 * rtb_uDLookupTable2 +
+    DOB_ros_DW.Delay2_DSTATE) - rtb_Sum1 * rtb_uDLookupTable1;
 
   /* Update for Delay: '<Root>/Delay1' */
   DOB_ros_DW.Delay1_DSTATE_a[0] = DOB_ros_DW.Delay1_DSTATE_a[1];
-  DOB_ros_DW.Delay1_DSTATE_a[1] = rtb_Sum4;
+  DOB_ros_DW.Delay1_DSTATE_a[1] = rtb_Q1;
 
   /* Update for DiscreteTransferFcn: '<Root>/Q1' */
   DOB_ros_DW.Q1_states[1] = DOB_ros_DW.Q1_states[0];
   DOB_ros_DW.Q1_states[0] = Q1_tmp;
 
   /* Update for UnitDelay: '<S12>/Delay2' incorporates:
-   *  Lookup_n-D: '<S5>/2-D Lookup Table3'
-   *  Lookup_n-D: '<S5>/2-D Lookup Table4'
    *  Product: '<S12>/Product4'
    *  Product: '<S12>/Product5'
    *  Sum: '<S12>/Sum3'
    *  UnitDelay: '<S12>/Delay3'
    */
-  DOB_ros_DW.Delay2_DSTATE = (rtb_Sum3_o * look2_iflf_binlxpw(DOB_ros_B.In1_i.V,
-    DOB_ros_B.In1_i.Dtheta, DOB_ros_P.v_list, DOB_ros_P.dphi_list, DOB_ros_P.b2,
-    DOB_ros_P.uDLookupTable4_maxIndex, 96U) + DOB_ros_DW.Delay3_DSTATE) -
-    rtb_Sum1 * look2_iflf_binlxpw(DOB_ros_B.In1_i.V, DOB_ros_B.In1_i.Dtheta,
-    DOB_ros_P.v_list, DOB_ros_P.dphi_list, DOB_ros_P.a2,
-    DOB_ros_P.uDLookupTable3_maxIndex, 96U);
+  DOB_ros_DW.Delay2_DSTATE = (rtb_Gain3 * rtb_uDLookupTable4 +
+    DOB_ros_DW.Delay3_DSTATE) - rtb_Sum1 * rtb_uDLookupTable3;
 
   /* Update for UnitDelay: '<S12>/Delay3' incorporates:
    *  Product: '<S12>/Product6'
@@ -436,21 +475,18 @@ void DOB_ros_step(void)
    *  Sum: '<S12>/Sum4'
    *  UnitDelay: '<S12>/Delay4'
    */
-  DOB_ros_DW.Delay3_DSTATE = (rtb_Sum3_o * rtb_uDLookupTable5 +
-    DOB_ros_DW.Delay4_DSTATE) - rtb_Sum1 * rtb_uDLookupTable7;
+  DOB_ros_DW.Delay3_DSTATE = (rtb_Gain3 * rtb_uDLookupTable6 +
+    DOB_ros_DW.Delay4_DSTATE) - rtb_Sum1 * rtb_uDLookupTable5;
 
   /* Update for UnitDelay: '<S12>/Delay4' incorporates:
    *  Constant: '<S5>/Constant1'
-   *  Lookup_n-D: '<S5>/2-D Lookup Table6'
    *  Product: '<S12>/Product8'
    *  Product: '<S12>/Product9'
    *  Sum: '<S12>/Sum5'
    *  UnitDelay: '<S12>/Delay5'
    */
-  DOB_ros_DW.Delay4_DSTATE = (rtb_Sum3_o * look2_iflf_binlxpw(DOB_ros_B.In1_i.V,
-    DOB_ros_B.In1_i.Dtheta, DOB_ros_P.v_list, DOB_ros_P.dphi_list, DOB_ros_P.b4,
-    DOB_ros_P.uDLookupTable6_maxIndex, 96U) + DOB_ros_DW.Delay5_DSTATE) -
-    rtb_Sum1 * DOB_ros_P.Constant1_Value;
+  DOB_ros_DW.Delay4_DSTATE = (rtb_Gain3 * rtb_uDLookupTable7 +
+    DOB_ros_DW.Delay5_DSTATE) - rtb_Sum1 * DOB_ros_P.Constant1_Value;
 
   /* Update for UnitDelay: '<S12>/Delay5' incorporates:
    *  Constant: '<S5>/Constant'
@@ -458,7 +494,7 @@ void DOB_ros_step(void)
    *  Product: '<S12>/Product11'
    *  Sum: '<S12>/Sum6'
    */
-  DOB_ros_DW.Delay5_DSTATE = rtb_Sum3_o * rtb_uDLookupTable8 - rtb_Sum1 *
+  DOB_ros_DW.Delay5_DSTATE = rtb_Gain3 * rtb_Sum4 - rtb_Sum1 *
     DOB_ros_P.Constant_Value_o;
 }
 
@@ -610,42 +646,42 @@ void DOB_ros_initialize(void)
 void DOB_ros_terminate(void)
 {
   /* Terminate for Atomic SubSystem: '<Root>/Subscribe1' */
-  /* Start for MATLABSystem: '<S4>/SourceBlock' */
+  /* Terminate for MATLABSystem: '<S4>/SourceBlock' */
   if (DOB_ros_DW.obj_a.isInitialized == 1) {
     DOB_ros_DW.obj_a.isInitialized = 2;
   }
 
-  /* End of Start for MATLABSystem: '<S4>/SourceBlock' */
+  /* End of Terminate for MATLABSystem: '<S4>/SourceBlock' */
   /* End of Terminate for SubSystem: '<Root>/Subscribe1' */
 
   /* Terminate for Enabled SubSystem: '<Root>/DOB Info' */
   /* Terminate for Atomic SubSystem: '<S1>/Publish' */
-  /* Start for MATLABSystem: '<S7>/SinkBlock' */
+  /* Terminate for MATLABSystem: '<S7>/SinkBlock' */
   if (DOB_ros_DW.obj_f.isInitialized == 1) {
     DOB_ros_DW.obj_f.isInitialized = 2;
   }
 
-  /* End of Start for MATLABSystem: '<S7>/SinkBlock' */
+  /* End of Terminate for MATLABSystem: '<S7>/SinkBlock' */
   /* End of Terminate for SubSystem: '<S1>/Publish' */
   /* End of Terminate for SubSystem: '<Root>/DOB Info' */
 
   /* Terminate for Atomic SubSystem: '<Root>/Subscribe' */
-  /* Start for MATLABSystem: '<S3>/SourceBlock' */
+  /* Terminate for MATLABSystem: '<S3>/SourceBlock' */
   if (DOB_ros_DW.obj_ax.isInitialized == 1) {
     DOB_ros_DW.obj_ax.isInitialized = 2;
   }
 
-  /* End of Start for MATLABSystem: '<S3>/SourceBlock' */
+  /* End of Terminate for MATLABSystem: '<S3>/SourceBlock' */
   /* End of Terminate for SubSystem: '<Root>/Subscribe' */
 
   /* Terminate for Enabled SubSystem: '<Root>/Enabled Subsystem1' */
   /* Terminate for Atomic SubSystem: '<S2>/Publish' */
-  /* Start for MATLABSystem: '<S9>/SinkBlock' */
+  /* Terminate for MATLABSystem: '<S9>/SinkBlock' */
   if (DOB_ros_DW.obj.isInitialized == 1) {
     DOB_ros_DW.obj.isInitialized = 2;
   }
 
-  /* End of Start for MATLABSystem: '<S9>/SinkBlock' */
+  /* End of Terminate for MATLABSystem: '<S9>/SinkBlock' */
   /* End of Terminate for SubSystem: '<S2>/Publish' */
   /* End of Terminate for SubSystem: '<Root>/Enabled Subsystem1' */
 }
