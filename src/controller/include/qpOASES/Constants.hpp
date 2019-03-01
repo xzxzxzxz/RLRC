@@ -23,51 +23,55 @@
 
 
 /**
- *	\file include/qpOASES.hpp
+ *	\file include/qpOASES/Constants.hpp
  *	\author Hans Joachim Ferreau, Andreas Potschka, Christian Kirches
  *	\version 3.2
  *	\date 2007-2017
+ *
+ *	Definition of all global constants.
  */
 
 
-#if defined(__SINGLE_OBJECT__) || defined(__C_WRAPPER__)
+#ifndef QPOASES_CONSTANTS_HPP
+#define QPOASES_CONSTANTS_HPP
 
-#include <MessageHandling.cpp>
-#include <Utils.cpp>
-#include <Indexlist.cpp>
-#include <SubjectTo.cpp>
-#include <Bounds.cpp>
-#include <Constraints.cpp>
 
-#if !defined(__MATLAB__) || defined(WIN32)
-#include <BLASReplacement.cpp>
-#include <LAPACKReplacement.cpp>
-#endif
+#include <qpOASES/Types.hpp>
 
-#include <Matrices.cpp>
-#include <Options.cpp>
-#include <qpOASES/QProblemB.cpp>
-#include <Flipper.cpp>
-#include <QProblem.cpp>
-#include <SQProblem.cpp>
 
-#if defined(SOLVER_MA27) || defined(SOLVER_MA57)
-#include <SparseSolver.cpp>
-#include <SQProblemSchur.cpp>
-#endif
+BEGIN_NAMESPACE_QPOASES
 
-#if !defined(__C_WRAPPER__) && !defined(__MATLAB__)
-#include <OQPinterface.cpp>
-#include <SolutionAnalysis.cpp>
-#endif
 
-#else /* default compilation mode */
+/** Numerical value of machine precision (min eps, s.t. 1+eps > 1).
+ *	Note: this value has to be positive! */
+#ifdef __USE_SINGLE_PRECISION__
+const real_t EPS = 1.193e-07f;
+#else
+const real_t EPS = 2.221e-16;
+#endif /* __USE_SINGLE_PRECISION__ */
 
-#include <qpOASES/QProblemB.hpp>
-#include <qpOASES/QProblem.hpp>
-#include <qpOASES/SQProblem.hpp>
-#include <qpOASES/SQProblemSchur.hpp>
-#include <qpOASES/extras/OQPinterface.hpp>
-#include <qpOASES/extras/SolutionAnalysis.hpp>
 
-#endif
+/** Numerical value of zero (for situations in which it would be
+ *	unreasonable to compare with 0.0).
+ *	Note: this value has to be positive! */
+const real_t ZERO = 1.0e-25;
+
+/** Numerical value of infinity (e.g. for non-existing bounds).
+	Note: this value has to be positive! */
+const real_t INFTY = 1.0e20;
+
+
+/** Maximum number of characters within a string.
+ *	Note: this value should be at least 41! */
+const uint_t MAX_STRING_LENGTH = 160;
+
+
+END_NAMESPACE_QPOASES
+
+
+#endif	/* QPOASES_CONSTANTS_HPP */
+
+
+/*
+ *	end of file
+ */

@@ -15,7 +15,7 @@ path_follower::state_Dynamic current_state;
 path_follower::Trajectory2D ref_traj;
 
 bool received_traj_flag = false,received_state_flag = false;
-float ds;
+double ds;
 bool sys_enable_;
 
 void StateCallback(const path_follower::state_Dynamic msg) 
@@ -73,13 +73,11 @@ int main(int argc, char **argv)
     if (received_traj_flag == true && received_state_flag == true)
     {
       double factor = (sys_enable_) ? 1. : 0.;
-      vector<float> error_msg = ComputeLateralError(ref_traj, current_state, p_vs.param.b, ds);
+      vector<double> error_msg = ComputeLateralError(ref_traj, current_state, p_vs.param.b, ds);
       tracking_info.v = sqrt(pow(current_state.vx, 2) + pow(current_state.vy, 2));
       tracking_info.dy = error_msg[0] * factor;
       tracking_info.dtheta = error_msg[1] * factor;
       tracking_info.kappa = error_msg[6];
-      cg_point.x=error_msg[2];
-      cg_point.y=error_msg[3];
       ds_point.x=error_msg[7];
       ds_point.y=error_msg[8];
       ref_point.x=error_msg[2];
@@ -87,17 +85,10 @@ int main(int argc, char **argv)
       ref_point.v=error_msg[4];
       ref_point.theta=error_msg[5];
       ref_point.kappa=error_msg[6];
-      traj_cg.point.push_back(cg_point);      
       traj_cg.point.push_back(ds_point);
       traj_cg.point.push_back(ref_point);
 
-      //cmd_vel_stamped.header.stamp = ros::Time::now();
-      //cmd_vel_stamped.twist.linear.x = error_msg[0];
-      //cmd_vel_stamped.twist.linear.x = 10;
-      //cmd_vel_stamped.twist.linear.x = ref_traj.point[0].v;
-
       error_pub.publish(tracking_info);
-      //vel_cmd_pub.publish(cmd_vel_stamped);
       traj_cg_pub.publish(traj_cg);
       traj_cg.point.clear();
     }
