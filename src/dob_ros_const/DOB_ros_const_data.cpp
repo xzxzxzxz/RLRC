@@ -9,7 +9,7 @@
  *
  * Model version              : 1.241
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Mon Feb 25 22:14:25 2019
+ * C++ source code generated on : Thu Feb 28 11:58:52 2019
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -26,12 +26,12 @@ P_DOB_ros_const_T DOB_ros_const_P = {
   /* Variable: Dd
    * Referenced by: '<Root>/D1'
    */
-  { 1.0F, -2.67396355F, 2.35742831F, -0.683464766F, 0.0F, 0.0F },
+  { 1.0F, -2.80982494F, 2.63082743F, -0.821002483F, 0.0F, 0.0F },
 
   /* Variable: Dn
    * Referenced by: '<Root>/D1'
    */
-  { 1.30312014F, -4.37187672F, 5.43230295F, -2.96145678F, 0.597910345F, 0.0F },
+  { 2.36213899F, -8.6134243F, 11.7410498F, -7.09038973F, 1.60062695F, 0.0F },
 
   /* Variable: dt_ros_single
    * Referenced by: '<S2>/Gain'
@@ -46,7 +46,7 @@ P_DOB_ros_const_T DOB_ros_const_P = {
   /* Variable: kc12
    * Referenced by: '<Root>/Gain1'
    */
-  0.0F,
+  0.2F,
 
   /* Variable: kc2
    * Referenced by: '<Root>/Gain5'
@@ -198,12 +198,12 @@ P_DOB_ros_const_T DOB_ros_const_P = {
   /* Expression: NQ{1}
    * Referenced by: '<Root>/Q1'
    */
-  { 0.2F, 0.0F, 0.0F },
+  { 0.15F, 0.0F, 0.0F },
 
   /* Expression: DQ{1}
    * Referenced by: '<Root>/Q1'
    */
-  { 1.0F, -1.0F, 0.2F },
+  { 1.0F, -1.0F, 0.15F },
 
   /* Computed Parameter: Q1_InitialStates
    * Referenced by: '<Root>/Q1'

@@ -137,8 +137,46 @@ add_dependencies(${PROJECT_NAME} ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EX
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/controller_node.cpp)
-add_executable(comp_error_node_exp src/comp_error_core.cpp src/comp_error_node_exp.cpp)
-add_executable(comp_error_node_sim src/comp_error_core.cpp src/comp_error_node_sim.cpp)
+add_executable(comp_error_node_exp src/comp_error_core.cpp 
+src/comp_error_node_exp.cpp
+  src/QPsolver/src/QProblem.cpp
+  src/QPsolver/src/QProblemB.cpp
+  src/QPsolver/src/BLASReplacement.cpp
+  src/QPsolver/src/Bounds.cpp
+  src/QPsolver/src/Constraints.cpp
+  src/QPsolver/src/Flipper.cpp
+  src/QPsolver/src/Indexlist.cpp
+  src/QPsolver/src/LAPACKReplacement.cpp
+  src/QPsolver/src/Matrices.cpp
+  src/QPsolver/src/MessageHandling.cpp
+  src/QPsolver/src/Options.cpp
+  src/QPsolver/src/OQPinterface.cpp
+  src/QPsolver/src/SolutionAnalysis.cpp
+  src/QPsolver/src/SparseSolver.cpp
+  src/QPsolver/src/SQProblem.cpp
+  src/QPsolver/src/SQProblemSchur.cpp
+  src/QPsolver/src/SubjectTo.cpp
+  src/QPsolver/src/Utils.cpp)
+
+add_executable(comp_error_node_sim src/comp_error_core.cpp src/comp_error_node_sim.cpp
+  src/QPsolver/src/QProblem.cpp
+  src/QPsolver/src/QProblemB.cpp
+  src/QPsolver/src/BLASReplacement.cpp
+  src/QPsolver/src/Bounds.cpp
+  src/QPsolver/src/Constraints.cpp
+  src/QPsolver/src/Flipper.cpp
+  src/QPsolver/src/Indexlist.cpp
+  src/QPsolver/src/LAPACKReplacement.cpp
+  src/QPsolver/src/Matrices.cpp
+  src/QPsolver/src/MessageHandling.cpp
+  src/QPsolver/src/Options.cpp
+  src/QPsolver/src/OQPinterface.cpp
+  src/QPsolver/src/SolutionAnalysis.cpp
+  src/QPsolver/src/SparseSolver.cpp
+  src/QPsolver/src/SQProblem.cpp
+  src/QPsolver/src/SQProblemSchur.cpp
+  src/QPsolver/src/SubjectTo.cpp
+  src/QPsolver/src/Utils.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the

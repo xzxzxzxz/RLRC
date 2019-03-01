@@ -26,7 +26,7 @@
 #include <path_follower/Vehicle.h>
 #include <path_follower/scaledTime.h>
 #include <dynamic_reconfigure/server.h>
-#include <qpOASES/qpOASES.hpp>
+#include <qpOASES.hpp>
 USING_NAMESPACE_QPOASES
 
 #define NUM_STATES 6

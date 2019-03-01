@@ -46,7 +46,7 @@
 
 #include <Matrices.cpp>
 #include <Options.cpp>
-#include <qpOASES/QProblemB.cpp>
+#include <QProblemB.cpp>
 #include <Flipper.cpp>
 #include <QProblem.cpp>
 #include <SQProblem.cpp>

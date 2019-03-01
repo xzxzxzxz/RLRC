@@ -39,22 +39,28 @@ def smooth(traj):
     spl_y_dot = spl_y.derivative()
     spl_x_ddot = spl_x.derivative(n=2)
     spl_y_ddot = spl_y.derivative(n=2)
-    spl_x_val = spl_x(t)
-    spl_y_val = spl_y(t)    
-    spl_x_dot_val = spl_x_dot(t)
-    spl_y_dot_val = spl_y_dot(t)
-    spl_x_ddot_val = spl_x_ddot(t)
-    spl_y_ddot_val = spl_y_ddot(t)
+    t_resample = np.linspace(t[0], t[-1], int((t[-1]-t[0])/0.02)+1)
+    spl_x_val = spl_x(t_resample)
+    spl_y_val = spl_y(t_resample)    
+    spl_x_dot_val = spl_x_dot(t_resample)
+    spl_y_dot_val = spl_y_dot(t_resample)
+    spl_x_ddot_val = spl_x_ddot(t_resample)
+    spl_y_ddot_val = spl_y_ddot(t_resample)
     spl_v_val = np.sqrt(spl_x_dot_val**2 + spl_y_dot_val**2)
     spl_theta_val = np.arctan2(spl_y_dot_val, spl_x_dot_val)
     spl_k_val = (spl_x_dot_val * spl_y_ddot_val - spl_y_dot_val * spl_x_ddot_val) / spl_v_val ** 3
-    for k in range(len(traj.point)):
-        traj.point[k].x = spl_x_val[k]
-        traj.point[k].y = spl_y_val[k]
-        traj.point[k].v = spl_v_val[k]
-        traj.point[k].theta = spl_theta_val[k]
-        traj.point[k].kappa = spl_k_val[k]
-    return traj
+    traj_resample = Trajectory2D();
+    for k in range(len(t_resample)):
+        pt = TrajectoryPoint2D();
+        pt.t = t_resample[k];
+        pt.x = spl_x_val[k]
+        pt.y = spl_y_val[k]
+        pt.v = spl_v_val[k]
+        pt.theta = spl_theta_val[k]
+        pt.kappa = spl_k_val[k]
+        traj_resample.point.append(pt)
+
+    return traj_resample
 
 def stateEstimateCallback(data):
     global vx, vy, X, Y, psi, wz, stateEstimate_mark
@@ -109,7 +115,7 @@ def main(sim_steps):
     ref_traj_pub = rospy.Publisher('final_trajectory_origin', Trajectory2D, queue_size=1)
     obstacle_pub = rospy.Publisher('obstacle_pos', TrajectoryPoint2D, queue_size=1)
 
-    dt_planner = 0.8
+    dt_planner = 0.5
     rate = rospy.Rate(1 / dt_planner)
 
     # get the sim_env ready
@@ -199,6 +205,6 @@ def main(sim_steps):
 
 if __name__ == '__main__':
     try: 
-        main(80)
+        main(60)
     except rospy.ROSInterruptException:
         pass 

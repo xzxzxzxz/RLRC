@@ -9,7 +9,7 @@
  *
  * Model version              : 1.191
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Mon Feb 25 22:09:32 2019
+ * C++ source code generated on : Thu Feb 28 11:56:50 2019
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -87,7 +87,7 @@ void PID_ros_step(void)
      *  Sum: '<Root>/Sum3'
      */
     rtb_Gain1_e = (PID_ros_P.kc12 * PID_ros_B.In1_i.Dy + PID_ros_P.kc11 *
-                   PID_ros_B.In1_i.Dtheta) * -PID_ros_P.kc2 *
+                   PID_ros_B.In1_i.Dtheta) * PID_ros_P.Gain5_Gain *
       PID_ros_P.steering_ratio;
 
     /* BusAssignment: '<S1>/Bus Assignment' incorporates:
