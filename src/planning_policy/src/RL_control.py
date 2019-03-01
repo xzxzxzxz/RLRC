@@ -80,7 +80,6 @@ def main():
 
     # get the sim_env ready
     env.reset()
-    steps = 0
 
     while (rospy.is_shutdown() != 1):
         if stateEstimate_mark:
@@ -97,6 +96,7 @@ def main():
 
             # get the initial observation and obstacle ref
             env.get_all_ref()
+            env.ego.track_select = env.ego.closest_track
             ob = np.append(env.ego.state[2], env.ego_track_ref_list[env.ego.track_select])
             obstacle_ref_list = env.ego_obstacle_ref_list
 
@@ -141,7 +141,7 @@ def main():
             np.clip(ac, -1, 1, out=ac)
 
             cmd_vel_stamped = TwistStamped()
-            cmd_vel_stamped.twist.linear.x = ac[0] * 5 * dt + vx;
+            cmd_vel_stamped.twist.linear.x = ac[0] * 5 * dt + vx
             vel_cmd_pub.publish(cmd_vel_stamped)
             steering_cmd = SteeringCmd()
             steering_cmd.enable = True
