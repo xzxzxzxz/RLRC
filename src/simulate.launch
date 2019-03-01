@@ -11,6 +11,7 @@
    <node name="RL_planner"  pkg="planning_policy"  type="RL_planner.py" output="screen"/>
    <node name="RL_planner_vel"  pkg="planning_policy"  type="RL_planner_vel.py" output="screen"/>
    <node name="ZOH"  pkg="planning_policy"  type="ZOH.py" output="screen"/>
+   <node name="ZOH2"  pkg="planning_policy"  type="ZOH2.py" output="screen"/>
    <node name="console"  pkg="simu"  type="console.py" output="screen"/>
 </launch>
 

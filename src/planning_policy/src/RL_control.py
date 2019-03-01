@@ -111,6 +111,10 @@ def main():
                 # None, 3.
                 M = ob_param[:, :2]
                 b = -ob_param[:, -1:]
+                if env.ego.track_select == 1:
+                    M[0,0] = 0
+                    M[0,1] = 0
+                    b[0,0] = 1
 
                 try:
                     sol = solvers.qp(P=matrix(0.5 * P), q=matrix(- np.matmul(P, dudt0)), G=matrix(M), h=matrix(b))
