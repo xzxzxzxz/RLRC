@@ -1,2 +1,2 @@
-model_checkpoint_path: "/home/zhuoxu/calnet/src/palnet/config/train_log/22"
-all_model_checkpoint_paths: "/home/zhuoxu/calnet/src/palnet/config/train_log/22"
+model_checkpoint_path: "/home/zhuoxu/trained_model/attribute_model/19_rl"
+all_model_checkpoint_paths: "/home/zhuoxu/trained_model/attribute_model/19_rl"
