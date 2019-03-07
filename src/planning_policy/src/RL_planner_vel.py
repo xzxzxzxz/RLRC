@@ -148,20 +148,24 @@ def main():
 
             try:
                 sol = solvers.qp(P=matrix(0.5 * P), q=matrix(- np.matmul(P, dudt0)), G=matrix(M), h=matrix(b))
+                dudt = sol['x']
             except:
-                # if dAger is not useful, transfer back.
-                print("RL_planner:Something wrong with dAger run.")
-                num = len(obstacle_ref_list)
-                for i in range(num):
-                    obstacle_ref = obstacle_ref_list[i]
-                    A = obstacle_ref[10]
-                    B = obstacle_ref[11]
-                    C = obstacle_ref[12]
-                    M[i, 0] = A
-                    M[i, 1] = B
-                    b[i, 0] = -C
-                sol = solvers.qp(P=matrix(0.5 * P), q=matrix(- np.matmul(P, dudt0)), G=matrix(M), h=matrix(b))
-            dudt = sol['x']
+                try:
+                    # if dAger is not useful, transfer back.
+                    print("RL_planner:Something wrong with dAger run.")
+                    num = len(obstacle_ref_list)
+                    for i in range(num):
+                        obstacle_ref = obstacle_ref_list[i]
+                        A = obstacle_ref[10]
+                        B = obstacle_ref[11]
+                        C = obstacle_ref[12]
+                        M[i, 0] = A
+                        M[i, 1] = B
+                        b[i, 0] = -C
+                    sol = solvers.qp(P=matrix(0.5 * P), q=matrix(- np.matmul(P, dudt0)), G=matrix(M), h=matrix(b))
+                    dudt = sol['x']
+                except:
+                    dudt = dudt0
 
             ac = np.zeros(2)
             ac[0] = dudt[0] / 5

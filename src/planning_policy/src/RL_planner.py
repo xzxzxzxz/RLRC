@@ -50,10 +50,10 @@ def smooth(traj):
     spl_v_val = np.sqrt(spl_x_dot_val**2 + spl_y_dot_val**2)
     spl_theta_val = np.arctan2(spl_y_dot_val, spl_x_dot_val)
     spl_k_val = (spl_x_dot_val * spl_y_ddot_val - spl_y_dot_val * spl_x_ddot_val) / spl_v_val ** 3
-    traj_resample = Trajectory2D();
+    traj_resample = Trajectory2D()
     for k in range(len(t_resample)):
-        pt = TrajectoryPoint2D();
-        pt.t = t_resample[k];
+        pt = TrajectoryPoint2D()
+        pt.t = t_resample[k]
         pt.x = spl_x_val[k]
         pt.y = spl_y_val[k]
         pt.v = spl_v_val[k]
@@ -103,7 +103,8 @@ def main(sim_steps):
     with g1.as_default():
         expert = Expert(model_path)
         expert.restore()
-    env = Driving(story_index=100, track_data='long_straight', lane_deviation=9.5, dt=dt)
+    env = Driving(story_index=101, dt=dt)
+    img_env = Driving(story_index=101, dt=dt)
     P = np.array([[100, 0], [0, 1]])
     solvers.options['show_progress'] = False  # don't let cvxopt print iterations
 
@@ -115,7 +116,7 @@ def main(sim_steps):
     rospy.Subscriber('state_estimate', state_Dynamic, stateEstimateCallback)
     rospy.Subscriber('lane_signal', Int8, laneChangeCallback)
     ref_traj_pub = rospy.Publisher('final_trajectory_origin', Trajectory2D, queue_size=1)
-    ref_traj_pub2 = rospy.Publisher('final_trajectory_origin2', Trajectory2D, queue_size=1)
+    # ref_traj_pub2 = rospy.Publisher('final_trajectory_origin2', Trajectory2D, queue_size=1)
     obstacle_pub = rospy.Publisher('obstacle_pos', TrajectoryPoint2D, queue_size=1)
 
     dt_planner = 0.5
@@ -216,20 +217,25 @@ def main(sim_steps):
 
                 try:
                     sol = solvers.qp(P=matrix(0.5 * P), q=matrix(- np.matmul(P, dudt0)), G=matrix(M), h=matrix(b))
+                    dudt = sol['x']
                 except:
-                    # if dAger is not useful, transfer back.
-                    print("RL_planner:Something wrong with dAger run.")
-                    num = len(obstacle_ref_list)
-                    for i in range(num):
-                        obstacle_ref = obstacle_ref_list[i]
-                        A = obstacle_ref[10]
-                        B = obstacle_ref[11]
-                        C = obstacle_ref[12]
-                        M[i, 0] = A
-                        M[i, 1] = B
-                        b[i, 0] = -C
-                    sol = solvers.qp(P=matrix(0.5 * P), q=matrix(- np.matmul(P, dudt0)), G=matrix(M), h=matrix(b))
-                dudt = sol['x']
+                    try:
+                        # if dAger is not useful, transfer back.
+                        print("RL_planner:Something wrong with dAger run.")
+                        num = len(obstacle_ref_list)
+                        for i in range(num):
+                            obstacle_ref = obstacle_ref_list[i]
+                            A = obstacle_ref[10]
+                            B = obstacle_ref[11]
+                            C = obstacle_ref[12]
+                            M[i, 0] = A
+                            M[i, 1] = B
+                            b[i, 0] = -C
+                        sol = solvers.qp(P=matrix(0.5 * P), q=matrix(- np.matmul(P, dudt0)), G=matrix(M), h=matrix(b))
+                        dudt = sol['x']
+                    except:
+                        dudt = dudt0
+
 
                 ac = np.zeros(2)
                 ac[0] = dudt[0] / 5
