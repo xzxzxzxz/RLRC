@@ -94,7 +94,7 @@ def plotter():
     ref_x = reference[0][:]
     ref_y = reference[1][:]
     ref_y1 = reference[1][:] + 3.5
-    fig = plt.figure()
+    fig = plt.figure(figsize=(20, 15))
     ax = fig.add_subplot(1, 1, 1)
     ax.plot(ref_x, ref_y, color='green')
     ax.plot(ref_x, ref_y1, color='green')

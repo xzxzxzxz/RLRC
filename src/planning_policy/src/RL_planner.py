@@ -130,7 +130,7 @@ def main(sim_steps):
     rospy.Subscriber('obstacle1_pos', TrajectoryPoint2D, obstacle1Callback)
     rospy.Subscriber('obstacle2_pos', TrajectoryPoint2D, obstacle2Callback)
 
-    dt_planner = 0.5
+    dt_planner = 0.6
     rate = rospy.Rate(1 / dt_planner)
 
     # get the sim_env ready
@@ -215,6 +215,6 @@ def main(sim_steps):
 
 if __name__ == '__main__':
     try: 
-        main(40)
+        main(45)
     except rospy.ROSInterruptException:
         pass 
