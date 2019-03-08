@@ -29,7 +29,7 @@ void TrajCallback(const path_follower::Trajectory2D msg)
   received_traj_flag = true;
   if (received_state_flag && ref_point_flag)
   {
-    traj_new = Transient(ref_traj, prev_ref_point, current_state, 0, ds, 50);
+    traj_new = Transient(ref_traj, prev_ref_point, current_state, 0, ds, 60);
     //traj_new = ref_traj;
   }
   else
