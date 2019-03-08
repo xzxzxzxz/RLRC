@@ -13,6 +13,8 @@ from cvxopt import matrix, solvers
 import os, rospkg
 from scipy.interpolate import UnivariateSpline
 from palnet.config.utility import network_config
+from math import cos, sin, tan, sqrt, pi
+from driving_env.driving_utils import plot
 
 vx = 0
 vy = 0
@@ -22,6 +24,8 @@ psi = 0
 wz = 0
 stateEstimate_mark = False
 laneChange = 0
+dt = 0.1
+env = Driving(story_index=101, dt=dt)
 
 def smooth(traj):
     x = []
@@ -73,14 +77,21 @@ def stateEstimateCallback(data):
     wz = data.wz
     stateEstimate_mark = True
 
+def obstacle1Callback(data):
+    global env
+    env.obstacles[0].state = np.array([data.x, data.y, data.v, data.theta])
+
+def obstacle2Callback(data):
+    global env
+    env.obstacles[1].state = np.array([data.x, data.y, data.v, data.theta])
+
 def laneChangeCallback(data):
     global laneChange
     laneChange = data.data
 
 def main(sim_steps):
-    global vx, vy, X, Y, psi, wz, stateEstimate_mark, laneChange
+    global vx, vy, X, Y, psi, wz, stateEstimate_mark, laneChange, dt, env
 
-    dt = 0.1
     # env, base policy, attribute policy and PAL-Net related
     rospack = rospkg.RosPack()
     model_path = os.path.join(rospack.get_path("planning_policy"), "trained_model")
@@ -103,8 +114,6 @@ def main(sim_steps):
     with g1.as_default():
         expert = Expert(model_path)
         expert.restore()
-    env = Driving(story_index=101, dt=dt)
-    img_env = Driving(story_index=101, dt=dt)
     P = np.array([[100, 0], [0, 1]])
     solvers.options['show_progress'] = False  # don't let cvxopt print iterations
 
@@ -118,25 +127,20 @@ def main(sim_steps):
     ref_traj_pub = rospy.Publisher('final_trajectory_origin', Trajectory2D, queue_size=1)
     # ref_traj_pub2 = rospy.Publisher('final_trajectory_origin2', Trajectory2D, queue_size=1)
     obstacle_pub = rospy.Publisher('obstacle_pos', TrajectoryPoint2D, queue_size=1)
+    rospy.Subscriber('obstacle1_pos', TrajectoryPoint2D, obstacle1Callback)
+    rospy.Subscriber('obstacle2_pos', TrajectoryPoint2D, obstacle2Callback)
 
     dt_planner = 0.5
     rate = rospy.Rate(1 / dt_planner)
 
     # get the sim_env ready
     env.reset()
+    env.reset()
+    steps = 0
 
     while (rospy.is_shutdown() != 1):
         if stateEstimate_mark:
             env.ego.state = np.array([X, Y, vx, psi])
-
-            # deal with keyboard lane change command input
-            if laneChange != 0:
-                env.hand_lanechange(laneChange)
-                laneChange = 0
-
-            # a dirty trick, if lane change then disable future lane change
-            if env.ego.track_select == 1:
-                env.hand_lanechange(0)
 
             # get the initial observation and obstacle ref
             env.get_all_ref()
@@ -145,16 +149,6 @@ def main(sim_steps):
 
             # define traj for later data fulfillment
             traj = Trajectory2D()
-            # get obstacle position and publish it
-            # TODO: currently static obstacle, future deal with moving obstacle, and
-            # TODO: since there is imaginary steps, need to reset obstacle state back
-            obstacle = TrajectoryPoint2D()
-            obstacle.t = 0
-            obstacle.x = env.obstacles[0].state[0]
-            obstacle.y = env.obstacles[0].state[1]
-            obstacle.v = env.obstacles[0].state[2]
-            obstacle.theta = env.obstacles[0].state[3]
-            obstacle_pub.publish(obstacle)
 
             for i in range(sim_steps):
                 pt = TrajectoryPoint2D()
@@ -167,40 +161,7 @@ def main(sim_steps):
 
                 ac0 = expert.choose_action(ob)
                 dudt0 = np.multiply(ac0[:, np.newaxis], np.array([[5], [0.5]]))
-                """
-                if len(obstacle_ref_list):
-                    # extract parameters from obstacle_ref_list
-                    data = {'state0': np.vstack(obstacle_ref_list)[:, :10]}
-                    feed_data = network.get_feed_dict(data)
-                    print(feed_data)
-                    ob_param = network.sess.run(network.means[network.index], feed_data)
-                    # None, 3.
-                    M = ob_param[:, :2]
-                    b = -ob_param[:, -1:]
-                    if env.ego.track_select == 1:
-                        M[0,0] = 0
-                        M[0,1] = 0
-                        b[0,0] = 1
 
-                    try:
-                        sol = solvers.qp(P=matrix(0.5 * P), q=matrix(- np.matmul(P, dudt0)), G=matrix(M), h=matrix(b))
-                    except:
-                        # if dAger is not useful, transfer back.
-                        print("RL_planner:Something wrong with dAger run.")
-                        num = len(obstacle_ref_list)
-                        for i in range(num):
-                            obstacle_ref = obstacle_ref_list[i]
-                            A = obstacle_ref[10]
-                            B = obstacle_ref[11]
-                            C = obstacle_ref[12]
-                            M[i, 0] = A
-                            M[i, 1] = B
-                            b[i, 0] = -C
-                        sol = solvers.qp(P=matrix(0.5 * P), q=matrix(- np.matmul(P, dudt0)), G=matrix(M), h=matrix(b))
-                    dudt = sol['x']
-                else:
-                    dudt = dudt0
-                    """
                 # extract parameters from obstacle_ref_list
                 data = {}
                 for attribute in all_attributes:
@@ -221,7 +182,7 @@ def main(sim_steps):
                 except:
                     try:
                         # if dAger is not useful, transfer back.
-                        print("RL_planner:Something wrong with dAger run.")
+                        # print("RL_planner:Something wrong with dAger run.")
                         num = len(obstacle_ref_list)
                         for i in range(num):
                             obstacle_ref = obstacle_ref_list[i]
@@ -250,92 +211,10 @@ def main(sim_steps):
 
             smooth_traj = smooth(traj)
             ref_traj_pub.publish(smooth_traj)
-            """
-            env.ego.state = np.array([X, Y, vx, psi])
-
-            # deal with keyboard lane change command input
-            if laneChange != 0:
-                env.hand_lanechange(laneChange)
-                laneChange = 0
-
-            # a dirty trick, if lane change then disable future lane change
-            if env.ego.track_select == 1:
-                env.hand_lanechange(0)
-
-            # get the initial observation and obstacle ref
-            env.get_all_ref()
-            ob = np.append(env.ego.state[2], env.ego_ref["tracks"][env.ego.track_select])
-            obstacle_ref_list = env.ego_ref["obstacles"]
-
-            # define traj for later data fulfillment
-            traj = Trajectory2D()
-            # get obstacle position and publish it
-            # TODO: currently static obstacle, future deal with moving obstacle, and
-            # TODO: since there is imaginary steps, need to reset obstacle state back
-            obstacle = TrajectoryPoint2D()
-            obstacle.t = 0
-            obstacle.x = env.obstacles[0].state[0]
-            obstacle.y = env.obstacles[0].state[1]
-            obstacle.v = env.obstacles[0].state[2]
-            obstacle.theta = env.obstacles[0].state[3]
-            obstacle_pub.publish(obstacle)
-
-            for i in range(sim_steps2):
-                pt = TrajectoryPoint2D()
-                pt.t = i * dt
-                pt.x = env.ego.state[0]
-                pt.y = env.ego.state[1]
-                pt.v = env.ego.state[2]
-                pt.theta = env.ego.state[3]
-                traj.point.append(pt)
-
-                ac0 = expert.choose_action(ob)
-                dudt0 = np.multiply(ac0[:, np.newaxis], np.array([[5], [0.5]]))
-                if len(obstacle_ref_list):
-                    # extract parameters from obstacle_ref_list
-                    data = {'state0': np.vstack(obstacle_ref_list)[:, :10]}
-                    feed_data = network.get_feed_dict(data)
-                    ob_param = network.sess.run(network.means[network.index], feed_data)
-                    # None, 3.
-                    M = ob_param[:, :2]
-                    b = -ob_param[:, -1:]
-                    if env.ego.track_select == 1:
-                        M[0,0] = 0
-                        M[0,1] = 0
-                        b[0,0] = 1
-
-                    try:
-                        sol = solvers.qp(P=matrix(0.5 * P), q=matrix(- np.matmul(P, dudt0)), G=matrix(M), h=matrix(b))
-                    except:
-                        # if dAger is not useful, transfer back.
-                        print("RL_planner:Something wrong with dAger run.")
-                        num = len(obstacle_ref_list)
-                        for i in range(num):
-                            obstacle_ref = obstacle_ref_list[i]
-                            A = obstacle_ref[10]
-                            B = obstacle_ref[11]
-                            C = obstacle_ref[12]
-                            M[i, 0] = A
-                            M[i, 1] = B
-                            b[i, 0] = -C
-                        sol = solvers.qp(P=matrix(0.5 * P), q=matrix(- np.matmul(P, dudt0)), G=matrix(M), h=matrix(b))
-                    dudt = sol['x']
-                else:
-                    dudt = dudt0
-
-                ac = np.zeros(2)
-                ac[0] = dudt[0] / 5
-                ac[1] = dudt[1] / 0.5
-                np.clip(ac, -1, 1, out=ac)
-                ob, r, done, obstacle_ref_list = env.step(ac)
-
-            smooth_traj = smooth(traj)
-            ref_traj_pub2.publish(smooth_traj)
-            """
             rate.sleep()
 
 if __name__ == '__main__':
     try: 
-        main(30)
+        main(80)
     except rospy.ROSInterruptException:
         pass 

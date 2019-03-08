@@ -12,6 +12,8 @@ import tensorflow as tf
 from driving_env.driving import Driving
 from cvxopt import matrix, solvers
 import os, rospkg
+from driving_env.driving_utils import plot, render
+from path_follower.msg import state_Dynamic, Trajectory2D, TrajectoryPoint2D
 
 vx = 0
 vy = 0
@@ -61,7 +63,7 @@ def main():
     with g1.as_default():
         expert = Expert(model_path)
         expert.restore()
-    env = Driving(story_index=100, track_data='long_straight', lane_deviation=9.5, dt=0.02)
+    env = Driving(story_index=101, dt=0.02)
     P = np.array([[100, 0], [0, 1]])
     solvers.options['show_progress'] = False  # don't let cvxopt print iterations
 
@@ -74,6 +76,8 @@ def main():
     rospy.Subscriber('lane_signal', Int8, laneChangeCallback)
     vel_cmd_pub = rospy.Publisher('/vehicle/cmd_vel_stamped', TwistStamped, queue_size=1)
     vel_rl_pub = rospy.Publisher('/RL/cmd_vel_stamped', TwistStamped, queue_size=1)
+    obstacle_pub1 = rospy.Publisher('obstacle1_pos', TrajectoryPoint2D, queue_size=1)
+    obstacle_pub2 = rospy.Publisher('obstacle2_pos', TrajectoryPoint2D, queue_size=1)
 
     dt = 0.02
     rate = rospy.Rate(1 / dt)
@@ -84,7 +88,28 @@ def main():
 
     while (rospy.is_shutdown() != 1):
         if stateEstimate_mark:
+            steps += 1
             env.ego.state = np.array([X, Y, vx, psi])
+            env.ego_state_list.append(env.ego.state.copy())
+            for i in range(len(env.obstacles)):
+                env.obstacles[i].simulate()
+                env.obstacles_state_list[i].append(env.obstacles[i].state.copy())
+
+            obstacle1 = TrajectoryPoint2D()
+            obstacle1.t = 0
+            obstacle1.x = env.obstacles[0].state[0]
+            obstacle1.y = env.obstacles[0].state[1]
+            obstacle1.v = env.obstacles[0].state[2]
+            obstacle1.theta = env.obstacles[0].state[3]
+            obstacle_pub1.publish(obstacle1)
+
+            obstacle2 = TrajectoryPoint2D()
+            obstacle2.t = 0
+            obstacle2.x = env.obstacles[1].state[0]
+            obstacle2.y = env.obstacles[1].state[1]
+            obstacle2.v = env.obstacles[1].state[2]
+            obstacle2.theta = env.obstacles[1].state[3]
+            obstacle_pub2.publish(obstacle2)
 
             # deal with keyboard lane change command input
             if laneChange != 0:
@@ -103,35 +128,6 @@ def main():
             ac0 = expert.choose_action(ob)
             dudt0 = np.multiply(ac0[:, np.newaxis], np.array([[5], [0.5]]))
 
-            """
-            if len(obstacle_ref_list):
-                # extract parameters from obstacle_ref_list
-                data = {'state0': np.vstack(obstacle_ref_list)[:, :10]}
-                feed_data = network.get_feed_dict(data)
-                ob_param = network.sess.run(network.means[network.index], feed_data)
-                # None, 3.
-                M = ob_param[:, :2]
-                b = -ob_param[:, -1:]
-
-                try:
-                    sol = solvers.qp(P=matrix(0.5 * P), q=matrix(- np.matmul(P, dudt0)), G=matrix(M), h=matrix(b))
-                except:
-                    # if dAger is not useful, transfer back.
-                    print("RL_planner_vel:Something wrong with dAger run.")
-                    num = len(obstacle_ref_list)
-                    for i in range(num):
-                        obstacle_ref = obstacle_ref_list[i]
-                        A = obstacle_ref[10]
-                        B = obstacle_ref[11]
-                        C = obstacle_ref[12]
-                        M[i, 0] = A
-                        M[i, 1] = B
-                        b[i, 0] = -C
-                    sol = solvers.qp(P=matrix(0.5 * P), q=matrix(- np.matmul(P, dudt0)), G=matrix(M), h=matrix(b))
-                dudt = sol['x']
-            else:
-                dudt = dudt0
-                """
             # extract parameters from obstacle_ref_list
             data = {}
             for attribute in all_attributes:
@@ -152,7 +148,7 @@ def main():
             except:
                 try:
                     # if dAger is not useful, transfer back.
-                    print("RL_planner:Something wrong with dAger run.")
+                    # print("RL_planner:Something wrong with dAger run.")
                     num = len(obstacle_ref_list)
                     for i in range(num):
                         obstacle_ref = obstacle_ref_list[i]
@@ -185,7 +181,12 @@ def main():
             cmd_vel_stamped.twist.linear.x = (ac[0] - ac0[0]) * 5.
             vel_rl_pub.publish(cmd_vel_stamped)
 
+            if steps == 1000:
+                plot(env, 'tl1.png', T1=0, T2=999, dt=33, tl='r')
+                render(env, '/home/zhuoxu/RLRC/render_traj', show=False, debugview_bool=False)
+
             rate.sleep()
+
 
 if __name__ == '__main__':
     try: 

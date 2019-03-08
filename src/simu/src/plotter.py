@@ -9,8 +9,8 @@ matplotlib.use("TkAgg")
 import os, rospkg
 from std_msgs.msg import Int8
 
-axis_range = 25
-axis_range_y = 50
+axis_range = 100
+axis_range_y = 10
 i = 0
 obj1 = [0]; obj2 = [0]; obj3 = 0; obj4 = 0; obj5=0
 ini_flag = 0; init_flag_ref_traj = 0; init_flag_smooth_traj = 0; init_flag_obstacle = 0; init_flag_ds_cg = 0
@@ -37,6 +37,7 @@ def vehicle_state_callback(data):
         plt.axis('scaled')
         ax.axis([data.X - axis_range/2, data.X + axis_range, data.Y - axis_range_y/2, data.Y + axis_range_y])
         ax.plot(X3, Y3, color='blue', marker='s', markersize=12)
+        ax.plot(X6, Y6, color='blue', marker='s', markersize=12)
         #ax.plot(X4, Y4, color='black', marker='*', markersize=12)
         ax.plot([data.X, X4], [data.Y, Y4], color='black')
         plt.draw()
@@ -66,6 +67,12 @@ def obstacle_state_callback(data):
     X3 = data.x
     Y3 = data.y
 
+def obstacle_state_callback2(data):
+    global init_flag_obstacle, X6, Y6
+    init_flag_obstacle = 1
+    X6 = data.x
+    Y6 = data.y
+
 def traj_cg_callback(data):
     global X4, Y4, init_flag_ds_cg
     init_flag_ds_cg = 1
@@ -94,7 +101,8 @@ def plotter():
     rospy.Subscriber('state_estimate', state_Dynamic, vehicle_state_callback, queue_size=1)
     rospy.Subscriber('final_trajectory', Trajectory2D, ref_traj_callback, queue_size=1)
     rospy.Subscriber('smooth_trajectory', Trajectory2D, smooth_traj_callback, queue_size=1)
-    rospy.Subscriber('obstacle_pos', TrajectoryPoint2D, obstacle_state_callback, queue_size=1)
+    rospy.Subscriber('obstacle1_pos', TrajectoryPoint2D, obstacle_state_callback, queue_size=1)
+    rospy.Subscriber('obstacle2_pos', TrajectoryPoint2D, obstacle_state_callback2, queue_size=1)
     rospy.Subscriber('/vehicle/traj_cg', Trajectory2D, traj_cg_callback, queue_size=1)
     rospy.Subscriber('pause_signal', Int8, pausecallback, queue_size=10)
     plt.show()
