@@ -13,8 +13,6 @@ from cvxopt import matrix, solvers
 import os, rospkg
 from scipy.interpolate import UnivariateSpline
 from palnet.config.utility import network_config
-from math import cos, sin, tan, sqrt, pi
-from driving_env.driving_utils import plot
 
 vx = 0
 vy = 0
@@ -126,7 +124,7 @@ def main(sim_steps):
     rospy.Subscriber('lane_signal', Int8, laneChangeCallback)
     ref_traj_pub = rospy.Publisher('final_trajectory_origin', Trajectory2D, queue_size=1)
     # ref_traj_pub2 = rospy.Publisher('final_trajectory_origin2', Trajectory2D, queue_size=1)
-    obstacle_pub = rospy.Publisher('obstacle_pos', TrajectoryPoint2D, queue_size=1)
+    # obstacle_pub = rospy.Publisher('obstacle_pos', TrajectoryPoint2D, queue_size=1)
     rospy.Subscriber('obstacle1_pos', TrajectoryPoint2D, obstacle1Callback)
     rospy.Subscriber('obstacle2_pos', TrajectoryPoint2D, obstacle2Callback)
 
@@ -135,8 +133,6 @@ def main(sim_steps):
 
     # get the sim_env ready
     env.reset()
-    env.reset()
-    steps = 0
 
     while (rospy.is_shutdown() != 1):
         if stateEstimate_mark:
