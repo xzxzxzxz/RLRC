@@ -44,7 +44,7 @@ def main():
     config['continue'] = True
     # construction configuration:
     # driver problem
-    config['env_type'] = 'driver,obstacles'
+    config['env_type'] = 'driver,obstacles,speed_limit'
     config['update_name'] = 'obstacles'
     config['e_update_type'] = 'regular'
     # network config:
@@ -57,7 +57,7 @@ def main():
     with g1.as_default():
         expert = Expert(model_path)
         expert.restore()
-    env = Driving(story_index=101, dt=0.02)
+    env = Driving(story_index=107, dt=0.02)
     P = np.array([[100, 0], [0, 1]])
     solvers.options['show_progress'] = False  # don't let cvxopt print iterations
 

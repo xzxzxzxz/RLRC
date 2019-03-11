@@ -17,7 +17,6 @@ from driving_env.driving_utils import plot, render
 from path_follower.msg import state_Dynamic, Trajectory2D, TrajectoryPoint2D
 from math import asin, tan, atan
 from std_msgs.msg import Float64
-from vehicle_opt import vehicle
 
 vx = 0
 vy = 0
@@ -44,7 +43,7 @@ def main():
     config['continue'] = True
     # construction configuration:
     # driver problem
-    config['env_type'] = 'driver,obstacles'
+    config['env_type'] = 'driver,obstacles,speed_limit'
     config['update_name'] = 'obstacles'
     config['e_update_type'] = 'regular'
     # network config:
@@ -57,7 +56,7 @@ def main():
     with g1.as_default():
         expert = Expert(model_path)
         expert.restore()
-    env = Driving(story_index=101, dt=0.02)
+    env = Driving(story_index=107, dt=0.02)
     P = np.array([[100, 0], [0, 1]])
     solvers.options['show_progress'] = False  # don't let cvxopt print iterations
 
@@ -80,15 +79,10 @@ def main():
 
     # get the sim_env ready
     env.reset()
-    car = vehicle(dt, False, 0, 500, False, 6, 0.3)
-    state = [20, 0, 0, 10, 0, 0, 0]
-    car.setState(state)
-    action = [0, 0]
-
     steps = 0
     state_report = state_Dynamic()
 
-    for i in range(10000):
+    for i in range(100000):
         steps += 1
         """
         env.ego_state_list.append(env.ego.state.copy())
@@ -162,26 +156,6 @@ def main():
         np.clip(ac, -1, 1, out=ac)
         env.step(action=ac)
 
-        cmd_vel_stamped = TwistStamped()
-        cmd_vel_stamped.twist.linear.x = ac[0] * 5 * dt + vx
-        vel_cmd_pub.publish(cmd_vel_stamped)
-        action[0] = ac[0] * 5 / car.maxDvxdt
-
-        longi_acc_cmd_pub.publish(ac[0])
-        yaw_rate_cmd_pub.publish(ac[1])
-        steering_cmd = SteeringCmd()
-        steering_cmd.enable = True
-        beta = asin(min(max(ac[1] * 0.5 * 1.65 / (car.state[3]+0.0000001), -1), 1))
-        delta = atan(tan(beta) * (1.65 + 1.20) / 1.65)
-        steering_cmd.steering_wheel_angle_cmd = delta * 14.8
-        steering_cmd_pub.publish(steering_cmd)
-        steering_cmd = delta * 14.8  # *car.steeringRatio
-        action[1] = (steering_cmd - car.state[6] * car.steeringRatio) / dt / car.maxSteeringRate
-
-        car.simulate(action)
-        env.ego.state = np.array([car.state[0], car.state[1], car.state[3], car.state[2]])
-        env.ego_state_list[-1] = env.ego.state
-
         state_report.vx = env.ego.state[2]
         state_report.vy = 0
         state_report.X = env.ego.state[0]
@@ -189,7 +163,6 @@ def main():
         state_report.psi = env.ego.state[3]
         state_report.wz = 0
         state_estimate_pub.publish(state_report)
-
         if steps == 1000:
             plot(env, 'tl1.png', T1=0, T2=999, dt=33, tl='r')
             render(env, '/home/zhuoxu/RLRC/render_traj', show=False, debugview_bool=False)
