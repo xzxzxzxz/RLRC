@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import rospy
-import scipy.io 
+import scipy.io
 from path_follower.msg import state_Dynamic, Trajectory2D, TrajectoryPoint2D
 import matplotlib.pyplot as plt
 import matplotlib
@@ -24,8 +24,8 @@ def pausecallback(signal):
 
 def vehicle_state_callback(data):
     global ax, i, ini_flag, obj1, obj2, obj3, obj4, obj5
-    # if init_flag_obstacle * (pause_signal + 1):
-    if init_flag_ref_traj * init_flag_smooth_traj * init_flag_obstacle * init_flag_ds_cg * (pause_signal + 1):
+    if init_flag_obstacle * (pause_signal + 1):
+    # if init_flag_ref_traj * init_flag_smooth_traj * init_flag_obstacle * init_flag_ds_cg * (pause_signal + 1):
         if ini_flag == 1:
             while len(ax.lines) > 2:
                 ax.lines.pop(2)
@@ -33,14 +33,14 @@ def vehicle_state_callback(data):
         if i >= 1:
             ini_flag = 1
         ax.plot(data.X, data.Y, color='red', marker='s', markersize=12)
-        ax.plot(X2, Y2, color='green', marker='*', markersize=4)
-        ax.plot(X5, Y5, color='orange', marker='.', markersize=2)
+        #ax.plot(X2, Y2, color='green', marker='*', markersize=4)
+        #ax.plot(X5, Y5, color='orange', marker='.', markersize=2)
         plt.axis('scaled')
         ax.axis([data.X - axis_range/2, data.X + axis_range, data.Y - axis_range_y/2, data.Y + axis_range_y])
         ax.plot(X3, Y3, color='blue', marker='s', markersize=12)
         ax.plot(X6, Y6, color='blue', marker='s', markersize=12)
-        ax.plot(X4, Y4, color='black', marker='*', markersize=12)
-        ax.plot([data.X, X4], [data.Y, Y4], color='black')
+        #ax.plot(X4, Y4, color='black', marker='*', markersize=12)
+        #ax.plot([data.X, X4], [data.Y, Y4], color='black')
         plt.draw()
         plt.pause(0.01)
 

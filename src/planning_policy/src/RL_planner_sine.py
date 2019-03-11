@@ -23,15 +23,13 @@ wz = 0
 stateEstimate_mark = False
 laneChange = 0
 dt = 0.1
-env = Driving(story_index=101, dt=dt, track_data='line_curve')
+env = Driving(story_index=0, dt=dt, track_data='sine_curve')
 
 def smooth(traj):
     x = []
     y = []
     t = []
-    w = np.ones(len(traj.point)) 
-    #w[0] = w[0] * 100
-    #w[-1] = w[-1] * 100
+    w = np.ones(len(traj.point))
     for k in range(len(traj.point)):
         x.append(traj.point[k].x)
         y.append(traj.point[k].y)
@@ -44,7 +42,7 @@ def smooth(traj):
     spl_y_ddot = spl_y.derivative(n=2)
     t_resample = np.linspace(t[0], t[-1], int((t[-1]-t[0])/0.02)+1)
     spl_x_val = spl_x(t_resample)
-    spl_y_val = spl_y(t_resample)    
+    spl_y_val = spl_y(t_resample)
     spl_x_dot_val = spl_x_dot(t_resample)
     spl_y_dot_val = spl_y_dot(t_resample)
     spl_x_ddot_val = spl_x_ddot(t_resample)
@@ -99,8 +97,8 @@ def main(sim_steps):
     config['continue'] = True
     # construction configuration:
     # driver problem
-    config['env_type'] = 'driver,obstacles'
-    config['update_name'] = 'obstacles'
+    config['env_type'] = 'driver'
+    config['update_name'] = 'driver'
     config['e_update_type'] = 'regular'
     # network config:
     network_config(config, model_path)
@@ -141,7 +139,6 @@ def main(sim_steps):
             # get the initial observation and obstacle ref
             env.get_all_ref()
             ob = np.append(env.ego.state[2], env.ego_ref["tracks"][env.ego.track_select])
-            obstacle_ref_list = env.ego_ref["obstacles"]
 
             # define traj for later data fulfillment
             traj = Trajectory2D()
@@ -158,50 +155,9 @@ def main(sim_steps):
                 ac0 = expert.choose_action(ob)
                 dudt0 = np.multiply(ac0[:, np.newaxis], np.array([[5], [0.5]]))
 
-                # extract parameters from obstacle_ref_list
-                data = {}
-                for attribute in all_attributes:
-                    data[attribute] = np.vstack(env.ego_ref[attribute])[:, :-3]
-                means = network.predict_means(data)
-                # None, 3.
-                for attribute in all_attributes:
-                    if attribute != 'obstacles':
-                        means[attribute][:, 0] = abs(means[attribute][:, 0])
-                        means[attribute][:, 1] = np.zeros([means[attribute].shape[0], 1])
-                means_array = np.vstack([means[attribute] for attribute in all_attributes])
-                M = means_array[:, :-1]
-                b = means_array[:, -1:]
-
-                try:
-                    sol = solvers.qp(P=matrix(0.5 * P), q=matrix(- np.matmul(P, dudt0)), G=matrix(M), h=matrix(b))
-                    dudt = sol['x']
-                except:
-                    try:
-                        # if dAger is not useful, transfer back.
-                        # print("RL_planner:Something wrong with dAger run.")
-                        num = len(obstacle_ref_list)
-                        for i in range(num):
-                            obstacle_ref = obstacle_ref_list[i]
-                            A = obstacle_ref[10]
-                            B = obstacle_ref[11]
-                            C = obstacle_ref[12]
-                            M[i, 0] = A
-                            M[i, 1] = B
-                            b[i, 0] = -C
-                        sol = solvers.qp(P=matrix(0.5 * P), q=matrix(- np.matmul(P, dudt0)), G=matrix(M), h=matrix(b))
-                        dudt = sol['x']
-                    except:
-                        dudt = dudt0
-
-
                 ac = np.zeros(2)
-                ac[0] = dudt[0] / 5
-                ac[1] = dudt[1]
-                np.clip(ac, -1, 1, out=ac)
-
-                ac = np.zeros(2)
-                ac[0] = dudt[0] / 5
-                ac[1] = dudt[1] / 0.5
+                ac[0] = dudt0[0] / 5
+                ac[1] = dudt0[1]
                 np.clip(ac, -1, 1, out=ac)
                 ob, r, done, obstacle_ref_list = env.step(ac)
 
@@ -210,7 +166,7 @@ def main(sim_steps):
             rate.sleep()
 
 if __name__ == '__main__':
-    try: 
+    try:
         main(45)
     except rospy.ROSInterruptException:
-        pass 
+        pass

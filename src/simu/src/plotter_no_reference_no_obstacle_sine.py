@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import rospy
-import scipy.io 
+import scipy.io
 from path_follower.msg import state_Dynamic, Trajectory2D, TrajectoryPoint2D
 import matplotlib.pyplot as plt
 import matplotlib
@@ -24,8 +24,7 @@ def pausecallback(signal):
 
 def vehicle_state_callback(data):
     global ax, i, ini_flag, obj1, obj2, obj3, obj4, obj5
-    # if init_flag_obstacle * (pause_signal + 1):
-    if init_flag_ref_traj * init_flag_smooth_traj * init_flag_obstacle * init_flag_ds_cg * (pause_signal + 1):
+    if (pause_signal + 1):
         if ini_flag == 1:
             while len(ax.lines) > 2:
                 ax.lines.pop(2)
@@ -37,8 +36,8 @@ def vehicle_state_callback(data):
         ax.plot(X5, Y5, color='orange', marker='.', markersize=2)
         plt.axis('scaled')
         ax.axis([data.X - axis_range/2, data.X + axis_range, data.Y - axis_range_y/2, data.Y + axis_range_y])
-        ax.plot(X3, Y3, color='blue', marker='s', markersize=12)
-        ax.plot(X6, Y6, color='blue', marker='s', markersize=12)
+        #ax.plot(X3, Y3, color='blue', marker='s', markersize=12)
+        #ax.plot(X6, Y6, color='blue', marker='s', markersize=12)
         ax.plot(X4, Y4, color='black', marker='*', markersize=12)
         ax.plot([data.X, X4], [data.Y, Y4], color='black')
         plt.draw()
@@ -91,7 +90,7 @@ def plotter():
     # initialize node
     rospy.init_node('plotter', anonymous=True)
     rospack = rospkg.RosPack()
-    reference = scipy.io.loadmat(os.path.join(rospack.get_path("planning_policy"), "src", "line_curve.mat"))['line_curve']
+    reference = scipy.io.loadmat(os.path.join(rospack.get_path("planning_policy"), "src", "sine_curve.mat"))['sine_curve']
     ref_x = reference[0][:]
     ref_y = reference[1][:]
     ref_y1 = reference[1][:] + 3.5

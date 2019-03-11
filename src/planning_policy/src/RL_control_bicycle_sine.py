@@ -44,8 +44,8 @@ def main():
     config['continue'] = True
     # construction configuration:
     # driver problem
-    config['env_type'] = 'driver,obstacles'
-    config['update_name'] = 'obstacles'
+    config['env_type'] = 'driver'
+    config['update_name'] = 'driver'
     config['e_update_type'] = 'regular'
     # network config:
     network_config(config, model_path)
@@ -57,7 +57,7 @@ def main():
     with g1.as_default():
         expert = Expert(model_path)
         expert.restore()
-    env = Driving(story_index=101, dt=0.02)
+    env = Driving(story_index=0, dt=0.02, track_data='sine_curve')
     P = np.array([[100, 0], [0, 1]])
     solvers.options['show_progress'] = False  # don't let cvxopt print iterations
 
@@ -72,8 +72,6 @@ def main():
     longi_acc_cmd_pub = rospy.Publisher('/vehicle/longi_acc_cmd', Float64, queue_size=1)
     yaw_rate_cmd_pub = rospy.Publisher('/vehicle/yaw_rate_cmd', Float64, queue_size=1)
     state_estimate_pub = rospy.Publisher('state_estimate', state_Dynamic, queue_size=1)
-    obstacle_pub1 = rospy.Publisher('obstacle1_pos', TrajectoryPoint2D, queue_size=1)
-    obstacle_pub2 = rospy.Publisher('obstacle2_pos', TrajectoryPoint2D, queue_size=1)
 
     dt = 0.02
     rate = rospy.Rate(1 / dt)
@@ -90,75 +88,17 @@ def main():
 
     for i in range(10000):
         steps += 1
-        """
-        env.ego_state_list.append(env.ego.state.copy())
-        for i in range(len(env.obstacles)):
-            env.obstacles[i].simulate()
-            env.obstacles_state_list[i].append(env.obstacles[i].state.copy())
-            """
-
-        obstacle1 = TrajectoryPoint2D()
-        obstacle1.t = 0
-        obstacle1.x = env.obstacles[0].state[0]
-        obstacle1.y = env.obstacles[0].state[1]
-        obstacle1.v = env.obstacles[0].state[2]
-        obstacle1.theta = env.obstacles[0].state[3]
-        obstacle_pub1.publish(obstacle1)
-
-        obstacle2 = TrajectoryPoint2D()
-        obstacle2.t = 0
-        obstacle2.x = env.obstacles[1].state[0]
-        obstacle2.y = env.obstacles[1].state[1]
-        obstacle2.v = env.obstacles[1].state[2]
-        obstacle2.theta = env.obstacles[1].state[3]
-        obstacle_pub2.publish(obstacle2)
 
         # get the initial observation and obstacle ref
         env.get_all_ref()
         ob = np.append(env.ego.state[2], env.ego_ref["tracks"][env.ego.track_select])
-        obstacle_ref_list = env.ego_ref["obstacles"]
 
         ac0 = expert.choose_action(ob)
         dudt0 = np.multiply(ac0[:, np.newaxis], np.array([[5], [0.5]]))
 
-        # extract parameters from obstacle_ref_list
-        data = {}
-        for attribute in all_attributes:
-            data[attribute] = np.vstack(env.ego_ref[attribute])[:, :-3]
-        means = network.predict_means(data)
-        # None, 3.
-        for attribute in all_attributes:
-            if attribute != 'obstacles':
-                means[attribute][:, 0] = abs(means[attribute][:, 0])
-                means[attribute][:, 1] = np.zeros([means[attribute].shape[0], 1])
-        means_array = np.vstack([means[attribute] for attribute in all_attributes])
-        M = means_array[:, :-1]
-        b = means_array[:, -1:]
-
-        try:
-            sol = solvers.qp(P=matrix(0.5 * P), q=matrix(- np.matmul(P, dudt0)), G=matrix(M), h=matrix(b))
-            dudt = sol['x']
-        except:
-            try:
-                # if dAger is not useful, transfer back.
-                # print("RL_planner:Something wrong with dAger run.")
-                num = len(obstacle_ref_list)
-                for i in range(num):
-                    obstacle_ref = obstacle_ref_list[i]
-                    A = obstacle_ref[10]
-                    B = obstacle_ref[11]
-                    C = obstacle_ref[12]
-                    M[i, 0] = A
-                    M[i, 1] = B
-                    b[i, 0] = -C
-                sol = solvers.qp(P=matrix(0.5 * P), q=matrix(- np.matmul(P, dudt0)), G=matrix(M), h=matrix(b))
-                dudt = sol['x']
-            except:
-                dudt = dudt0
-
         ac = np.zeros(2)
-        ac[0] = dudt[0] / 5
-        ac[1] = dudt[1]
+        ac[0] = dudt0[0] / 5
+        ac[1] = dudt0[1]
         np.clip(ac, -1, 1, out=ac)
         env.step(action=ac)
 
@@ -190,9 +130,9 @@ def main():
         state_report.wz = 0
         state_estimate_pub.publish(state_report)
 
-        # if steps == 1000:
-            # plot(env, 'tl1.png', T1=0, T2=9999, dt=33, tl='r')
-            #render(env, '/home/zhuoxu/RLRC/render_traj', show=False, debugview_bool=False)
+        if steps == 1000:
+            plot(env, 'tl1.png', T1=0, T2=999, dt=33, tl='r')
+            render(env, '/home/zhuoxu/RLRC/render_traj', show=False, debugview_bool=False)
 
         rate.sleep()
 

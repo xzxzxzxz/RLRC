@@ -163,18 +163,6 @@ def main():
         state_report.psi = env.ego.state[3]
         state_report.wz = 0
         state_estimate_pub.publish(state_report)
-
-        cmd_vel_stamped = TwistStamped()
-        cmd_vel_stamped.twist.linear.x = ac[0] * 5 * dt + vx
-        vel_cmd_pub.publish(cmd_vel_stamped)
-        longi_acc_cmd_pub.publish(ac[0])
-        yaw_rate_cmd_pub.publish(ac[1])
-        steering_cmd = SteeringCmd()
-        steering_cmd.enable = True
-        beta = asin(min(max(ac[1] * 0.5 * 1.65 / (vx+0.0000001), -1), 1))
-        delta = atan(tan(beta) * (1.65 + 1.20) / 1.65)
-        steering_cmd.steering_wheel_angle_cmd = delta * 14.8
-        steering_cmd_pub.publish(steering_cmd)
         # if steps == 1000:
             # plot(env, 'tl1.png', T1=0, T2=9999, dt=33, tl='r')
             #render(env, '/home/zhuoxu/RLRC/render_traj', show=False, debugview_bool=False)

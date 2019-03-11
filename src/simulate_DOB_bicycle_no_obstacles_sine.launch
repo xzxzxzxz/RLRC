@@ -1,0 +1,14 @@
+<launch>
+   <arg name="ds" default="5"/>
+   <param name="/comp_error/ds" value="$(arg ds)"/>
+   <!--node name="reconfigure_gui" pkg="rqt_reconfigure" type="rqt_reconfigure"/-->
+   <node name="plotter"  pkg="simu"  type="plotter_no_obstacles_sine.py" output="screen"/>
+   <node name="simu" pkg="simu" type="simu.py"/>
+   <node name="dob_ros"  pkg="dob_ros"  type="dob_ros_node"/>
+   <node name="comp_error"  pkg="controller"  type="comp_error_node_sim"/>
+   <node name="RL_planner_sine"  pkg="planning_policy"  type="RL_planner_sine.py"/>
+   <node name="RL_planner_vel_sine"  pkg="planning_policy"  type="RL_planner_vel_sine.py" output="screen"/>
+   <node name="ZOH"  pkg="planning_policy"  type="ZOH.py"/>
+</launch>
+
+
