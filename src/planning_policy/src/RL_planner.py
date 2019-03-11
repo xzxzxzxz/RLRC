@@ -23,7 +23,7 @@ wz = 0
 stateEstimate_mark = False
 laneChange = 0
 dt = 0.1
-env = Driving(story_index=7, dt=dt)
+env = Driving(story_index=1, dt=dt, track_data='sine_curve')
 
 def smooth(traj):
     x = []
@@ -99,8 +99,8 @@ def main(sim_steps):
     config['continue'] = True
     # construction configuration:
     # driver problem
-    config['env_type'] = 'driver,obstacles'
-    config['update_name'] = 'obstacles'
+    config['env_type'] = 'driver'
+    config['update_name'] = ''
     config['e_update_type'] = 'regular'
     # network config:
     network_config(config, model_path)

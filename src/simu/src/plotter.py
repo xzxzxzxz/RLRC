@@ -24,8 +24,8 @@ def pausecallback(signal):
 
 def vehicle_state_callback(data):
     global ax, i, ini_flag, obj1, obj2, obj3, obj4, obj5
-    if init_flag_obstacle * (pause_signal + 1):
-    # if init_flag_ref_traj * init_flag_smooth_traj * init_flag_obstacle * init_flag_ds_cg * (pause_signal + 1):
+    # if init_flag_obstacle * (pause_signal + 1):
+    if init_flag_ref_traj * init_flag_smooth_traj * init_flag_obstacle * init_flag_ds_cg * (pause_signal + 1):
         if ini_flag == 1:
             while len(ax.lines) > 2:
                 ax.lines.pop(2)
@@ -33,13 +33,13 @@ def vehicle_state_callback(data):
         if i >= 1:
             ini_flag = 1
         ax.plot(data.X, data.Y, color='red', marker='s', markersize=12)
-        #ax.plot(X2, Y2, color='green', marker='*', markersize=4)
-        #ax.plot(X5, Y5, color='orange', marker='.', markersize=2)
+        ax.plot(X2, Y2, color='green', marker='*', markersize=4)
+        ax.plot(X5, Y5, color='orange', marker='.', markersize=2)
         plt.axis('scaled')
         ax.axis([data.X - axis_range/2, data.X + axis_range, data.Y - axis_range_y/2, data.Y + axis_range_y])
         ax.plot(X3, Y3, color='blue', marker='s', markersize=12)
         ax.plot(X6, Y6, color='blue', marker='s', markersize=12)
-        #ax.plot(X4, Y4, color='black', marker='*', markersize=12)
+        ax.plot(X4, Y4, color='black', marker='*', markersize=12)
         ax.plot([data.X, X4], [data.Y, Y4], color='black')
         plt.draw()
         plt.pause(0.01)
@@ -91,7 +91,7 @@ def plotter():
     # initialize node
     rospy.init_node('plotter', anonymous=True)
     rospack = rospkg.RosPack()
-    reference = scipy.io.loadmat(os.path.join(rospack.get_path("planning_policy"), "src", "line_curve.mat"))['line_curve']
+    reference = scipy.io.loadmat(os.path.join(rospack.get_path("planning_policy"), "src", "sine_curve.mat"))['sine_curve']
     ref_x = reference[0][:]
     ref_y = reference[1][:]
     ref_y1 = reference[1][:] + 3.5
@@ -100,8 +100,8 @@ def plotter():
     ax.plot(ref_x, ref_y, color='green')
     ax.plot(ref_x, ref_y1, color='green')
     rospy.Subscriber('state_estimate', state_Dynamic, vehicle_state_callback, queue_size=1)
-    #rospy.Subscriber('final_trajectory', Trajectory2D, ref_traj_callback, queue_size=1)
-    #rospy.Subscriber('smooth_trajectory', Trajectory2D, smooth_traj_callback, queue_size=1)
+    rospy.Subscriber('final_trajectory', Trajectory2D, ref_traj_callback, queue_size=1)
+    rospy.Subscriber('smooth_trajectory', Trajectory2D, smooth_traj_callback, queue_size=1)
     rospy.Subscriber('obstacle1_pos', TrajectoryPoint2D, obstacle_state_callback, queue_size=1)
     rospy.Subscriber('obstacle2_pos', TrajectoryPoint2D, obstacle_state_callback2, queue_size=1)
     rospy.Subscriber('/vehicle/traj_cg', Trajectory2D, traj_cg_callback, queue_size=1)

@@ -53,8 +53,8 @@ def main():
     config['continue'] = True
     # construction configuration:
     # driver problem
-    config['env_type'] = 'driver,obstacles'
-    config['update_name'] = 'obstacles'
+    config['env_type'] = 'driver'
+    config['update_name'] = ''
     config['e_update_type'] = 'regular'
     # network config:
     network_config(config, model_path)
@@ -66,7 +66,7 @@ def main():
     with g1.as_default():
         expert = Expert(model_path)
         expert.restore()
-    env = Driving(story_index=101, dt=0.02)
+    env = Driving(story_index=1, dt=0.02, track_data='sine_curve')
     P = np.array([[100, 0], [0, 1]])
     solvers.options['show_progress'] = False  # don't let cvxopt print iterations
 
@@ -99,7 +99,7 @@ def main():
             for i in range(len(env.obstacles)):
                 env.obstacles[i].simulate()
                 env.obstacles_state_list[i].append(env.obstacles[i].state.copy())
-
+            """
             obstacle1 = TrajectoryPoint2D()
             obstacle1.t = 0
             obstacle1.x = env.obstacles[0].state[0]
@@ -114,7 +114,7 @@ def main():
             obstacle2.y = env.obstacles[1].state[1]
             obstacle2.v = env.obstacles[1].state[2]
             obstacle2.theta = env.obstacles[1].state[3]
-            obstacle_pub2.publish(obstacle2)
+            obstacle_pub2.publish(obstacle2)"""
 
             # get the initial observation and obstacle ref
             env.get_all_ref()

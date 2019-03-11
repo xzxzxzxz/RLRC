@@ -63,7 +63,7 @@ def main():
     with g1.as_default():
         expert = Expert(model_path)
         expert.restore()
-    env = Driving(story_index=101, dt=0.02)
+    env = Driving(story_index=107, dt=0.02)
     P = np.array([[100, 0], [0, 1]])
     solvers.options['show_progress'] = False  # don't let cvxopt print iterations
 
@@ -92,7 +92,7 @@ def main():
             env.ego.state = np.array([X, Y, vx, psi])
             env.ego_state_list.append(env.ego.state.copy())
             for i in range(len(env.obstacles)):
-                env.obstacles[i].simulate()
+                env.obstacles[i].simulate(ref=env.obstacles_ref[i])
                 env.obstacles_state_list[i].append(env.obstacles[i].state.copy())
 
             obstacle1 = TrajectoryPoint2D()
