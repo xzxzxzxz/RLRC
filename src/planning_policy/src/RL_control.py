@@ -16,6 +16,7 @@ import os, rospkg
 from driving_env.driving_utils import plot, render
 from path_follower.msg import state_Dynamic, Trajectory2D, TrajectoryPoint2D
 from math import asin, tan, atan
+from std_msgs.msg import Float64
 
 vx = 0
 vy = 0
@@ -78,6 +79,8 @@ def main():
     rospy.Subscriber('lane_signal', Int8, laneChangeCallback)
     vel_cmd_pub = rospy.Publisher('/vehicle/cmd_vel_stamped', TwistStamped, queue_size=1)
     steering_cmd_pub = rospy.Publisher('/vehicle/steering_cmd', SteeringCmd, queue_size=1)
+    longi_acc_cmd_pub = rospy.Publisher('/vehicle/longi_acc_cmd', Float64, queue_size=1)
+    yaw_rate_cmd_pub = rospy.Publisher('/vehicle/yaw_rate_cmd', Float64, queue_size=1)
     obstacle_pub1 = rospy.Publisher('obstacle1_pos', TrajectoryPoint2D, queue_size=1)
     obstacle_pub2 = rospy.Publisher('obstacle2_pos', TrajectoryPoint2D, queue_size=1)
 
@@ -164,6 +167,8 @@ def main():
             cmd_vel_stamped = TwistStamped()
             cmd_vel_stamped.twist.linear.x = ac[0] * 5 * dt + vx
             vel_cmd_pub.publish(cmd_vel_stamped)
+            longi_acc_cmd_pub.publish(ac[0])
+            yaw_rate_cmd_pub.publish(ac[1])
             steering_cmd = SteeringCmd()
             steering_cmd.enable = True
             beta = asin(min(max(ac[1] * 0.5 * 1.65 / (vx+0.0000001), -1), 1))

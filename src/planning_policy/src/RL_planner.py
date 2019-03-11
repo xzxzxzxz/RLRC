@@ -23,7 +23,7 @@ wz = 0
 stateEstimate_mark = False
 laneChange = 0
 dt = 0.1
-env = Driving(story_index=101, dt=dt)
+env = Driving(story_index=7, dt=dt)
 
 def smooth(traj):
     x = []
