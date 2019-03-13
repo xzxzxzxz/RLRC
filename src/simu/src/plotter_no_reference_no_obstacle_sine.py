@@ -38,8 +38,8 @@ def vehicle_state_callback(data):
         ax.axis([data.X - axis_range/2, data.X + axis_range, data.Y - axis_range_y/2, data.Y + axis_range_y])
         #ax.plot(X3, Y3, color='blue', marker='s', markersize=12)
         #ax.plot(X6, Y6, color='blue', marker='s', markersize=12)
-        ax.plot(X4, Y4, color='black', marker='*', markersize=12)
-        ax.plot([data.X, X4], [data.Y, Y4], color='black')
+        #ax.plot(X4, Y4, color='black', marker='*', markersize=12)
+        #ax.plot([data.X, X4], [data.Y, Y4], color='black')
         plt.draw()
         plt.pause(0.01)
 

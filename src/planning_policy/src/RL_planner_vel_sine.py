@@ -83,6 +83,7 @@ def main():
     # get the sim_env ready
     env.reset()
     steps = 0
+    reward = 0
 
     while (rospy.is_shutdown() != 1):
         if stateEstimate_mark:
@@ -119,10 +120,17 @@ def main():
             cmd_vel_stamped.twist.linear.x = (ac[0] - ac0[0]) * 5.
             vel_rl_pub.publish(cmd_vel_stamped)
 
-            if steps == 1000:
+            ac_reward = np.array([ac[0], wz/0.5])
+            np.clip(ac_reward, -1, 1, out=ac_reward)
+            r, done = env.get_reward_status(action=ac_reward)
+            reward += r
+
+            if steps == 1200:
+                print(reward, steps)
                 plot(env, 'tl1.png', T1=0, T2=999, dt=33, tl='r')
                 render(env, '/home/zhuoxu/RLRC/render_traj', show=False, debugview_bool=False)
-
+                break
+                
             rate.sleep()
 
 

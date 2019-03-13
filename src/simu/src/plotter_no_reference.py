@@ -14,7 +14,7 @@ axis_range_y = 10
 i = 0
 obj1 = [0]; obj2 = [0]; obj3 = 0; obj4 = 0; obj5=0
 ini_flag = 0; init_flag_ref_traj = 0; init_flag_smooth_traj = 0; init_flag_obstacle = 0; init_flag_ds_cg = 0
-X3 = 0; Y3 = 0; X4 = 0; Y4 = 0; X2 = []; Y2 = []; X5 = 0;Y5 = 0
+X3 = 0; Y3 = 0; X4 = 0; Y4 = 0; X2 = []; Y2 = []; X5 = 0; Y5 = 0; X6 = 0; Y6 = 0;
 pause_signal = 1
 
 def pausecallback(signal):
@@ -23,7 +23,7 @@ def pausecallback(signal):
         pause_signal = pause_signal*-1
 
 def vehicle_state_callback(data):
-    global ax, i, ini_flag, obj1, obj2, obj3, obj4, obj5
+    global ax, i, ini_flag, obj1, obj2, obj3, obj4, obj5, X3, Y3, X6, Y6
     if init_flag_obstacle * (pause_signal + 1):
     # if init_flag_ref_traj * init_flag_smooth_traj * init_flag_obstacle * init_flag_ds_cg * (pause_signal + 1):
         if ini_flag == 1:

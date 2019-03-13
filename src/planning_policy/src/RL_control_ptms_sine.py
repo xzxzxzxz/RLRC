@@ -75,9 +75,10 @@ def main():
     env.reset()
 
     steps = 0
+    reward = 0
     state_report = state_Dynamic()
 
-    for i in range(10000):
+    while (rospy.is_shutdown() != 1):
         steps += 1
 
         # get the initial observation and obstacle ref
@@ -92,7 +93,8 @@ def main():
         ac[1] = dudt0[1]
         np.clip(ac, -1, 1, out=ac)
         env.step(action=ac)
-
+        r, done = env.get_reward_status(action=ac)
+        reward += r
         state_report.vx = env.ego.state[2]
         state_report.vy = 0
         state_report.X = env.ego.state[0]
@@ -100,11 +102,11 @@ def main():
         state_report.psi = env.ego.state[3]
         state_report.wz = 0
         state_estimate_pub.publish(state_report)
-
-        if steps == 1000:
-            plot(env, 'tl1.png', T1=0, T2=999, dt=33, tl='r')
-            render(env, '/home/zhuoxu/RLRC/render_traj', show=False, debugview_bool=False)
-
+        if steps == 1200:
+            #plot(env, 'tl1.png', T1=0, T2=999, dt=33, tl='r')
+            #render(env, '/home/zhuoxu/RLRC/render_traj', show=False, debugview_bool=False)
+            print(reward, steps)
+            break
         rate.sleep()
 
 if __name__ == '__main__':

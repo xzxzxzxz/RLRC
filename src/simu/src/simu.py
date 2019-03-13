@@ -12,7 +12,7 @@ from dynamic_reconfigure.server import Server
 
 action = [0, 0]
 dt = 0.02
-car = vehicle(dt, False, 0, 500, False, 6, 0.3)
+car = vehicle(dt, False, 0, 500, False, 1, 0.45, 0)
 start_flag = False
 init_flag = 0
 
@@ -48,7 +48,6 @@ def simu():
     rospy.loginfo("simulator node starts")
     # state=[558586.699614032, 4196501.20232720, 1.25432777404785, 5, 0, 0, 0]
     state = [20, 0, 0, 10, 0, 0, 0]
-    obs0 = [55, ]
     #state = [0, 1, 0, 10, 0, 0, 0]
     #state = [558641.76, 4196659.62, 1.25, 5, 0, 0, 0]
     car.setState(state)
