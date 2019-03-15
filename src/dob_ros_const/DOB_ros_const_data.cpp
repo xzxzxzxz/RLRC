@@ -9,7 +9,7 @@
  *
  * Model version              : 1.241
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Fri Mar 15 13:41:47 2019
+ * C++ source code generated on : Fri Mar 15 13:57:21 2019
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -46,7 +46,7 @@ P_DOB_ros_const_T DOB_ros_const_P = {
   /* Variable: kc12
    * Referenced by: '<Root>/Gain1'
    */
-  0.1F,
+  0.0F,
 
   /* Variable: kc2
    * Referenced by: '<Root>/Gain5'
