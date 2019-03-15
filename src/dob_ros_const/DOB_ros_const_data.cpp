@@ -9,7 +9,7 @@
  *
  * Model version              : 1.241
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Thu Feb 28 11:58:52 2019
+ * C++ source code generated on : Fri Mar 15 13:41:47 2019
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -46,12 +46,12 @@ P_DOB_ros_const_T DOB_ros_const_P = {
   /* Variable: kc12
    * Referenced by: '<Root>/Gain1'
    */
-  0.2F,
+  0.1F,
 
   /* Variable: kc2
    * Referenced by: '<Root>/Gain5'
    */
-  0.5F,
+  0.4F,
 
   /* Variable: steering_ratio
    * Referenced by: '<S2>/Gain1'
@@ -198,12 +198,12 @@ P_DOB_ros_const_T DOB_ros_const_P = {
   /* Expression: NQ{1}
    * Referenced by: '<Root>/Q1'
    */
-  { 0.15F, 0.0F, 0.0F },
+  { 0.1F, 0.0F, 0.0F },
 
   /* Expression: DQ{1}
    * Referenced by: '<Root>/Q1'
    */
-  { 1.0F, -1.0F, 0.15F },
+  { 1.0F, -1.0F, 0.1F },
 
   /* Computed Parameter: Q1_InitialStates
    * Referenced by: '<Root>/Q1'
