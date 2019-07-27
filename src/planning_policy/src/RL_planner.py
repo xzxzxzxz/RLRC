@@ -101,7 +101,7 @@ def main(sim_steps, sim_steps2):
     with g1.as_default():
         expert = Expert(model_path)
         expert.restore()
-    env = Driving(story_index=100, track_data='long_straight', lane_deviation=9.5, dt=dt)
+    env = Driving(story_index=100, track_data='long_straight', lane_deviation=9.1, dt=dt)
     P = np.array([[100, 0], [0, 1]])
     solvers.options['show_progress'] = False  # don't let cvxopt print iterations
 
@@ -233,7 +233,8 @@ def main(sim_steps, sim_steps2):
             obstacle.v = env.obstacles[0].state[2]
             obstacle.theta = env.obstacles[0].state[3]
             obstacle_pub.publish(obstacle)
-
+	    
+            '''
             for i in range(sim_steps2):
                 pt = TrajectoryPoint2D()
                 pt.t = i * dt
@@ -285,11 +286,11 @@ def main(sim_steps, sim_steps2):
 
             smooth_traj = smooth(traj)
             ref_traj_pub2.publish(smooth_traj)
-
+	    '''
             rate.sleep()
 
 if __name__ == '__main__':
     try: 
-        main(30, 80)
+        main(60, 0)
     except rospy.ROSInterruptException:
         pass 

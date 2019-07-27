@@ -19,7 +19,7 @@ from numpy import sign, argmin, sqrt
 from math import atan2
 import rospy
 
-# discrete non-linear bicycle model dynamics
+## discrete non-linear bicycle model dynamics
 def f_2s(z, u, vhMdl, trMdl, dt, v_x): 
     """
     process model
@@ -50,7 +50,7 @@ def f_2s(z, u, vhMdl, trMdl, dt, v_x):
     r_next      = r    + dt/I_z*(a*FyF*cos(d_f) - b*FyR);
     return array([beta_next, r_next])
 
-# discrete non-linear bicycle model dynamics
+## discrete non-linear bicycle model dynamics
 def f_3s(z, u, vhMdl, trMdl, F_ext, dt): 
     """
     process model
@@ -99,7 +99,7 @@ def f_3s(z, u, vhMdl, trMdl, F_ext, dt):
 
     return array([v_x_next, v_y_next, r_next])
 
-# discrete non-linear bicycle model dynamics 6-dof
+## discrete non-linear bicycle model dynamics 6-dof
 def f_6s(z, u, vhMdl, trMdl, F_ext, dt): 
     """
     process model

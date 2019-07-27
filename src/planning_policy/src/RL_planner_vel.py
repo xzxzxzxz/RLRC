@@ -60,7 +60,7 @@ def main():
     with g1.as_default():
         expert = Expert(model_path)
         expert.restore()
-    env = Driving(story_index=100, track_data='long_straight', lane_deviation=9.5, dt=0.02)
+    env = Driving(story_index=100, track_data='long_straight', lane_deviation=9.1, dt=0.02)
     P = np.array([[100, 0], [0, 1]])
     solvers.options['show_progress'] = False  # don't let cvxopt print iterations
 
