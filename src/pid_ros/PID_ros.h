@@ -9,7 +9,7 @@
  *
  * Model version              : 1.191
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Fri Mar 15 13:56:32 2019
+ * C++ source code generated on : Sat Jul 27 16:31:44 2019
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -73,6 +73,9 @@ struct P_PID_ros_T_ {
   real32_T kc12;                       /* Variable: kc12
                                         * Referenced by: '<Root>/Gain1'
                                         */
+  real32_T kc2;                        /* Variable: kc2
+                                        * Referenced by: '<Root>/Gain5'
+                                        */
   real32_T steering_ratio;             /* Variable: steering_ratio
                                         * Referenced by: '<S1>/Gain1'
                                         */
@@ -91,9 +94,6 @@ struct P_PID_ros_T_ {
   SL_Bus_PID_ros_controller_TrackingInfo Constant_Value_j1;/* Computed Parameter: Constant_Value_j1
                                                             * Referenced by: '<S3>/Constant'
                                                             */
-  real32_T Gain5_Gain;                 /* Computed Parameter: Gain5_Gain
-                                        * Referenced by: '<Root>/Gain5'
-                                        */
   boolean_T Constant_Value_i;          /* Computed Parameter: Constant_Value_i
                                         * Referenced by: '<S1>/Constant'
                                         */
