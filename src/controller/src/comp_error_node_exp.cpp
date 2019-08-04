@@ -17,6 +17,7 @@ path_follower::TrajectoryPoint2D prev_ref_point;
 
 bool received_traj_flag = false, received_state_flag = false, ref_point_flag = false;
 double ds;
+double Q;
 bool sys_enable_;
 
 void StateCallback(const path_follower::state_Dynamic msg) 
@@ -40,11 +41,6 @@ void TrajCallback(const path_follower::Trajectory2D msg)
   }
 }
 
-void DynamicCallback(controller::DynamicParamConfig &config, uint32_t level)
-{
-  ds = config.ds;
-}
-
 void EnableCallback(const std_msgs::Bool::ConstPtr& msg)
 {
   sys_enable_ = msg->data;
@@ -57,15 +53,16 @@ int main(int argc, char **argv)
   ros::Subscriber sub_state = n.subscribe("state_estimate", 1, StateCallback); 
   ros::Subscriber sub_traj  = n.subscribe("final_trajectory_origin", 1, TrajCallback);
   ros::Subscriber sub_enable_ = n.subscribe("vehicle/dbw_enabled", 1, EnableCallback);
-  dynamic_reconfigure::Server<controller::DynamicParamConfig> server;
-  dynamic_reconfigure::Server<controller::DynamicParamConfig>::CallbackType f;
-  f = boost::bind(&DynamicCallback, _1, _2);
-  server.setCallback(f);
 
   ros::Publisher error_pub = n.advertise<controller::TrackingInfo>("tracking_info", 1); 
   ros::Publisher error_old_pub = n.advertise<controller::TrackingInfo>("tracking_info_old", 1); 
   ros::Publisher traj_cg_pub = n.advertise<path_follower::Trajectory2D>("/vehicle/traj_cg", 1);
   ros::Publisher traj_new_pub = n.advertise<path_follower::Trajectory2D>("smooth_trajectory", 1);
+  
+  ros::NodeHandle node_handle("~");
+  node_handle.getParam("ds", ds);
+  node_handle.getParam("Q", Q);
+
   ros::Rate loop_rate(50);
 
   //geometry_msgs::TwistStamped cmd_vel_stamped;
@@ -94,10 +91,12 @@ int main(int argc, char **argv)
       tracking_info.dy = error_msg[0] * factor;
       tracking_info.dtheta = error_msg[1] * factor;
       tracking_info.kappa = error_msg[6];
+      tracking_info.Q = Q;
       tracking_info_old.v = v;
       tracking_info_old.dy = error_msg_old[0];
       tracking_info_old.dtheta = error_msg_old[1];
       tracking_info_old.kappa = error_msg_old[6];
+      tracking_info_old.Q = Q;
       cg_point.x = error_msg[7];
       cg_point.y = error_msg[8];
       ds_point.x = error_msg[7];

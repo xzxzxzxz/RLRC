@@ -7,9 +7,9 @@
  *
  * Code generation for model "DOB_ros_const".
  *
- * Model version              : 1.241
+ * Model version              : 1.244
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Sat Jul 27 16:33:28 2019
+ * C++ source code generated on : Sat Aug  3 16:06:32 2019
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -108,6 +108,7 @@ typedef struct {
   real32_T Kappa;
   real32_T Dy;
   real32_T Dtheta;
+  real32_T Q;
 } SL_Bus_DOB_ros_const_controller_TrackingInfo;
 
 #endif

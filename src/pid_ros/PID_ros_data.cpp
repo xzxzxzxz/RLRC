@@ -9,7 +9,7 @@
  *
  * Model version              : 1.191
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Sat Jul 27 16:31:44 2019
+ * C++ source code generated on : Sat Aug  3 16:01:14 2019
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -134,7 +134,29 @@ P_PID_ros_T PID_ros_P = {
     }                                  /* Header */
   },
 
+  /* Computed Parameter: Out1_Y0_n
+   * Referenced by: '<S7>/Out1'
+   */
+  {
+    0.0F,                              /* V */
+    0.0F,                              /* Kappa */
+    0.0F,                              /* Dy */
+    0.0F,                              /* Dtheta */
+    0.0F                               /* Q */
+  },
+
   /* Computed Parameter: Constant_Value_j
+   * Referenced by: '<S3>/Constant'
+   */
+  {
+    0.0F,                              /* V */
+    0.0F,                              /* Kappa */
+    0.0F,                              /* Dy */
+    0.0F,                              /* Dtheta */
+    0.0F                               /* Q */
+  },
+
+  /* Computed Parameter: Constant_Value_jb
    * Referenced by: '<S4>/Constant'
    */
   {
@@ -145,26 +167,6 @@ P_PID_ros_T PID_ros_P = {
     false,                             /* Ignore */
     false,                             /* Quiet */
     0U                                 /* Count */
-  },
-
-  /* Computed Parameter: Out1_Y0_n
-   * Referenced by: '<S7>/Out1'
-   */
-  {
-    0.0F,                              /* V */
-    0.0F,                              /* Kappa */
-    0.0F,                              /* Dy */
-    0.0F                               /* Dtheta */
-  },
-
-  /* Computed Parameter: Constant_Value_j1
-   * Referenced by: '<S3>/Constant'
-   */
-  {
-    0.0F,                              /* V */
-    0.0F,                              /* Kappa */
-    0.0F,                              /* Dy */
-    0.0F                               /* Dtheta */
   },
 
   /* Computed Parameter: Constant_Value_i

@@ -7,9 +7,9 @@
  *
  * Code generation for model "DOB_ros_const".
  *
- * Model version              : 1.241
+ * Model version              : 1.244
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Sat Jul 27 16:33:28 2019
+ * C++ source code generated on : Sat Aug  3 16:06:32 2019
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -46,10 +46,10 @@
 
 /* Block signals (auto storage) */
 typedef struct {
-  SL_Bus_DOB_ros_const_dbw_mkz_msgs_SteeringReport In1;/* '<S9>/In1' */
+  SL_Bus_DOB_ros_const_dbw_mkz_msgs_SteeringReport In1;/* '<S10>/In1' */
   SL_Bus_DOB_ros_const_dbw_mkz_msgs_SteeringReport b_varargout_2;
   char_T cv0[25];
-  SL_Bus_DOB_ros_const_controller_TrackingInfo In1_i;/* '<S10>/In1' */
+  SL_Bus_DOB_ros_const_controller_TrackingInfo In1_i;/* '<S11>/In1' */
   SL_Bus_DOB_ros_const_controller_TrackingInfo b_varargout_2_m;
 } B_DOB_ros_const_T;
 
@@ -57,15 +57,16 @@ typedef struct {
 typedef struct {
   real32_T D1_states[5];               /* '<Root>/D1' */
   real32_T Delay1_DSTATE[2];           /* '<Root>/Delay1' */
-  real32_T Q1_states[2];               /* '<Root>/Q1' */
-  robotics_slros_internal_block_T obj; /* '<S8>/SinkBlock' */
-  robotics_slros_internal_block_T obj_f;/* '<S6>/SinkBlock' */
-  robotics_slros_internal_blo_d_T obj_a;/* '<S4>/SourceBlock' */
-  robotics_slros_internal_blo_d_T obj_ax;/* '<S3>/SourceBlock' */
-  boolean_T objisempty;                /* '<S4>/SourceBlock' */
-  boolean_T objisempty_n;              /* '<S3>/SourceBlock' */
-  boolean_T objisempty_k;              /* '<S8>/SinkBlock' */
-  boolean_T objisempty_f;              /* '<S6>/SinkBlock' */
+  real32_T Delay1_DSTATE_j;            /* '<S2>/Delay1' */
+  real32_T Delay2_DSTATE;              /* '<S2>/Delay2' */
+  robotics_slros_internal_block_T obj; /* '<S9>/SinkBlock' */
+  robotics_slros_internal_block_T obj_f;/* '<S7>/SinkBlock' */
+  robotics_slros_internal_blo_d_T obj_a;/* '<S5>/SourceBlock' */
+  robotics_slros_internal_blo_d_T obj_ax;/* '<S4>/SourceBlock' */
+  boolean_T objisempty;                /* '<S5>/SourceBlock' */
+  boolean_T objisempty_n;              /* '<S4>/SourceBlock' */
+  boolean_T objisempty_k;              /* '<S9>/SinkBlock' */
+  boolean_T objisempty_f;              /* '<S7>/SinkBlock' */
 } DW_DOB_ros_const_T;
 
 /* Parameters (auto storage) */
@@ -77,7 +78,7 @@ struct P_DOB_ros_const_T_ {
                                         * Referenced by: '<Root>/D1'
                                         */
   real32_T dt_ros_single;              /* Variable: dt_ros_single
-                                        * Referenced by: '<S2>/Gain'
+                                        * Referenced by: '<S3>/Gain'
                                         */
   real32_T kc11;                       /* Variable: kc11
                                         * Referenced by: '<Root>/Gain3'
@@ -89,25 +90,25 @@ struct P_DOB_ros_const_T_ {
                                         * Referenced by: '<Root>/Gain5'
                                         */
   real32_T steering_ratio;             /* Variable: steering_ratio
-                                        * Referenced by: '<S2>/Gain1'
+                                        * Referenced by: '<S3>/Gain1'
                                         */
   SL_Bus_DOB_ros_const_dbw_mkz_msgs_SteeringReport Out1_Y0;/* Computed Parameter: Out1_Y0
-                                                            * Referenced by: '<S9>/Out1'
+                                                            * Referenced by: '<S10>/Out1'
                                                             */
   SL_Bus_DOB_ros_const_dbw_mkz_msgs_SteeringReport Constant_Value;/* Computed Parameter: Constant_Value
-                                                                   * Referenced by: '<S3>/Constant'
+                                                                   * Referenced by: '<S4>/Constant'
                                                                    */
-  SL_Bus_DOB_ros_const_dbw_mkz_msgs_SteeringCmd Constant_Value_j;/* Computed Parameter: Constant_Value_j
-                                                                  * Referenced by: '<S7>/Constant'
-                                                                  */
   SL_Bus_DOB_ros_const_controller_TrackingInfo Out1_Y0_n;/* Computed Parameter: Out1_Y0_n
-                                                          * Referenced by: '<S10>/Out1'
+                                                          * Referenced by: '<S11>/Out1'
                                                           */
-  SL_Bus_DOB_ros_const_controller_TrackingInfo Constant_Value_j1;/* Computed Parameter: Constant_Value_j1
-                                                                  * Referenced by: '<S4>/Constant'
-                                                                  */
+  SL_Bus_DOB_ros_const_controller_TrackingInfo Constant_Value_j;/* Computed Parameter: Constant_Value_j
+                                                                 * Referenced by: '<S5>/Constant'
+                                                                 */
+  SL_Bus_DOB_ros_const_dbw_mkz_msgs_SteeringCmd Constant_Value_jb;/* Computed Parameter: Constant_Value_jb
+                                                                   * Referenced by: '<S8>/Constant'
+                                                                   */
   SL_Bus_DOB_ros_const_controller_DobInfo Constant_Value_k;/* Computed Parameter: Constant_Value_k
-                                                            * Referenced by: '<S5>/Constant'
+                                                            * Referenced by: '<S6>/Constant'
                                                             */
   real32_T D1_InitialStates;           /* Computed Parameter: D1_InitialStates
                                         * Referenced by: '<Root>/D1'
@@ -115,20 +116,26 @@ struct P_DOB_ros_const_T_ {
   real32_T Delay1_InitialCondition;    /* Computed Parameter: Delay1_InitialCondition
                                         * Referenced by: '<Root>/Delay1'
                                         */
-  real32_T Q1_NumCoef[3];              /* Expression: NQ{1}
-                                        * Referenced by: '<Root>/Q1'
+  real32_T Gain_Gain;                  /* Computed Parameter: Gain_Gain
+                                        * Referenced by: '<Root>/Gain'
                                         */
-  real32_T Q1_DenCoef[3];              /* Expression: DQ{1}
-                                        * Referenced by: '<Root>/Q1'
+  real32_T Delay1_InitialCondition_h;  /* Computed Parameter: Delay1_InitialCondition_h
+                                        * Referenced by: '<S2>/Delay1'
                                         */
-  real32_T Q1_InitialStates;           /* Computed Parameter: Q1_InitialStates
-                                        * Referenced by: '<Root>/Q1'
+  real32_T Constant_Value_km;          /* Computed Parameter: Constant_Value_km
+                                        * Referenced by: '<Root>/Constant'
+                                        */
+  real32_T Constant1_Value;            /* Computed Parameter: Constant1_Value
+                                        * Referenced by: '<Root>/Constant1'
+                                        */
+  real32_T Delay2_InitialCondition;    /* Computed Parameter: Delay2_InitialCondition
+                                        * Referenced by: '<S2>/Delay2'
                                         */
   uint32_T Delay1_DelayLength;         /* Computed Parameter: Delay1_DelayLength
                                         * Referenced by: '<Root>/Delay1'
                                         */
   boolean_T Constant_Value_i;          /* Computed Parameter: Constant_Value_i
-                                        * Referenced by: '<S2>/Constant'
+                                        * Referenced by: '<S3>/Constant'
                                         */
 };
 
@@ -203,14 +210,15 @@ extern "C" {
  *
  * '<Root>' : 'DOB_ros_const'
  * '<S1>'   : 'DOB_ros_const/DOB Info'
- * '<S2>'   : 'DOB_ros_const/Enabled Subsystem1'
- * '<S3>'   : 'DOB_ros_const/Subscribe'
- * '<S4>'   : 'DOB_ros_const/Subscribe1'
- * '<S5>'   : 'DOB_ros_const/DOB Info/Blank Message'
- * '<S6>'   : 'DOB_ros_const/DOB Info/Publish'
- * '<S7>'   : 'DOB_ros_const/Enabled Subsystem1/Blank Message'
- * '<S8>'   : 'DOB_ros_const/Enabled Subsystem1/Publish'
- * '<S9>'   : 'DOB_ros_const/Subscribe/Enabled Subsystem'
- * '<S10>'  : 'DOB_ros_const/Subscribe1/Enabled Subsystem'
+ * '<S2>'   : 'DOB_ros_const/Discrete Varying Transfer Function'
+ * '<S3>'   : 'DOB_ros_const/Enabled Subsystem1'
+ * '<S4>'   : 'DOB_ros_const/Subscribe'
+ * '<S5>'   : 'DOB_ros_const/Subscribe1'
+ * '<S6>'   : 'DOB_ros_const/DOB Info/Blank Message'
+ * '<S7>'   : 'DOB_ros_const/DOB Info/Publish'
+ * '<S8>'   : 'DOB_ros_const/Enabled Subsystem1/Blank Message'
+ * '<S9>'   : 'DOB_ros_const/Enabled Subsystem1/Publish'
+ * '<S10>'  : 'DOB_ros_const/Subscribe/Enabled Subsystem'
+ * '<S11>'  : 'DOB_ros_const/Subscribe1/Enabled Subsystem'
  */
 #endif                                 /* RTW_HEADER_DOB_ros_const_h_ */

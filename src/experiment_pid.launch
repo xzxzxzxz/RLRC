@@ -1,9 +1,10 @@
 <launch>
-   <arg name="ds" default="10"/>
-   <param name="/comp_error/ds" value="$(arg ds)"/>
    <!--node name="reconfigure_gui" pkg="rqt_reconfigure" type="rqt_reconfigure" output="screen" /-->
    <node name="plotter"  pkg="simu"  type="plotter.py" output="screen"/>
-   <node name="comp_error"  pkg="controller"  type="comp_error_node_exp" output="screen"/>
+   <node name="comp_error"  pkg="controller"  type="comp_error_node_exp" output="screen">
+	<param name="ds" value="5.0"/>
+	<param name="Q" value="0.05"/>
+   </node>
    <node name="pid_ros"  pkg="pid_ros"  type="pid_ros_node" output="screen"/>
    <node name="RL_planner"  pkg="planning_policy"  type="RL_planner.py" output="screen"/>
    <node name="RL_planner_vel"  pkg="planning_policy"  type="RL_planner_vel.py" output="screen"/>

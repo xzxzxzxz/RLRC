@@ -9,7 +9,7 @@
  *
  * Model version              : 1.191
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Sat Jul 27 16:31:44 2019
+ * C++ source code generated on : Sat Aug  3 16:01:14 2019
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -85,15 +85,15 @@ struct P_PID_ros_T_ {
   SL_Bus_PID_ros_dbw_mkz_msgs_SteeringReport Constant_Value;/* Computed Parameter: Constant_Value
                                                              * Referenced by: '<S2>/Constant'
                                                              */
-  SL_Bus_PID_ros_dbw_mkz_msgs_SteeringCmd Constant_Value_j;/* Computed Parameter: Constant_Value_j
-                                                            * Referenced by: '<S4>/Constant'
-                                                            */
   SL_Bus_PID_ros_controller_TrackingInfo Out1_Y0_n;/* Computed Parameter: Out1_Y0_n
                                                     * Referenced by: '<S7>/Out1'
                                                     */
-  SL_Bus_PID_ros_controller_TrackingInfo Constant_Value_j1;/* Computed Parameter: Constant_Value_j1
-                                                            * Referenced by: '<S3>/Constant'
-                                                            */
+  SL_Bus_PID_ros_controller_TrackingInfo Constant_Value_j;/* Computed Parameter: Constant_Value_j
+                                                           * Referenced by: '<S3>/Constant'
+                                                           */
+  SL_Bus_PID_ros_dbw_mkz_msgs_SteeringCmd Constant_Value_jb;/* Computed Parameter: Constant_Value_jb
+                                                             * Referenced by: '<S4>/Constant'
+                                                             */
   boolean_T Constant_Value_i;          /* Computed Parameter: Constant_Value_i
                                         * Referenced by: '<S1>/Constant'
                                         */

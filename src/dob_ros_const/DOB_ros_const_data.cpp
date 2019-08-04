@@ -7,9 +7,9 @@
  *
  * Code generation for model "DOB_ros_const".
  *
- * Model version              : 1.241
+ * Model version              : 1.244
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Sat Jul 27 16:33:28 2019
+ * C++ source code generated on : Sat Aug  3 16:06:32 2019
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -26,15 +26,15 @@ P_DOB_ros_const_T DOB_ros_const_P = {
   /* Variable: Dd
    * Referenced by: '<Root>/D1'
    */
-  { 1.0F, -2.80551648F, 2.62303F, -0.817465305F, 0.0F, 0.0F },
+  { 1.0F, -2.66997576F, 2.35075307F, -0.680739403F, 0.0F, 0.0F },
 
   /* Variable: Dn
    * Referenced by: '<Root>/D1'
    */
-  { 2.35688782F, -8.59427643F, 11.7149496F, -7.07462788F, 1.59706867F, 0.0F },
+  { 1.30035F, -4.36258268F, 5.42075491F, -2.95516133F, 0.596639276F, 0.0F },
 
   /* Variable: dt_ros_single
-   * Referenced by: '<S2>/Gain'
+   * Referenced by: '<S3>/Gain'
    */
   0.02F,
 
@@ -54,12 +54,12 @@ P_DOB_ros_const_T DOB_ros_const_P = {
   0.5F,
 
   /* Variable: steering_ratio
-   * Referenced by: '<S2>/Gain1'
+   * Referenced by: '<S3>/Gain1'
    */
   14.8F,
 
   /* Computed Parameter: Out1_Y0
-   * Referenced by: '<S9>/Out1'
+   * Referenced by: '<S10>/Out1'
    */
   {
     0.0F,                              /* SteeringWheelAngle */
@@ -102,7 +102,7 @@ P_DOB_ros_const_T DOB_ros_const_P = {
   },
 
   /* Computed Parameter: Constant_Value
-   * Referenced by: '<S3>/Constant'
+   * Referenced by: '<S4>/Constant'
    */
   {
     0.0F,                              /* SteeringWheelAngle */
@@ -144,8 +144,30 @@ P_DOB_ros_const_T DOB_ros_const_P = {
     }                                  /* Header */
   },
 
+  /* Computed Parameter: Out1_Y0_n
+   * Referenced by: '<S11>/Out1'
+   */
+  {
+    0.0F,                              /* V */
+    0.0F,                              /* Kappa */
+    0.0F,                              /* Dy */
+    0.0F,                              /* Dtheta */
+    0.0F                               /* Q */
+  },
+
   /* Computed Parameter: Constant_Value_j
-   * Referenced by: '<S7>/Constant'
+   * Referenced by: '<S5>/Constant'
+   */
+  {
+    0.0F,                              /* V */
+    0.0F,                              /* Kappa */
+    0.0F,                              /* Dy */
+    0.0F,                              /* Dtheta */
+    0.0F                               /* Q */
+  },
+
+  /* Computed Parameter: Constant_Value_jb
+   * Referenced by: '<S8>/Constant'
    */
   {
     0.0F,                              /* SteeringWheelAngleCmd */
@@ -157,28 +179,8 @@ P_DOB_ros_const_T DOB_ros_const_P = {
     0U                                 /* Count */
   },
 
-  /* Computed Parameter: Out1_Y0_n
-   * Referenced by: '<S10>/Out1'
-   */
-  {
-    0.0F,                              /* V */
-    0.0F,                              /* Kappa */
-    0.0F,                              /* Dy */
-    0.0F                               /* Dtheta */
-  },
-
-  /* Computed Parameter: Constant_Value_j1
-   * Referenced by: '<S4>/Constant'
-   */
-  {
-    0.0F,                              /* V */
-    0.0F,                              /* Kappa */
-    0.0F,                              /* Dy */
-    0.0F                               /* Dtheta */
-  },
-
   /* Computed Parameter: Constant_Value_k
-   * Referenced by: '<S5>/Constant'
+   * Referenced by: '<S6>/Constant'
    */
   {
     0.0F,                              /* DEst */
@@ -195,18 +197,28 @@ P_DOB_ros_const_T DOB_ros_const_P = {
    */
   0.0F,
 
-  /* Expression: NQ{1}
-   * Referenced by: '<Root>/Q1'
+  /* Computed Parameter: Gain_Gain
+   * Referenced by: '<Root>/Gain'
    */
-  { 0.08F, 0.0F, 0.0F },
+  1.0F,
 
-  /* Expression: DQ{1}
-   * Referenced by: '<Root>/Q1'
+  /* Computed Parameter: Delay1_InitialCondition_h
+   * Referenced by: '<S2>/Delay1'
    */
-  { 1.0F, -1.0F, 0.08F },
+  0.0F,
 
-  /* Computed Parameter: Q1_InitialStates
-   * Referenced by: '<Root>/Q1'
+  /* Computed Parameter: Constant_Value_km
+   * Referenced by: '<Root>/Constant'
+   */
+  -1.0F,
+
+  /* Computed Parameter: Constant1_Value
+   * Referenced by: '<Root>/Constant1'
+   */
+  0.0F,
+
+  /* Computed Parameter: Delay2_InitialCondition
+   * Referenced by: '<S2>/Delay2'
    */
   0.0F,
 
@@ -216,7 +228,7 @@ P_DOB_ros_const_T DOB_ros_const_P = {
   2U,
 
   /* Computed Parameter: Constant_Value_i
-   * Referenced by: '<S2>/Constant'
+   * Referenced by: '<S3>/Constant'
    */
   1
 };
