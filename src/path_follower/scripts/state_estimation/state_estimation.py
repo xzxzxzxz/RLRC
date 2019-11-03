@@ -34,8 +34,6 @@ Y_meas        = 0
 ax_meas       = 0
 ay_meas       = 0
 delta_meas    = 0
-X_meas_prev   = 0
-Y_meas_prev   = 0
 
 relative_quaternion = zeros((1,4))
 quaternion          = (0,0,0,0)
@@ -46,61 +44,56 @@ GPS_initialize      = 0
 IMU_start           = 0
 
 def RelativeOrientationCallback(data):
-    global relative_quaternion
-    global Yaw_initialize
-    relative_quaternion = (data.x,data.y,data.z,data.w)
-    Yaw_initialize = 1
+	global relative_quaternion
+	global Yaw_initialize
+	relative_quaternion = (data.x,data.y,data.z,data.w)
+	Yaw_initialize = 1
 
 def SteeringReportCallback(data):
-    global Vx_meas
-    global delta_meas
-    Vx_meas = data.speed
-    delta_meas = data.steering_wheel_angle / 14.8
+	global Vx_meas
+	global delta_meas
+	Vx_meas = data.speed
+	delta_meas = data.steering_wheel_angle / 14.8
 
 def CurrentPose2DCallback(data):
-    global Yaw_meas, X_meas, Y_meas, X_meas_prev, Y_meas_prev
-    global GPS_read, GPS_initialize
-    Yaw_meas = data.theta
-    X_meas = data.x 
-    Y_meas = data.y
-    if abs(Vx_meas) > 0.01 and X_meas == X_meas_prev and Y_meas == Y_meas:
-        GPS_read = 0
-    else:
-        GPS_read = 1
-    X_meas_prev = X_meas
-    Y_meas_prev = Y_meas
-    GPS_initialize = 1
+	global Yaw_meas, X_meas, Y_meas
+	global GPS_read, GPS_initialize
+	Yaw_meas = data.theta
+	X_meas = data.x 
+	Y_meas = data.y 
+	GPS_read = 1
+	GPS_initialize = 1
 
 def IMUCallback(data):
-    global Yaw_meas, Yaw_meas_prev, Yawrate_meas
-    global IMU_time, IMU_time_prev
-    global Yaw_initialize, IMU_start
-    global ax_meas, ay_meas
-    global quaternion_prev, quaternion
+	global Yaw_meas, Yaw_meas_prev, Yawrate_meas
+	global IMU_time, IMU_time_prev
+	global Yaw_initialize, IMU_start
+	global ax_meas, ay_meas
+	global quaternion_prev, quaternion
 
-    ori        = data.orientation
-    quaternion = (ori.x, ori.y, ori.z, ori.w)
+	ori        = data.orientation
+	quaternion = (ori.x, ori.y, ori.z, ori.w)
 
-    if Yaw_initialize == 0:
-        (roll, pitch, Yaw_meas)      = transformations.euler_from_quaternion(quaternion)
-    else:
-        actual_quaternion            = transformations.quaternion_multiply(quaternion,relative_quaternion)
-        (roll, pitch, Yaw_meas)      = transformations.euler_from_quaternion(actual_quaternion)
-        (roll, pitch, Yaw_meas_prev) = transformations.euler_from_quaternion(transformations.quaternion_multiply(quaternion_prev, relative_quaternion))
+	if Yaw_initialize == 0:
+		(roll, pitch, Yaw_meas)      = transformations.euler_from_quaternion(quaternion)
+	else:
+		actual_quaternion            = transformations.quaternion_multiply(quaternion,relative_quaternion)
+		(roll, pitch, Yaw_meas)      = transformations.euler_from_quaternion(actual_quaternion)
+		(roll, pitch, Yaw_meas_prev) = transformations.euler_from_quaternion(transformations.quaternion_multiply(quaternion_prev, relative_quaternion))
 
-    IMU_time = float(str(data.header.stamp))
+	IMU_time = float(str(data.header.stamp))
 
-    if IMU_start == 0:
-        IMU_start    = 1
-    else:
-        Yawrate_meas = (Yaw_meas-Yaw_meas_prev)/(IMU_time-IMU_time_prev)
+	if IMU_start == 0:
+		IMU_start    = 1
+	else:
+		Yawrate_meas = (Yaw_meas-Yaw_meas_prev)/(IMU_time-IMU_time_prev)
 
-    Yaw_meas_prev    = Yaw_meas
-    quaternion_prev  = quaternion
-    IMU_time_prev    = IMU_time
+	Yaw_meas_prev    = Yaw_meas
+	quaternion_prev  = quaternion
+	IMU_time_prev    = IMU_time
 
-    ax_meas          = data.linear_acceleration.x
-    ay_meas          = data.linear_acceleration.y
+	ax_meas          = data.linear_acceleration.x
+	ay_meas          = data.linear_acceleration.y
 
 def state_estimation():
     global Vx_meas, Yaw_meas, X_meas, Y_meas, delta_meas
@@ -115,10 +108,10 @@ def state_estimation():
     rospy.Subscriber('vehicle/steering_report', SteeringReport, SteeringReportCallback)
     rospy.Subscriber('current_pose_2D', Pose2D, CurrentPose2DCallback)
     rospy.Subscriber('relative_quaternion', Quaternion , RelativeOrientationCallback)
-    state_pub = rospy.Publisher('state_estimate_sim', state_Dynamic, queue_size = 10)
+    state_pub = rospy.Publisher('state_estimate', state_Dynamic, queue_size = 10)
 
     # set node rate
-    loop_rate = 50
+    loop_rate = 100
     dt        = 1.0 / loop_rate
     rate      = rospy.Rate(loop_rate)
 
@@ -130,66 +123,65 @@ def state_estimation():
     state_est_obj    = state_Dynamic()
 
     # estimation variables for EKF
-    var_gps   = 1.0e-05
+    var_gps   = 1.0e-06
     var_v     = 1.0e-04
-    var_psi   = 1.0e-04
+    var_psi   = 1.0e-06
 
-    var_ax    = 1.0e-03
-    var_ay    = 1.0e-03
-    var_delta = 1.0e-02
-    var_noise = 1.0e-01
+    var_ax    = 1.0e-04
+    var_delta = 1.0e-04
+    var_noise = 1.0e-04
 
     P         = eye(6)    # initial dynamics coveriance matrix
     Q         = diag(array([var_ax, var_delta, var_noise, var_noise, var_noise, var_noise]))     # process noise coveriance matrix
     R2         = diag(array([var_v, var_gps, var_gps, var_psi]))     # measurement noise coveriance matrix
-    R1         = diag(array([var_v, var_psi, var_ay]))
+    R1         = diag(array([var_v, var_psi]))
 
     while (rospy.is_shutdown() != 1):
 
         #print((Yaw_initialize, GPS_initialize))
 
-        if Yaw_initialize == 0 or GPS_initialize == 0:
+    	if Yaw_initialize == 0 or GPS_initialize == 0:
+            print("not initialized")
+            print(Yaw_initialize)
+            print(GPS_initialize)
             rate.sleep()
             continue
 
-        elif state_initialize == 0:
-            z_EKF            = array([Vx_meas, 0, X_meas, Y_meas, Yaw_meas, Yawrate_meas])
-            state_est        = z_EKF
-            state_initialize = 1
+    	elif state_initialize == 0:
+    		z_EKF            = array([Vx_meas, 0, X_meas, Y_meas, Yaw_meas, Yawrate_meas])
+    		state_est        = z_EKF
+    		state_initialize = 1
 
-        else:
-            factor = 1.0
-            if abs(Vx_meas) < 0.01:
-                factor = 0.0
-            u_ekf      = array([ax_meas*factor, delta_meas*factor])
-            w_ekf      = array([0., 0., 0., 0., 0., 0.])
-            args       = (u_ekf, vhMdl, trMdl, dt)
-            z_EKF_prev = z_EKF
+    	else:
+    		u_ekf      = array([ax_meas, delta_meas])
+    		w_ekf      = array([0., 0., 0., 0., 0., 0.])
+    		args       = (u_ekf, vhMdl, trMdl, dt)
+    		z_EKF_prev = z_EKF
 
-            if GPS_read == 0:
-                y_ekf      = array([Vx_meas*factor, Yaw_meas*factor + z_EKF[4]*(1.-factor), ay_meas*factor])
-                v_ekf      = array([0.,0.,0.])
-                (z_EKF, P) = ekf(f_BicycleModel, z_EKF, w_ekf, v_ekf, P, h_BicycleModel_withoutGPS, y_ekf, Q, R1, args)
-            else:
-                y_ekf      = array([Vx_meas, X_meas, Y_meas, Yaw_meas])
-                v_ekf      = array([0.,0.,0.,0.])
+    		if GPS_read == 0:
+    			y_ekf      = array([Vx_meas, Yaw_meas])
+    			v_ekf      = array([0.,0.])
+    			(z_EKF, P) = ekf(f_BicycleModel, z_EKF, w_ekf, v_ekf, P, h_BicycleModel_withoutGPS, y_ekf, Q, R1, args)
+    		else:
+    			y_ekf      = array([Vx_meas, X_meas, Y_meas, Yaw_meas])
+    			v_ekf      = array([0.,0.,0.,0.])
 
-                (z_EKF, P) = ekf(f_BicycleModel, z_EKF, w_ekf, v_ekf, P, h_BicycleModel_withGPS, y_ekf, Q, R2, args)
-                GPS_read   = 0
-            
-            state_est = z_EKF
+    			(z_EKF, P) = ekf(f_BicycleModel, z_EKF, w_ekf, v_ekf, P, h_BicycleModel_withGPS, y_ekf, Q, R2, args)
+    			GPS_read   = 0
+    		
+    		state_est = z_EKF
 
-        state_est_obj.vx = state_est[0]
-        state_est_obj.vy = state_est[1]
-        state_est_obj.X  = state_est[2]
-        state_est_obj.Y  = state_est[3]
-        state_est_obj.psi= state_est[4]
-        state_est_obj.wz = state_est[5]
-        state_pub.publish(state_est_obj)    
+    	state_est_obj.vx = state_est[0]
+    	state_est_obj.vy = state_est[1]
+    	state_est_obj.X  = state_est[2]
+    	state_est_obj.Y  = state_est[3]
+    	state_est_obj.psi= state_est[4]
+    	state_est_obj.wz = state_est[5]
+        state_pub.publish(state_est_obj)	
         rate.sleep()
 
 if __name__ == '__main__':
-    try:
-        state_estimation()
-    except rospy.ROSInterruptException:
-        pass
+	try:
+		state_estimation()
+	except rospy.ROSInterruptException:
+		pass

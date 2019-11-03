@@ -26,7 +26,7 @@ dy = 0;
 steering_ratio = 14.8;
 
 kc11 = single(1);
-kc12 = single(0.02);
+kc12 = single(0);
 % Discrete time ss (output: beta_s & dphidt)
 a1f = @(v, dphi, dy, kappa) [kappa*sin(dphi)/(1-kappa*dy), -kappa^2*v*cos(dphi)/(1-kappa*dy)^2, kappa*sin(dphi)/(1-kappa*dy), 1+kappa*ds*sin(dphi)/(1-kappa*dy)];
 a2f = @(v, dphi, dy, kappa) [v*cos(dphi), 0, cos(dphi), ds*cos(dphi)]; 
