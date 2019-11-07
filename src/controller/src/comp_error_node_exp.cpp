@@ -18,6 +18,7 @@ path_follower::TrajectoryPoint2D prev_ref_point;
 bool received_traj_flag = false, received_state_flag = false, ref_point_flag = false;
 double ds;
 double Q;
+double K;
 bool sys_enable_;
 
 void StateCallback(const path_follower::state_Dynamic msg) 
@@ -62,6 +63,7 @@ int main(int argc, char **argv)
   ros::NodeHandle node_handle("~");
   node_handle.getParam("ds", ds);
   node_handle.getParam("Q", Q);
+  node_handle.getParam("K", K);
 
   ros::Rate loop_rate(50);
 
@@ -92,11 +94,13 @@ int main(int argc, char **argv)
       tracking_info.dtheta = error_msg[1] * factor;
       tracking_info.kappa = error_msg[6];
       tracking_info.Q = Q;
+      tracking_info.K = K;
       tracking_info_old.v = v;
       tracking_info_old.dy = error_msg_old[0];
       tracking_info_old.dtheta = error_msg_old[1];
       tracking_info_old.kappa = error_msg_old[6];
       tracking_info_old.Q = Q;
+      tracking_info_old.K = K;
       cg_point.x = error_msg[7];
       cg_point.y = error_msg[8];
       ds_point.x = error_msg[7];

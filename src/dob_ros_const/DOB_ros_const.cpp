@@ -9,7 +9,7 @@
  *
  * Model version              : 1.244
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Sat Aug  3 16:06:32 2019
+ * C++ source code generated on : Thu Nov  7 11:44:19 2019
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -123,11 +123,11 @@ void DOB_ros_const_step(void)
 
   /* Sum: '<Root>/subtract3' incorporates:
    *  Gain: '<Root>/Gain1'
-   *  Gain: '<Root>/Gain5'
+   *  Product: '<Root>/Product'
    *  Sum: '<Root>/Sum3'
    */
   rtb_Gain3 = rtb_Sum1 - (DOB_ros_const_P.kc12 * DOB_ros_const_B.In1_i.Dy +
-    rtb_Gain3) * DOB_ros_const_P.kc2;
+    rtb_Gain3) * DOB_ros_const_B.In1_i.K;
 
   /* Outputs for Atomic SubSystem: '<Root>/Subscribe' */
   /* MATLABSystem: '<S4>/SourceBlock' incorporates:

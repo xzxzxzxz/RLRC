@@ -4,6 +4,7 @@
    <node name="comp_error"  pkg="controller"  type="comp_error_node_exp" output="screen">
 	<param name="ds" value="5.0"/>
 	<param name="Q" value="0.05"/>
+	<param name="K" value="0.5"/>					
    </node>
    <node name="RL_planner"  pkg="planning_policy"  type="RL_planner.py" output="screen"/>
    <node name="RL_control"  pkg="planning_policy"  type="RL_control.py" output="screen"/>

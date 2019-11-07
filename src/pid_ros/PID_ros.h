@@ -7,9 +7,9 @@
  *
  * Code generation for model "PID_ros".
  *
- * Model version              : 1.191
+ * Model version              : 1.195
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Sat Aug  3 16:01:14 2019
+ * C++ source code generated on : Thu Nov  7 11:42:13 2019
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -72,9 +72,6 @@ struct P_PID_ros_T_ {
                                         */
   real32_T kc12;                       /* Variable: kc12
                                         * Referenced by: '<Root>/Gain1'
-                                        */
-  real32_T kc2;                        /* Variable: kc2
-                                        * Referenced by: '<Root>/Gain5'
                                         */
   real32_T steering_ratio;             /* Variable: steering_ratio
                                         * Referenced by: '<S1>/Gain1'

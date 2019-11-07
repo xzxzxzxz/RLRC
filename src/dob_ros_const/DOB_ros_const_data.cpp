@@ -9,7 +9,7 @@
  *
  * Model version              : 1.244
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Sat Aug  3 16:06:32 2019
+ * C++ source code generated on : Thu Nov  7 11:44:19 2019
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -26,12 +26,12 @@ P_DOB_ros_const_T DOB_ros_const_P = {
   /* Variable: Dd
    * Referenced by: '<Root>/D1'
    */
-  { 1.0F, -2.66997576F, 2.35075307F, -0.680739403F, 0.0F, 0.0F },
+  { 1.0F, -2.67396355F, 2.35742831F, -0.683464766F, 0.0F, 0.0F },
 
   /* Variable: Dn
    * Referenced by: '<Root>/D1'
    */
-  { 1.30035F, -4.36258268F, 5.42075491F, -2.95516133F, 0.596639276F, 0.0F },
+  { 1.30312014F, -4.37187672F, 5.43230295F, -2.96145678F, 0.597910345F, 0.0F },
 
   /* Variable: dt_ros_single
    * Referenced by: '<S3>/Gain'
@@ -46,12 +46,7 @@ P_DOB_ros_const_T DOB_ros_const_P = {
   /* Variable: kc12
    * Referenced by: '<Root>/Gain1'
    */
-  0.02F,
-
-  /* Variable: kc2
-   * Referenced by: '<Root>/Gain5'
-   */
-  0.5F,
+  0.0F,
 
   /* Variable: steering_ratio
    * Referenced by: '<S3>/Gain1'
@@ -152,7 +147,8 @@ P_DOB_ros_const_T DOB_ros_const_P = {
     0.0F,                              /* Kappa */
     0.0F,                              /* Dy */
     0.0F,                              /* Dtheta */
-    0.0F                               /* Q */
+    0.0F,                              /* Q */
+    0.0F                               /* K */
   },
 
   /* Computed Parameter: Constant_Value_j
@@ -163,7 +159,8 @@ P_DOB_ros_const_T DOB_ros_const_P = {
     0.0F,                              /* Kappa */
     0.0F,                              /* Dy */
     0.0F,                              /* Dtheta */
-    0.0F                               /* Q */
+    0.0F,                              /* Q */
+    0.0F                               /* K */
   },
 
   /* Computed Parameter: Constant_Value_jb

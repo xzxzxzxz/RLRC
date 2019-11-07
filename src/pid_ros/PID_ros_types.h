@@ -7,9 +7,9 @@
  *
  * Code generation for model "PID_ros".
  *
- * Model version              : 1.191
+ * Model version              : 1.195
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Sat Aug  3 16:01:14 2019
+ * C++ source code generated on : Thu Nov  7 11:42:13 2019
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -99,6 +99,7 @@ typedef struct {
   real32_T Dy;
   real32_T Dtheta;
   real32_T Q;
+  real32_T K;
 } SL_Bus_PID_ros_controller_TrackingInfo;
 
 #endif

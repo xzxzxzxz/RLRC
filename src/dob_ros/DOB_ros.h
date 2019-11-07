@@ -7,9 +7,9 @@
  *
  * Code generation for model "DOB_ros".
  *
- * Model version              : 1.251
+ * Model version              : 1.252
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Sat Aug  3 16:51:02 2019
+ * C++ source code generated on : Thu Nov  7 11:40:24 2019
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -184,9 +184,6 @@ struct P_DOB_ros_T_ {
                                         */
   real32_T kc12;                       /* Variable: kc12
                                         * Referenced by: '<Root>/Gain1'
-                                        */
-  real32_T kc2;                        /* Variable: kc2
-                                        * Referenced by: '<Root>/Gain5'
                                         */
   real32_T steering_ratio;             /* Variable: steering_ratio
                                         * Referenced by: '<S3>/Gain1'

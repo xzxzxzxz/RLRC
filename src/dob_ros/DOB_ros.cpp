@@ -7,9 +7,9 @@
  *
  * Code generation for model "DOB_ros".
  *
- * Model version              : 1.251
+ * Model version              : 1.252
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Sat Aug  3 16:51:02 2019
+ * C++ source code generated on : Thu Nov  7 11:40:24 2019
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -151,7 +151,7 @@ void DOB_ros_step(void)
   real32_T rtb_Gain3;
 
   /* Outputs for Atomic SubSystem: '<Root>/Subscribe1' */
-  /* MATLABSystem: '<S5>/SourceBlock' incorporates:
+  /* Start for MATLABSystem: '<S5>/SourceBlock' incorporates:
    *  Inport: '<S12>/In1'
    */
   b_varargout_1 = Sub_DOB_ros_262.getLatestMessage(&DOB_ros_B.b_varargout_2_m);
@@ -210,7 +210,7 @@ void DOB_ros_step(void)
    *  EnablePort: '<S1>/Enable'
    */
   /* Outputs for Atomic SubSystem: '<Root>/Subscribe1' */
-  /* MATLABSystem: '<S5>/SourceBlock' */
+  /* Start for MATLABSystem: '<S5>/SourceBlock' */
   if (b_varargout_1) {
     /* BusAssignment: '<S1>/Bus Assignment' */
     DOB_ros_B.BusAssignment_o.DEst = rtb_Sum4;
@@ -228,11 +228,11 @@ void DOB_ros_step(void)
 
   /* Sum: '<Root>/subtract3' incorporates:
    *  Gain: '<Root>/Gain1'
-   *  Gain: '<Root>/Gain5'
+   *  Product: '<Root>/Product'
    *  Sum: '<Root>/Sum3'
    */
   rtb_subtract3 = rtb_Sum1 - (DOB_ros_P.kc12 * DOB_ros_B.In1_l.Dy + rtb_Gain3) *
-    DOB_ros_P.kc2;
+    DOB_ros_B.In1_l.K;
 
   /* Outputs for Atomic SubSystem: '<Root>/Subscribe' */
   /* Start for MATLABSystem: '<S4>/SourceBlock' incorporates:
@@ -255,7 +255,7 @@ void DOB_ros_step(void)
    *  EnablePort: '<S3>/Enable'
    */
   /* Outputs for Atomic SubSystem: '<Root>/Subscribe1' */
-  /* MATLABSystem: '<S5>/SourceBlock' */
+  /* Start for MATLABSystem: '<S5>/SourceBlock' */
   if (b_varargout_1) {
     /* Gain: '<S3>/Gain1' */
     rtb_Gain1_e = DOB_ros_P.steering_ratio * rtb_subtract3;
@@ -659,12 +659,12 @@ void DOB_ros_initialize(void)
 void DOB_ros_terminate(void)
 {
   /* Terminate for Atomic SubSystem: '<Root>/Subscribe1' */
-  /* Terminate for MATLABSystem: '<S5>/SourceBlock' */
+  /* Start for MATLABSystem: '<S5>/SourceBlock' */
   if (DOB_ros_DW.obj_n.isInitialized == 1) {
     DOB_ros_DW.obj_n.isInitialized = 2;
   }
 
-  /* End of Terminate for MATLABSystem: '<S5>/SourceBlock' */
+  /* End of Start for MATLABSystem: '<S5>/SourceBlock' */
   /* End of Terminate for SubSystem: '<Root>/Subscribe1' */
 
   /* Terminate for Enabled SubSystem: '<Root>/DOB Info' */
