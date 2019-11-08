@@ -126,8 +126,8 @@ path_follower::Trajectory2D Transient(const path_follower::Trajectory2D traj, co
     //cout<<x_ref((i+1)*2, 0)<<','<<x_ref((i+1)*2+1, 0)<<endl;
   }
 
-  double w1 = 0;
-  double w2 = 50;
+  double w1 = 70;
+  double w2 = 10;
   double factor = 0.01;
   MatrixXd V((num_points-1)*2, (num_points+1)*2);
   MatrixXd A((num_points-1)*2, (num_points+1)*2);
