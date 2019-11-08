@@ -7,9 +7,9 @@
  *
  * Code generation for model "PID_ros".
  *
- * Model version              : 1.195
+ * Model version              : 1.196
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Thu Nov  7 11:42:13 2019
+ * C++ source code generated on : Thu Nov  7 19:09:53 2019
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -48,8 +48,8 @@
 typedef struct {
   SL_Bus_PID_ros_dbw_mkz_msgs_SteeringReport In1;/* '<S6>/In1' */
   SL_Bus_PID_ros_dbw_mkz_msgs_SteeringReport b_varargout_2;
-  char_T cv0[25];
   SL_Bus_PID_ros_controller_TrackingInfo In1_i;/* '<S7>/In1' */
+  char_T cv0[25];
 } B_PID_ros_T;
 
 /* Block states (auto storage) for system '<Root>' */
@@ -69,9 +69,6 @@ struct P_PID_ros_T_ {
                                         */
   real32_T kc11;                       /* Variable: kc11
                                         * Referenced by: '<Root>/Gain3'
-                                        */
-  real32_T kc12;                       /* Variable: kc12
-                                        * Referenced by: '<Root>/Gain1'
                                         */
   real32_T steering_ratio;             /* Variable: steering_ratio
                                         * Referenced by: '<S1>/Gain1'

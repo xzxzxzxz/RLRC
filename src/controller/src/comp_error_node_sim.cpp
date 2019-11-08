@@ -18,6 +18,7 @@ bool received_traj_flag = false, received_state_flag = false, ref_point_flag = f
 double ds;
 double Q;
 double K;
+double K12;
 
 void StateCallback(const path_follower::state_Dynamic msg) 
 {
@@ -56,6 +57,7 @@ int main(int argc, char **argv)
   node_handle.getParam("ds", ds);
   node_handle.getParam("Q", Q);
   node_handle.getParam("K", K);
+  node_handle.getParam("K12", K12);  
 
   ros::Rate loop_rate(50);
 
@@ -85,12 +87,14 @@ int main(int argc, char **argv)
       tracking_info.kappa = error_msg[6];
       tracking_info.Q = Q;
       tracking_info.K = K;
+      tracking_info.K12 = K12;
       tracking_info_old.v = v;
       tracking_info_old.dy = error_msg_old[0];
       tracking_info_old.dtheta = error_msg_old[1];
       tracking_info_old.kappa = error_msg_old[6];
       tracking_info_old.Q = Q;
       tracking_info_old.K = K;
+      tracking_info_old.K12 = K12;
       cg_point.x = error_msg[7];
       cg_point.y = error_msg[8];
       ds_point.x = error_msg[7];

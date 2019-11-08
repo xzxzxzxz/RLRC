@@ -7,9 +7,9 @@
  *
  * Code generation for model "DOB_ros_const".
  *
- * Model version              : 1.244
+ * Model version              : 1.246
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Thu Nov  7 11:44:19 2019
+ * C++ source code generated on : Thu Nov  7 19:10:44 2019
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -43,7 +43,7 @@ void DOB_ros_const_step(void)
   SL_Bus_DOB_ros_const_controller_DobInfo rtb_BusAssignment_o;
   real32_T rtb_Sum1;
   real32_T rtb_Sum4;
-  real32_T rtb_Gain1_e;
+  real32_T rtb_Gain1;
   real32_T rtb_Gain_j;
   real32_T rtb_Gain3;
   real32_T D1_tmp;
@@ -122,11 +122,11 @@ void DOB_ros_const_step(void)
   /* End of Outputs for SubSystem: '<Root>/DOB Info' */
 
   /* Sum: '<Root>/subtract3' incorporates:
-   *  Gain: '<Root>/Gain1'
    *  Product: '<Root>/Product'
+   *  Product: '<Root>/Product1'
    *  Sum: '<Root>/Sum3'
    */
-  rtb_Gain3 = rtb_Sum1 - (DOB_ros_const_P.kc12 * DOB_ros_const_B.In1_i.Dy +
+  rtb_Gain3 = rtb_Sum1 - (DOB_ros_const_B.In1_i.K12 * DOB_ros_const_B.In1_i.Dy +
     rtb_Gain3) * DOB_ros_const_B.In1_i.K;
 
   /* Outputs for Atomic SubSystem: '<Root>/Subscribe' */
@@ -154,7 +154,7 @@ void DOB_ros_const_step(void)
   /* MATLABSystem: '<S5>/SourceBlock' */
   if (b_varargout_1) {
     /* Gain: '<S3>/Gain1' */
-    rtb_Gain1_e = DOB_ros_const_P.steering_ratio * rtb_Gain3;
+    rtb_Gain1 = DOB_ros_const_P.steering_ratio * rtb_Gain3;
 
     /* BusAssignment: '<S3>/Bus Assignment' incorporates:
      *  Constant: '<S3>/Constant'
@@ -163,9 +163,9 @@ void DOB_ros_const_step(void)
      *  Sum: '<S3>/Subtract'
      */
     rtb_BusAssignment = DOB_ros_const_P.Constant_Value_jb;
-    rtb_BusAssignment.SteeringWheelAngleCmd = rtb_Gain1_e;
+    rtb_BusAssignment.SteeringWheelAngleCmd = rtb_Gain1;
     rtb_BusAssignment.SteeringWheelAngleVelocity = 1.0F /
-      DOB_ros_const_P.dt_ros_single * (rtb_Gain1_e -
+      DOB_ros_const_P.dt_ros_single * (rtb_Gain1 -
       DOB_ros_const_B.In1.SteeringWheelAngle);
     rtb_BusAssignment.Enable = DOB_ros_const_P.Constant_Value_i;
 

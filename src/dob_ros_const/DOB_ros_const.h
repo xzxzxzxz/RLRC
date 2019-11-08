@@ -7,9 +7,9 @@
  *
  * Code generation for model "DOB_ros_const".
  *
- * Model version              : 1.244
+ * Model version              : 1.246
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Thu Nov  7 11:44:19 2019
+ * C++ source code generated on : Thu Nov  7 19:10:44 2019
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -48,9 +48,9 @@
 typedef struct {
   SL_Bus_DOB_ros_const_dbw_mkz_msgs_SteeringReport In1;/* '<S10>/In1' */
   SL_Bus_DOB_ros_const_dbw_mkz_msgs_SteeringReport b_varargout_2;
-  char_T cv0[25];
   SL_Bus_DOB_ros_const_controller_TrackingInfo In1_i;/* '<S11>/In1' */
   SL_Bus_DOB_ros_const_controller_TrackingInfo b_varargout_2_m;
+  char_T cv0[25];
 } B_DOB_ros_const_T;
 
 /* Block states (auto storage) for system '<Root>' */
@@ -82,9 +82,6 @@ struct P_DOB_ros_const_T_ {
                                         */
   real32_T kc11;                       /* Variable: kc11
                                         * Referenced by: '<Root>/Gain3'
-                                        */
-  real32_T kc12;                       /* Variable: kc12
-                                        * Referenced by: '<Root>/Gain1'
                                         */
   real32_T steering_ratio;             /* Variable: steering_ratio
                                         * Referenced by: '<S3>/Gain1'

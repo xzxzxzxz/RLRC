@@ -7,9 +7,9 @@
  *
  * Code generation for model "DOB_ros".
  *
- * Model version              : 1.252
+ * Model version              : 1.254
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Thu Nov  7 11:40:24 2019
+ * C++ source code generated on : Thu Nov  7 19:06:59 2019
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -147,11 +147,11 @@ void DOB_ros_step(void)
   real32_T rtb_subtract3;
   real32_T rtb_Sum1;
   real32_T rtb_Sum4;
-  real32_T rtb_Gain1_e;
+  real32_T rtb_Gain1;
   real32_T rtb_Gain3;
 
   /* Outputs for Atomic SubSystem: '<Root>/Subscribe1' */
-  /* Start for MATLABSystem: '<S5>/SourceBlock' incorporates:
+  /* MATLABSystem: '<S5>/SourceBlock' incorporates:
    *  Inport: '<S12>/In1'
    */
   b_varargout_1 = Sub_DOB_ros_262.getLatestMessage(&DOB_ros_B.b_varargout_2_m);
@@ -210,14 +210,14 @@ void DOB_ros_step(void)
    *  EnablePort: '<S1>/Enable'
    */
   /* Outputs for Atomic SubSystem: '<Root>/Subscribe1' */
-  /* Start for MATLABSystem: '<S5>/SourceBlock' */
+  /* MATLABSystem: '<S5>/SourceBlock' */
   if (b_varargout_1) {
     /* BusAssignment: '<S1>/Bus Assignment' */
     DOB_ros_B.BusAssignment_o.DEst = rtb_Sum4;
     DOB_ros_B.BusAssignment_o.DCancel = rtb_Sum1;
 
     /* Outputs for Atomic SubSystem: '<S1>/Publish' */
-    /* Start for MATLABSystem: '<S8>/SinkBlock' */
+    /* MATLABSystem: '<S8>/SinkBlock' */
     Pub_DOB_ros_209.publish(&DOB_ros_B.BusAssignment_o);
 
     /* End of Outputs for SubSystem: '<S1>/Publish' */
@@ -227,15 +227,15 @@ void DOB_ros_step(void)
   /* End of Outputs for SubSystem: '<Root>/DOB Info' */
 
   /* Sum: '<Root>/subtract3' incorporates:
-   *  Gain: '<Root>/Gain1'
    *  Product: '<Root>/Product'
+   *  Product: '<Root>/Product1'
    *  Sum: '<Root>/Sum3'
    */
-  rtb_subtract3 = rtb_Sum1 - (DOB_ros_P.kc12 * DOB_ros_B.In1_l.Dy + rtb_Gain3) *
-    DOB_ros_B.In1_l.K;
+  rtb_subtract3 = rtb_Sum1 - (DOB_ros_B.In1_l.K12 * DOB_ros_B.In1_l.Dy +
+    rtb_Gain3) * DOB_ros_B.In1_l.K;
 
   /* Outputs for Atomic SubSystem: '<Root>/Subscribe' */
-  /* Start for MATLABSystem: '<S4>/SourceBlock' incorporates:
+  /* MATLABSystem: '<S4>/SourceBlock' incorporates:
    *  Inport: '<S11>/In1'
    */
   b_varargout_1_0 = Sub_DOB_ros_191.getLatestMessage(&DOB_ros_B.b_varargout_2);
@@ -247,7 +247,7 @@ void DOB_ros_step(void)
     DOB_ros_B.In1 = DOB_ros_B.b_varargout_2;
   }
 
-  /* End of Start for MATLABSystem: '<S4>/SourceBlock' */
+  /* End of MATLABSystem: '<S4>/SourceBlock' */
   /* End of Outputs for SubSystem: '<S4>/Enabled Subsystem' */
   /* End of Outputs for SubSystem: '<Root>/Subscribe' */
 
@@ -255,10 +255,10 @@ void DOB_ros_step(void)
    *  EnablePort: '<S3>/Enable'
    */
   /* Outputs for Atomic SubSystem: '<Root>/Subscribe1' */
-  /* Start for MATLABSystem: '<S5>/SourceBlock' */
+  /* MATLABSystem: '<S5>/SourceBlock' */
   if (b_varargout_1) {
     /* Gain: '<S3>/Gain1' */
-    rtb_Gain1_e = DOB_ros_P.steering_ratio * rtb_subtract3;
+    rtb_Gain1 = DOB_ros_P.steering_ratio * rtb_subtract3;
 
     /* BusAssignment: '<S3>/Bus Assignment' incorporates:
      *  Constant: '<S3>/Constant'
@@ -267,13 +267,13 @@ void DOB_ros_step(void)
      *  Sum: '<S3>/Subtract'
      */
     DOB_ros_B.BusAssignment = DOB_ros_P.Constant_Value_j;
-    DOB_ros_B.BusAssignment.SteeringWheelAngleCmd = rtb_Gain1_e;
+    DOB_ros_B.BusAssignment.SteeringWheelAngleCmd = rtb_Gain1;
     DOB_ros_B.BusAssignment.SteeringWheelAngleVelocity = 1.0F /
-      DOB_ros_P.dt_ros_single * (rtb_Gain1_e - DOB_ros_B.In1.SteeringWheelAngle);
+      DOB_ros_P.dt_ros_single * (rtb_Gain1 - DOB_ros_B.In1.SteeringWheelAngle);
     DOB_ros_B.BusAssignment.Enable = DOB_ros_P.Constant_Value_i;
 
     /* Outputs for Atomic SubSystem: '<S3>/Publish' */
-    /* Start for MATLABSystem: '<S10>/SinkBlock' */
+    /* MATLABSystem: '<S10>/SinkBlock' */
     Pub_DOB_ros_152.publish(&DOB_ros_B.BusAssignment);
 
     /* End of Outputs for SubSystem: '<S3>/Publish' */
@@ -299,7 +299,7 @@ void DOB_ros_step(void)
     &rtb_uDLookupTable8, &DOB_ros_DW.m_bpIndex_l[3U]);
   DOB_ros_B.fractions_g[3U] = rtb_uDLookupTable8;
   DOB_ros_B.bpIndices_c[3U] = bpIdx;
-  rtb_Gain1_e = intrp4d_fu32fl_pw(DOB_ros_B.bpIndices_c, DOB_ros_B.fractions_g,
+  rtb_Gain1 = intrp4d_fu32fl_pw(DOB_ros_B.bpIndices_c, DOB_ros_B.fractions_g,
     DOB_ros_P.a1, DOB_ros_P.uDLookupTable1_dimSizes);
 
   /* Lookup_n-D: '<S6>/2-D Lookup Table2' */
@@ -449,7 +449,7 @@ void DOB_ros_step(void)
    *  UnitDelay: '<S13>/Delay2'
    */
   DOB_ros_DW.Delay1_DSTATE = (rtb_Gain3 * rtb_uDLookupTable2 +
-    DOB_ros_DW.Delay2_DSTATE_m) - rtb_Sum1_e * rtb_Gain1_e;
+    DOB_ros_DW.Delay2_DSTATE_m) - rtb_Sum1_e * rtb_Gain1;
 
   /* Update for Delay: '<Root>/Delay1' */
   DOB_ros_DW.Delay1_DSTATE_a[0] = DOB_ros_DW.Delay1_DSTATE_a[1];
@@ -659,42 +659,42 @@ void DOB_ros_initialize(void)
 void DOB_ros_terminate(void)
 {
   /* Terminate for Atomic SubSystem: '<Root>/Subscribe1' */
-  /* Start for MATLABSystem: '<S5>/SourceBlock' */
+  /* Terminate for MATLABSystem: '<S5>/SourceBlock' */
   if (DOB_ros_DW.obj_n.isInitialized == 1) {
     DOB_ros_DW.obj_n.isInitialized = 2;
   }
 
-  /* End of Start for MATLABSystem: '<S5>/SourceBlock' */
+  /* End of Terminate for MATLABSystem: '<S5>/SourceBlock' */
   /* End of Terminate for SubSystem: '<Root>/Subscribe1' */
 
   /* Terminate for Enabled SubSystem: '<Root>/DOB Info' */
   /* Terminate for Atomic SubSystem: '<S1>/Publish' */
-  /* Start for MATLABSystem: '<S8>/SinkBlock' */
+  /* Terminate for MATLABSystem: '<S8>/SinkBlock' */
   if (DOB_ros_DW.obj_f.isInitialized == 1) {
     DOB_ros_DW.obj_f.isInitialized = 2;
   }
 
-  /* End of Start for MATLABSystem: '<S8>/SinkBlock' */
+  /* End of Terminate for MATLABSystem: '<S8>/SinkBlock' */
   /* End of Terminate for SubSystem: '<S1>/Publish' */
   /* End of Terminate for SubSystem: '<Root>/DOB Info' */
 
   /* Terminate for Atomic SubSystem: '<Root>/Subscribe' */
-  /* Start for MATLABSystem: '<S4>/SourceBlock' */
+  /* Terminate for MATLABSystem: '<S4>/SourceBlock' */
   if (DOB_ros_DW.obj_a.isInitialized == 1) {
     DOB_ros_DW.obj_a.isInitialized = 2;
   }
 
-  /* End of Start for MATLABSystem: '<S4>/SourceBlock' */
+  /* End of Terminate for MATLABSystem: '<S4>/SourceBlock' */
   /* End of Terminate for SubSystem: '<Root>/Subscribe' */
 
   /* Terminate for Enabled SubSystem: '<Root>/Enabled Subsystem1' */
   /* Terminate for Atomic SubSystem: '<S3>/Publish' */
-  /* Start for MATLABSystem: '<S10>/SinkBlock' */
+  /* Terminate for MATLABSystem: '<S10>/SinkBlock' */
   if (DOB_ros_DW.obj.isInitialized == 1) {
     DOB_ros_DW.obj.isInitialized = 2;
   }
 
-  /* End of Start for MATLABSystem: '<S10>/SinkBlock' */
+  /* End of Terminate for MATLABSystem: '<S10>/SinkBlock' */
   /* End of Terminate for SubSystem: '<S3>/Publish' */
   /* End of Terminate for SubSystem: '<Root>/Enabled Subsystem1' */
 }

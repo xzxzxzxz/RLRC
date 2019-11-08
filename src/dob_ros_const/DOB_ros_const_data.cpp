@@ -7,9 +7,9 @@
  *
  * Code generation for model "DOB_ros_const".
  *
- * Model version              : 1.244
+ * Model version              : 1.246
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Thu Nov  7 11:44:19 2019
+ * C++ source code generated on : Thu Nov  7 19:10:44 2019
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -42,11 +42,6 @@ P_DOB_ros_const_T DOB_ros_const_P = {
    * Referenced by: '<Root>/Gain3'
    */
   1.0F,
-
-  /* Variable: kc12
-   * Referenced by: '<Root>/Gain1'
-   */
-  0.0F,
 
   /* Variable: steering_ratio
    * Referenced by: '<S3>/Gain1'
@@ -148,7 +143,8 @@ P_DOB_ros_const_T DOB_ros_const_P = {
     0.0F,                              /* Dy */
     0.0F,                              /* Dtheta */
     0.0F,                              /* Q */
-    0.0F                               /* K */
+    0.0F,                              /* K */
+    0.0F                               /* K12 */
   },
 
   /* Computed Parameter: Constant_Value_j
@@ -160,7 +156,8 @@ P_DOB_ros_const_T DOB_ros_const_P = {
     0.0F,                              /* Dy */
     0.0F,                              /* Dtheta */
     0.0F,                              /* Q */
-    0.0F                               /* K */
+    0.0F,                              /* K */
+    0.0F                               /* K12 */
   },
 
   /* Computed Parameter: Constant_Value_jb

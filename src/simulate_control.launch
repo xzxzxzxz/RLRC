@@ -7,7 +7,8 @@
    <node name="comp_error"  pkg="controller"  type="comp_error_node_sim" output="screen">
 	<param name="ds" value="5.0"/>
 	<param name="Q" value="0.05"/>
-	<param name="K" value="0.5"/>					
+	<param name="K" value="0.5"/>
+	<param name="K12" value="0"/>													
    </node>
    <node name="planner"  pkg="path_follower"  type="toy_planner_smooth.py" output="screen"/>
 </launch>
